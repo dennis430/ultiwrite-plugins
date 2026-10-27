@@ -5,8 +5,8 @@
   "publisher": "DWS Offshore Fund",
   "mcp_url": "https://dwsoffshorepartners.com/api/integrations/ultiwrite/mcp",
   "source_repository": "dennis430/merchant-risk-app",
-  "source_commit": "921f081852ca823a7601e1c725f4c4728c981888",
-  "note": "SHA-256 of every file except this manifest. Claude skill text was corrected on 2026-10-27 without a version bump because scripts/validate-public-plugins.mjs pins 0.7.1. The public git commit is recorded after publication.",
+  "source_commit": "f7b292857f5c1c6c91c63806c53f4c98bf0816d3",
+  "note": "SHA-256 of every file except this manifest. The public git commit is recorded after publication.",
   "files": [
     {
       "path": ".claude-plugin/marketplace.json",
@@ -130,7 +130,7 @@
     },
     {
       "path": "cursor/README.md",
-      "sha256": "b38b133dbc7c0fc1695ee7d1c7dd2bcb74a885cad36797a02321a28a3fb4f68e"
+      "sha256": "4fba238d5a1e87468c0b80a626466fc67d85640c5eefca484c880263b98644f8"
     },
     {
       "path": "cursor/assets/logo.png",

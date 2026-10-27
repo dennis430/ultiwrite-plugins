@@ -6,13 +6,13 @@ Remote MCP, production, no API key:
 
 https://dwsoffshorepartners.com/api/integrations/ultiwrite/mcp
 
-This directory is the Cursor plugin. The repository root `.cursor-plugin/marketplace.json` lists it with `source` set to `cursor`.
+This directory is the Cursor plugin. The repository root `.cursor-plugin/marketplace.json` lists it with `source` set to `cursor`. The manifest points at `assets/logo.png`. Installing an approved marketplace plugin is separate from connecting the raw MCP URL. This package was not submitted to the Cursor Marketplace.
 
-Not submitted to the Cursor Marketplace. No Cursor host session was run for 0.7.1. Direct connection is what the production setup guide already documents:
+Add the remote server in Cursor settings, connect, and approve Ultiwrite account access. Do not paste an API key. Use the signed upload handoff when the host cannot forward the original selected files. The account's allowance, limits, canonical analysis, and saved report are unchanged.
 
-1. Open Cursor MCP settings.
-2. Add the server URL above. Do not paste an API key.
-3. Connect and approve Ultiwrite account access when the host starts OAuth.
+The account selector label `default` in Grok Bot is host-managed connection-slot UI, not an Ultiwrite organization or identity. Do not fake or rewrite token subjects, organization IDs, or OAuth scopes to try to change it. OAuth consent shows the signed-in Ultiwrite account email and offers the actual account-switch sign-out link.
+
+No Cursor host session was run for 0.7.1. Grok Bot has a separate submission dossier and is not consumer Grok. Grok Build is not this connector.
 
 Setup guide: https://dwsoffshorepartners.com/docs/mcp
 
