@@ -6,7 +6,7 @@
   "mcp_url": "https://dwsoffshorepartners.com/api/integrations/ultiwrite/mcp",
   "source_repository": "dennis430/merchant-risk-app",
   "source_commit": "921f081852ca823a7601e1c725f4c4728c981888",
-  "note": "SHA-256 of every file except this manifest. The public git commit is recorded after publication.",
+  "note": "SHA-256 of every file except this manifest. Claude skill text was corrected on 2026-10-27 without a version bump because scripts/validate-public-plugins.mjs pins 0.7.1. The public git commit is recorded after publication.",
   "files": [
     {
       "path": ".claude-plugin/marketplace.json",
@@ -66,7 +66,7 @@
     },
     {
       "path": "claude/.claude-plugin/plugin.json",
-      "sha256": "6fc75faef63b97fe0702de24e8de5ac04b4dbd7d4729f24b1f03aa68890e9a72"
+      "sha256": "e54eecb7aa151817c7b36206979a2d3d587f534e47d7a36ecbb41508500cd633"
     },
     {
       "path": "claude/.mcp.json",
@@ -78,11 +78,11 @@
     },
     {
       "path": "claude/README.md",
-      "sha256": "5bc1f7885a38b16653b75b0650bf62a1fd8e0138747accf04a916719905b1dd4"
+      "sha256": "9bb12f06b4fe459ee1c4d5e8c4909724fa3bd4a964d3fb45351cbfb8165f3546"
     },
     {
       "path": "claude/SUBMISSION.md",
-      "sha256": "454e0991e34aecac37b4a1de1856ec7d6bc0a38b0ae2a1b46bc7065a482f1649"
+      "sha256": "65d4911897b1d156f901c0e08cbb0abde063a64e3d025497dda154a9e6e28b01"
     },
     {
       "path": "claude/assets/logo.png",
@@ -90,7 +90,7 @@
     },
     {
       "path": "claude/skills/ultiwrite/SKILL.md",
-      "sha256": "c1e3eeee39ed611a179b3fafd5aae260e295088b6f2d89d9a704f1c66d0946c9"
+      "sha256": "788f061ce00b6aeaab0f0b9f85188d7d2df7ae5e82f0b821cdc7d4bb864d3936"
     },
     {
       "path": "client/LICENSE",

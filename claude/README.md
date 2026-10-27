@@ -16,6 +16,6 @@ Thin source: https://github.com/dennis430/ultiwrite-plugins
 
 Claude Code: `/plugin install ultiwrite --marketplace dennis430/ultiwrite-plugins`
 
-This source route does not claim an actual host install or directory approval.
+Claude does not receive ChatGPT file objects. Evidence submission uses the signed browser upload link returned by `ultiwrite_evidence_submit` with `{}`. That link does not by itself finish an analysis. This file does not claim a live directory listing, a Claude Chat install, Cowork, or a Claude Code session. Production registration of Claude Code's ephemeral `http://localhost:<port>/callback` was rejected on 2026-10-27; the hosted callback `https://claude.ai/api/mcp/auth_callback` is the one the server already allows. A source fix for the loopback is not production until it is deployed.
 
 Repository status: the public thin source is https://github.com/dennis430/ultiwrite-plugins. It was not submitted to a plugin marketplace or directory. Cursor, Claude, ChatGPT, and Grok Bot host installation is not claimed from this package alone. The production MCP endpoint is independent of marketplace review.
