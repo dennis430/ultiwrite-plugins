@@ -1,9 +1,10 @@
 {
   "name": "ultiwrite",
+  "displayName": "Ultiwrite",
   "version": "0.7.1",
   "license": "MIT",
   "privacyPolicyUrl": "https://dwsoffshorepartners.com/privacy",
-  "description": "Commercial Diligence. Submit authorized evidence and read the saved Ultiwrite report.",
+  "description": "Commercial Diligence. Read a saved Ultiwrite report, and submit authorized evidence through the signed browser upload when Claude cannot pass file bytes.",
   "author": {
     "name": "DWS Offshore Fund",
     "url": "https://dwsoffshorepartners.com"
