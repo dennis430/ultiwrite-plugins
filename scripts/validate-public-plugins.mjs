@@ -159,6 +159,16 @@ if (!readFileSync(join(root, 'grokbot/TESTING.md'), 'utf8').includes('NOT_RUN'))
 
 const claude = readJson('claude/.mcp.json')
 if (claude?.mcpServers?.ultiwrite?.type !== 'http' || claude?.mcpServers?.ultiwrite?.url !== MCP_URL) fail('claude mcp')
+const claudeListing = readJson('claude/.claude-plugin/plugin.json')
+if (claudeListing?.name !== 'ultiwrite' || claudeListing?.displayName !== 'Ultiwrite' || claudeListing?.icon !== './assets/logo.png') fail('claude directory branding')
+for (const field of ['documentationUrl', 'supportUrl', 'privacyPolicyUrl', 'termsOfServiceUrl']) {
+  if (typeof claudeListing?.[field] !== 'string' || !claudeListing[field].startsWith('https://dwsoffshorepartners.com/')) fail(`claude directory ${field}`)
+}
+const chatgptListing = readJson('chatgpt/plugin.json')
+const openaiInterface = chatgptListing?.extensions?.['com.openai']?.interface
+if (openaiInterface?.displayName !== 'Ultiwrite' || openaiInterface?.logo !== './assets/logo.png' || openaiInterface?.composerIcon !== './assets/logo.png') fail('ChatGPT directory branding')
+pngSquareOpaque('claude/assets/logo.png')
+pngSquareOpaque('chatgpt/assets/logo.png')
 const pkg = readJson('client/package.json')
 if (pkg?.name !== 'ultiwrite-mcp' || pkg?.version !== '0.7.1' || pkg?.license !== 'MIT') fail('client package')
 if (readFileSync(join(root, 'server.draft.json'), 'utf8').includes('NOT PUBLISHED') === false) fail('registry draft must stay unpublished')
