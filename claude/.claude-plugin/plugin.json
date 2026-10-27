@@ -10,5 +10,9 @@
     "url": "https://dwsoffshorepartners.com"
   },
   "homepage": "https://dwsoffshorepartners.com",
-  "repository": "https://github.com/dennis430/ultiwrite-plugins"
+  "repository": "https://github.com/dennis430/ultiwrite-plugins",
+  "icon": "./assets/logo.png",
+  "documentationUrl": "https://dwsoffshorepartners.com/docs/mcp",
+  "supportUrl": "https://dwsoffshorepartners.com/contact",
+  "termsOfServiceUrl": "https://dwsoffshorepartners.com/terms"
 }
