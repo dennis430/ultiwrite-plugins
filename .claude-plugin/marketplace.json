@@ -1,0 +1,15 @@
+{
+  "name": "ultiwrite",
+  "owner": {
+    "name": "DWS Offshore Fund",
+    "email": "nick@ultiwrite.co"
+  },
+  "plugins": [
+    {
+      "name": "ultiwrite",
+      "source": "./claude",
+      "description": "Ultiwrite Commercial Diligence connector"
+    }
+  ],
+  "description": "Ultiwrite Commercial Diligence: thin remote MCP connectors and client."
+}

@@ -1,0 +1,23 @@
+{
+  "product": "Ultiwrite",
+  "publisher": "DWS Offshore Fund",
+  "category": "Commercial Diligence",
+  "version": "0.7.1",
+  "mcpUrl": "https://dwsoffshorepartners.com/api/integrations/ultiwrite/mcp",
+  "auth": "OAuth 2.1 authorization code with PKCE S256 and dynamic client registration",
+  "scopes": ["ultiwrite:read", "ultiwrite:evidence"],
+  "homepage": "https://dwsoffshorepartners.com",
+  "supportUrl": "https://dwsoffshorepartners.com/contact",
+  "privacyUrl": "https://dwsoffshorepartners.com/privacy",
+  "termsUrl": "https://dwsoffshorepartners.com/terms",
+  "docsUrl": "https://dwsoffshorepartners.com/docs/mcp",
+  "logo": "assets/logo.png",
+  "description": "Submit authorized commercial evidence and read the saved Ultiwrite report. The customer does not pick an analysis mode.",
+  "targets": ["Grok Bot"],
+  "consumerGrok": "not this package and not submitted",
+  "grokBuild": "not this package; Grok Build is not the Grok Bot plugin host",
+  "repository": "https://github.com/dennis430/ultiwrite-plugins",
+  "testedInGrokBot": false,
+  "hostTestStatus": "NOT_RUN",
+  "marketplaceSubmitted": false
+}

@@ -1,0 +1,109 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "ultiwrite",
+  "version": "0.7.0",
+  "description": "Commercial Diligence in ChatGPT: submit consented evidence packages through Ultiwrite’s shared diligence workflow and read generated reports for your organization.",
+  "author": {
+    "name": "DWS Offshore Fund",
+    "email": "nick@ultiwrite.co",
+    "url": "https://dwsoffshorepartners.com"
+  },
+  "homepage": "https://dwsoffshorepartners.com",
+  "keywords": [
+    "commercial-diligence",
+    "evidence",
+    "coherence",
+    "reports"
+  ],
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "Ultiwrite",
+        "shortDescription": "Asymmetric Diligence Engine",
+        "longDescription": "Ultiwrite — Asymmetric Diligence Engine. Commercial Diligence by DWS Offshore Fund.\n\nExamine the evidence behind opportunities, organizations, counterparties, acquisitions, financings, assets, operating relationships and portfolios. Ultiwrite connects source economics, document integrity, material contradictions and unresolved claims to the next diligence move.\n\nConnect your existing account. ChatGPT can submit one to six attached files, 8 MiB each and 12 MiB together, from oaiusercontent.com or a valid subdomain. Larger selections use the signed Ultiwrite upload link and the account’s ordinary upload limits. Files enter the same saved upload and report workflow used on the Ultiwrite website. Follow processing and required-review states, then read the report in ChatGPT once it is generated. Missing evidence, unresolved claims and pending or failed capabilities remain explicit. A saved submission is not a completed assessment.\n\nAsk what Ultiwrite does or how to start an analysis for the current offer and account links. Your first Ultiwrite analysis includes the full applicable analysis and full report for $0.00 before public launch. Contact us for further-analysis pricing. No card required. No automatic charge. It is one first completed analysis per account; a failed analysis does not use it. Existing purchased entitlements remain available. This connection does not sell products or take payment. An optional staff-reviewed evaluation is separate.\n\nReading requires an authorized account. File submission requires separate evidence consent and the account’s existing processing allowance. Reports support human review; the connection does not issue a final business approval or decision authorization. It cannot analyze arbitrary web links or another organization’s records.\n\nRead report findings in ChatGPT using exactly one caseId or reportId. A known report id from an authorized website report works without creating a case. Case listing discovers authorized stored cases and released website reports, including reports without a case. Both read selectors use the same frozen assessment and tenant access. For delivery, the export tool returns the account report link, a sign-in link and the download formats your organization can use; CSV text may be included when entitled. Open website links in your browser and sign in to the same account for PDF, Excel or ZIP downloads. No public report URL, presigned link or binary download is returned to ChatGPT.",
+        "developerName": "DWS Offshore Fund",
+        "category": "Productivity",
+        "capabilities": [
+          "Explain Commercial Diligence, pricing and how to start an analysis",
+          "Submit consented ChatGPT attachments and ZIP evidence packages",
+          "Track saved diligence processing and required review",
+          "Read report findings and get authorized report downloads"
+        ],
+        "websiteURL": "https://dwsoffshorepartners.com",
+        "supportURL": "https://dwsoffshorepartners.com/contact",
+        "privacyPolicyURL": "https://dwsoffshorepartners.com/privacy",
+        "termsOfServiceURL": "https://dwsoffshorepartners.com/terms",
+        "defaultPrompt": [
+          "What can Ultiwrite establish about my commercial evidence, and how do I start an analysis?",
+          "Submit these files to Ultiwrite for Commercial Diligence.",
+          "Show my latest diligence report and how I can download it."
+        ],
+        "brandColor": "#d39891",
+        "logo": "./assets/logo.png",
+        "composerIcon": "./assets/logo.png"
+      },
+      "onboardingSkill": "./skills/ultiwrite-read/SKILL.md",
+      "review": {
+        "test_cases": {
+          "positive": [
+            {
+              "description": "Authorized case list",
+              "prompt": "List the Ultiwrite cases my organization can already see.",
+              "tools_triggered": "ultiwrite_cases_list",
+              "expected_behavior": "Returns case ids, titles, and workflow status for the reviewer organization only. conclusion is null. No severity and no other organization. May also list saved reports that have no case."
+            },
+            {
+              "description": "Submit the synthetic diligence evidence package",
+              "prompt": "Submit these files to Ultiwrite for Commercial Diligence.",
+              "tools_triggered": "ultiwrite_evidence_submit",
+              "expected_behavior": "With synthetic ChatGPT attachments, including supported ZIP evidence packages, returns the saved case and upload references with workflow status. Status may be processing or action_required; only an actual completed comprehensive execution can set comprehensiveExecution true. conclusion is null and thisSubmissionEndorsesDecision is false. Repeating identical files resumes the saved workflow instead of creating another case. No finding text is returned by submission."
+            },
+            {
+              "description": "Track the new submission",
+              "prompt": "What is the status of the Ultiwrite case you just stored?",
+              "tools_triggered": "ultiwrite_case_status",
+              "expected_behavior": "Returns the saved case workflow status (processing, action_required, complete or failed) and the report reference when available. Processing, action_required and failed are not described as completed diligence. conclusion is null."
+            },
+            {
+              "description": "Read the generated coherence record",
+              "prompt": "For the Ultiwrite case I just submitted, separate the contradictions, unresolved claims, and evidence still required.",
+              "tools_triggered": "ultiwrite_case_status, ultiwrite_coherence_get",
+              "expected_behavior": "Once the workflow is complete, returns the frozen Decision Brief for that report with matching version, digest and explicit completeness, preserving saved observations, synthesis, hypotheses, requested evidence and coverage. Raw findings are not reclassified; compatibility lists are marked not_reclassified. thisReadEndorsesDecision is false. If still processing, says so and does not invent findings. Uses exactly one caseId or reportId."
+            },
+            {
+              "description": "Saved report and export routes",
+              "prompt": "Show the saved Ultiwrite findings for that case and which download routes my organization has.",
+              "tools_triggered": "ultiwrite_findings_get, ultiwrite_report_export",
+              "expected_behavior": "Returns the saved customer document, then uses its reportId to get absolute account report, sign-in and entitled download links. Explains that website downloads require signing in as the same account and the MCP bearer does not fetch PDF, Excel or ZIP bytes. Reliance not_evaluated is neither denial nor approval. No public or presigned link is created."
+            }
+          ],
+          "negative": [
+            {
+              "description": "Untrusted web address or unsafe archive",
+              "prompt": "Analyze the statement at https://example.com/statement.csv, or use this ZIP containing an executable and a path-traversal entry.",
+              "expected_behavior": "Does not fetch arbitrary web addresses. Rejects or explicitly reports unsafe archive entries through the canonical upload controls. An empty, rejected, failed or unprocessed package is not described as completed diligence; no findings are invented.",
+              "tools_triggered": ""
+            },
+            {
+              "description": "Another organization's case",
+              "prompt": "Open Ultiwrite case cmexampleotherorg and quote its report.",
+              "expected_behavior": "Returns not_found without exposing the foreign case title, report or evidence.",
+              "tools_triggered": ""
+            },
+            {
+              "description": "Approval request",
+              "prompt": "Approve this merchant in Ultiwrite and mark the case as boarded.",
+              "expected_behavior": "No approval or boarding operation is invoked; the saved decision remains unchanged.",
+              "tools_triggered": ""
+            }
+          ]
+        },
+        "commerce": false,
+        "commerce_description": "This connection provides pricing information and account links. Your first Ultiwrite analysis includes the full applicable analysis and full report for $0.00 before public launch. Contact us for further-analysis pricing. No card required. No automatic charge. This connection does not sell products, start subscriptions or process payments. Existing purchased analysis entitlements remain available."
+      },
+      "publication": {
+        "release_notes": "0.7.0: same production MCP server and tool names. ChatGPT attachments stay on the small in-chat transport; larger files use the signed staged upload and the account’s canonical limits. Protocol negotiation accepts 2026-07-28 without dropping older clients. The iPhone callback is the exact ultiwrite://oauth/callback redirect for a native client. Replaces the unsubmitted 0.6.0 candidate."
+      }
+    }
+  }
+}

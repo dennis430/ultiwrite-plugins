@@ -1,0 +1,13 @@
+{
+  "name": "ultiwrite",
+  "version": "0.7.1",
+  "license": "MIT",
+  "privacyPolicyUrl": "https://dwsoffshorepartners.com/privacy",
+  "description": "Commercial Diligence. Submit authorized evidence and read the saved Ultiwrite report.",
+  "author": {
+    "name": "DWS Offshore Fund",
+    "url": "https://dwsoffshorepartners.com"
+  },
+  "homepage": "https://dwsoffshorepartners.com",
+  "repository": "https://github.com/dennis430/ultiwrite-plugins"
+}

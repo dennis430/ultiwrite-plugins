@@ -1,0 +1,13 @@
+{
+  "name": "ultiwrite-mcp",
+  "version": "0.7.1",
+  "description": "Ultiwrite Commercial Diligence connector. Talks to the canonical remote MCP service. Does not include the diligence engine.",
+  "type": "module",
+  "bin": {
+    "ultiwrite-mcp": "./bin/ultiwrite-mcp.js"
+  },
+  "files": ["bin", "lib", "README.md", "LICENSE"],
+  "engines": { "node": ">=20" },
+  "license": "MIT",
+  "private": false
+}

@@ -1,0 +1,29 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/mcp.schema.json",
+  "mcpServers": {
+    "ultiwrite": {
+      "type": "streamable-http",
+      "url": "https://dwsoffshorepartners.com/api/integrations/ultiwrite/mcp",
+      "extensions": {
+        "com.openai": {
+          "auth": {
+            "type": "oauth",
+            "client": {
+              "mode": "dcr"
+            },
+            "authorizationUrl": "https://dwsoffshorepartners.com/api/integrations/ultiwrite/oauth/authorize",
+            "tokenUrl": "https://dwsoffshorepartners.com/api/integrations/ultiwrite/oauth/token",
+            "registrationUrl": "https://dwsoffshorepartners.com/api/integrations/ultiwrite/oauth/register",
+            "baseScopes": [
+              "ultiwrite:read"
+            ],
+            "defaultScopes": [
+              "ultiwrite:read",
+              "ultiwrite:evidence"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

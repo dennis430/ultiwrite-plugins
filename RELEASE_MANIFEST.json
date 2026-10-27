@@ -1,0 +1,192 @@
+{
+  "product": "Ultiwrite",
+  "distribution": "plugin-only",
+  "version": "0.7.1",
+  "publisher": "DWS Offshore Fund",
+  "mcp_url": "https://dwsoffshorepartners.com/api/integrations/ultiwrite/mcp",
+  "source_repository": "dennis430/merchant-risk-app",
+  "source_commit": "921f081852ca823a7601e1c725f4c4728c981888",
+  "note": "SHA-256 of every file except this manifest. The public git commit is recorded after publication.",
+  "files": [
+    {
+      "path": ".claude-plugin/marketplace.json",
+      "sha256": "8b5b0db5880bc9ab81fab860247a5ae0b64102fbf613951aca60bf007e572da8"
+    },
+    {
+      "path": ".cursor-plugin/marketplace.json",
+      "sha256": "ac087131e5a3670cc818b791aafb7de4b367c082972f57d3526399bd7abcb0a5"
+    },
+    {
+      "path": ".github/workflows/validate.yml",
+      "sha256": "94d78a666045ccc680b65fc125ff6fe975c51c4860d131a15333305f48d10a7d"
+    },
+    {
+      "path": ".gitignore",
+      "sha256": "5f70ee8df0ba474922bf182b542b64c5ec1d67f1c90085cbb97b786cb8f3c775"
+    },
+    {
+      "path": "INSTALL.md",
+      "sha256": "d2a8b4953c4fc0f08b9bdae4d97fedc2460251011b0b29746fe030f72cfce2a2"
+    },
+    {
+      "path": "LICENSE",
+      "sha256": "0122d7b57a1ef1e40944c88e2e0261b334fcf5f779e9deb52d49463de20a977d"
+    },
+    {
+      "path": "NOTICE",
+      "sha256": "879c535465b6737c67c9bda2b302d3a447a3275e80f06899cb8a3608fbe3dad8"
+    },
+    {
+      "path": "README.md",
+      "sha256": "ce146841705531e9ea081930c89fda96fa98bd464b347edf6c9dd21745c1eba1"
+    },
+    {
+      "path": "chatgpt/LICENSE",
+      "sha256": "0122d7b57a1ef1e40944c88e2e0261b334fcf5f779e9deb52d49463de20a977d"
+    },
+    {
+      "path": "chatgpt/README.md",
+      "sha256": "e60d0e18968fb64ded7cbf77b1b5ecdd6418d28d09227547ec7d03e86fa93249"
+    },
+    {
+      "path": "chatgpt/assets/logo.png",
+      "sha256": "0b274d5691e551b86d1ba6def763d33ad0d4c3c0b7ccd000656bd3fad43ae131"
+    },
+    {
+      "path": "chatgpt/mcp.json",
+      "sha256": "95000e3fdfd93383da4e2956ac33a265d9742ab591aa2b95e5fa00a52ae7e1ce"
+    },
+    {
+      "path": "chatgpt/plugin.json",
+      "sha256": "5c08c028c8b51883daed770db8ad8e90a742e7d65657528134fbcc15110a08af"
+    },
+    {
+      "path": "chatgpt/skills/ultiwrite-read/SKILL.md",
+      "sha256": "e87223f601a9d1c1ff2b05aa5794c856331f8c03b7375a8c21e6082c9318c5de"
+    },
+    {
+      "path": "claude/.claude-plugin/plugin.json",
+      "sha256": "6fc75faef63b97fe0702de24e8de5ac04b4dbd7d4729f24b1f03aa68890e9a72"
+    },
+    {
+      "path": "claude/.mcp.json",
+      "sha256": "24b12d346929cb56d33bbb6ca678262a3320cd601e759f517324ec8125b02781"
+    },
+    {
+      "path": "claude/LICENSE",
+      "sha256": "0122d7b57a1ef1e40944c88e2e0261b334fcf5f779e9deb52d49463de20a977d"
+    },
+    {
+      "path": "claude/README.md",
+      "sha256": "5bc1f7885a38b16653b75b0650bf62a1fd8e0138747accf04a916719905b1dd4"
+    },
+    {
+      "path": "claude/SUBMISSION.md",
+      "sha256": "454e0991e34aecac37b4a1de1856ec7d6bc0a38b0ae2a1b46bc7065a482f1649"
+    },
+    {
+      "path": "claude/assets/logo.png",
+      "sha256": "0b274d5691e551b86d1ba6def763d33ad0d4c3c0b7ccd000656bd3fad43ae131"
+    },
+    {
+      "path": "claude/skills/ultiwrite/SKILL.md",
+      "sha256": "c1e3eeee39ed611a179b3fafd5aae260e295088b6f2d89d9a704f1c66d0946c9"
+    },
+    {
+      "path": "client/LICENSE",
+      "sha256": "0122d7b57a1ef1e40944c88e2e0261b334fcf5f779e9deb52d49463de20a977d"
+    },
+    {
+      "path": "client/README.md",
+      "sha256": "0cdb8ac9542bc5e551aa2ee7f887fe8f087fe0ae399311e4a16cee8738692cf7"
+    },
+    {
+      "path": "client/bin/ultiwrite-mcp.js",
+      "sha256": "4a59661f75ea42f7beb1fad9951c2d92dd348555cdfa4d5e5b584f84a5f5275a"
+    },
+    {
+      "path": "client/lib/pure.mjs",
+      "sha256": "80323f003ed983aa7d23c9c2df1131c775a17d74216b9ab2a7b2796fad9d3ff6"
+    },
+    {
+      "path": "client/package.json",
+      "sha256": "a01959fbca0f72562f9726f7541c49778113a126319239f40a9700adfbac4e63"
+    },
+    {
+      "path": "client/test/cli.test.mjs",
+      "sha256": "2c12a916ce1a12f74408e8876386399da6e4c5052358cd10924addde243e6a3b"
+    },
+    {
+      "path": "client/test/transport.test.mjs",
+      "sha256": "ec5d3531584c1ce33cc336e2dd24f0590fb37ed0ec8287ab546d6fdeb2ad2702"
+    },
+    {
+      "path": "cursor/.cursor-plugin/plugin.json",
+      "sha256": "5cb16dd0c921e4d2088168c178ef93433f4876e16a443f9cfdfa80671e040a5d"
+    },
+    {
+      "path": "cursor/LICENSE",
+      "sha256": "0122d7b57a1ef1e40944c88e2e0261b334fcf5f779e9deb52d49463de20a977d"
+    },
+    {
+      "path": "cursor/README.md",
+      "sha256": "b38b133dbc7c0fc1695ee7d1c7dd2bcb74a885cad36797a02321a28a3fb4f68e"
+    },
+    {
+      "path": "cursor/assets/logo.png",
+      "sha256": "0b274d5691e551b86d1ba6def763d33ad0d4c3c0b7ccd000656bd3fad43ae131"
+    },
+    {
+      "path": "cursor/mcp.json",
+      "sha256": "9d3f3737200d1f0434bb218cc8de3c8fb3d0a22bd13b205a735c4701cf3d2858"
+    },
+    {
+      "path": "cursor/skills/ultiwrite/SKILL.md",
+      "sha256": "c1e3eeee39ed611a179b3fafd5aae260e295088b6f2d89d9a704f1c66d0946c9"
+    },
+    {
+      "path": "grokbot/FIELDS.json",
+      "sha256": "c01fb5a16b4bbca61614f54dda61a27d2ec4e98419116304a1a064e136e1c8c6"
+    },
+    {
+      "path": "grokbot/INSTALL.md",
+      "sha256": "b5de2d4b23d5b20ea1aa6c0039a7ae8e42011cf0431f248249190785a4835e69"
+    },
+    {
+      "path": "grokbot/LICENSE",
+      "sha256": "0122d7b57a1ef1e40944c88e2e0261b334fcf5f779e9deb52d49463de20a977d"
+    },
+    {
+      "path": "grokbot/OAUTH.md",
+      "sha256": "67cf3bbe74322352381ec05fddc4ee3d39b22dd752182b71d664d74fb3fc387a"
+    },
+    {
+      "path": "grokbot/README.md",
+      "sha256": "882c00d1adfa11842e58f7d41b18db09f4c2a0d31164c61b391b99081ae791f2"
+    },
+    {
+      "path": "grokbot/TESTING.md",
+      "sha256": "2ec0e8ec35f43ef40c5c4161bcad6c60f2acf2dfe85e807f246e65b4fccad3eb"
+    },
+    {
+      "path": "grokbot/TOOLS.md",
+      "sha256": "e16379419c4768a6dc57aadfc51ff13614f770fe06d50cf48f5fb2453731d1d4"
+    },
+    {
+      "path": "grokbot/assets/logo.png",
+      "sha256": "0b274d5691e551b86d1ba6def763d33ad0d4c3c0b7ccd000656bd3fad43ae131"
+    },
+    {
+      "path": "grokbot/mcp.json",
+      "sha256": "9d3f3737200d1f0434bb218cc8de3c8fb3d0a22bd13b205a735c4701cf3d2858"
+    },
+    {
+      "path": "scripts/validate-public-plugins.mjs",
+      "sha256": "c1d708c74def5f47324df4ad3ab66d2d55fa82493e800ae3c96dcca2ad9b1183"
+    },
+    {
+      "path": "server.draft.json",
+      "sha256": "661f6d5ad4678dc3b32c83d1fbe05bde9cce24c2f11afd89fa01fe9aabcc7dcf"
+    }
+  ]
+}

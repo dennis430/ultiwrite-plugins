@@ -1,0 +1,21 @@
+License boundary
+
+The MIT license applies only to original thin connector code in this
+repository: plugin manifests, skill instructions, the local MCP client
+wrapper, and these distribution documents.
+
+It does not license, and this repository does not contain:
+
+- the Ultiwrite analytical service
+- scoring, evidence ledgers, report composition, or private service internals
+- database schemas, migrations, or customer records
+- credentials or non-public operational material
+
+Those remain Copyright DWS Offshore Fund. All rights reserved.
+
+No third-party source is vendored here. Schema files fetched by a validator
+from Cursor or Agent Plugins stay under their own terms and are not relicensed
+by this notice.
+
+The remote service at https://dwsoffshorepartners.com is not open source.
+Connecting to it requires an Ultiwrite account and the permissions you approve.

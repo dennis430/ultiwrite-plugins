@@ -1,0 +1,16 @@
+{
+  "name": "io.github.dennis430/ultiwrite",
+  "title": "Ultiwrite",
+  "description": "NOT PUBLISHED to the MCP Registry. Draft metadata for the existing Ultiwrite remote MCP. Commercial Diligence: submit authorized evidence and read the saved report from the existing Ultiwrite account.",
+  "version": "0.7.1",
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://dwsoffshorepartners.com/api/integrations/ultiwrite/mcp"
+    }
+  ],
+  "repository": {
+    "url": "https://github.com/dennis430/ultiwrite-plugins",
+    "source": "github"
+  }
+}

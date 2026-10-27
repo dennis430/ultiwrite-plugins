@@ -1,0 +1,17 @@
+{
+  "name": "ultiwrite",
+  "owner": {
+    "name": "DWS Offshore Fund",
+    "email": "nick@ultiwrite.co"
+  },
+  "metadata": {
+    "description": "Ultiwrite Commercial Diligence connectors. Thin remote MCP packages only."
+  },
+  "plugins": [
+    {
+      "name": "ultiwrite",
+      "source": "cursor",
+      "description": "Commercial Diligence. Submit authorized evidence and read the saved Ultiwrite report."
+    }
+  ]
+}
