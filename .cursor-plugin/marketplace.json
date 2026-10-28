@@ -1,8 +1,8 @@
 {
   "name": "ultiwrite",
   "owner": {
-    "name": "DWS Offshore Fund",
-    "email": "nick@ultiwrite.co"
+    "name": "DWS Offshore Fund dba Ultiwrite",
+    "email": "dennisl@dwsoffshorepartners.com"
   },
   "metadata": {
     "description": "Ultiwrite Commercial Diligence connectors. Thin remote MCP packages only."
@@ -11,7 +11,7 @@
     {
       "name": "ultiwrite",
       "source": "cursor",
-      "description": "Commercial Diligence. Submit authorized evidence and read the saved Ultiwrite report."
+      "description": "Asymmetric diligence engine with document forensics. Generalized commercial diligence—upload authorized evidence and receive an investigated, source-backed assessment of what holds up, what does not, and what changes the decision (not a general response about the documents)."
     }
   ]
 }

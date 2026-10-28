@@ -34,6 +34,8 @@ Claude Code source install, once this public repository is the marketplace you a
 
 `server.draft.json` is unpublished MCP Registry metadata. Do not treat it as a listing.
 
-Version 0.7.1 is this repaired public source. The website still serves the older 0.7.0 plugin zips. They are not this tree. npm is not published. No marketplace form was submitted. No Cursor, Claude, ChatGPT, or Grok Bot host journey is claimed here.
+Cursor/Grok Bot submission candidate 0.7.3 is prepared in `cursor/` and `grokbot/`. Claude, ChatGPT, and the local client retain their separate 0.7.1 versions. The website still serves the older 0.7.0 plugin zips. They are not this tree. npm is not published. No marketplace form was submitted. No Cursor, Claude, ChatGPT, or Grok Bot host journey is claimed here.
 
 Repository status: the public thin source is https://github.com/dennis430/ultiwrite-plugins. It was not submitted to a plugin marketplace or directory. Cursor, Claude, ChatGPT, and Grok Bot host installation is not claimed from this package alone. The production MCP endpoint is independent of marketplace review.
+
+Candidate 0.7.3 fills Dennis Liu / dennisl@dwsoffshorepartners.com, reuses the existing MIT thin-connector license and opaque logo, includes three reproducible reviewer prompts and fictional CSV evidence, and retains truthful host-testing/submission states. No credentials are in the package. The current main branch, website downloads, and a proposed branch are distinct until the relevant source changes are merged and deployed.

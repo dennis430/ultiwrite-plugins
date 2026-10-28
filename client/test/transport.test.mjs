@@ -5,6 +5,7 @@ import { mkdtemp, mkdir, readFile, writeFile } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { once } from 'node:events'
+import { fileURLToPath } from 'node:url'
 
 const home = await mkdtemp(join(tmpdir(), 'ultiwrite-transport-'))
 const credentials = join(home, '.config/ultiwrite/credentials.json')
@@ -40,8 +41,8 @@ const server = createServer(async (req, res) => {
 await new Promise(resolve => server.listen(0, '127.0.0.1', resolve))
 origin = `http://127.0.0.1:${server.address().port}`
 await writeFile(credentials, JSON.stringify({ access_token: 'old-access', refresh_token: 'old-refresh', client_id: 'synthetic', issuer: origin }), { mode: 0o600 })
-const bin = new URL('../bin/ultiwrite-mcp.js', import.meta.url)
-const start = args => spawn(process.execPath, [bin.pathname, ...args], { env: { ...process.env, ULTIWRITE_HOME: home }, stdio: ['pipe', 'pipe', 'pipe'] })
+const bin = fileURLToPath(new URL('../bin/ultiwrite-mcp.js', import.meta.url))
+const start = args => spawn(process.execPath, [bin, ...args], { env: { ...process.env, ULTIWRITE_HOME: home }, stdio: ['pipe', 'pipe', 'pipe'] })
 const child = start(['stdio'])
 let output = '', errors = ''
 child.stdout.on('data', chunk => { output += chunk })

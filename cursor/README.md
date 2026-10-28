@@ -1,21 +1,19 @@
-# Ultiwrite for Cursor
+# Ultiwrite for Cursor and Grok Bot reviewers
 
-Version 0.7.1. Publisher: DWS Offshore Fund. License: MIT for this thin connector only. See LICENSE.
+Version 0.7.3. Publisher: DWS Offshore Fund dba Ultiwrite. Submitter/support contact: dennisl@dwsoffshorepartners.com.
 
-Remote MCP, production, no API key:
+Ultiwrite is an asymmetric diligence engine with document forensics capability. Upload authorized evidence for a commercial opportunity, counterparty, financing, acquisition, or portfolio and read the service's saved, source-backed assessment. One service supports these workflows; specialist skills are not separate products or analysis modes.
 
-https://dwsoffshorepartners.com/api/integrations/ultiwrite/mcp
+MCP: https://dwsoffshorepartners.com/api/integrations/ultiwrite/mcp
+Setup: https://dwsoffshorepartners.com/docs/mcp
+Public source: https://github.com/dennis430/ultiwrite-plugins (`cursor/`)
 
-This directory is the Cursor plugin. The repository root `.cursor-plugin/marketplace.json` lists it with `source` set to `cursor`. The manifest points at `assets/logo.png`. Installing an approved marketplace plugin is separate from connecting the raw MCP URL. This package was not submitted to the Cursor Marketplace.
+This folder contains the Cursor manifest, four skills, a safety rule, and remote MCP configuration. The MIT license covers only the original thin connector and its documentation. The remote analytical engine and customer data are not included or licensed. See LICENSE and NOTICE. The square opaque logo reuses the existing public connector artwork.
 
-Add the remote server in Cursor settings, connect, and approve Ultiwrite account access. Do not paste an API key. Use the signed upload handoff when the host cannot forward the original selected files. The account's allowance, limits, canonical analysis, and saved report are unchanged.
+For local installation, copy this folder's CONTENTS to `~/.cursor/plugins/local/ultiwrite/`, including hidden `.cursor-plugin`, then reload Cursor. Verify the actual version and components in Customize. Back up a pre-existing local copy. Connect through OAuth with an Ultiwrite account; do not paste an API key. Use only advertised file/handoff inputs and actual returned report identifiers. Limits, allowance, and staff release follow the service's current policy.
 
-The account selector label `default` in Grok Bot is host-managed connection-slot UI, not an Ultiwrite organization or identity. Do not fake or rewrite token subjects, organization IDs, or OAuth scopes to try to change it. OAuth consent shows the signed-in Ultiwrite account email and offers the actual account-switch sign-out link.
+Core skill: `ultiwrite`; specialist skills: `ultiwrite-underwriting-coherence`, `ultiwrite-acquisition-intelligence`, `ultiwrite-retention-monitoring`.
 
-No Cursor host session was run for 0.7.1. Grok Bot has a separate submission dossier and is not consumer Grok. Grok Build is not this connector.
+Reviewer instructions and fictional files are in `review/`. Dedicated account credentials are supplied privately, never in this source. Local/in-app testing for 0.7.3 is not claimed. This package has not been submitted or listed. Grok Bot installation is separate from the Cursor local plugin; consumer Grok is not targeted.
 
-Setup guide: https://dwsoffshorepartners.com/docs/mcp
-
-The website still offers the older 0.7.0 zip. This directory is the repaired 0.7.1 source. Those bytes are not the same.
-
-Repository status: the public thin source is https://github.com/dennis430/ultiwrite-plugins. It was not submitted to a plugin marketplace or directory. Cursor, Claude, ChatGPT, and Grok Bot host installation is not claimed from this package alone. The production MCP endpoint is independent of marketplace review.
+Earlier website downloads labeled 0.7.0 and public source 0.7.1 are different releases. A prepared source branch does not update those hosted downloads. Use the version/hash of this bundle and its source branch rather than assuming the website was deployed.

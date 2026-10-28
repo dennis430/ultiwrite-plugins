@@ -1,18 +1,27 @@
 {
   "name": "ultiwrite",
-  "displayName": "Ultiwrite",
-  "version": "0.7.1",
-  "description": "Commercial Diligence. Submit authorized evidence and read the saved Ultiwrite report.",
+  "displayName": "Ultiwrite Asymmetric Diligence",
+  "version": "0.7.3",
+  "description": "Asymmetric diligence engine with document forensics. Generalized commercial diligence—upload authorized evidence and receive an investigated, source-backed assessment of what holds up, what does not, and what changes the decision (not a general response about the documents).",
   "author": {
-    "name": "DWS Offshore Fund",
-    "email": "nick@ultiwrite.co"
+    "name": "DWS Offshore Fund dba Ultiwrite",
+    "email": "dennisl@dwsoffshorepartners.com"
   },
-  "publisher": "DWS Offshore Fund",
+  "publisher": "DWS Offshore Fund dba Ultiwrite",
   "license": "MIT",
   "homepage": "https://dwsoffshorepartners.com",
   "repository": "https://github.com/dennis430/ultiwrite-plugins",
   "logo": "assets/logo.png",
-  "keywords": ["commercial-diligence", "mcp", "evidence", "reports"],
+  "keywords": [
+    "ultiwrite",
+    "asymmetric-diligence",
+    "document-forensics",
+    "commercial-diligence",
+    "underwriting",
+    "acquisition",
+    "retention",
+    "coherence"
+  ],
   "category": "Commercial Diligence",
-  "skills": "skills/ultiwrite/SKILL.md"
+  "skills": "skills/"
 }

@@ -1,0 +1,2 @@
+entity_id,legal_name,period_start,period_end,population_id,currency,measurement_unit,accounting_definition,revenue,customer_count,revenue_per_customer,revenue_per_customer_definition,source_reference
+uw-review-demo-20261027,Ultiwrite Reviewer Fixture (fictional),2025-01-01,2025-12-31,all-customers,USD,USD,recognized_period_revenue,1284000,1200,1070,recognized_revenue_divided_by_same_population,fixture-ledger-2025
