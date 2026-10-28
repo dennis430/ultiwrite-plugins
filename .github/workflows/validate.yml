@@ -14,3 +14,7 @@ jobs:
           node-version: 22
       - name: Structural and secret checks
         run: node scripts/validate-public-plugins.mjs
+      - name: Client protocol and credential handling
+        run: node --test client/test/cli.test.mjs client/test/transport.test.mjs
+      - name: Reproduce Cursor submission archive
+        run: python scripts/build-cursor-release.py dist

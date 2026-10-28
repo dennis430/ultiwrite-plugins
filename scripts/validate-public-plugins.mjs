@@ -8,6 +8,9 @@ const root = process.argv[2] ? process.argv[2] : process.cwd()
 const errors = []
 const fail = message => errors.push(message)
 const MCP_URL = 'https://dwsoffshorepartners.com/api/integrations/ultiwrite/mcp'
+const SUBMISSION_VERSION = '0.7.3'
+const SUBMISSION_PUBLISHER = 'DWS Offshore Fund dba Ultiwrite'
+const SUBMISSION_EMAIL = 'dennisl@dwsoffshorepartners.com'
 const privateHost = ['engine', 'dwsoffshorepartners', 'com'].join('.')
 const secretNeedles = [
   privateHost,
@@ -28,7 +31,7 @@ const secretNeedles = [
 const allowedTop = new Set([
   'cursor', 'claude', 'chatgpt', 'grokbot', 'client', 'scripts', '.github',
   '.cursor-plugin', '.claude-plugin', 'README.md', 'LICENSE', 'NOTICE',
-  'INSTALL.md', 'server.draft.json', '.gitignore', 'RELEASE_MANIFEST.json',
+  'INSTALL.md', 'server.draft.json', '.gitignore', '.gitattributes', 'RELEASE_MANIFEST.json',
 ])
 
 function walk(dir, out = []) {
@@ -106,7 +109,7 @@ if (market) {
     if (!['name', 'owner', 'metadata', 'plugins'].includes(key)) fail(`marketplace.json has ${key}`)
   }
   if (market.name !== 'ultiwrite') fail('marketplace name')
-  if (market.owner?.name !== 'DWS Offshore Fund' || market.owner.email !== 'nick@ultiwrite.co') fail('marketplace owner')
+  if (market.owner?.name !== SUBMISSION_PUBLISHER || market.owner.email !== SUBMISSION_EMAIL) fail('marketplace owner')
   if (!Array.isArray(market.plugins) || market.plugins.length !== 1) fail('marketplace plugins')
   const entry = market.plugins?.[0]
   if (entry && (entry.name !== 'ultiwrite' || entry.source !== 'cursor')) fail('marketplace source must be cursor')
@@ -119,10 +122,10 @@ const plugin = readJson('cursor/.cursor-plugin/plugin.json')
 const pluginKeys = ['name', 'displayName', 'version', 'description', 'author', 'publisher', 'license', 'homepage', 'repository', 'logo', 'keywords', 'category', 'skills']
 if (plugin) {
   for (const key of Object.keys(plugin)) if (!pluginKeys.includes(key)) fail(`plugin.json has ${key}`)
-  if (plugin.name !== 'ultiwrite' || plugin.version !== '0.7.1' || plugin.license !== 'MIT') fail('plugin identity')
-  if (plugin.author?.url || plugin.author?.name !== 'DWS Offshore Fund' || plugin.author?.email !== 'nick@ultiwrite.co') fail('plugin author')
+  if (plugin.name !== 'ultiwrite' || plugin.version !== SUBMISSION_VERSION || plugin.license !== 'MIT') fail('plugin identity')
+  if (plugin.author?.url || plugin.author?.name !== SUBMISSION_PUBLISHER || plugin.author?.email !== SUBMISSION_EMAIL) fail('plugin author')
   if (plugin.logo !== 'assets/logo.png') fail('plugin logo path')
-  if (plugin.skills !== 'skills/ultiwrite/SKILL.md') fail('plugin skill path')
+  if (plugin.skills !== 'skills/') fail('plugin skill path')
   if (plugin.repository !== 'https://github.com/dennis430/ultiwrite-plugins') fail('plugin repository')
 }
 pngSquareOpaque('cursor/assets/logo.png')
@@ -141,11 +144,24 @@ if (grokMcp?.mcpServers?.ultiwrite?.url !== MCP_URL || grokMcp?.mcpServers?.ulti
 const skill = readFileSync(join(root, 'cursor/skills/ultiwrite/SKILL.md'), 'utf8')
 if (!skill.startsWith('---\nname: ultiwrite\n')) fail('cursor skill name')
 if (!/^description: .+/m.test(skill)) fail('cursor skill description')
+const expectedSkills = ['ultiwrite', 'ultiwrite-acquisition-intelligence', 'ultiwrite-retention-monitoring', 'ultiwrite-underwriting-coherence']
+const actualSkills = readdirSync(join(root, 'cursor/skills')).filter(name => statSync(join(root, 'cursor/skills', name)).isDirectory()).sort()
+if (JSON.stringify(actualSkills) !== JSON.stringify(expectedSkills)) fail('cursor skill inventory')
+for (const name of actualSkills) {
+  const text = readFileSync(join(root, 'cursor/skills', name, 'SKILL.md'), 'utf8')
+  if (!text.startsWith(`---\nname: ${name}\n`) || !/^description: .+/m.test(text)) fail(`skill frontmatter ${name}`)
+}
+if (!files.includes('cursor/rules/ultiwrite-safety.mdc')) fail('cursor safety rule missing')
+if (!readFileSync(join(root, 'cursor/LICENSE'), 'utf8').includes('MIT License')) fail('cursor MIT grant missing')
+if (!readFileSync(join(root, 'cursor/NOTICE'), 'utf8').includes('does not contain')) fail('cursor proprietary service boundary missing')
 
 const fields = readJson('grokbot/FIELDS.json')
 if (fields) {
-  if (fields.testedInGrokBot !== false || fields.hostTestStatus !== 'NOT_RUN' || fields.marketplaceSubmitted !== false) fail('grok dossier claims a host test or submission')
-  if (fields.publisher !== 'DWS Offshore Fund' || fields.product !== 'Ultiwrite' || fields.category !== 'Commercial Diligence') fail('grok identity')
+  if (fields.testedInGrokBot !== false || fields.hostTestStatus !== 'NOT_RUN_FOR_0.7.3' || fields.marketplaceSubmitted !== false) fail('grok dossier claims a host test or submission')
+  if (fields.publisher !== SUBMISSION_PUBLISHER || fields.product !== 'Ultiwrite' || fields.category !== 'Commercial Diligence' || fields.version !== SUBMISSION_VERSION) fail('grok identity')
+  if (fields.firstName !== 'Dennis' || fields.lastName !== 'Liu' || fields.workEmail !== SUBMISSION_EMAIL) fail('submitter identity')
+  if (JSON.stringify(fields.targets) !== JSON.stringify(['Grok Bot', 'Cursor']) || fields.consumerGrokSelected !== false) fail('submission targets')
+  if (JSON.stringify(readJson('cursor/review/FIELDS.json')) !== JSON.stringify(fields)) fail('Cursor and Grok submission fields differ')
   if (fields.mcpUrl !== MCP_URL) fail('grok mcp url')
   for (const key of ['homepage', 'supportUrl', 'privacyUrl', 'termsUrl', 'docsUrl']) {
     if (typeof fields[key] !== 'string' || !fields[key].startsWith('https://dwsoffshorepartners.com')) fail(`grok ${key}`)
@@ -156,6 +172,27 @@ for (const rel of ['grokbot/OAUTH.md', 'grokbot/TOOLS.md', 'grokbot/INSTALL.md',
   if (!files.includes(rel)) fail(`missing ${rel}`)
 }
 if (!readFileSync(join(root, 'grokbot/TESTING.md'), 'utf8').includes('NOT_RUN')) fail('testing status missing')
+if (readFileSync(join(root, 'grokbot/TESTING.md'), 'utf8') !== readFileSync(join(root, 'cursor/review/TESTING.md'), 'utf8')) fail('review procedures differ')
+
+// Verify the supplied evidence is reproducible and actually contains the stated
+// same-scope contradiction rather than relying on an imagined expected result.
+const fixtureRows = ['operating-ledger.csv', 'transaction-summary.csv'].map(name => {
+  const lines = readFileSync(join(root, 'cursor/review/fixtures', name), 'utf8').trim().split('\n')
+  if (lines.length !== 2) { fail(`fixture row count ${name}`); return {} }
+  const headers = lines[0].split(',')
+  const values = lines[1].split(',')
+  if (headers.length !== values.length) fail(`fixture column count ${name}`)
+  return Object.fromEntries(headers.map((key, i) => [key, values[i]]))
+})
+for (const row of fixtureRows) {
+  if (Number(row.revenue) !== Number(row.customer_count) * Number(row.revenue_per_customer)) fail('fixture arithmetic')
+}
+for (const key of ['entity_id','period_start','period_end','population_id','currency','measurement_unit','accounting_definition','revenue_per_customer_definition']) {
+  if (!fixtureRows[0][key] || fixtureRows[0][key] !== fixtureRows[1][key]) fail(`fixture scope ${key}`)
+}
+if (Number(fixtureRows[0].revenue) - Number(fixtureRows[1].revenue) !== 36000) fail('fixture revenue discrepancy')
+const release = readJson('RELEASE_MANIFEST.json')
+if (release?.componentVersions?.cursor !== SUBMISSION_VERSION || release?.componentVersions?.grokbot !== SUBMISSION_VERSION) fail('release component versions')
 
 const claude = readJson('claude/.mcp.json')
 if (claude?.mcpServers?.ultiwrite?.type !== 'http' || claude?.mcpServers?.ultiwrite?.url !== MCP_URL) fail('claude mcp')

@@ -1,4 +1,6 @@
-# Ultiwrite 0.7.1 — install and upload
+# Ultiwrite — install and upload
+
+Cursor/Grok Bot submission candidate: 0.7.3. Other platform packages retain their own versions.
 
 Remote MCP URL: https://dwsoffshorepartners.com/api/integrations/ultiwrite/mcp
 Setup guide: https://dwsoffshorepartners.com/docs/mcp
@@ -15,7 +17,7 @@ Cursor configuration:
 
 ChatGPT: use the custom MCP app path where the plan/workspace supports it, or upload the ChatGPT plugin ZIP to the EXISTING unpublished OpenAI identity. Do not create a duplicate listing. Plugin id: plugin_asdk_app_6ad72494738c8191af2df24a75ab4afc. Prior uploaded version: 0.4.1. The public connector source is 0.7.1 and was not uploaded to OpenAI. The website still serves the 0.7.0 zip. The owner must inspect current portal state before replacing a draft. Public directory publication is not claimed.
 
-Claude: the plugin ZIP is for supported personal imports. The plugin directory uses a thin public source repository; the distribution-source archive contains only that prepared tree. The existing proprietary license is retained. The thin source is https://github.com/dennis430/ultiwrite-plugins. Actual host verification and directory review remain pending.
+Claude: the plugin ZIP is for supported personal imports. The plugin directory uses a thin public source repository; the distribution-source archive contains only that prepared tree. The existing MIT license covers only the thin connector; the analytical service remains proprietary. The thin source is https://github.com/dennis430/ultiwrite-plugins. Actual host verification and directory review remain pending.
 
 Cursor: plugin ZIP plus the matching thin distribution-source archive. Public Marketplace submission requires its actual source URL and host verification. Grok Bot's ZIP is a submission dossier for the MCP/repository form, not a plugin importer or a consumer Grok release.
 

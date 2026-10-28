@@ -1,13 +1,9 @@
-# Install and account connection
+# Reviewer connection setup
 
-1. Confirm the MCP URL is `https://dwsoffshorepartners.com/api/integrations/ultiwrite/mcp`.
-2. In Grok Bot's supported app connection, add that remote MCP server. Do not enter an API key.
-3. When the host opens Ultiwrite, sign in to the existing account and approve access.
-4. Scopes requested by the connector are `ultiwrite:read` and `ultiwrite:evidence`.
-5. Ask the bot to read capabilities before submitting files.
-6. If the host cannot attach the original files, use the signed upload link the submit tool returns, then check case status. Do not submit a second time for the same package.
-7. Open website exports in a browser signed into the same account.
+Use `https://dwsoffshorepartners.com/api/integrations/ultiwrite/mcp` with Ultiwrite OAuth. No shared API key is supported. Use the dedicated reviewer account supplied in the submission's private instructions, and verify read/evidence consent and current account allowance.
 
-Account allowance, upload limits, and report release rules stay on the website. This connection does not add usage.
+Grok Bot: open Connect apps and inspect the existing Ultiwrite connection or the marketplace's supported development/reviewer install. Do not assume that arbitrary remote URLs or unpublished local bundles can be imported in every version. Record an unavailable install path as BLOCKED_EXTERNAL. A connected app still needs successful provider authentication.
 
-The Cursor plugin in `cursor/` is a separate install path. It uses the same MCP URL. This dossier does not install it.
+Cursor: follow `../cursor/review/TESTING.md`. The package root must directly contain the hidden manifest, mcp.json, skills, and rules. Confirm 0.7.3 before testing.
+
+Use only real returned upload links, case/report identifiers, and entitled export links. The host's file-input schema controls what can be submitted. No payment is taken by the connection, and connection does not increase account allowance.

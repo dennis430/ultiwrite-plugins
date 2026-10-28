@@ -1,12 +1,12 @@
 {
   "product": "Ultiwrite",
   "distribution": "plugin-only",
-  "version": "0.7.1",
-  "publisher": "DWS Offshore Fund",
+  "version": "0.7.3",
+  "publisher": "DWS Offshore Fund dba Ultiwrite",
   "mcp_url": "https://dwsoffshorepartners.com/api/integrations/ultiwrite/mcp",
-  "source_repository": "dennis430/merchant-risk-app",
-  "source_commit": "f7b292857f5c1c6c91c63806c53f4c98bf0816d3",
-  "note": "SHA-256 of every file except this manifest. The public git commit is recorded after publication.",
+  "source_repository": "dennis430/ultiwrite-plugins",
+  "source_commit": "822dfe4a2482f852a457b77b7b5223311da08292",
+  "note": "SHA-256 of every tracked/release file except this manifest. Host tests and marketplace publication are separate.",
   "files": [
     {
       "path": ".claude-plugin/marketplace.json",
@@ -14,43 +14,27 @@
     },
     {
       "path": ".cursor-plugin/marketplace.json",
-      "sha256": "ac087131e5a3670cc818b791aafb7de4b367c082972f57d3526399bd7abcb0a5"
+      "sha256": "32f3d20111555233a5c376327a2a3d2b1aae9dbc093dcab2b13189ba339be71b"
+    },
+    {
+      "path": ".gitattributes",
+      "sha256": "7846b37551c23529eb00c68fbb5a435390e922d9db2625cb88681c31746b289e"
     },
     {
       "path": ".github/workflows/validate.yml",
-      "sha256": "94d78a666045ccc680b65fc125ff6fe975c51c4860d131a15333305f48d10a7d"
+      "sha256": "8d4b03c31ed518903f8b81883957cb6e83f910d8afecc91041ede4ea8b782668"
     },
     {
       "path": ".gitignore",
       "sha256": "5f70ee8df0ba474922bf182b542b64c5ec1d67f1c90085cbb97b786cb8f3c775"
     },
     {
-      "path": "INSTALL.md",
-      "sha256": "d2a8b4953c4fc0f08b9bdae4d97fedc2460251011b0b29746fe030f72cfce2a2"
-    },
-    {
-      "path": "LICENSE",
-      "sha256": "0122d7b57a1ef1e40944c88e2e0261b334fcf5f779e9deb52d49463de20a977d"
-    },
-    {
-      "path": "NOTICE",
-      "sha256": "879c535465b6737c67c9bda2b302d3a447a3275e80f06899cb8a3608fbe3dad8"
-    },
-    {
-      "path": "README.md",
-      "sha256": "ce146841705531e9ea081930c89fda96fa98bd464b347edf6c9dd21745c1eba1"
+      "path": "chatgpt/assets/logo.png",
+      "sha256": "0b274d5691e551b86d1ba6def763d33ad0d4c3c0b7ccd000656bd3fad43ae131"
     },
     {
       "path": "chatgpt/LICENSE",
       "sha256": "0122d7b57a1ef1e40944c88e2e0261b334fcf5f779e9deb52d49463de20a977d"
-    },
-    {
-      "path": "chatgpt/README.md",
-      "sha256": "e60d0e18968fb64ded7cbf77b1b5ecdd6418d28d09227547ec7d03e86fa93249"
-    },
-    {
-      "path": "chatgpt/assets/logo.png",
-      "sha256": "0b274d5691e551b86d1ba6def763d33ad0d4c3c0b7ccd000656bd3fad43ae131"
     },
     {
       "path": "chatgpt/mcp.json",
@@ -59,6 +43,10 @@
     {
       "path": "chatgpt/plugin.json",
       "sha256": "5c08c028c8b51883daed770db8ad8e90a742e7d65657528134fbcc15110a08af"
+    },
+    {
+      "path": "chatgpt/README.md",
+      "sha256": "e60d0e18968fb64ded7cbf77b1b5ecdd6418d28d09227547ec7d03e86fa93249"
     },
     {
       "path": "chatgpt/skills/ultiwrite-read/SKILL.md",
@@ -73,6 +61,10 @@
       "sha256": "24b12d346929cb56d33bbb6ca678262a3320cd601e759f517324ec8125b02781"
     },
     {
+      "path": "claude/assets/logo.png",
+      "sha256": "0b274d5691e551b86d1ba6def763d33ad0d4c3c0b7ccd000656bd3fad43ae131"
+    },
+    {
       "path": "claude/LICENSE",
       "sha256": "0122d7b57a1ef1e40944c88e2e0261b334fcf5f779e9deb52d49463de20a977d"
     },
@@ -81,24 +73,12 @@
       "sha256": "9bb12f06b4fe459ee1c4d5e8c4909724fa3bd4a964d3fb45351cbfb8165f3546"
     },
     {
-      "path": "claude/SUBMISSION.md",
-      "sha256": "65d4911897b1d156f901c0e08cbb0abde063a64e3d025497dda154a9e6e28b01"
-    },
-    {
-      "path": "claude/assets/logo.png",
-      "sha256": "0b274d5691e551b86d1ba6def763d33ad0d4c3c0b7ccd000656bd3fad43ae131"
-    },
-    {
       "path": "claude/skills/ultiwrite/SKILL.md",
       "sha256": "788f061ce00b6aeaab0f0b9f85188d7d2df7ae5e82f0b821cdc7d4bb864d3936"
     },
     {
-      "path": "client/LICENSE",
-      "sha256": "0122d7b57a1ef1e40944c88e2e0261b334fcf5f779e9deb52d49463de20a977d"
-    },
-    {
-      "path": "client/README.md",
-      "sha256": "0cdb8ac9542bc5e551aa2ee7f887fe8f087fe0ae399311e4a16cee8738692cf7"
+      "path": "claude/SUBMISSION.md",
+      "sha256": "65d4911897b1d156f901c0e08cbb0abde063a64e3d025497dda154a9e6e28b01"
     },
     {
       "path": "client/bin/ultiwrite-mcp.js",
@@ -109,52 +89,112 @@
       "sha256": "80323f003ed983aa7d23c9c2df1131c775a17d74216b9ab2a7b2796fad9d3ff6"
     },
     {
+      "path": "client/LICENSE",
+      "sha256": "0122d7b57a1ef1e40944c88e2e0261b334fcf5f779e9deb52d49463de20a977d"
+    },
+    {
       "path": "client/package.json",
       "sha256": "a01959fbca0f72562f9726f7541c49778113a126319239f40a9700adfbac4e63"
     },
     {
+      "path": "client/README.md",
+      "sha256": "0cdb8ac9542bc5e551aa2ee7f887fe8f087fe0ae399311e4a16cee8738692cf7"
+    },
+    {
       "path": "client/test/cli.test.mjs",
-      "sha256": "2c12a916ce1a12f74408e8876386399da6e4c5052358cd10924addde243e6a3b"
+      "sha256": "36406caf530a8f7b475a33054416616b8edd344c70046e2767ebd3c92f7105c3"
     },
     {
       "path": "client/test/transport.test.mjs",
-      "sha256": "ec5d3531584c1ce33cc336e2dd24f0590fb37ed0ec8287ab546d6fdeb2ad2702"
+      "sha256": "5e61ece89f5b7772a492c44ec987ad9b83d7f87f93418c00dc959ba08abe0bd0"
     },
     {
       "path": "cursor/.cursor-plugin/plugin.json",
-      "sha256": "5cb16dd0c921e4d2088168c178ef93433f4876e16a443f9cfdfa80671e040a5d"
-    },
-    {
-      "path": "cursor/LICENSE",
-      "sha256": "0122d7b57a1ef1e40944c88e2e0261b334fcf5f779e9deb52d49463de20a977d"
-    },
-    {
-      "path": "cursor/README.md",
-      "sha256": "4fba238d5a1e87468c0b80a626466fc67d85640c5eefca484c880263b98644f8"
+      "sha256": "2247d9a6ba8734eaa508f08e6cf6ec33a201094e6719e009609d73def3ffe333"
     },
     {
       "path": "cursor/assets/logo.png",
       "sha256": "0b274d5691e551b86d1ba6def763d33ad0d4c3c0b7ccd000656bd3fad43ae131"
     },
     {
+      "path": "cursor/LICENSE",
+      "sha256": "0122d7b57a1ef1e40944c88e2e0261b334fcf5f779e9deb52d49463de20a977d"
+    },
+    {
       "path": "cursor/mcp.json",
       "sha256": "9d3f3737200d1f0434bb218cc8de3c8fb3d0a22bd13b205a735c4701cf3d2858"
     },
     {
+      "path": "cursor/NOTICE",
+      "sha256": "879c535465b6737c67c9bda2b302d3a447a3275e80f06899cb8a3608fbe3dad8"
+    },
+    {
+      "path": "cursor/README.md",
+      "sha256": "8eba2ba58dea02a2c39fa53ae0c85789223ae595686a5841e380007b6fa12aa8"
+    },
+    {
+      "path": "cursor/review/FIELDS.json",
+      "sha256": "c34bd3306927504f1ffad8213e5443f3e90c153125bb1ff0bc26bd095b53de25"
+    },
+    {
+      "path": "cursor/review/fixtures/operating-ledger.csv",
+      "sha256": "c5024c844bf928d6aacce7e989f561d971721a4aaeb4eefc286949b8eece234f"
+    },
+    {
+      "path": "cursor/review/fixtures/README.md",
+      "sha256": "a4679b1e50efe8993e8f65be9235af1eb87eb2d26feb4c15a5dfa46c4e580384"
+    },
+    {
+      "path": "cursor/review/fixtures/transaction-summary.csv",
+      "sha256": "5f0ac6bca1758344f1f861643536bdc2058c622b62dbc271cf656b5bb3b0a4ca"
+    },
+    {
+      "path": "cursor/review/TESTING.md",
+      "sha256": "0669a957823cd1ffa9f84a225cc8fc363aaeb9d0d8adf4e3869854c2f6ff6f59"
+    },
+    {
+      "path": "cursor/rules/ultiwrite-safety.mdc",
+      "sha256": "0436cd01ef161f745ae433246834e6aa4712d904b9d0ccb5e51cfa70cad08318"
+    },
+    {
       "path": "cursor/skills/ultiwrite/SKILL.md",
-      "sha256": "c1e3eeee39ed611a179b3fafd5aae260e295088b6f2d89d9a704f1c66d0946c9"
+      "sha256": "dffdf7fbcd665d5a71460e23e14f4b7c62e4368959e4e60be817e32f934dd16f"
+    },
+    {
+      "path": "cursor/skills/ultiwrite-acquisition-intelligence/SKILL.md",
+      "sha256": "dc623fbe67d7e577eee5e82920936d5f2c0e97ab0c85e4e35d0e181f527a156c"
+    },
+    {
+      "path": "cursor/skills/ultiwrite-retention-monitoring/SKILL.md",
+      "sha256": "d1f5489e02ef5fb529793d153cffca24bb9a7695ca4993f8ae1f332466fe1c02"
+    },
+    {
+      "path": "cursor/skills/ultiwrite-underwriting-coherence/SKILL.md",
+      "sha256": "45c5305b2873f40c5b91ee6e9ed48e22a1ce32e97b035144c29f1426acb523be"
+    },
+    {
+      "path": "cursor/SUBMISSION.md",
+      "sha256": "a7a6e0a1cc11a3a0342721382a0c52e17baaf7342fa14bd769b10d7124167cef"
+    },
+    {
+      "path": "grokbot/assets/logo.png",
+      "sha256": "0b274d5691e551b86d1ba6def763d33ad0d4c3c0b7ccd000656bd3fad43ae131"
     },
     {
       "path": "grokbot/FIELDS.json",
-      "sha256": "c01fb5a16b4bbca61614f54dda61a27d2ec4e98419116304a1a064e136e1c8c6"
+      "sha256": "c34bd3306927504f1ffad8213e5443f3e90c153125bb1ff0bc26bd095b53de25"
     },
     {
       "path": "grokbot/INSTALL.md",
-      "sha256": "b5de2d4b23d5b20ea1aa6c0039a7ae8e42011cf0431f248249190785a4835e69"
+      "sha256": "2c1916fca61b2977e0a7a6ea8910a7c7aec31666a50be5190df0fbc20c2f992f"
     },
     {
       "path": "grokbot/LICENSE",
       "sha256": "0122d7b57a1ef1e40944c88e2e0261b334fcf5f779e9deb52d49463de20a977d"
+    },
+    {
+      "path": "grokbot/mcp.json",
+      "sha256": "9d3f3737200d1f0434bb218cc8de3c8fb3d0a22bd13b205a735c4701cf3d2858"
     },
     {
       "path": "grokbot/OAUTH.md",
@@ -162,32 +202,51 @@
     },
     {
       "path": "grokbot/README.md",
-      "sha256": "882c00d1adfa11842e58f7d41b18db09f4c2a0d31164c61b391b99081ae791f2"
+      "sha256": "f4d26bc6425287bb9a89af81b4d8eb90bf1f29361089acd0e48f6ddc2dc66c66"
     },
     {
       "path": "grokbot/TESTING.md",
-      "sha256": "2ec0e8ec35f43ef40c5c4161bcad6c60f2acf2dfe85e807f246e65b4fccad3eb"
+      "sha256": "0669a957823cd1ffa9f84a225cc8fc363aaeb9d0d8adf4e3869854c2f6ff6f59"
     },
     {
       "path": "grokbot/TOOLS.md",
       "sha256": "e16379419c4768a6dc57aadfc51ff13614f770fe06d50cf48f5fb2453731d1d4"
     },
     {
-      "path": "grokbot/assets/logo.png",
-      "sha256": "0b274d5691e551b86d1ba6def763d33ad0d4c3c0b7ccd000656bd3fad43ae131"
+      "path": "INSTALL.md",
+      "sha256": "19592e39cd304b45c0ff6dfd6084305be2c931c84fbe0577183290eba5d6f44e"
     },
     {
-      "path": "grokbot/mcp.json",
-      "sha256": "9d3f3737200d1f0434bb218cc8de3c8fb3d0a22bd13b205a735c4701cf3d2858"
+      "path": "LICENSE",
+      "sha256": "0122d7b57a1ef1e40944c88e2e0261b334fcf5f779e9deb52d49463de20a977d"
+    },
+    {
+      "path": "NOTICE",
+      "sha256": "879c535465b6737c67c9bda2b302d3a447a3275e80f06899cb8a3608fbe3dad8"
+    },
+    {
+      "path": "README.md",
+      "sha256": "3134da3ce1bffddc598b5738048390f0f5a8b40e2f0af4b97e6bd104060c13ff"
+    },
+    {
+      "path": "scripts/build-cursor-release.py",
+      "sha256": "fcb26594fea0107e1c61d2d451385be5b7b18a0df328f2313a37238502e7b59f"
     },
     {
       "path": "scripts/validate-public-plugins.mjs",
-      "sha256": "1703f1ecfbbe59f9d1d5efc9f1481e24deea2b5bbf3e9ceebd9b54834d8814ee"
+      "sha256": "1bf37216cf9593dab168921c6625537cebbbb86ab4a969a60ec922702c5bfd10"
     },
     {
       "path": "server.draft.json",
       "sha256": "661f6d5ad4678dc3b32c83d1fbe05bde9cce24c2f11afd89fa01fe9aabcc7dcf"
     }
   ],
-  "branding_update": "2026-10-26: Claude directory icon and ChatGPT/Claude brand guards. Full source re-export requires next release pipeline run."
+  "source_commit_meaning": "Base public commit; candidate modifications are bound by per-file hashes. Not a claim that the base commit contains this release.",
+  "componentVersions": {
+    "cursor": "0.7.3",
+    "grokbot": "0.7.3",
+    "claude": "0.7.1",
+    "chatgpt": "0.7.1",
+    "client": "0.7.1"
+  }
 }

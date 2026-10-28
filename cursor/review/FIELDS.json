@@ -1,0 +1,42 @@
+{
+  "firstName": "Dennis",
+  "lastName": "Liu",
+  "workEmail": "dennisl@dwsoffshorepartners.com",
+  "organizationName": "DWS Offshore Fund dba Ultiwrite",
+  "organizationHandle": "ultiwrite",
+  "organizationHandleStatus": "entered; marketplace uniqueness not verified",
+  "websiteUrl": "https://dwsoffshorepartners.com",
+  "logotypeUrl": "https://raw.githubusercontent.com/dennis430/ultiwrite-plugins/main/cursor/assets/logo.png",
+  "targets": [
+    "Grok Bot",
+    "Cursor"
+  ],
+  "consumerGrokSelected": false,
+  "mcpServerUrl": "https://dwsoffshorepartners.com/api/integrations/ultiwrite/mcp",
+  "repository": "https://github.com/dennis430/ultiwrite-plugins",
+  "pluginSourceDirectory": "cursor",
+  "product": "Ultiwrite",
+  "publisher": "DWS Offshore Fund dba Ultiwrite",
+  "category": "Commercial Diligence",
+  "version": "0.7.3",
+  "description": "Asymmetric diligence engine with document forensics. Generalized commercial diligence—upload authorized evidence and receive an investigated, source-backed assessment of what holds up, what does not, and what changes the decision (not a general response about the documents).",
+  "homepage": "https://dwsoffshorepartners.com",
+  "supportUrl": "https://dwsoffshorepartners.com/contact",
+  "privacyUrl": "https://dwsoffshorepartners.com/privacy",
+  "termsUrl": "https://dwsoffshorepartners.com/terms",
+  "docsUrl": "https://dwsoffshorepartners.com/docs/mcp",
+  "mcpUrl": "https://dwsoffshorepartners.com/api/integrations/ultiwrite/mcp",
+  "auth": "OAuth authorization code with PKCE S256; discovery advertises dynamic client registration",
+  "scopes": [
+    "ultiwrite:read",
+    "ultiwrite:evidence"
+  ],
+  "logo": "assets/logo.png",
+  "reviewerAccess": "Dedicated reviewer account supplied privately by Dennis. Credentials belong only in the private reviewer form; never in this repository or ZIP.",
+  "testedInGrokBot": false,
+  "hostTestStatus": "NOT_RUN_FOR_0.7.3",
+  "marketplaceSubmitted": false,
+  "testingInstructionsFile": "TESTING.md",
+  "fixtureDirectory": "../cursor/review/fixtures",
+  "consumerGrok": "not selected; form labels this target coming soon"
+}
