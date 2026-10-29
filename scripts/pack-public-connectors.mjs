@@ -1,8 +1,13 @@
 #!/usr/bin/env node
-// Rebuild the three public connector ZIPs from this repository.
-// Does not publish, deploy, or submit a directory listing.
+// Rebuild the ChatGPT and Cursor 0.7.1 connector ZIPs from this repository, and verify the Claude
+// plugin ZIP against claude/. Does not publish, deploy, or submit a directory listing.
+//
+// Claude moved to 0.8.0. Its ZIP is built reproducibly in dennis430/merchant-risk-app by
+// scripts/pack-claude-plugin.mjs and committed here unchanged, so the bytes match the validated
+// artifact. This script checks every member of that ZIP equals the file in claude/ and that nothing
+// else is inside. The Claude 0.7.1 ZIP stays in release/ for existing links; its source is history.
 import { createHash } from 'node:crypto'
-import { deflateRawSync } from 'node:zlib'
+import { deflateRawSync, inflateRawSync } from 'node:zlib'
 import { mkdirSync, readFileSync, readdirSync, statSync, writeFileSync } from 'node:fs'
 import { join, relative, sep } from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -21,16 +26,15 @@ const TOOLS = [
   'ultiwrite_findings_get',
   'ultiwrite_report_export',
 ]
+const CLAUDE_VERSION = '0.8.0'
+const CLAUDE_MCP_URL = 'https://mcp.dwsoffshorepartners.com/mcp'
+const CLAUDE_ZIP = `Ultiwrite_Claude_Plugin_v${CLAUDE_VERSION}.zip`
+const CLAUDE_FROZEN = 'ultiwrite-claude-plugin-0.7.1.zip'
 const PACKAGES = [
   {
     id: 'chatgpt',
     root: 'chatgpt',
     files: ['assets/logo.png', 'mcp.json', 'plugin.json', 'README.md', 'skills/ultiwrite-read/SKILL.md'],
-  },
-  {
-    id: 'claude',
-    root: 'claude',
-    files: ['.claude-plugin/plugin.json', '.mcp.json', 'LICENSE', 'README.md', 'SUBMISSION.md', 'assets/logo.png', 'skills/ultiwrite/SKILL.md'],
   },
   {
     id: 'cursor',
@@ -113,6 +117,30 @@ function zip(entries) {
   return Buffer.concat([...locals, centralDir, end])
 }
 
+function readZip(archive) {
+  const endAt = archive.lastIndexOf(Buffer.from([0x50, 0x4b, 0x05, 0x06]))
+  if (endAt < 0) throw new Error('not a ZIP')
+  const count = archive.readUInt16LE(endAt + 10)
+  let at = archive.readUInt32LE(endAt + 16)
+  const members = []
+  for (let i = 0; i < count; i += 1) {
+    if (archive.readUInt32LE(at) !== 0x02014b50) throw new Error('bad central directory')
+    const method = archive.readUInt16LE(at + 10)
+    const size = archive.readUInt32LE(at + 20)
+    const nameLength = archive.readUInt16LE(at + 28)
+    const extraLength = archive.readUInt16LE(at + 30)
+    const commentLength = archive.readUInt16LE(at + 32)
+    const localAt = archive.readUInt32LE(at + 42)
+    const name = archive.subarray(at + 46, at + 46 + nameLength).toString('utf8')
+    const dataAt = localAt + 30 + archive.readUInt16LE(localAt + 26) + archive.readUInt16LE(localAt + 28)
+    const raw = archive.subarray(dataAt, dataAt + size)
+    if (method !== 0 && method !== 8) throw new Error(`${name} uses unsupported method ${method}`)
+    members.push({ name, bytes: method === 0 ? Buffer.from(raw) : inflateRawSync(raw) })
+    at += 46 + nameLength + extraLength + commentLength
+  }
+  return members
+}
+
 function assertTools(text, where) {
   const missing = TOOLS.filter(tool => !text.includes(tool))
   if (missing.length) throw new Error(`${where} is missing tools: ${missing.join(', ')}`)
@@ -153,11 +181,53 @@ for (const pack of PACKAGES) {
     })),
   })
 }
+// Claude 0.8.0: verify the committed ZIP member by member against claude/.
+const claudeArchive = readFileSync(join(outDir, CLAUDE_ZIP))
+const claudeMembers = readZip(claudeArchive)
+const claudeSource = walk(join(root, 'claude')).map(path => path.slice('claude/'.length)).sort()
+const memberNames = claudeMembers.map(member => member.name).sort()
+if (JSON.stringify(memberNames) !== JSON.stringify(claudeSource)) {
+  throw new Error(`${CLAUDE_ZIP} members ${memberNames.join(', ')} do not match claude/ ${claudeSource.join(', ')}`)
+}
+for (const member of claudeMembers) {
+  if (!member.bytes.equals(readFileSync(join(root, 'claude', member.name)))) throw new Error(`${CLAUDE_ZIP} ${member.name} differs from claude/`)
+}
+const claudeManifest = JSON.parse(readFileSync(join(root, 'claude/.claude-plugin/plugin.json'), 'utf8'))
+const claudeServer = JSON.parse(readFileSync(join(root, 'claude/.mcp.json'), 'utf8')).mcpServers.ultiwrite
+if (claudeManifest.version !== CLAUDE_VERSION || claudeServer.url !== CLAUDE_MCP_URL || claudeServer.type !== 'http') throw new Error('Claude manifest or MCP URL drifted')
+assertTools(walk(join(root, 'claude/skills')).map(path => readFileSync(join(root, path), 'utf8')).join('\n'), 'Claude skills')
+inventory.push({
+  file: `release/${CLAUDE_ZIP}`,
+  version: CLAUDE_VERSION,
+  mcp_url: CLAUDE_MCP_URL,
+  built_by: 'dennis430/merchant-risk-app scripts/pack-claude-plugin.mjs (stored entries, fixed timestamps)',
+  sha256: createHash('sha256').update(claudeArchive).digest('hex'),
+  bytes: claudeArchive.length,
+  members: claudeMembers.map(member => ({
+    name: member.name,
+    sha256: createHash('sha256').update(member.bytes).digest('hex'),
+    bytes: member.bytes.length,
+  })),
+})
+const frozen = readFileSync(join(outDir, CLAUDE_FROZEN))
+inventory.push({
+  file: `release/${CLAUDE_FROZEN}`,
+  version: '0.7.1',
+  status: 'superseded by Claude 0.8.0; kept so existing links keep working; not rebuilt',
+  sha256: createHash('sha256').update(frozen).digest('hex'),
+  bytes: frozen.length,
+  members: readZip(frozen).map(member => ({
+    name: member.name,
+    sha256: createHash('sha256').update(member.bytes).digest('hex'),
+    bytes: member.bytes.length,
+  })),
+})
 const sums = inventory.map(item => `${item.sha256}  ${item.file.split('/').pop()}`).join('\n') + '\n'
 writeFileSync(join(outDir, 'SHA256SUMS.txt'), sums)
 writeFileSync(join(outDir, 'INVENTORY.json'), JSON.stringify({
   version: VERSION,
   mcp_url: MCP_URL,
+  claude: { version: CLAUDE_VERSION, mcp_url: CLAUDE_MCP_URL },
   tools: TOOLS,
   oauth: {
     authorization_endpoint: 'https://dwsoffshorepartners.com/api/integrations/ultiwrite/oauth/authorize',
@@ -169,7 +239,7 @@ writeFileSync(join(outDir, 'INVENTORY.json'), JSON.stringify({
   packages: inventory,
   not: ['installed integration', 'directory approval', 'npm publication', 'production deployment'],
 }, null, 2) + '\n')
-process.stdout.write(`packed ${inventory.length} archives into release/\n`)
+process.stdout.write(`packed ${PACKAGES.length} archives, verified ${CLAUDE_ZIP}, recorded ${inventory.length} archives in release/\n`)
 
 function walk(dir, out = []) {
   for (const name of readdirSync(dir)) {
@@ -180,4 +250,3 @@ function walk(dir, out = []) {
   }
   return out
 }
-void walk

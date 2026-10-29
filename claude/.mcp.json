@@ -2,7 +2,7 @@
   "mcpServers": {
     "ultiwrite": {
       "type": "http",
-      "url": "https://dwsoffshorepartners.com/api/integrations/ultiwrite/mcp"
+      "url": "https://mcp.dwsoffshorepartners.com/mcp"
     }
   }
 }
