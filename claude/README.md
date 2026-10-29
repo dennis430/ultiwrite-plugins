@@ -36,7 +36,9 @@ The first tool call opens Ultiwrite sign-in and a consent screen. Approve `ultiw
 
 ## How evidence is submitted
 
-Claude cannot hand chat attachments to the server as file objects. `ultiwrite_evidence_submit` therefore returns a signed upload link, valid for 30 minutes and bound to your account, plus an opaque `handoffId`. Upload the files in your browser and return to the same conversation. Claude retains the handoff and calls `ultiwrite_evidence_submit` with that `handoffId` to resume the exact saved case; it does not guess a case from your latest uploads. Analysis runs on Ultiwrite's servers. The link result can be marked `attachment_not_transferred`; that is the expected handoff, not a failure, and no analysis is used until files are uploaded.
+Claude cannot hand chat attachments to the server as file objects. `ultiwrite_evidence_submit` therefore returns a signed upload link, valid for 30 minutes and bound to your account, plus an opaque `handoffId`. Upload the files in your browser and return to the same conversation. Claude retains the handoff and calls `ultiwrite_evidence_submit` with `{ "files": [], "caseId": null, "handoffId": "<exact returned handoffId>", "documentForensics": null }` (using the exact returned identifier) to resume the exact saved case; it does not guess a case from your latest uploads. Analysis runs on Ultiwrite's servers. The link result can be marked `attachment_not_transferred`; that is the expected handoff, not a failure, and no analysis is used until files are uploaded.
+
+The initial browser handoff uses `{ "files": [], "caseId": null, "handoffId": null, "documentForensics": null }`. For a saved case continuation, use `{ "files": [], "caseId": "<exact returned caseId>", "handoffId": null, "documentForensics": null }`. All four fields are required. The initial forensics value stays `null` unless the user explicitly chooses `true` or `false`; saved continuations retain the original choice.
 
 ## Privacy
 

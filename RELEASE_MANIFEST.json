@@ -5,7 +5,7 @@
   "publisher": "DWS Offshore Fund",
   "mcp_url": "https://dwsoffshorepartners.com/api/integrations/ultiwrite/mcp",
   "source_repository": "dennis430/merchant-risk-app",
-  "source_commit": "e13473e2fee1411df0ae80712e9ffdac6eb10efc",
+  "source_commit": "8013fcfa7f30c5173568aa948a08222fde3b016c",
   "note": "File hashes cover this connector-only candidate except the manifest itself. Top-level version/mcp_url retain the unchanged ChatGPT, Grok Bot and local client baseline; claude and cursor carry independent package versions. No directory edit, actual-client acceptance or deployment is established by this manifest.",
   "files": [
     {
@@ -38,7 +38,7 @@
     },
     {
       "path": "README.md",
-      "sha256": "21040a47dd06a46580fe26d2274df072eb0c6103e2751e5dd6dd2d7fbb7d1815"
+      "sha256": "97d7fb1c59ca71cbb7ce6206bb023781ceac8baccc223db2ec9b81bd590a91c4"
     },
     {
       "path": "chatgpt/LICENSE",
@@ -78,7 +78,7 @@
     },
     {
       "path": "claude/README.md",
-      "sha256": "c01d9514705fb102018d39398dee6af52a7e2f89b9b6b745ad517876a992d6f9"
+      "sha256": "5b7390b7b59a12e92714ba011aa8b6f708ff6f988fbd06a9ff79da2ece3eb15e"
     },
     {
       "path": "claude/assets/logo.png",
@@ -94,7 +94,7 @@
     },
     {
       "path": "claude/skills/submit-evidence/SKILL.md",
-      "sha256": "9a3f76ce6233f5a74a4dd5bc99ede1de8a7d509b2574540a486db289b6c3a82a"
+      "sha256": "16faec8d09836847eed50c5ea850488386b5fcce0b4a38331f04ede279103320"
     },
     {
       "path": "claude/skills/ultiwrite/SKILL.md",
@@ -138,7 +138,7 @@
     },
     {
       "path": "cursor/README.md",
-      "sha256": "11c71baabccacc84e4908e1c135ee8e0d03f7945cd61c5be774579c6c3c47525"
+      "sha256": "6230f125b70a54ad79c27384166ff0e06581b69e253aaab2584a44f41b52bd39"
     },
     {
       "path": "cursor/assets/logo.png",
@@ -150,7 +150,7 @@
     },
     {
       "path": "cursor/skills/ultiwrite/SKILL.md",
-      "sha256": "75d52763af821aadf029edf4a2336d97af2c6e9cf5f6c85d22c323b52960ad73"
+      "sha256": "c925ab54432d32598dfae60b33bcc6a0a313b54bf5627c473863e37e6bf0a0e7"
     },
     {
       "path": "grokbot/FIELDS.json",
@@ -190,11 +190,11 @@
     },
     {
       "path": "release/INVENTORY.json",
-      "sha256": "323b6e88de7fb9263a6fd401ae3cbf718cd95ed66411f6ba2fa6fa4bff9d3686"
+      "sha256": "6a325660c2fa609a5bfa16552944c88b8ec09470228562e49e1a1c9d70495f8f"
     },
     {
       "path": "release/SHA256SUMS.txt",
-      "sha256": "c00ba95fd55c693459267c10f028d5b53792d19aab620ad4cb1d8605fa22c4a4"
+      "sha256": "992136ce59f5c434b090eb7735e2dae22a5f8cef5340bf988137ce8c65b2d0b7"
     },
     {
       "path": "release/Ultiwrite_Claude_Plugin_v0.8.0.zip",
@@ -206,7 +206,7 @@
     },
     {
       "path": "release/Ultiwrite_Claude_Plugin_v0.8.2.zip",
-      "sha256": "dbcb3f3e8c0f3708c1286873fdebb231712991ca49fba09e2acd6313554fc5c0"
+      "sha256": "072f9cf36dc18eaa52a0eb3f4558ded3b2fc5bb92b17234af3d86ddfc1347b00"
     },
     {
       "path": "release/ultiwrite-chatgpt-plugin-0.7.1.zip",
@@ -222,7 +222,7 @@
     },
     {
       "path": "release/ultiwrite-cursor-plugin-0.7.2.zip",
-      "sha256": "a418db8b3e029590907aa99028ce0d14a8b5ffc6b59dcf3c9d5e7e509aa1b35f"
+      "sha256": "64a67e3a69ce6dda4e8d640ea8626b99fde607cf04d4bb8620945cbbc218b402"
     },
     {
       "path": "scripts/pack-cursor-plugin.mjs",
@@ -245,25 +245,25 @@
     "version": "0.8.2",
     "mcp_url": "https://mcp.dwsoffshorepartners.com/mcp",
     "zip": "release/Ultiwrite_Claude_Plugin_v0.8.2.zip",
-    "sha256": "dbcb3f3e8c0f3708c1286873fdebb231712991ca49fba09e2acd6313554fc5c0",
+    "sha256": "072f9cf36dc18eaa52a0eb3f4558ded3b2fc5bb92b17234af3d86ddfc1347b00",
     "previous_version": "0.8.1",
     "previous_zip": "release/Ultiwrite_Claude_Plugin_v0.8.1.zip",
     "previous_sha256": "11520ccd818dddd576a7b230e08b74142f3012fb0ea2d10f4b6f37c105e6e8b0"
   },
-  "source_state": "Local release candidate. Claude and Cursor package members match the private implementation commit; unchanged ChatGPT, Grok Bot and client sources retain the public baseline. Not published or deployed.",
+  "source_state": "Local release candidate. Claude and Cursor package members match the private package commit, based on merged shared MCP file descriptors at 710db4f1. Unchanged ChatGPT, Grok Bot and client sources retain the public baseline. Not published or deployed.",
   "cursor": {
     "version": "0.7.2",
     "mcp_url": "https://mcp.dwsoffshorepartners.com/mcp",
     "zip": "release/ultiwrite-cursor-plugin-0.7.2.zip",
-    "sha256": "a418db8b3e029590907aa99028ce0d14a8b5ffc6b59dcf3c9d5e7e509aa1b35f",
+    "sha256": "64a67e3a69ce6dda4e8d640ea8626b99fde607cf04d4bb8620945cbbc218b402",
     "previous_version": "0.7.1",
     "previous_zip": "release/ultiwrite-cursor-plugin-0.7.1.zip",
     "previous_sha256": "e34aa2e43d7062871de121c479ef5e8a7fe214f20b400464624605fc419e15f1"
   },
   "public_base_commit": "822663e978db2f461943781a4aabba835ca5caf3",
   "source_binding": {
-    "claude": "e13473e2fee1411df0ae80712e9ffdac6eb10efc",
-    "cursor": "e13473e2fee1411df0ae80712e9ffdac6eb10efc",
+    "claude": "8013fcfa7f30c5173568aa948a08222fde3b016c",
+    "cursor": "8013fcfa7f30c5173568aa948a08222fde3b016c",
     "unchanged_public_baseline": "822663e978db2f461943781a4aabba835ca5caf3"
   }
 }

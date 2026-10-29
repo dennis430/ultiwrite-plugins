@@ -23,11 +23,11 @@ Support: https://dwsoffshorepartners.com/contact
 
 | File | Package | SHA-256 |
 | --- | --- | --- |
-| [`release/Ultiwrite_Claude_Plugin_v0.8.2.zip`](https://github.com/dennis430/ultiwrite-plugins/raw/main/release/Ultiwrite_Claude_Plugin_v0.8.2.zip) | Claude plugin 0.8.2 (candidate) | `dbcb3f3e8c0f3708c1286873fdebb231712991ca49fba09e2acd6313554fc5c0` |
+| [`release/Ultiwrite_Claude_Plugin_v0.8.2.zip`](https://github.com/dennis430/ultiwrite-plugins/raw/main/release/Ultiwrite_Claude_Plugin_v0.8.2.zip) | Claude plugin 0.8.2 (candidate) | `072f9cf36dc18eaa52a0eb3f4558ded3b2fc5bb92b17234af3d86ddfc1347b00` |
 | [`release/Ultiwrite_Claude_Plugin_v0.8.1.zip`](https://github.com/dennis430/ultiwrite-plugins/raw/main/release/Ultiwrite_Claude_Plugin_v0.8.1.zip) | Claude plugin 0.8.1 (superseded; existing links retained) | `11520ccd818dddd576a7b230e08b74142f3012fb0ea2d10f4b6f37c105e6e8b0` |
 | [`release/Ultiwrite_Claude_Plugin_v0.8.0.zip`](https://github.com/dennis430/ultiwrite-plugins/raw/main/release/Ultiwrite_Claude_Plugin_v0.8.0.zip) | Claude plugin 0.8.0 (superseded, kept for existing links) | `619656fae4e9b9db2d7a7e0c813713d859cde291062c21912bb38fc7297ca28e` |
 | [`release/ultiwrite-chatgpt-plugin-0.7.1.zip`](https://github.com/dennis430/ultiwrite-plugins/raw/main/release/ultiwrite-chatgpt-plugin-0.7.1.zip) | ChatGPT plugin 0.7.1 | `457004b3d46b7aeaddabc1a5d065c181aac2b5a280369be7f9539de39d1339a4` |
-| [`release/ultiwrite-cursor-plugin-0.7.2.zip`](https://github.com/dennis430/ultiwrite-plugins/raw/main/release/ultiwrite-cursor-plugin-0.7.2.zip) | Cursor plugin 0.7.2 (candidate) | `a418db8b3e029590907aa99028ce0d14a8b5ffc6b59dcf3c9d5e7e509aa1b35f` |
+| [`release/ultiwrite-cursor-plugin-0.7.2.zip`](https://github.com/dennis430/ultiwrite-plugins/raw/main/release/ultiwrite-cursor-plugin-0.7.2.zip) | Cursor plugin 0.7.2 (candidate) | `64a67e3a69ce6dda4e8d640ea8626b99fde607cf04d4bb8620945cbbc218b402` |
 | [`release/ultiwrite-cursor-plugin-0.7.1.zip`](https://github.com/dennis430/ultiwrite-plugins/raw/main/release/ultiwrite-cursor-plugin-0.7.1.zip) | Cursor plugin 0.7.1 (existing links retained) | `e34aa2e43d7062871de121c479ef5e8a7fe214f20b400464624605fc419e15f1` |
 | [`release/ultiwrite-claude-plugin-0.7.1.zip`](https://github.com/dennis430/ultiwrite-plugins/raw/main/release/ultiwrite-claude-plugin-0.7.1.zip) | Claude plugin 0.7.1 (superseded, kept for existing links) | `7b53857bcd7450b68a869b90d29c1112e89fcb3f707fd87ccadcacc73f906bfe` |
 

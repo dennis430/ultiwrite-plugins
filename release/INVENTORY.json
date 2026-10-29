@@ -105,8 +105,8 @@
       "file": "release/ultiwrite-cursor-plugin-0.7.2.zip",
       "version": "0.7.2",
       "mcp_url": "https://mcp.dwsoffshorepartners.com/mcp",
-      "sha256": "a418db8b3e029590907aa99028ce0d14a8b5ffc6b59dcf3c9d5e7e509aa1b35f",
-      "bytes": 44338,
+      "sha256": "64a67e3a69ce6dda4e8d640ea8626b99fde607cf04d4bb8620945cbbc218b402",
+      "bytes": 45304,
       "members": [
         {
           "name": ".cursor-plugin/plugin.json",
@@ -120,8 +120,8 @@
         },
         {
           "name": "README.md",
-          "sha256": "11c71baabccacc84e4908e1c135ee8e0d03f7945cd61c5be774579c6c3c47525",
-          "bytes": 2209
+          "sha256": "6230f125b70a54ad79c27384166ff0e06581b69e253aaab2584a44f41b52bd39",
+          "bytes": 2545
         },
         {
           "name": "assets/logo.png",
@@ -135,8 +135,8 @@
         },
         {
           "name": "skills/ultiwrite/SKILL.md",
-          "sha256": "75d52763af821aadf029edf4a2336d97af2c6e9cf5f6c85d22c323b52960ad73",
-          "bytes": 2841
+          "sha256": "c925ab54432d32598dfae60b33bcc6a0a313b54bf5627c473863e37e6bf0a0e7",
+          "bytes": 3471
         }
       ]
     },
@@ -145,8 +145,8 @@
       "version": "0.8.2",
       "mcp_url": "https://mcp.dwsoffshorepartners.com/mcp",
       "built_by": "stored entries, sorted, fixed 2026-10-29 timestamps and modes (same format as dennis430/merchant-risk-app scripts/pack-claude-plugin.mjs)",
-      "sha256": "dbcb3f3e8c0f3708c1286873fdebb231712991ca49fba09e2acd6313554fc5c0",
-      "bytes": 55180,
+      "sha256": "072f9cf36dc18eaa52a0eb3f4558ded3b2fc5bb92b17234af3d86ddfc1347b00",
+      "bytes": 56206,
       "members": [
         {
           "name": ".claude-plugin/plugin.json",
@@ -165,8 +165,8 @@
         },
         {
           "name": "README.md",
-          "sha256": "c01d9514705fb102018d39398dee6af52a7e2f89b9b6b745ad517876a992d6f9",
-          "bytes": 5171
+          "sha256": "5b7390b7b59a12e92714ba011aa8b6f708ff6f988fbd06a9ff79da2ece3eb15e",
+          "bytes": 5721
         },
         {
           "name": "assets/logo.png",
@@ -185,8 +185,8 @@
         },
         {
           "name": "skills/submit-evidence/SKILL.md",
-          "sha256": "9a3f76ce6233f5a74a4dd5bc99ede1de8a7d509b2574540a486db289b6c3a82a",
-          "bytes": 3129
+          "sha256": "16faec8d09836847eed50c5ea850488386b5fcce0b4a38331f04ede279103320",
+          "bytes": 3605
         },
         {
           "name": "skills/ultiwrite/SKILL.md",
