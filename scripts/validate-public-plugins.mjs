@@ -8,8 +8,9 @@ const root = process.argv[2] ? process.argv[2] : process.cwd()
 const errors = []
 const fail = message => errors.push(message)
 const MCP_URL = 'https://dwsoffshorepartners.com/api/integrations/ultiwrite/mcp'
-// Claude 0.8.1 uses the same server through its clean host, matching its directory connector listing.
+// Claude 0.8.2 uses the preferred clean host for the same Ultiwrite service.
 const CLAUDE_MCP_URL = 'https://mcp.dwsoffshorepartners.com/mcp'
+const CURSOR_MCP_URL = 'https://mcp.dwsoffshorepartners.com/mcp'
 const privateHost = ['engine', 'dwsoffshorepartners', 'com'].join('.')
 const secretNeedles = [
   privateHost,
@@ -122,7 +123,7 @@ const plugin = readJson('cursor/.cursor-plugin/plugin.json')
 const pluginKeys = ['name', 'displayName', 'version', 'description', 'author', 'publisher', 'license', 'homepage', 'repository', 'logo', 'keywords', 'category', 'skills']
 if (plugin) {
   for (const key of Object.keys(plugin)) if (!pluginKeys.includes(key)) fail(`plugin.json has ${key}`)
-  if (plugin.name !== 'ultiwrite' || plugin.version !== '0.7.1' || plugin.license !== 'MIT') fail('plugin identity')
+  if (plugin.name !== 'ultiwrite' || plugin.version !== '0.7.2' || plugin.license !== 'MIT') fail('plugin identity')
   if (plugin.author?.url || plugin.author?.name !== 'DWS Offshore Fund' || plugin.author?.email !== 'nick@ultiwrite.co') fail('plugin author')
   if (plugin.logo !== 'assets/logo.png') fail('plugin logo path')
   if (plugin.skills !== 'skills/ultiwrite/SKILL.md') fail('plugin skill path')
@@ -135,7 +136,7 @@ const mcp = readJson('cursor/mcp.json')
 if (mcp) {
   if (mcp.$schema !== 'https://agent-plugins.org/schemas/1.0.0/mcp.schema.json') fail('mcp schema')
   const server = mcp.mcpServers?.ultiwrite
-  if (!server || server.type !== 'streamable-http' || server.url !== MCP_URL || server.headers) fail('cursor mcp server')
+  if (!server || server.type !== 'streamable-http' || server.url !== CURSOR_MCP_URL || server.headers) fail('cursor mcp server')
   if (Object.keys(server ?? {}).some(key => !['type', 'url'].includes(key))) fail('cursor mcp extra key')
 }
 const grokMcp = readJson('grokbot/mcp.json')
@@ -163,7 +164,7 @@ if (!readFileSync(join(root, 'grokbot/TESTING.md'), 'utf8').includes('NOT_RUN'))
 const claude = readJson('claude/.mcp.json')
 if (claude?.mcpServers?.ultiwrite?.type !== 'http' || claude?.mcpServers?.ultiwrite?.url !== CLAUDE_MCP_URL || Object.keys(claude?.mcpServers?.ultiwrite ?? {}).length !== 2) fail('claude mcp')
 const claudeListing = readJson('claude/.claude-plugin/plugin.json')
-if (claudeListing?.name !== 'ultiwrite' || claudeListing?.displayName !== 'Ultiwrite' || claudeListing?.icon !== './assets/logo.png' || claudeListing?.version !== '0.8.1') fail('claude directory branding')
+if (claudeListing?.name !== 'ultiwrite' || claudeListing?.displayName !== 'Ultiwrite' || claudeListing?.icon !== './assets/logo.png' || claudeListing?.version !== '0.8.2') fail('claude directory branding')
 for (const field of ['documentationUrl', 'supportUrl', 'privacyPolicyUrl', 'termsOfServiceUrl']) {
   if (typeof claudeListing?.[field] !== 'string' || !claudeListing[field].startsWith('https://dwsoffshorepartners.com/')) fail(`claude directory ${field}`)
 }

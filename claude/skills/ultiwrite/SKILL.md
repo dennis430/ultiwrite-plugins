@@ -13,7 +13,7 @@ Ultiwrite is the analytical authority. Claude is the interface. Every finding, g
 | --- | --- |
 | `ultiwrite_capabilities_get` | What Ultiwrite does, offers, access, limits, accepted inputs |
 | `ultiwrite_account_get` | Which Ultiwrite account is signed in |
-| `ultiwrite_evidence_submit` | Start a submission (signed upload link) or continue a saved case |
+| `ultiwrite_evidence_submit` | Start a signed upload handoff, resume that exact upload with its returned `handoffId`, or continue a saved case with its returned `caseId` |
 | `ultiwrite_cases_list` | Cases and saved reports; follow `nextCursor` until null |
 | `ultiwrite_case_status` | Workflow state of one case |
 | `ultiwrite_findings_get` | Read a saved report page by page |

@@ -1,6 +1,6 @@
 # Ultiwrite for Claude
 
-Ultiwrite Asymmetric Diligence, published by DWS Offshore Fund. Version 0.8.1.
+Ultiwrite Asymmetric Diligence, published by DWS Offshore Fund. Version 0.8.2.
 
 Ultiwrite examines the documents behind a commercial opportunity: an operating business, a merchant application, a residual or ISO book, a portfolio, a property, a financing or a counterparty. It classifies every file, runs every applicable analysis (document integrity, independent verification, identity and entity coherence, processing economics, portfolio relationships, cross-document contradictions, provenance and confidence) and saves one reconciled report. This plugin connects Claude to that same engine and teaches Claude how to use it. Claude does not produce the findings; Ultiwrite does.
 
@@ -16,12 +16,12 @@ No commands, hooks, agents, executables or local servers are included. Nothing r
 
 ## Requirements
 
-An existing Ultiwrite account. The first completed analysis on an account is free; `ultiwrite_capabilities_get` returns the current offer. Sign up at https://dwsoffshorepartners.com.
+Sign in with Google to an existing Ultiwrite account or create a new account during connection. The first completed analysis on an account is free; `ultiwrite_capabilities_get` returns the current offer.
 
 ## Install
 
-- claude.ai, Claude Desktop and Cowork: add Ultiwrite from the Claude directory once it is listed, or upload `Ultiwrite_Claude_Plugin_v0.8.1.zip` with Customize > Plugins > Add > Upload plugin.
-- Claude Code: `/plugin install ultiwrite --marketplace dennis430/ultiwrite-plugins`, or for one session `claude --plugin-dir ./Ultiwrite_Claude_Plugin_v0.8.1.zip`.
+- claude.ai, Claude Desktop and Cowork: add Ultiwrite from the Claude directory once it is listed, or upload `Ultiwrite_Claude_Plugin_v0.8.2.zip` with Customize > Plugins > Add > Upload plugin.
+- Claude Code: `/plugin install ultiwrite --marketplace dennis430/ultiwrite-plugins`, or extract the ZIP into `./ultiwrite-plugin` and load that folder for one session with `claude --plugin-dir ./ultiwrite-plugin`.
 - Connector only, without the skills: add a custom connector with URL `https://mcp.dwsoffshorepartners.com/mcp`, or run `claude mcp add --transport http ultiwrite https://mcp.dwsoffshorepartners.com/mcp`.
 
 The first tool call opens Ultiwrite sign-in and a consent screen. Approve `ultiwrite:read` to read cases and reports and `ultiwrite:evidence` to submit evidence. No API key or password is ever entered in chat or stored in this plugin.
@@ -36,7 +36,9 @@ The first tool call opens Ultiwrite sign-in and a consent screen. Approve `ultiw
 
 ## How evidence is submitted
 
-Claude cannot hand chat attachments to the server as file objects. `ultiwrite_evidence_submit` therefore returns a signed upload link, valid for 30 minutes and bound to your account. You upload the files in your browser; the case then appears in `ultiwrite_cases_list` and analysis runs on Ultiwrite's servers. The link result can be marked `attachment_not_transferred`; that is the expected handoff, not a failure, and no analysis is used until files are uploaded.
+Claude cannot hand chat attachments to the server as file objects. `ultiwrite_evidence_submit` therefore returns a signed upload link, valid for 30 minutes and bound to your account, plus an opaque `handoffId`. Upload the files in your browser and return to the same conversation. Claude retains the handoff and calls `ultiwrite_evidence_submit` with `{ "files": [], "caseId": null, "handoffId": "<exact returned handoffId>", "documentForensics": null }` (using the exact returned identifier) to resume the exact saved case; it does not guess a case from your latest uploads. Analysis runs on Ultiwrite's servers. The link result can be marked `attachment_not_transferred`; that is the expected handoff, not a failure, and no analysis is used until files are uploaded.
+
+The initial browser handoff uses `{ "files": [], "caseId": null, "handoffId": null, "documentForensics": null }`. For a saved case continuation, use `{ "files": [], "caseId": "<exact returned caseId>", "handoffId": null, "documentForensics": null }`. All four fields are required. The initial forensics value stays `null` unless the user explicitly chooses `true` or `false`; saved continuations retain the original choice.
 
 ## Privacy
 
