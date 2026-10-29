@@ -2,7 +2,7 @@
   "version": "0.7.1",
   "mcp_url": "https://dwsoffshorepartners.com/api/integrations/ultiwrite/mcp",
   "claude": {
-    "version": "0.8.0",
+    "version": "0.8.1",
     "mcp_url": "https://mcp.dwsoffshorepartners.com/mcp"
   },
   "tools": [
@@ -96,10 +96,64 @@
       ]
     },
     {
+      "file": "release/Ultiwrite_Claude_Plugin_v0.8.1.zip",
+      "version": "0.8.1",
+      "mcp_url": "https://mcp.dwsoffshorepartners.com/mcp",
+      "built_by": "stored entries, sorted, fixed 2026-10-29 timestamps and modes (same format as dennis430/merchant-risk-app scripts/pack-claude-plugin.mjs)",
+      "sha256": "11520ccd818dddd576a7b230e08b74142f3012fb0ea2d10f4b6f37c105e6e8b0",
+      "bytes": 54244,
+      "members": [
+        {
+          "name": ".claude-plugin/plugin.json",
+          "sha256": "f23d6fa241b3ef0767da5374c89d09b08dfc532a602e8b86360e1968d5a1da12",
+          "bytes": 1030
+        },
+        {
+          "name": ".mcp.json",
+          "sha256": "402ec557cf938178c278cb98658f91a2acb1fae2c9ed29a5e51c5bc67725a486",
+          "bytes": 128
+        },
+        {
+          "name": "LICENSE",
+          "sha256": "0122d7b57a1ef1e40944c88e2e0261b334fcf5f779e9deb52d49463de20a977d",
+          "bytes": 1767
+        },
+        {
+          "name": "README.md",
+          "sha256": "b1aeb587f2f49bfa6283d3f51d21677fbf95ab54d4d837c83938845857681bf7",
+          "bytes": 4922
+        },
+        {
+          "name": "assets/logo.png",
+          "sha256": "0b274d5691e551b86d1ba6def763d33ad0d4c3c0b7ccd000656bd3fad43ae131",
+          "bytes": 36034
+        },
+        {
+          "name": "skills/follow-up/SKILL.md",
+          "sha256": "590bd1cd2ef89233a9a0e5fb2c6b7466b479443f3a5857730c7f800362f4fe04",
+          "bytes": 1590
+        },
+        {
+          "name": "skills/read-report/SKILL.md",
+          "sha256": "234e28e869d491bf59fdd76c8a9261ee5b88271b33fac08c49f442b39d8723d7",
+          "bytes": 2234
+        },
+        {
+          "name": "skills/submit-evidence/SKILL.md",
+          "sha256": "a2dfbd3e286ee0ca4c64df5c9f92c9e7ab1c69ed8ea3e99f84b697911ab2ec76",
+          "bytes": 2489
+        },
+        {
+          "name": "skills/ultiwrite/SKILL.md",
+          "sha256": "fc77a87bd5094f9a5d1081b29edbe87ff09acf7ce8d3dcc13049ed824359efe0",
+          "bytes": 2996
+        }
+      ]
+    },
+    {
       "file": "release/Ultiwrite_Claude_Plugin_v0.8.0.zip",
       "version": "0.8.0",
-      "mcp_url": "https://mcp.dwsoffshorepartners.com/mcp",
-      "built_by": "dennis430/merchant-risk-app scripts/pack-claude-plugin.mjs (stored entries, fixed timestamps)",
+      "status": "superseded by Claude 0.8.1; kept so existing links keep working; not rebuilt",
       "sha256": "619656fae4e9b9db2d7a7e0c813713d859cde291062c21912bb38fc7297ca28e",
       "bytes": 54083,
       "members": [
@@ -153,7 +207,7 @@
     {
       "file": "release/ultiwrite-claude-plugin-0.7.1.zip",
       "version": "0.7.1",
-      "status": "superseded by Claude 0.8.0; kept so existing links keep working; not rebuilt",
+      "status": "superseded by Claude 0.8.1; kept so existing links keep working; not rebuilt",
       "sha256": "7b53857bcd7450b68a869b90d29c1112e89fcb3f707fd87ccadcacc73f906bfe",
       "bytes": 39586,
       "members": [
