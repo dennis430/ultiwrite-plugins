@@ -4,9 +4,9 @@
   "version": "0.7.1",
   "publisher": "DWS Offshore Fund",
   "mcp_url": "https://dwsoffshorepartners.com/api/integrations/ultiwrite/mcp",
-  "source_repository": "dennis430/merchant-risk-app",
-  "source_commit": "f7b292857f5c1c6c91c63806c53f4c98bf0816d3",
-  "note": "SHA-256 of every file except this manifest. version and mcp_url describe the 0.7.1 ChatGPT, Cursor, Grok Bot and client packages; claude describes the Claude 0.8.0 plugin, built in dennis430/merchant-risk-app at source_commit. Archives are not an installed client, a directory submission or an approval.",
+  "source_repository": "dennis430/ultiwrite-plugins",
+  "source_commit": "822663e978db2f461943781a4aabba835ca5caf3",
+  "note": "File hashes cover this public thin-connector candidate except the manifest itself. Top-level version/mcp_url retain the historical baseline; chatgpt carries its independent 0.7.2 version. Other host versions and all historical archive bytes remain unchanged.",
   "files": [
     {
       "path": ".claude-plugin/marketplace.json",
@@ -38,7 +38,7 @@
     },
     {
       "path": "README.md",
-      "sha256": "da585085a83abd6b8a74551fae3cecab31db0d5160f39e691c214ea14d40d76d"
+      "sha256": "49d55da435cdae310cbd6734751d3257ce6985b5145e5803a12fa8cf9b6d39c7"
     },
     {
       "path": "chatgpt/LICENSE",
@@ -46,7 +46,7 @@
     },
     {
       "path": "chatgpt/README.md",
-      "sha256": "568ed3d5eb8050b2493ff583acc3b84b06c1d0547b3e36bbd4f28435ac92e73c"
+      "sha256": "47b061c5b343068e70047c42793207b129c235880e6d09924742e1b697e8c754"
     },
     {
       "path": "chatgpt/assets/logo.png",
@@ -54,11 +54,11 @@
     },
     {
       "path": "chatgpt/mcp.json",
-      "sha256": "95000e3fdfd93383da4e2956ac33a265d9742ab591aa2b95e5fa00a52ae7e1ce"
+      "sha256": "9d3f3737200d1f0434bb218cc8de3c8fb3d0a22bd13b205a735c4701cf3d2858"
     },
     {
       "path": "chatgpt/plugin.json",
-      "sha256": "68c26f38a8c648ea73d31c7eda0ae9aec9cc5df754a488bb3081a041eaa4309c"
+      "sha256": "fdf2dcc3dd6478ae258244102c353c4afbffac552ad81a9b281bd30d0a753c00"
     },
     {
       "path": "chatgpt/skills/ultiwrite-read/SKILL.md",
@@ -82,7 +82,7 @@
     },
     {
       "path": "claude/assets/logo.png",
-      "sha256": "0b274d5691e551b86d1ba6def763d33ad0d4c3c0b7ccd000656bd3fad43ae131"
+      "sha256": "761f662e0dc2361dbfbb4c68b2e3296248c6910003f843529440cc417bd2a7ea"
     },
     {
       "path": "claude/skills/follow-up/SKILL.md",
@@ -190,11 +190,11 @@
     },
     {
       "path": "release/INVENTORY.json",
-      "sha256": "20c607adc8e7d8a4ac7ad6b86b36cc52ca7310c6f8270161a3b95b9ad9e2e3e7"
+      "sha256": "9642812fb04067d7ac09f470e05cb437b070b0ebe9f08acee250c1fa4068564d"
     },
     {
       "path": "release/SHA256SUMS.txt",
-      "sha256": "5974390d2d896c5f509394ffc9d78b6896015635a5d56150ef7460e000bb7e0d"
+      "sha256": "04a57073ee1e57d6abda520d2f78e88e0f96e0e1509d5fe18d04105cd16ee8ae"
     },
     {
       "path": "release/Ultiwrite_Claude_Plugin_v0.8.0.zip",
@@ -209,6 +209,10 @@
       "sha256": "457004b3d46b7aeaddabc1a5d065c181aac2b5a280369be7f9539de39d1339a4"
     },
     {
+      "path": "release/ultiwrite-chatgpt-plugin-0.7.2.zip",
+      "sha256": "3f74bf82547169f30bb7b3fb4b9e25992f7293e656983c7613f8d93cabfa4fc4"
+    },
+    {
       "path": "release/ultiwrite-claude-plugin-0.7.1.zip",
       "sha256": "7b53857bcd7450b68a869b90d29c1112e89fcb3f707fd87ccadcacc73f906bfe"
     },
@@ -217,12 +221,16 @@
       "sha256": "e34aa2e43d7062871de121c479ef5e8a7fe214f20b400464624605fc419e15f1"
     },
     {
+      "path": "scripts/pack-chatgpt-plugin.mjs",
+      "sha256": "0a89bcdaebb0992f76ddc0fba7a76574a5dcab51ff11c41c4dbf289b8481103c"
+    },
+    {
       "path": "scripts/pack-public-connectors.mjs",
       "sha256": "24170213e2b30f97ea80f4e8525398833e337e44dc0732b68e6429c9db33bd1b"
     },
     {
       "path": "scripts/validate-public-plugins.mjs",
-      "sha256": "ea32bef74a28588137c85da2892efc270d3b206e4bfc4bae742d1f93a27aeb63"
+      "sha256": "9f8d062379d73900d039ce0dc8931290d4156a54ea18809ccb9ee4ddb1fd53df"
     },
     {
       "path": "server.draft.json",
@@ -240,5 +248,14 @@
       "zip_sha256": "619656fae4e9b9db2d7a7e0c813713d859cde291062c21912bb38fc7297ca28e"
     },
     "change": "listing positioning only: Asymmetric Diligence and independent verification in description, keywords and README"
-  }
+  },
+  "chatgpt": {
+    "version": "0.7.2",
+    "mcp_url": "https://dwsoffshorepartners.com/api/integrations/ultiwrite/mcp",
+    "zip": "release/ultiwrite-chatgpt-plugin-0.7.2.zip",
+    "sha256": "3f74bf82547169f30bb7b3fb4b9e25992f7293e656983c7613f8d93cabfa4fc4",
+    "previous_zip": "release/ultiwrite-chatgpt-plugin-0.7.1.zip",
+    "previous_sha256": "457004b3d46b7aeaddabc1a5d065c181aac2b5a280369be7f9539de39d1339a4"
+  },
+  "source_state": "ChatGPT-only local compatibility candidate based on the public baseline; file hashes identify changed sources. Not an installed source update, deployment or publication."
 }

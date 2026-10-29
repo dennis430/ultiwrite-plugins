@@ -247,6 +247,45 @@
           "bytes": 2709
         }
       ]
+    },
+    {
+      "file": "release/ultiwrite-chatgpt-plugin-0.7.2.zip",
+      "version": "0.7.2",
+      "mcp_url": "https://dwsoffshorepartners.com/api/integrations/ultiwrite/mcp",
+      "sha256": "3f74bf82547169f30bb7b3fb4b9e25992f7293e656983c7613f8d93cabfa4fc4",
+      "bytes": 57740,
+      "members": [
+        {
+          "name": "LICENSE",
+          "sha256": "0122d7b57a1ef1e40944c88e2e0261b334fcf5f779e9deb52d49463de20a977d",
+          "bytes": 1767
+        },
+        {
+          "name": "README.md",
+          "sha256": "47b061c5b343068e70047c42793207b129c235880e6d09924742e1b697e8c754",
+          "bytes": 2714
+        },
+        {
+          "name": "assets/logo.png",
+          "sha256": "0b274d5691e551b86d1ba6def763d33ad0d4c3c0b7ccd000656bd3fad43ae131",
+          "bytes": 36034
+        },
+        {
+          "name": "mcp.json",
+          "sha256": "9d3f3737200d1f0434bb218cc8de3c8fb3d0a22bd13b205a735c4701cf3d2858",
+          "bytes": 234
+        },
+        {
+          "name": "plugin.json",
+          "sha256": "fdf2dcc3dd6478ae258244102c353c4afbffac552ad81a9b281bd30d0a753c00",
+          "bytes": 9747
+        },
+        {
+          "name": "skills/ultiwrite-read/SKILL.md",
+          "sha256": "edd95c4e79385f7d8bf6bfd7c5f33d1d3a7a719141e83910b1f852521ae16add",
+          "bytes": 6606
+        }
+      ]
     }
   ],
   "not": [
@@ -254,5 +293,9 @@
     "directory approval",
     "npm publication",
     "production deployment"
-  ]
+  ],
+  "chatgpt": {
+    "version": "0.7.2",
+    "mcp_url": "https://dwsoffshorepartners.com/api/integrations/ultiwrite/mcp"
+  }
 }
