@@ -5,7 +5,7 @@ description: Commercial Diligence for an opportunity, business, property, financ
 
 Use the Ultiwrite tools. Do not invent an analysis, a price, or a tool. Do not ask for or paste an API key. Account access is the host OAuth grant.
 
-1. For product fit or account access, call `ultiwrite_capabilities_get`. The first completed analysis is $0.00. Contact us for further-analysis pricing. No card is required and there is no automatic charge. This connection does not take payment.
+1. For product fit or account access, call `ultiwrite_capabilities_get`. Call `ultiwrite_account_get` for the connected account. Do not pass an organization id or user id. The first completed analysis is $0.00. Contact us for further-analysis pricing. No card is required and there is no automatic charge. This connection does not take payment.
 2. To analyze files the host can attach, call `ultiwrite_evidence_submit` with the real file objects. The host's own attachment limits still apply.
 3. If the host cannot forward bytes, call `ultiwrite_evidence_submit` with `{}` and give the user the returned `uploadLink`. After upload, call `ultiwrite_cases_list` and then `ultiwrite_case_status`. Do not start a second analysis for the same submission.
 4. Read the saved report with `ultiwrite_findings_get` or `ultiwrite_coherence_get` using exactly one `caseId` or `reportId`. Paginate when the tool says more remains. A website report may have no case.

@@ -34,6 +34,6 @@ Claude Code source install, once this public repository is the marketplace you a
 
 `server.draft.json` is unpublished MCP Registry metadata. Do not treat it as a listing.
 
-Version 0.7.1 is this repaired public source. The website still serves the older 0.7.0 plugin zips. They are not this tree. npm is not published. No marketplace form was submitted. No Cursor, Claude, ChatGPT, or Grok Bot host journey is claimed here.
+Version 0.7.1 is this public source, including the ChatGPT manifest. `node scripts/pack-public-connectors.mjs` writes the three `release/ultiwrite-*-plugin-0.7.1.zip` archives. Production still serves the older 0.7.0 website zips until that download change is merged and deployed. npm is not published. No marketplace form was submitted. No Cursor, Claude, ChatGPT, or Grok Bot host journey is claimed here.
 
 Repository status: the public thin source is https://github.com/dennis430/ultiwrite-plugins. It was not submitted to a plugin marketplace or directory. Cursor, Claude, ChatGPT, and Grok Bot host installation is not claimed from this package alone. The production MCP endpoint is independent of marketplace review.

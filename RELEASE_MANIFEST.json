@@ -6,7 +6,7 @@
   "mcp_url": "https://dwsoffshorepartners.com/api/integrations/ultiwrite/mcp",
   "source_repository": "dennis430/merchant-risk-app",
   "source_commit": "f7b292857f5c1c6c91c63806c53f4c98bf0816d3",
-  "note": "SHA-256 of every file except this manifest. The public git commit is recorded after publication.",
+  "note": "SHA-256 of every file except this manifest. The public git commit is recorded after publication. 0.7.1 archives are release/*.zip and are not an installed client or a directory submission.",
   "files": [
     {
       "path": ".claude-plugin/marketplace.json",
@@ -26,7 +26,7 @@
     },
     {
       "path": "INSTALL.md",
-      "sha256": "d2a8b4953c4fc0f08b9bdae4d97fedc2460251011b0b29746fe030f72cfce2a2"
+      "sha256": "e124879e503353c6242a2a834b2b0970688caab6203364ce73b84e91a5872f19"
     },
     {
       "path": "LICENSE",
@@ -38,7 +38,7 @@
     },
     {
       "path": "README.md",
-      "sha256": "ce146841705531e9ea081930c89fda96fa98bd464b347edf6c9dd21745c1eba1"
+      "sha256": "6847bfc2c00d09565152881e1cd35b178cc4606bedc2f80046dde9571b1dbb8a"
     },
     {
       "path": "chatgpt/LICENSE",
@@ -46,7 +46,7 @@
     },
     {
       "path": "chatgpt/README.md",
-      "sha256": "e60d0e18968fb64ded7cbf77b1b5ecdd6418d28d09227547ec7d03e86fa93249"
+      "sha256": "568ed3d5eb8050b2493ff583acc3b84b06c1d0547b3e36bbd4f28435ac92e73c"
     },
     {
       "path": "chatgpt/assets/logo.png",
@@ -58,11 +58,11 @@
     },
     {
       "path": "chatgpt/plugin.json",
-      "sha256": "5c08c028c8b51883daed770db8ad8e90a742e7d65657528134fbcc15110a08af"
+      "sha256": "68c26f38a8c648ea73d31c7eda0ae9aec9cc5df754a488bb3081a041eaa4309c"
     },
     {
       "path": "chatgpt/skills/ultiwrite-read/SKILL.md",
-      "sha256": "e87223f601a9d1c1ff2b05aa5794c856331f8c03b7375a8c21e6082c9318c5de"
+      "sha256": "edd95c4e79385f7d8bf6bfd7c5f33d1d3a7a719141e83910b1f852521ae16add"
     },
     {
       "path": "claude/.claude-plugin/plugin.json",
@@ -90,7 +90,7 @@
     },
     {
       "path": "claude/skills/ultiwrite/SKILL.md",
-      "sha256": "788f061ce00b6aeaab0f0b9f85188d7d2df7ae5e82f0b821cdc7d4bb864d3936"
+      "sha256": "1bd96522c11083f775b833a3d4b9bebf48eb98199589e8e485adfbf7e5551471"
     },
     {
       "path": "client/LICENSE",
@@ -142,7 +142,7 @@
     },
     {
       "path": "cursor/skills/ultiwrite/SKILL.md",
-      "sha256": "c1e3eeee39ed611a179b3fafd5aae260e295088b6f2d89d9a704f1c66d0946c9"
+      "sha256": "f4fbb0d2f03e459dbaea8ac8fbb918c204b1639e70b0390bb663399c660990ff"
     },
     {
       "path": "grokbot/FIELDS.json",
@@ -170,7 +170,7 @@
     },
     {
       "path": "grokbot/TOOLS.md",
-      "sha256": "e16379419c4768a6dc57aadfc51ff13614f770fe06d50cf48f5fb2453731d1d4"
+      "sha256": "135a11a3e05482230344341aac2999edebbf56671cf0085e4e887913b090fa67"
     },
     {
       "path": "grokbot/assets/logo.png",
@@ -181,13 +181,36 @@
       "sha256": "9d3f3737200d1f0434bb218cc8de3c8fb3d0a22bd13b205a735c4701cf3d2858"
     },
     {
+      "path": "release/INVENTORY.json",
+      "sha256": "bba093de79a3f9a8a3214294696165eeb15fbcf580d321ea83f9fd2d0a0d0979"
+    },
+    {
+      "path": "release/SHA256SUMS.txt",
+      "sha256": "96d080aeb4dafd88a511adfc151b2d220d7c9fd67f82033022408f2b523052e4"
+    },
+    {
+      "path": "release/ultiwrite-chatgpt-plugin-0.7.1.zip",
+      "sha256": "457004b3d46b7aeaddabc1a5d065c181aac2b5a280369be7f9539de39d1339a4"
+    },
+    {
+      "path": "release/ultiwrite-claude-plugin-0.7.1.zip",
+      "sha256": "7b53857bcd7450b68a869b90d29c1112e89fcb3f707fd87ccadcacc73f906bfe"
+    },
+    {
+      "path": "release/ultiwrite-cursor-plugin-0.7.1.zip",
+      "sha256": "e34aa2e43d7062871de121c479ef5e8a7fe214f20b400464624605fc419e15f1"
+    },
+    {
+      "path": "scripts/pack-public-connectors.mjs",
+      "sha256": "4c0f04553ba011ea919755a6c600b6334aa97f9b3effd3438993add613444d12"
+    },
+    {
       "path": "scripts/validate-public-plugins.mjs",
-      "sha256": "1703f1ecfbbe59f9d1d5efc9f1481e24deea2b5bbf3e9ceebd9b54834d8814ee"
+      "sha256": "1937494661c5a0205fabbff23b7489d7f54644085fb537ea7295f4efd221b903"
     },
     {
       "path": "server.draft.json",
       "sha256": "661f6d5ad4678dc3b32c83d1fbe05bde9cce24c2f11afd89fa01fe9aabcc7dcf"
     }
-  ],
-  "branding_update": "2026-10-26: Claude directory icon and ChatGPT/Claude brand guards. Full source re-export requires next release pipeline run."
+  ]
 }
