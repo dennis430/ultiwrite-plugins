@@ -1,10 +1,10 @@
 #!/usr/bin/env node
-// Rebuild the ChatGPT and Cursor 0.7.1 connector ZIPs from this repository, and verify the Claude
+// Rebuild the ChatGPT and Cursor 0.7.4 connector ZIPs from this repository, and verify the Claude
 // plugin ZIP against claude/. Does not publish, deploy, or submit a directory listing.
 //
-// Claude is at 0.8.1. Its ZIP is built reproducibly in dennis430/merchant-risk-app by
-// scripts/pack-claude-plugin.mjs and committed here unchanged, so the bytes match the validated
-// artifact. This script checks every member of that ZIP equals the file in claude/ and that nothing
+// Claude is at 0.8.2. Its ZIP uses the same reproducible stored-entry format as
+// dennis430/merchant-risk-app scripts/pack-claude-plugin.mjs and is built from claude/.
+// This script checks every member of that ZIP equals the file in claude/ and that nothing
 // else is inside. The Claude 0.7.1 ZIP stays in release/ for existing links; its source is history.
 import { createHash } from 'node:crypto'
 import { deflateRawSync, inflateRawSync } from 'node:zlib'
@@ -14,7 +14,7 @@ import { fileURLToPath } from 'node:url'
 
 const root = fileURLToPath(new URL('..', import.meta.url))
 const outDir = join(root, 'release')
-const VERSION = '0.7.1'
+const VERSION = '0.7.4'
 const MCP_URL = 'https://dwsoffshorepartners.com/api/integrations/ultiwrite/mcp'
 const TOOLS = [
   'ultiwrite_account_get',
@@ -26,15 +26,15 @@ const TOOLS = [
   'ultiwrite_findings_get',
   'ultiwrite_report_export',
 ]
-const CLAUDE_VERSION = '0.8.1'
+const CLAUDE_VERSION = '0.8.2'
 const CLAUDE_MCP_URL = 'https://mcp.dwsoffshorepartners.com/mcp'
 const CLAUDE_ZIP = `Ultiwrite_Claude_Plugin_v${CLAUDE_VERSION}.zip`
-const CLAUDE_FROZEN = ['Ultiwrite_Claude_Plugin_v0.8.0.zip', 'ultiwrite-claude-plugin-0.7.1.zip']
+const CLAUDE_FROZEN = ['Ultiwrite_Claude_Plugin_v0.8.1.zip', 'Ultiwrite_Claude_Plugin_v0.8.0.zip', 'ultiwrite-claude-plugin-0.7.1.zip', 'ultiwrite-chatgpt-plugin-0.7.1.zip', 'ultiwrite-cursor-plugin-0.7.1.zip']
 const PACKAGES = [
   {
     id: 'chatgpt',
     root: 'chatgpt',
-    files: ['assets/logo.png', 'mcp.json', 'plugin.json', 'README.md', 'skills/ultiwrite-read/SKILL.md'],
+    files: ['assets/logo.png', 'mcp.json', 'plugin.json', 'README.md', 'skills/ultiwrite-read/SKILL.md', 'skills/ultiwrite-read/agents/openai.yaml'],
   },
   {
     id: 'cursor',
@@ -213,8 +213,8 @@ for (const name of CLAUDE_FROZEN) {
   const frozen = readFileSync(join(outDir, name))
   inventory.push({
     file: `release/${name}`,
-    version: name.includes('0.8.0') ? '0.8.0' : '0.7.1',
-    status: `superseded by Claude ${CLAUDE_VERSION}; kept so existing links keep working; not rebuilt`,
+    version: name.match(/(?:v|-)(\d+\.\d+\.\d+)\.zip$/)?.[1],
+    status: 'superseded; kept so existing links keep working; not rebuilt',
     sha256: createHash('sha256').update(frozen).digest('hex'),
     bytes: frozen.length,
     members: readZip(frozen).map(member => ({
