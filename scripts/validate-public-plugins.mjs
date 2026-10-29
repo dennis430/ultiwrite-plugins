@@ -8,6 +8,8 @@ const root = process.argv[2] ? process.argv[2] : process.cwd()
 const errors = []
 const fail = message => errors.push(message)
 const MCP_URL = 'https://dwsoffshorepartners.com/api/integrations/ultiwrite/mcp'
+// Claude 0.8.0 uses the same server through its clean host, matching its directory connector listing.
+const CLAUDE_MCP_URL = 'https://mcp.dwsoffshorepartners.com/mcp'
 const privateHost = ['engine', 'dwsoffshorepartners', 'com'].join('.')
 const secretNeedles = [
   privateHost,
@@ -159,9 +161,9 @@ for (const rel of ['grokbot/OAUTH.md', 'grokbot/TOOLS.md', 'grokbot/INSTALL.md',
 if (!readFileSync(join(root, 'grokbot/TESTING.md'), 'utf8').includes('NOT_RUN')) fail('testing status missing')
 
 const claude = readJson('claude/.mcp.json')
-if (claude?.mcpServers?.ultiwrite?.type !== 'http' || claude?.mcpServers?.ultiwrite?.url !== MCP_URL) fail('claude mcp')
+if (claude?.mcpServers?.ultiwrite?.type !== 'http' || claude?.mcpServers?.ultiwrite?.url !== CLAUDE_MCP_URL || Object.keys(claude?.mcpServers?.ultiwrite ?? {}).length !== 2) fail('claude mcp')
 const claudeListing = readJson('claude/.claude-plugin/plugin.json')
-if (claudeListing?.name !== 'ultiwrite' || claudeListing?.displayName !== 'Ultiwrite' || claudeListing?.icon !== './assets/logo.png' || claudeListing?.version !== '0.7.1') fail('claude directory branding')
+if (claudeListing?.name !== 'ultiwrite' || claudeListing?.displayName !== 'Ultiwrite' || claudeListing?.icon !== './assets/logo.png' || claudeListing?.version !== '0.8.0') fail('claude directory branding')
 for (const field of ['documentationUrl', 'supportUrl', 'privacyPolicyUrl', 'termsOfServiceUrl']) {
   if (typeof claudeListing?.[field] !== 'string' || !claudeListing[field].startsWith('https://dwsoffshorepartners.com/')) fail(`claude directory ${field}`)
 }
@@ -169,6 +171,27 @@ const chatgptListing = readJson('chatgpt/plugin.json')
 const openaiInterface = chatgptListing?.extensions?.['com.openai']?.interface
 if (openaiInterface?.displayName !== 'Ultiwrite' || openaiInterface?.logo !== './assets/logo.png' || openaiInterface?.composerIcon !== './assets/logo.png' || chatgptListing?.version !== '0.7.1') fail('ChatGPT directory branding')
 pngSquareOpaque('claude/assets/logo.png')
+// Anthropic directory rules the CLI validator does not check (claude.com/docs/plugins/pre-submission-checklist).
+const claudeFiles = files.filter(rel => rel.startsWith('claude/'))
+if (claudeFiles.some(rel => rel.startsWith('claude/bin/'))) fail('claude plugin must not ship bin/')
+if (claudeFiles.some(rel => /(^|\/)(\.DS_Store|Thumbs\.db|desktop\.ini|__MACOSX)(\/|$)/.test(rel))) fail('claude plugin contains an OS system file')
+if (!claudeFiles.includes('claude/LICENSE')) fail('claude plugin LICENSE missing')
+const claudeReadme = readFileSync(join(root, 'claude/README.md'), 'utf8').replace(/```[\s\S]*?```/g, ' ')
+if (claudeReadme.split(/\s+/).filter(Boolean).length < 40) fail('claude README must have at least 40 words outside code blocks')
+if (!/^## Privacy/m.test(claudeReadme)) fail('claude README must disclose data handling under ## Privacy')
+const claudeSkills = claudeFiles.filter(rel => /^claude\/skills\/[^/]+\/SKILL\.md$/.test(rel))
+if (!claudeSkills.length) fail('claude plugin has no skills')
+const TOOL_NAMES = ['ultiwrite_account_get', 'ultiwrite_capabilities_get', 'ultiwrite_cases_list', 'ultiwrite_case_status', 'ultiwrite_coherence_get',
+  'ultiwrite_findings_get', 'ultiwrite_report_export', 'ultiwrite_evidence_submit']
+for (const rel of claudeSkills) {
+  const text = readFileSync(join(root, rel), 'utf8')
+  const front = /^---\n([\s\S]*?)\n---\n/.exec(text)
+  if (!front) { fail(`${rel} has no front matter`); continue }
+  if (!new RegExp(`^name: ${rel.split('/')[2]}$`, 'm').test(front[1])) fail(`${rel} name must equal its folder`)
+  const description = /^description: (.+)$/m.exec(front[1])?.[1] ?? ''
+  if (description.length < 40 || description.length > 1024) fail(`${rel} description length`)
+  for (const tool of text.match(/ultiwrite_[a-z_]+/g) ?? []) if (!TOOL_NAMES.includes(tool)) fail(`${rel} names unknown tool ${tool}`)
+}
 pngSquareOpaque('chatgpt/assets/logo.png')
 const pkg = readJson('client/package.json')
 if (pkg?.name !== 'ultiwrite-mcp' || pkg?.version !== '0.7.1' || pkg?.license !== 'MIT') fail('client package')

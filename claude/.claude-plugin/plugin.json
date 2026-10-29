@@ -1,18 +1,19 @@
 {
   "name": "ultiwrite",
   "displayName": "Ultiwrite",
-  "version": "0.7.1",
-  "license": "MIT",
-  "privacyPolicyUrl": "https://dwsoffshorepartners.com/privacy",
-  "description": "Commercial Diligence. Read a saved Ultiwrite report, and submit authorized evidence through the signed browser upload when Claude cannot pass file bytes.",
+  "version": "0.8.0",
+  "description": "Commercial Diligence. Connect Claude to Ultiwrite's analytical engine to submit authorized evidence, follow the case, and read reconciled findings and saved reports.",
   "author": {
     "name": "DWS Offshore Fund",
     "url": "https://dwsoffshorepartners.com"
   },
-  "homepage": "https://dwsoffshorepartners.com",
+  "homepage": "https://dwsoffshorepartners.com/docs/mcp",
   "repository": "https://github.com/dennis430/ultiwrite-plugins",
+  "license": "MIT",
+  "keywords": ["commercial-diligence", "due-diligence", "underwriting", "document-forensics", "merchant-risk", "mcp"],
   "icon": "./assets/logo.png",
   "documentationUrl": "https://dwsoffshorepartners.com/docs/mcp",
   "supportUrl": "https://dwsoffshorepartners.com/contact",
+  "privacyPolicyUrl": "https://dwsoffshorepartners.com/privacy",
   "termsOfServiceUrl": "https://dwsoffshorepartners.com/terms"
 }
