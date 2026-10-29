@@ -167,9 +167,13 @@ if (claudeListing?.name !== 'ultiwrite' || claudeListing?.displayName !== 'Ultiw
 for (const field of ['documentationUrl', 'supportUrl', 'privacyPolicyUrl', 'termsOfServiceUrl']) {
   if (typeof claudeListing?.[field] !== 'string' || !claudeListing[field].startsWith('https://dwsoffshorepartners.com/')) fail(`claude directory ${field}`)
 }
+const chatgptMcp = readJson('chatgpt/mcp.json')
+const chatgptServer = chatgptMcp?.mcpServers?.ultiwrite
+if (!chatgptServer || chatgptServer.type !== 'streamable-http' || chatgptServer.url !== MCP_URL
+  || JSON.stringify(Object.keys(chatgptServer).sort()) !== JSON.stringify(['type', 'url'])) fail('ChatGPT portable MCP server must contain only type and the existing URL')
 const chatgptListing = readJson('chatgpt/plugin.json')
 const openaiInterface = chatgptListing?.extensions?.['com.openai']?.interface
-if (openaiInterface?.displayName !== 'Ultiwrite' || openaiInterface?.logo !== './assets/logo.png' || openaiInterface?.composerIcon !== './assets/logo.png' || chatgptListing?.version !== '0.7.1') fail('ChatGPT directory branding')
+if (openaiInterface?.displayName !== 'Ultiwrite' || openaiInterface?.logo !== './assets/logo.png' || openaiInterface?.composerIcon !== './assets/logo.png' || chatgptListing?.version !== '0.7.2') fail('ChatGPT directory branding')
 pngSquareOpaque('claude/assets/logo.png')
 // Anthropic directory rules the CLI validator does not check (claude.com/docs/plugins/pre-submission-checklist).
 const claudeFiles = files.filter(rel => rel.startsWith('claude/'))
