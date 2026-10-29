@@ -1,21 +1,17 @@
 # Ultiwrite for Cursor
 
-Version 0.7.1. Publisher: DWS Offshore Fund. License: MIT for this thin connector only. See LICENSE.
+Version 0.7.2. Publisher: DWS Offshore Fund. License: MIT for this thin connector only. See LICENSE.
 
-Remote MCP, production, no API key:
-
-https://dwsoffshorepartners.com/api/integrations/ultiwrite/mcp
-
-This directory is the Cursor plugin. The repository root `.cursor-plugin/marketplace.json` lists it with `source` set to `cursor`. The manifest points at `assets/logo.png`. Installing an approved marketplace plugin is separate from connecting the raw MCP URL. This package was not submitted to the Cursor Marketplace.
-
-Add the remote server in Cursor settings, connect, and approve Ultiwrite account access. Do not paste an API key. Use the signed upload handoff when the host cannot forward the original selected files. The account's allowance, limits, canonical analysis, and saved report are unchanged.
-
-The account selector label `default` in Grok Bot is host-managed connection-slot UI, not an Ultiwrite organization or identity. Do not fake or rewrite token subjects, organization IDs, or OAuth scopes to try to change it. OAuth consent shows the signed-in Ultiwrite account email and offers the actual account-switch sign-out link.
-
-No Cursor host session was run for 0.7.1. Grok Bot has a separate submission dossier and is not consumer Grok. Grok Build is not this connector.
-
+Remote MCP: https://mcp.dwsoffshorepartners.com/mcp
 Setup guide: https://dwsoffshorepartners.com/docs/mcp
+Cursor Directory: https://cursor.directory/plugins/ultiwrite
 
-The website still offers the older 0.7.0 zip. This directory is the repaired 0.7.1 source. Those bytes are not the same.
+Open the Cursor Directory entry and choose Add to Cursor, then sign in to Ultiwrite with Google and approve access. An existing account keeps its reports and allowance. A new verified Google account receives the standard first free completed analysis. No API key or local npm installation is needed for the remote connection.
 
-Repository status: the public thin source is https://github.com/dennis430/ultiwrite-plugins. It was not submitted to a plugin marketplace or directory. Cursor, Claude, ChatGPT, and Grok Bot host installation is not claimed from this package alone. The production MCP endpoint is independent of marketplace review.
+The directory install action supplies a remote MCP configuration; it does not download this plugin ZIP. The existing public entry was observed on 29 October 2026 installing the supported application URL `https://dwsoffshorepartners.com/api/integrations/ultiwrite/mcp` under the name `server`. That URL remains supported. The prepared directory update uses the name `ultiwrite` and the remote MCP URL above. A source release does not apply that directory change or verify a Cursor session.
+
+This repository's `.cursor-plugin/marketplace.json` points to `cursor`. The plugin manifest is `.cursor-plugin/plugin.json`; `mcp.json` configures the remote server. Cursor Directory and Cursor's first-party Marketplace are separate distribution systems. The first-party Marketplace publication and an actual Cursor connection-to-report journey remain unverified.
+
+For local files that Cursor cannot forward as original downloadable bytes, ask Ultiwrite for its upload link. Upload the selected files there while signed in to the same account, then return to the conversation. A local path or attachment filename alone does not transfer evidence. The agent retains the returned upload continuation, resumes the exact saved case after upload, and retrieves the completed report; it does not start the analysis again. Keep the same conversation for the upload handoff.
+
+Version 0.7.2 is the prepared package in this source. The previously served website and repository ZIPs at 0.7.1 remain available for existing links. A package download is separate from an installed server and a completed report.

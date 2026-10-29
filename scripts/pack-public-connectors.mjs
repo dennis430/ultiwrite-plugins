@@ -1,8 +1,8 @@
 #!/usr/bin/env node
-// Rebuild the ChatGPT and Cursor 0.7.1 connector ZIPs from this repository, and verify the Claude
+// Rebuild ChatGPT 0.7.1 and Cursor 0.7.2 ZIPs, and verify the Claude
 // plugin ZIP against claude/. Does not publish, deploy, or submit a directory listing.
 //
-// Claude is at 0.8.1. Its ZIP is built reproducibly in dennis430/merchant-risk-app by
+// Claude is at 0.8.2. Its ZIP is built reproducibly in dennis430/merchant-risk-app by
 // scripts/pack-claude-plugin.mjs and committed here unchanged, so the bytes match the validated
 // artifact. This script checks every member of that ZIP equals the file in claude/ and that nothing
 // else is inside. The Claude 0.7.1 ZIP stays in release/ for existing links; its source is history.
@@ -26,18 +26,20 @@ const TOOLS = [
   'ultiwrite_findings_get',
   'ultiwrite_report_export',
 ]
-const CLAUDE_VERSION = '0.8.1'
+const CLAUDE_VERSION = '0.8.2'
 const CLAUDE_MCP_URL = 'https://mcp.dwsoffshorepartners.com/mcp'
 const CLAUDE_ZIP = `Ultiwrite_Claude_Plugin_v${CLAUDE_VERSION}.zip`
-const CLAUDE_FROZEN = ['Ultiwrite_Claude_Plugin_v0.8.0.zip', 'ultiwrite-claude-plugin-0.7.1.zip']
+const CLAUDE_FROZEN = ['Ultiwrite_Claude_Plugin_v0.8.1.zip', 'Ultiwrite_Claude_Plugin_v0.8.0.zip', 'ultiwrite-claude-plugin-0.7.1.zip']
 const PACKAGES = [
   {
     id: 'chatgpt',
+    version: VERSION,
     root: 'chatgpt',
     files: ['assets/logo.png', 'mcp.json', 'plugin.json', 'README.md', 'skills/ultiwrite-read/SKILL.md'],
   },
   {
     id: 'cursor',
+    version: '0.7.2',
     root: 'cursor',
     files: ['.cursor-plugin/plugin.json', 'LICENSE', 'README.md', 'assets/logo.png', 'mcp.json', 'skills/ultiwrite/SKILL.md'],
   },
@@ -160,27 +162,6 @@ for (const [key, path] of [['authorizationUrl', '/api/integrations/ultiwrite/oau
 if (auth.client.mode !== 'dcr') throw new Error('ChatGPT client mode drifted')
 if (JSON.stringify(auth.defaultScopes) !== JSON.stringify(['ultiwrite:read', 'ultiwrite:evidence'])) throw new Error('scopes drifted')
 
-mkdirSync(outDir, { recursive: true })
-const inventory = []
-for (const pack of PACKAGES) {
-  const entries = pack.files.map(name => {
-    const bytes = readFileSync(join(root, pack.root, name))
-    return { name, bytes }
-  })
-  const archive = zip(entries)
-  const filename = `ultiwrite-${pack.id}-plugin-${VERSION}.zip`
-  writeFileSync(join(outDir, filename), archive)
-  inventory.push({
-    file: `release/${filename}`,
-    sha256: createHash('sha256').update(archive).digest('hex'),
-    bytes: archive.length,
-    members: entries.map(entry => ({
-      name: entry.name,
-      sha256: createHash('sha256').update(entry.bytes).digest('hex'),
-      bytes: entry.bytes.length,
-    })),
-  })
-}
 // Claude: verify the committed ZIP member by member against claude/.
 const claudeArchive = readFileSync(join(outDir, CLAUDE_ZIP))
 const claudeMembers = readZip(claudeArchive)
@@ -196,6 +177,38 @@ const claudeManifest = JSON.parse(readFileSync(join(root, 'claude/.claude-plugin
 const claudeServer = JSON.parse(readFileSync(join(root, 'claude/.mcp.json'), 'utf8')).mcpServers.ultiwrite
 if (claudeManifest.version !== CLAUDE_VERSION || claudeServer.url !== CLAUDE_MCP_URL || claudeServer.type !== 'http') throw new Error('Claude manifest or MCP URL drifted')
 assertTools(walk(join(root, 'claude/skills')).map(path => readFileSync(join(root, path), 'utf8')).join('\n'), 'Claude skills')
+
+mkdirSync(outDir, { recursive: true })
+const previous = JSON.parse(readFileSync(join(outDir, 'INVENTORY.json'), 'utf8'))
+const inventory = previous.packages.filter(item => item.file === 'release/ultiwrite-cursor-plugin-0.7.1.zip')
+for (const pack of PACKAGES) {
+  const entries = pack.files.map(name => {
+    const bytes = readFileSync(join(root, pack.root, name))
+    return { name, bytes }
+  })
+  const archive = pack.id === 'cursor' ? readFileSync(join(outDir, `ultiwrite-cursor-plugin-${pack.version}.zip`)) : zip(entries)
+  if (pack.id === 'cursor') {
+    const members = readZip(archive)
+    if (JSON.stringify(members.map(member => member.name).sort()) !== JSON.stringify([...pack.files].sort())
+      || members.some(member => !member.bytes.equals(readFileSync(join(root, 'cursor', member.name))))) {
+      throw new Error('Cursor archive differs from source; run node scripts/pack-cursor-plugin.mjs')
+    }
+  }
+  const filename = `ultiwrite-${pack.id}-plugin-${pack.version}.zip`
+  writeFileSync(join(outDir, filename), archive)
+  inventory.push({
+    file: `release/${filename}`,
+    version: pack.version,
+    mcp_url: pack.id === 'cursor' ? CLAUDE_MCP_URL : MCP_URL,
+    sha256: createHash('sha256').update(archive).digest('hex'),
+    bytes: archive.length,
+    members: entries.map(entry => ({
+      name: entry.name,
+      sha256: createHash('sha256').update(entry.bytes).digest('hex'),
+      bytes: entry.bytes.length,
+    })),
+  })
+}
 inventory.push({
   file: `release/${CLAUDE_ZIP}`,
   version: CLAUDE_VERSION,
@@ -213,7 +226,7 @@ for (const name of CLAUDE_FROZEN) {
   const frozen = readFileSync(join(outDir, name))
   inventory.push({
     file: `release/${name}`,
-    version: name.includes('0.8.0') ? '0.8.0' : '0.7.1',
+    version: /(?:_v|-)(\d+\.\d+\.\d+)\.zip$/.exec(name)[1],
     status: `superseded by Claude ${CLAUDE_VERSION}; kept so existing links keep working; not rebuilt`,
     sha256: createHash('sha256').update(frozen).digest('hex'),
     bytes: frozen.length,
@@ -230,6 +243,7 @@ writeFileSync(join(outDir, 'INVENTORY.json'), JSON.stringify({
   version: VERSION,
   mcp_url: MCP_URL,
   claude: { version: CLAUDE_VERSION, mcp_url: CLAUDE_MCP_URL },
+  cursor: { version: '0.7.2', mcp_url: CLAUDE_MCP_URL },
   tools: TOOLS,
   oauth: {
     authorization_endpoint: 'https://dwsoffshorepartners.com/api/integrations/ultiwrite/oauth/authorize',
