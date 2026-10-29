@@ -29,6 +29,7 @@ const allowedTop = new Set([
   'cursor', 'claude', 'chatgpt', 'grokbot', 'client', 'scripts', '.github',
   '.cursor-plugin', '.claude-plugin', 'README.md', 'LICENSE', 'NOTICE',
   'INSTALL.md', 'server.draft.json', '.gitignore', 'RELEASE_MANIFEST.json',
+  'release',
 ])
 
 function walk(dir, out = []) {
@@ -87,7 +88,7 @@ for (const rel of files) {
     fail(`forbidden tree ${rel}`)
   }
   if (/\.(pem|key|p12|env)$/.test(lower)) fail(`forbidden file ${rel}`)
-  if (rel.endsWith('.png')) continue
+  if (rel.endsWith('.png') || rel.endsWith('.zip')) continue
   const text = readFileSync(join(root, rel), 'utf8')
   for (const needle of secretNeedles) {
     if (text.includes(needle)) fail(`${rel} contains forbidden material`)
@@ -160,13 +161,13 @@ if (!readFileSync(join(root, 'grokbot/TESTING.md'), 'utf8').includes('NOT_RUN'))
 const claude = readJson('claude/.mcp.json')
 if (claude?.mcpServers?.ultiwrite?.type !== 'http' || claude?.mcpServers?.ultiwrite?.url !== MCP_URL) fail('claude mcp')
 const claudeListing = readJson('claude/.claude-plugin/plugin.json')
-if (claudeListing?.name !== 'ultiwrite' || claudeListing?.displayName !== 'Ultiwrite' || claudeListing?.icon !== './assets/logo.png') fail('claude directory branding')
+if (claudeListing?.name !== 'ultiwrite' || claudeListing?.displayName !== 'Ultiwrite' || claudeListing?.icon !== './assets/logo.png' || claudeListing?.version !== '0.7.1') fail('claude directory branding')
 for (const field of ['documentationUrl', 'supportUrl', 'privacyPolicyUrl', 'termsOfServiceUrl']) {
   if (typeof claudeListing?.[field] !== 'string' || !claudeListing[field].startsWith('https://dwsoffshorepartners.com/')) fail(`claude directory ${field}`)
 }
 const chatgptListing = readJson('chatgpt/plugin.json')
 const openaiInterface = chatgptListing?.extensions?.['com.openai']?.interface
-if (openaiInterface?.displayName !== 'Ultiwrite' || openaiInterface?.logo !== './assets/logo.png' || openaiInterface?.composerIcon !== './assets/logo.png') fail('ChatGPT directory branding')
+if (openaiInterface?.displayName !== 'Ultiwrite' || openaiInterface?.logo !== './assets/logo.png' || openaiInterface?.composerIcon !== './assets/logo.png' || chatgptListing?.version !== '0.7.1') fail('ChatGPT directory branding')
 pngSquareOpaque('claude/assets/logo.png')
 pngSquareOpaque('chatgpt/assets/logo.png')
 const pkg = readJson('client/package.json')

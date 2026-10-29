@@ -1,0 +1,143 @@
+{
+  "version": "0.7.1",
+  "mcp_url": "https://dwsoffshorepartners.com/api/integrations/ultiwrite/mcp",
+  "tools": [
+    "ultiwrite_account_get",
+    "ultiwrite_capabilities_get",
+    "ultiwrite_cases_list",
+    "ultiwrite_case_status",
+    "ultiwrite_coherence_get",
+    "ultiwrite_evidence_submit",
+    "ultiwrite_findings_get",
+    "ultiwrite_report_export"
+  ],
+  "oauth": {
+    "authorization_endpoint": "https://dwsoffshorepartners.com/api/integrations/ultiwrite/oauth/authorize",
+    "token_endpoint": "https://dwsoffshorepartners.com/api/integrations/ultiwrite/oauth/token",
+    "registration_endpoint": "https://dwsoffshorepartners.com/api/integrations/ultiwrite/oauth/register",
+    "code_challenge_method": "S256",
+    "scopes": [
+      "ultiwrite:read",
+      "ultiwrite:evidence"
+    ]
+  },
+  "packages": [
+    {
+      "file": "release/ultiwrite-chatgpt-plugin-0.7.1.zip",
+      "sha256": "457004b3d46b7aeaddabc1a5d065c181aac2b5a280369be7f9539de39d1339a4",
+      "bytes": 42585,
+      "members": [
+        {
+          "name": "assets/logo.png",
+          "sha256": "0b274d5691e551b86d1ba6def763d33ad0d4c3c0b7ccd000656bd3fad43ae131",
+          "bytes": 36034
+        },
+        {
+          "name": "mcp.json",
+          "sha256": "95000e3fdfd93383da4e2956ac33a265d9742ab591aa2b95e5fa00a52ae7e1ce",
+          "bytes": 929
+        },
+        {
+          "name": "plugin.json",
+          "sha256": "68c26f38a8c648ea73d31c7eda0ae9aec9cc5df754a488bb3081a041eaa4309c",
+          "bytes": 9752
+        },
+        {
+          "name": "README.md",
+          "sha256": "568ed3d5eb8050b2493ff583acc3b84b06c1d0547b3e36bbd4f28435ac92e73c",
+          "bytes": 2283
+        },
+        {
+          "name": "skills/ultiwrite-read/SKILL.md",
+          "sha256": "edd95c4e79385f7d8bf6bfd7c5f33d1d3a7a719141e83910b1f852521ae16add",
+          "bytes": 6606
+        }
+      ]
+    },
+    {
+      "file": "release/ultiwrite-claude-plugin-0.7.1.zip",
+      "sha256": "7b53857bcd7450b68a869b90d29c1112e89fcb3f707fd87ccadcacc73f906bfe",
+      "bytes": 39586,
+      "members": [
+        {
+          "name": ".claude-plugin/plugin.json",
+          "sha256": "259b454d26f99bbe212034e2e57904299e59ac0fbf7b050f7560f9927bc160a8",
+          "bytes": 769
+        },
+        {
+          "name": ".mcp.json",
+          "sha256": "24b12d346929cb56d33bbb6ca678262a3320cd601e759f517324ec8125b02781",
+          "bytes": 151
+        },
+        {
+          "name": "LICENSE",
+          "sha256": "0122d7b57a1ef1e40944c88e2e0261b334fcf5f779e9deb52d49463de20a977d",
+          "bytes": 1767
+        },
+        {
+          "name": "README.md",
+          "sha256": "9bb12f06b4fe459ee1c4d5e8c4909724fa3bd4a964d3fb45351cbfb8165f3546",
+          "bytes": 1882
+        },
+        {
+          "name": "SUBMISSION.md",
+          "sha256": "65d4911897b1d156f901c0e08cbb0abde063a64e3d025497dda154a9e6e28b01",
+          "bytes": 1042
+        },
+        {
+          "name": "assets/logo.png",
+          "sha256": "0b274d5691e551b86d1ba6def763d33ad0d4c3c0b7ccd000656bd3fad43ae131",
+          "bytes": 36034
+        },
+        {
+          "name": "skills/ultiwrite/SKILL.md",
+          "sha256": "1bd96522c11083f775b833a3d4b9bebf48eb98199589e8e485adfbf7e5551471",
+          "bytes": 2709
+        }
+      ]
+    },
+    {
+      "file": "release/ultiwrite-cursor-plugin-0.7.1.zip",
+      "sha256": "e34aa2e43d7062871de121c479ef5e8a7fe214f20b400464624605fc419e15f1",
+      "bytes": 38589,
+      "members": [
+        {
+          "name": ".cursor-plugin/plugin.json",
+          "sha256": "5cb16dd0c921e4d2088168c178ef93433f4876e16a443f9cfdfa80671e040a5d",
+          "bytes": 618
+        },
+        {
+          "name": "LICENSE",
+          "sha256": "0122d7b57a1ef1e40944c88e2e0261b334fcf5f779e9deb52d49463de20a977d",
+          "bytes": 1767
+        },
+        {
+          "name": "README.md",
+          "sha256": "4fba238d5a1e87468c0b80a626466fc67d85640c5eefca484c880263b98644f8",
+          "bytes": 1804
+        },
+        {
+          "name": "assets/logo.png",
+          "sha256": "0b274d5691e551b86d1ba6def763d33ad0d4c3c0b7ccd000656bd3fad43ae131",
+          "bytes": 36034
+        },
+        {
+          "name": "mcp.json",
+          "sha256": "9d3f3737200d1f0434bb218cc8de3c8fb3d0a22bd13b205a735c4701cf3d2858",
+          "bytes": 234
+        },
+        {
+          "name": "skills/ultiwrite/SKILL.md",
+          "sha256": "f4fbb0d2f03e459dbaea8ac8fbb918c204b1639e70b0390bb663399c660990ff",
+          "bytes": 1823
+        }
+      ]
+    }
+  ],
+  "not": [
+    "installed integration",
+    "directory approval",
+    "npm publication",
+    "production deployment"
+  ]
+}
