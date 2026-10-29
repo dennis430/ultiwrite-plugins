@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 // Structural validator for the public Ultiwrite plugin tree.
 // It does not publish, deploy, or contact a marketplace.
+import { createHash } from 'node:crypto'
 import { readFileSync, readdirSync, statSync } from 'node:fs'
 import { join, relative, sep } from 'node:path'
 
@@ -80,6 +81,13 @@ function pngSquareOpaque(rel) {
   if (color !== 2) fail(`${rel} must be opaque RGB PNG (color type 2), got ${color}`)
 }
 
+const canonicalIconSha = 'cc0a3c229347e47a154a00c9e6dfa774c0e1f07ee9fc063935af5bc4897f4b18'
+for (const client of ['cursor', 'chatgpt', 'claude', 'grokbot']) {
+  const rel = `${client}/assets/logo.png`
+  const digest = createHash('sha256').update(readFileSync(join(root, rel))).digest('hex')
+  if (digest !== canonicalIconSha) fail(`${rel} is not the canonical supplied Uw icon`)
+}
+
 const files = walk(root)
 if (!files.length) fail('empty tree')
 for (const rel of files) {
@@ -122,7 +130,7 @@ const plugin = readJson('cursor/.cursor-plugin/plugin.json')
 const pluginKeys = ['name', 'displayName', 'version', 'description', 'author', 'publisher', 'license', 'homepage', 'repository', 'logo', 'keywords', 'category', 'skills']
 if (plugin) {
   for (const key of Object.keys(plugin)) if (!pluginKeys.includes(key)) fail(`plugin.json has ${key}`)
-  if (plugin.name !== 'ultiwrite' || plugin.version !== '0.7.1' || plugin.license !== 'MIT') fail('plugin identity')
+  if (plugin.name !== 'ultiwrite' || plugin.version !== '0.7.4' || plugin.license !== 'MIT') fail('plugin identity')
   if (plugin.author?.url || plugin.author?.name !== 'DWS Offshore Fund' || plugin.author?.email !== 'nick@ultiwrite.co') fail('plugin author')
   if (plugin.logo !== 'assets/logo.png') fail('plugin logo path')
   if (plugin.skills !== 'skills/ultiwrite/SKILL.md') fail('plugin skill path')
@@ -163,13 +171,13 @@ if (!readFileSync(join(root, 'grokbot/TESTING.md'), 'utf8').includes('NOT_RUN'))
 const claude = readJson('claude/.mcp.json')
 if (claude?.mcpServers?.ultiwrite?.type !== 'http' || claude?.mcpServers?.ultiwrite?.url !== CLAUDE_MCP_URL || Object.keys(claude?.mcpServers?.ultiwrite ?? {}).length !== 2) fail('claude mcp')
 const claudeListing = readJson('claude/.claude-plugin/plugin.json')
-if (claudeListing?.name !== 'ultiwrite' || claudeListing?.displayName !== 'Ultiwrite' || claudeListing?.icon !== './assets/logo.png' || claudeListing?.version !== '0.8.1') fail('claude directory branding')
+if (claudeListing?.name !== 'ultiwrite' || claudeListing?.displayName !== 'Ultiwrite' || claudeListing?.icon !== './assets/logo.png' || claudeListing?.version !== '0.8.2') fail('claude directory branding')
 for (const field of ['documentationUrl', 'supportUrl', 'privacyPolicyUrl', 'termsOfServiceUrl']) {
   if (typeof claudeListing?.[field] !== 'string' || !claudeListing[field].startsWith('https://dwsoffshorepartners.com/')) fail(`claude directory ${field}`)
 }
 const chatgptListing = readJson('chatgpt/plugin.json')
 const openaiInterface = chatgptListing?.extensions?.['com.openai']?.interface
-if (openaiInterface?.displayName !== 'Ultiwrite' || openaiInterface?.logo !== './assets/logo.png' || openaiInterface?.composerIcon !== './assets/logo.png' || chatgptListing?.version !== '0.7.1') fail('ChatGPT directory branding')
+if (openaiInterface?.displayName !== 'Ultiwrite' || openaiInterface?.logo !== './assets/logo.png' || openaiInterface?.composerIcon !== './assets/logo.png' || chatgptListing?.version !== '0.7.4') fail('ChatGPT directory branding')
 pngSquareOpaque('claude/assets/logo.png')
 // Anthropic directory rules the CLI validator does not check (claude.com/docs/plugins/pre-submission-checklist).
 const claudeFiles = files.filter(rel => rel.startsWith('claude/'))

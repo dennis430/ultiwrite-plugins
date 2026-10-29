@@ -1,0 +1,5 @@
+interface:
+  display_name: "Ultiwrite"
+  short_description: "Read saved diligence reports"
+  icon_small: "../../assets/logo.png"
+  icon_large: "../../assets/logo.png"

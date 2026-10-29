@@ -1,12 +1,12 @@
 {
   "product": "Ultiwrite",
   "distribution": "plugin-only",
-  "version": "0.7.1",
+  "version": "0.7.4",
   "publisher": "DWS Offshore Fund",
   "mcp_url": "https://dwsoffshorepartners.com/api/integrations/ultiwrite/mcp",
   "source_repository": "dennis430/merchant-risk-app",
   "source_commit": "f7b292857f5c1c6c91c63806c53f4c98bf0816d3",
-  "note": "SHA-256 of every file except this manifest. version and mcp_url describe the 0.7.1 ChatGPT, Cursor, Grok Bot and client packages; claude describes the Claude 0.8.0 plugin, built in dennis430/merchant-risk-app at source_commit. Archives are not an installed client, a directory submission or an approval.",
+  "note": "Source provenance below is retained from prior connector exports. The canonical icon source release is prepared on fix/canonical-uw-icon-20261029, not merged or published. Version describes ChatGPT, Cursor and Grok Bot; the unchanged npm client remains 0.7.1. Files list the current tree excluding this manifest.",
   "files": [
     {
       "path": ".claude-plugin/marketplace.json",
@@ -25,32 +25,12 @@
       "sha256": "5f70ee8df0ba474922bf182b542b64c5ec1d67f1c90085cbb97b786cb8f3c775"
     },
     {
-      "path": "INSTALL.md",
-      "sha256": "b592611d61c5039a76901f82ec60f1523e732f9861cd64b73e1e8974a6472685"
-    },
-    {
-      "path": "LICENSE",
-      "sha256": "0122d7b57a1ef1e40944c88e2e0261b334fcf5f779e9deb52d49463de20a977d"
-    },
-    {
-      "path": "NOTICE",
-      "sha256": "879c535465b6737c67c9bda2b302d3a447a3275e80f06899cb8a3608fbe3dad8"
-    },
-    {
-      "path": "README.md",
-      "sha256": "da585085a83abd6b8a74551fae3cecab31db0d5160f39e691c214ea14d40d76d"
+      "path": "chatgpt/assets/logo.png",
+      "sha256": "cc0a3c229347e47a154a00c9e6dfa774c0e1f07ee9fc063935af5bc4897f4b18"
     },
     {
       "path": "chatgpt/LICENSE",
       "sha256": "0122d7b57a1ef1e40944c88e2e0261b334fcf5f779e9deb52d49463de20a977d"
-    },
-    {
-      "path": "chatgpt/README.md",
-      "sha256": "568ed3d5eb8050b2493ff583acc3b84b06c1d0547b3e36bbd4f28435ac92e73c"
-    },
-    {
-      "path": "chatgpt/assets/logo.png",
-      "sha256": "0b274d5691e551b86d1ba6def763d33ad0d4c3c0b7ccd000656bd3fad43ae131"
     },
     {
       "path": "chatgpt/mcp.json",
@@ -58,7 +38,15 @@
     },
     {
       "path": "chatgpt/plugin.json",
-      "sha256": "68c26f38a8c648ea73d31c7eda0ae9aec9cc5df754a488bb3081a041eaa4309c"
+      "sha256": "4f6daa416d12a7a74f26ca44a9febfd5f30855e7f1d964f06a32affdf1d0df85"
+    },
+    {
+      "path": "chatgpt/README.md",
+      "sha256": "eba341389fb07e5fdf7778d4daad0f8cf832bbe2d95fac3ccf399f09bbfc6ac0"
+    },
+    {
+      "path": "chatgpt/skills/ultiwrite-read/agents/openai.yaml",
+      "sha256": "b514fe8554f2cd4ba9f2b9bcc30d1fcedc2f8ba15ac152f64d05e4ff9b2aff94"
     },
     {
       "path": "chatgpt/skills/ultiwrite-read/SKILL.md",
@@ -66,11 +54,15 @@
     },
     {
       "path": "claude/.claude-plugin/plugin.json",
-      "sha256": "f23d6fa241b3ef0767da5374c89d09b08dfc532a602e8b86360e1968d5a1da12"
+      "sha256": "bd62035fa0b1b172102bf70fba8bbe37d91659f72fe1e0704d34a0fe16166d0e"
     },
     {
       "path": "claude/.mcp.json",
       "sha256": "402ec557cf938178c278cb98658f91a2acb1fae2c9ed29a5e51c5bc67725a486"
+    },
+    {
+      "path": "claude/assets/logo.png",
+      "sha256": "cc0a3c229347e47a154a00c9e6dfa774c0e1f07ee9fc063935af5bc4897f4b18"
     },
     {
       "path": "claude/LICENSE",
@@ -78,11 +70,7 @@
     },
     {
       "path": "claude/README.md",
-      "sha256": "b1aeb587f2f49bfa6283d3f51d21677fbf95ab54d4d837c83938845857681bf7"
-    },
-    {
-      "path": "claude/assets/logo.png",
-      "sha256": "0b274d5691e551b86d1ba6def763d33ad0d4c3c0b7ccd000656bd3fad43ae131"
+      "sha256": "054885f535fec27753e757752e9b2924ccb55c5f5be1eb5975066244909ed71d"
     },
     {
       "path": "claude/skills/follow-up/SKILL.md",
@@ -101,14 +89,6 @@
       "sha256": "fc77a87bd5094f9a5d1081b29edbe87ff09acf7ce8d3dcc13049ed824359efe0"
     },
     {
-      "path": "client/LICENSE",
-      "sha256": "0122d7b57a1ef1e40944c88e2e0261b334fcf5f779e9deb52d49463de20a977d"
-    },
-    {
-      "path": "client/README.md",
-      "sha256": "0cdb8ac9542bc5e551aa2ee7f887fe8f087fe0ae399311e4a16cee8738692cf7"
-    },
-    {
       "path": "client/bin/ultiwrite-mcp.js",
       "sha256": "4a59661f75ea42f7beb1fad9951c2d92dd348555cdfa4d5e5b584f84a5f5275a"
     },
@@ -117,8 +97,16 @@
       "sha256": "80323f003ed983aa7d23c9c2df1131c775a17d74216b9ab2a7b2796fad9d3ff6"
     },
     {
+      "path": "client/LICENSE",
+      "sha256": "0122d7b57a1ef1e40944c88e2e0261b334fcf5f779e9deb52d49463de20a977d"
+    },
+    {
       "path": "client/package.json",
       "sha256": "a01959fbca0f72562f9726f7541c49778113a126319239f40a9700adfbac4e63"
+    },
+    {
+      "path": "client/README.md",
+      "sha256": "0cdb8ac9542bc5e551aa2ee7f887fe8f087fe0ae399311e4a16cee8738692cf7"
     },
     {
       "path": "client/test/cli.test.mjs",
@@ -130,31 +118,35 @@
     },
     {
       "path": "cursor/.cursor-plugin/plugin.json",
-      "sha256": "5cb16dd0c921e4d2088168c178ef93433f4876e16a443f9cfdfa80671e040a5d"
+      "sha256": "d1aa3106312f7ed9369a9fa9c7819c09ee91c2df1f531159e2df740bc8073a1e"
+    },
+    {
+      "path": "cursor/assets/logo.png",
+      "sha256": "cc0a3c229347e47a154a00c9e6dfa774c0e1f07ee9fc063935af5bc4897f4b18"
     },
     {
       "path": "cursor/LICENSE",
       "sha256": "0122d7b57a1ef1e40944c88e2e0261b334fcf5f779e9deb52d49463de20a977d"
     },
     {
-      "path": "cursor/README.md",
-      "sha256": "4fba238d5a1e87468c0b80a626466fc67d85640c5eefca484c880263b98644f8"
-    },
-    {
-      "path": "cursor/assets/logo.png",
-      "sha256": "0b274d5691e551b86d1ba6def763d33ad0d4c3c0b7ccd000656bd3fad43ae131"
-    },
-    {
       "path": "cursor/mcp.json",
       "sha256": "9d3f3737200d1f0434bb218cc8de3c8fb3d0a22bd13b205a735c4701cf3d2858"
+    },
+    {
+      "path": "cursor/README.md",
+      "sha256": "4f3d6ea596e17ecf57b13a18130be0db27dbd3ea31f3177f3b719af145bbb835"
     },
     {
       "path": "cursor/skills/ultiwrite/SKILL.md",
       "sha256": "f4fbb0d2f03e459dbaea8ac8fbb918c204b1639e70b0390bb663399c660990ff"
     },
     {
+      "path": "grokbot/assets/logo.png",
+      "sha256": "cc0a3c229347e47a154a00c9e6dfa774c0e1f07ee9fc063935af5bc4897f4b18"
+    },
+    {
       "path": "grokbot/FIELDS.json",
-      "sha256": "c01fb5a16b4bbca61614f54dda61a27d2ec4e98419116304a1a064e136e1c8c6"
+      "sha256": "8d9eb37b3c9443b347013aa26bb344ab049fee084ff610049cdafc30fbfd10ed"
     },
     {
       "path": "grokbot/INSTALL.md",
@@ -163,6 +155,10 @@
     {
       "path": "grokbot/LICENSE",
       "sha256": "0122d7b57a1ef1e40944c88e2e0261b334fcf5f779e9deb52d49463de20a977d"
+    },
+    {
+      "path": "grokbot/mcp.json",
+      "sha256": "9d3f3737200d1f0434bb218cc8de3c8fb3d0a22bd13b205a735c4701cf3d2858"
     },
     {
       "path": "grokbot/OAUTH.md",
@@ -181,32 +177,36 @@
       "sha256": "135a11a3e05482230344341aac2999edebbf56671cf0085e4e887913b090fa67"
     },
     {
-      "path": "grokbot/assets/logo.png",
-      "sha256": "0b274d5691e551b86d1ba6def763d33ad0d4c3c0b7ccd000656bd3fad43ae131"
+      "path": "INSTALL.md",
+      "sha256": "716f71616713e2bd7509944cca6a48ffa53641e53dfb20af7af8e769a1a20801"
     },
     {
-      "path": "grokbot/mcp.json",
-      "sha256": "9d3f3737200d1f0434bb218cc8de3c8fb3d0a22bd13b205a735c4701cf3d2858"
+      "path": "LICENSE",
+      "sha256": "0122d7b57a1ef1e40944c88e2e0261b334fcf5f779e9deb52d49463de20a977d"
+    },
+    {
+      "path": "NOTICE",
+      "sha256": "879c535465b6737c67c9bda2b302d3a447a3275e80f06899cb8a3608fbe3dad8"
+    },
+    {
+      "path": "README.md",
+      "sha256": "c606b6eff8c0e9a9a7486a3cd375ef63df0dd35e21efd67bcb06b466c294dc7a"
     },
     {
       "path": "release/INVENTORY.json",
-      "sha256": "20c607adc8e7d8a4ac7ad6b86b36cc52ca7310c6f8270161a3b95b9ad9e2e3e7"
+      "sha256": "41b649fb1fb20fb87b72d15c2067790dea82b270c3f7525d026fdff2860f35dd"
     },
     {
       "path": "release/SHA256SUMS.txt",
-      "sha256": "5974390d2d896c5f509394ffc9d78b6896015635a5d56150ef7460e000bb7e0d"
-    },
-    {
-      "path": "release/Ultiwrite_Claude_Plugin_v0.8.0.zip",
-      "sha256": "619656fae4e9b9db2d7a7e0c813713d859cde291062c21912bb38fc7297ca28e"
-    },
-    {
-      "path": "release/Ultiwrite_Claude_Plugin_v0.8.1.zip",
-      "sha256": "11520ccd818dddd576a7b230e08b74142f3012fb0ea2d10f4b6f37c105e6e8b0"
+      "sha256": "fa25691769d5ca46a0e232b608e7b4d57a755450bca43b5d1ebb454a428dbcba"
     },
     {
       "path": "release/ultiwrite-chatgpt-plugin-0.7.1.zip",
       "sha256": "457004b3d46b7aeaddabc1a5d065c181aac2b5a280369be7f9539de39d1339a4"
+    },
+    {
+      "path": "release/ultiwrite-chatgpt-plugin-0.7.4.zip",
+      "sha256": "97a09cdc28a53c04769fea8586c11ca870edaec93a167e87b828eb8cfff7bfa2"
     },
     {
       "path": "release/ultiwrite-claude-plugin-0.7.1.zip",
@@ -217,12 +217,28 @@
       "sha256": "e34aa2e43d7062871de121c479ef5e8a7fe214f20b400464624605fc419e15f1"
     },
     {
+      "path": "release/ultiwrite-cursor-plugin-0.7.4.zip",
+      "sha256": "189becaa4fe4d26340437cf4a6e51c632561c4b7635975b86d71cb4442e5d42c"
+    },
+    {
+      "path": "release/Ultiwrite_Claude_Plugin_v0.8.0.zip",
+      "sha256": "619656fae4e9b9db2d7a7e0c813713d859cde291062c21912bb38fc7297ca28e"
+    },
+    {
+      "path": "release/Ultiwrite_Claude_Plugin_v0.8.1.zip",
+      "sha256": "11520ccd818dddd576a7b230e08b74142f3012fb0ea2d10f4b6f37c105e6e8b0"
+    },
+    {
+      "path": "release/Ultiwrite_Claude_Plugin_v0.8.2.zip",
+      "sha256": "86e182ba483572b158559b40b171b55572c4aac51a774b85a799c8a05dc86481"
+    },
+    {
       "path": "scripts/pack-public-connectors.mjs",
-      "sha256": "24170213e2b30f97ea80f4e8525398833e337e44dc0732b68e6429c9db33bd1b"
+      "sha256": "5aa542d592fc7b3925c07a54d73228f3862e42592a6c3a8915f19dae402a40ba"
     },
     {
       "path": "scripts/validate-public-plugins.mjs",
-      "sha256": "ea32bef74a28588137c85da2892efc270d3b206e4bfc4bae742d1f93a27aeb63"
+      "sha256": "330ef02af47384406be394b6d445949f001a210b69212b2361676bc3237142ac"
     },
     {
       "path": "server.draft.json",
@@ -230,15 +246,25 @@
     }
   ],
   "claude": {
-    "version": "0.8.1",
+    "version": "0.8.2",
     "mcp_url": "https://mcp.dwsoffshorepartners.com/mcp",
-    "zip": "release/Ultiwrite_Claude_Plugin_v0.8.1.zip",
-    "zip_sha256": "11520ccd818dddd576a7b230e08b74142f3012fb0ea2d10f4b6f37c105e6e8b0",
+    "zip": "release/Ultiwrite_Claude_Plugin_v0.8.2.zip",
+    "zip_sha256": "86e182ba483572b158559b40b171b55572c4aac51a774b85a799c8a05dc86481",
     "previous": {
-      "version": "0.8.0",
-      "source_commit": "9e000dec0c327401122f8489dc2eed760644fb78",
-      "zip_sha256": "619656fae4e9b9db2d7a7e0c813713d859cde291062c21912bb38fc7297ca28e"
+      "version": "0.8.1",
+      "zip_sha256": "11520ccd818dddd576a7b230e08b74142f3012fb0ea2d10f4b6f37c105e6e8b0"
     },
-    "change": "listing positioning only: Asymmetric Diligence and independent verification in description, keywords and README"
+    "change": "canonical supplied black-background gold Uw icon; prior listing text, endpoint and four skills preserved"
+  },
+  "canonical_icon": {
+    "sha256": "cc0a3c229347e47a154a00c9e6dfa774c0e1f07ee9fc063935af5bc4897f4b18",
+    "mime_type": "image/png",
+    "dimensions": [
+      512,
+      512
+    ],
+    "bytes": 21052,
+    "source": "user-supplied ultiwrite-uw-icon-512.png",
+    "status": "PREPARED_NOT_PUBLISHED"
   }
 }
