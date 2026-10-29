@@ -1,8 +1,8 @@
 # Ultiwrite for Claude
 
-Ultiwrite Commercial Diligence, published by DWS Offshore Fund. Version 0.8.0.
+Ultiwrite Asymmetric Diligence, published by DWS Offshore Fund. Version 0.8.1.
 
-Ultiwrite examines the documents behind a commercial opportunity: an operating business, a merchant application, a residual or ISO book, a portfolio, a property, a financing or a counterparty. It classifies every file, runs every applicable analysis (document integrity, identity and entity coherence, processing economics, portfolio relationships, cross-document contradictions, provenance and confidence) and saves one reconciled report. This plugin connects Claude to that same engine and teaches Claude how to use it. Claude does not produce the findings; Ultiwrite does.
+Ultiwrite examines the documents behind a commercial opportunity: an operating business, a merchant application, a residual or ISO book, a portfolio, a property, a financing or a counterparty. It classifies every file, runs every applicable analysis (document integrity, independent verification, identity and entity coherence, processing economics, portfolio relationships, cross-document contradictions, provenance and confidence) and saves one reconciled report. This plugin connects Claude to that same engine and teaches Claude how to use it. Claude does not produce the findings; Ultiwrite does.
 
 ## What is included
 
@@ -20,8 +20,8 @@ An existing Ultiwrite account. The first completed analysis on an account is fre
 
 ## Install
 
-- claude.ai, Claude Desktop and Cowork: add Ultiwrite from the Claude directory once it is listed, or upload `Ultiwrite_Claude_Plugin.zip` with Customize > Plugins > Add > Upload plugin.
-- Claude Code: `/plugin install ultiwrite --marketplace dennis430/ultiwrite-plugins`, or for one session `claude --plugin-dir ./Ultiwrite_Claude_Plugin.zip`.
+- claude.ai, Claude Desktop and Cowork: add Ultiwrite from the Claude directory once it is listed, or upload `Ultiwrite_Claude_Plugin_v0.8.1.zip` with Customize > Plugins > Add > Upload plugin.
+- Claude Code: `/plugin install ultiwrite --marketplace dennis430/ultiwrite-plugins`, or for one session `claude --plugin-dir ./Ultiwrite_Claude_Plugin_v0.8.1.zip`.
 - Connector only, without the skills: add a custom connector with URL `https://mcp.dwsoffshorepartners.com/mcp`, or run `claude mcp add --transport http ultiwrite https://mcp.dwsoffshorepartners.com/mcp`.
 
 The first tool call opens Ultiwrite sign-in and a consent screen. Approve `ultiwrite:read` to read cases and reports and `ultiwrite:evidence` to submit evidence. No API key or password is ever entered in chat or stored in this plugin.

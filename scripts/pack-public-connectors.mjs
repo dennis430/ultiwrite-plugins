@@ -2,7 +2,7 @@
 // Rebuild the ChatGPT and Cursor 0.7.1 connector ZIPs from this repository, and verify the Claude
 // plugin ZIP against claude/. Does not publish, deploy, or submit a directory listing.
 //
-// Claude moved to 0.8.0. Its ZIP is built reproducibly in dennis430/merchant-risk-app by
+// Claude is at 0.8.1. Its ZIP is built reproducibly in dennis430/merchant-risk-app by
 // scripts/pack-claude-plugin.mjs and committed here unchanged, so the bytes match the validated
 // artifact. This script checks every member of that ZIP equals the file in claude/ and that nothing
 // else is inside. The Claude 0.7.1 ZIP stays in release/ for existing links; its source is history.
@@ -26,10 +26,10 @@ const TOOLS = [
   'ultiwrite_findings_get',
   'ultiwrite_report_export',
 ]
-const CLAUDE_VERSION = '0.8.0'
+const CLAUDE_VERSION = '0.8.1'
 const CLAUDE_MCP_URL = 'https://mcp.dwsoffshorepartners.com/mcp'
 const CLAUDE_ZIP = `Ultiwrite_Claude_Plugin_v${CLAUDE_VERSION}.zip`
-const CLAUDE_FROZEN = 'ultiwrite-claude-plugin-0.7.1.zip'
+const CLAUDE_FROZEN = ['Ultiwrite_Claude_Plugin_v0.8.0.zip', 'ultiwrite-claude-plugin-0.7.1.zip']
 const PACKAGES = [
   {
     id: 'chatgpt',
@@ -181,7 +181,7 @@ for (const pack of PACKAGES) {
     })),
   })
 }
-// Claude 0.8.0: verify the committed ZIP member by member against claude/.
+// Claude: verify the committed ZIP member by member against claude/.
 const claudeArchive = readFileSync(join(outDir, CLAUDE_ZIP))
 const claudeMembers = readZip(claudeArchive)
 const claudeSource = walk(join(root, 'claude')).map(path => path.slice('claude/'.length)).sort()
@@ -200,7 +200,7 @@ inventory.push({
   file: `release/${CLAUDE_ZIP}`,
   version: CLAUDE_VERSION,
   mcp_url: CLAUDE_MCP_URL,
-  built_by: 'dennis430/merchant-risk-app scripts/pack-claude-plugin.mjs (stored entries, fixed timestamps)',
+  built_by: 'stored entries, sorted, fixed 2026-10-29 timestamps and modes (same format as dennis430/merchant-risk-app scripts/pack-claude-plugin.mjs)',
   sha256: createHash('sha256').update(claudeArchive).digest('hex'),
   bytes: claudeArchive.length,
   members: claudeMembers.map(member => ({
@@ -209,19 +209,21 @@ inventory.push({
     bytes: member.bytes.length,
   })),
 })
-const frozen = readFileSync(join(outDir, CLAUDE_FROZEN))
-inventory.push({
-  file: `release/${CLAUDE_FROZEN}`,
-  version: '0.7.1',
-  status: 'superseded by Claude 0.8.0; kept so existing links keep working; not rebuilt',
-  sha256: createHash('sha256').update(frozen).digest('hex'),
-  bytes: frozen.length,
-  members: readZip(frozen).map(member => ({
-    name: member.name,
-    sha256: createHash('sha256').update(member.bytes).digest('hex'),
-    bytes: member.bytes.length,
-  })),
-})
+for (const name of CLAUDE_FROZEN) {
+  const frozen = readFileSync(join(outDir, name))
+  inventory.push({
+    file: `release/${name}`,
+    version: name.includes('0.8.0') ? '0.8.0' : '0.7.1',
+    status: `superseded by Claude ${CLAUDE_VERSION}; kept so existing links keep working; not rebuilt`,
+    sha256: createHash('sha256').update(frozen).digest('hex'),
+    bytes: frozen.length,
+    members: readZip(frozen).map(member => ({
+      name: member.name,
+      sha256: createHash('sha256').update(member.bytes).digest('hex'),
+      bytes: member.bytes.length,
+    })),
+  })
+}
 const sums = inventory.map(item => `${item.sha256}  ${item.file.split('/').pop()}`).join('\n') + '\n'
 writeFileSync(join(outDir, 'SHA256SUMS.txt'), sums)
 writeFileSync(join(outDir, 'INVENTORY.json'), JSON.stringify({

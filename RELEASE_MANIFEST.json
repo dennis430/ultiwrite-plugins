@@ -26,7 +26,7 @@
     },
     {
       "path": "INSTALL.md",
-      "sha256": "c968e3a41e256a4c2184fe4d88626cbd4afb6bfd43038bebfabda6562d0e718e"
+      "sha256": "b592611d61c5039a76901f82ec60f1523e732f9861cd64b73e1e8974a6472685"
     },
     {
       "path": "LICENSE",
@@ -38,7 +38,7 @@
     },
     {
       "path": "README.md",
-      "sha256": "7dfea771e954af6edc77a8b01b5c5da014d42e8016988b9211a5dfbffd77fb94"
+      "sha256": "da585085a83abd6b8a74551fae3cecab31db0d5160f39e691c214ea14d40d76d"
     },
     {
       "path": "chatgpt/LICENSE",
@@ -66,7 +66,7 @@
     },
     {
       "path": "claude/.claude-plugin/plugin.json",
-      "sha256": "9caa13f30774167c2f811af7c30c0a8a148ebd9f7bbfb766a296b2ab537de0e9"
+      "sha256": "f23d6fa241b3ef0767da5374c89d09b08dfc532a602e8b86360e1968d5a1da12"
     },
     {
       "path": "claude/.mcp.json",
@@ -78,7 +78,7 @@
     },
     {
       "path": "claude/README.md",
-      "sha256": "d18e35bca4b8baa3a1bd42df70c9195ffab4f8003ef1509d9b6a55420e63c3d6"
+      "sha256": "b1aeb587f2f49bfa6283d3f51d21677fbf95ab54d4d837c83938845857681bf7"
     },
     {
       "path": "claude/assets/logo.png",
@@ -190,15 +190,19 @@
     },
     {
       "path": "release/INVENTORY.json",
-      "sha256": "db448d3521e3580b219fca4198a79db1b0a4179822b09bb547046a753da9530c"
+      "sha256": "20c607adc8e7d8a4ac7ad6b86b36cc52ca7310c6f8270161a3b95b9ad9e2e3e7"
     },
     {
       "path": "release/SHA256SUMS.txt",
-      "sha256": "9a6b3c586c1e8dbcf97c0e112453c8fbc5c35a572b4e7c285282cc6b25464255"
+      "sha256": "5974390d2d896c5f509394ffc9d78b6896015635a5d56150ef7460e000bb7e0d"
     },
     {
       "path": "release/Ultiwrite_Claude_Plugin_v0.8.0.zip",
       "sha256": "619656fae4e9b9db2d7a7e0c813713d859cde291062c21912bb38fc7297ca28e"
+    },
+    {
+      "path": "release/Ultiwrite_Claude_Plugin_v0.8.1.zip",
+      "sha256": "11520ccd818dddd576a7b230e08b74142f3012fb0ea2d10f4b6f37c105e6e8b0"
     },
     {
       "path": "release/ultiwrite-chatgpt-plugin-0.7.1.zip",
@@ -214,11 +218,11 @@
     },
     {
       "path": "scripts/pack-public-connectors.mjs",
-      "sha256": "e457dc63cf8903187011c4ff2a96e50c8325f89a5bd903b42108a894b6f5b793"
+      "sha256": "24170213e2b30f97ea80f4e8525398833e337e44dc0732b68e6429c9db33bd1b"
     },
     {
       "path": "scripts/validate-public-plugins.mjs",
-      "sha256": "5ff5b19b189c15845206a24548cb0a7f76b5d7fba20d2c1ecbe8c1a3e82f6c8e"
+      "sha256": "ea32bef74a28588137c85da2892efc270d3b206e4bfc4bae742d1f93a27aeb63"
     },
     {
       "path": "server.draft.json",
@@ -226,10 +230,15 @@
     }
   ],
   "claude": {
-    "version": "0.8.0",
+    "version": "0.8.1",
     "mcp_url": "https://mcp.dwsoffshorepartners.com/mcp",
-    "source_commit": "9e000dec0c327401122f8489dc2eed760644fb78",
-    "zip": "release/Ultiwrite_Claude_Plugin_v0.8.0.zip",
-    "zip_sha256": "619656fae4e9b9db2d7a7e0c813713d859cde291062c21912bb38fc7297ca28e"
+    "zip": "release/Ultiwrite_Claude_Plugin_v0.8.1.zip",
+    "zip_sha256": "11520ccd818dddd576a7b230e08b74142f3012fb0ea2d10f4b6f37c105e6e8b0",
+    "previous": {
+      "version": "0.8.0",
+      "source_commit": "9e000dec0c327401122f8489dc2eed760644fb78",
+      "zip_sha256": "619656fae4e9b9db2d7a7e0c813713d859cde291062c21912bb38fc7297ca28e"
+    },
+    "change": "listing positioning only: Asymmetric Diligence and independent verification in description, keywords and README"
   }
 }
