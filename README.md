@@ -48,7 +48,7 @@ Support: https://dwsoffshorepartners.com/contact
 | `grokbot/` | 0.9.0 | Grok Bot submission dossier; host evaluation remains `NOT_RUN`. |
 | `client/` | 0.9.0 | Local `ultiwrite-mcp` wrapper; npm publication is a separate release. |
 
-ChatGPT and Claude use `https://mcp.dwsoffshorepartners.com/mcp`. Existing Cursor, Grok Bot and client configurations retain `https://dwsoffshorepartners.com/api/integrations/ultiwrite/mcp`. Both public endpoints reach the same Ultiwrite service and account.
+Current native remote configurations for ChatGPT, Claude, Cursor and Grok Bot use `https://mcp.dwsoffshorepartners.com/mcp`. The local client bridge retains its existing apex issuer and `https://dwsoffshorepartners.com/api/integrations/ultiwrite/mcp` transport for saved-credential compatibility. Existing registrations and historical archives retain their original endpoints.
 
 ### Current source archives
 
@@ -56,7 +56,7 @@ ChatGPT and Claude use `https://mcp.dwsoffshorepartners.com/mcp`. Existing Curso
 | --- | --- |
 | [ChatGPT/Codex 0.9.0](release/ultiwrite-chatgpt-plugin-0.9.0.zip) | `633906c6c8cc7d673518714fa9fde2fed7a54feace3aa5bf6607b8091cdec483` |
 | [Claude 0.9.0](release/Ultiwrite_Claude_Plugin_v0.9.0.zip) | `03651e6ba207224b895c384b07bb81c6d4be3a2493db594ca29efd511a933472` |
-| [Cursor 0.9.0](release/ultiwrite-cursor-plugin-0.9.0.zip) | `be750b8ec849b695fbd8752852720644e0036b25b1d95ba2debc8711a6081661` |
+| [Cursor 0.9.0](release/ultiwrite-cursor-plugin-0.9.0.zip) | `345d714ba6205a70dc38f43e1f45d82e83e01ab9499f1410197b44b5e7f440fd` |
 
 Historical archives remain unchanged under `release/`. [SHA256SUMS.txt](release/SHA256SUMS.txt) and [INVENTORY.json](release/INVENTORY.json) record every retained archive. Run `node scripts/pack-public-connectors.mjs` to rebuild the current packages or add `--check` to verify source/archive parity.
 

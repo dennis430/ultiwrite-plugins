@@ -6,7 +6,7 @@
   "remotes": [
     {
       "type": "streamable-http",
-      "url": "https://dwsoffshorepartners.com/api/integrations/ultiwrite/mcp"
+      "url": "https://mcp.dwsoffshorepartners.com/mcp"
     }
   ],
   "repository": {

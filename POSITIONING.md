@@ -12,6 +12,18 @@ The breadth of the investigation is central to the product. Describe how the eng
 
 ## Public copy
 
+### Repository About
+
+Prepared description:
+
+Asymmetric diligence: ordinary documents open a wider investigation across businesses, people, assets and relationships. Expose risk, reconstruct economics and identify opportunities. Public connector packages for Ultiwrite; analytical service hosted separately.
+
+Recommended homepage: https://dwsoffshorepartners.com
+
+Recommended topics: `asymmetric-diligence`, `due-diligence`, `commercial-intelligence`, `mcp`, `agent-plugins`, `document-forensics`, `financial-analysis`, `counterparty-risk`.
+
+GitHub repository About settings require a separate UI edit. This source update prepares the copy; it does not apply those settings.
+
 ### Category
 
 Asymmetric Diligence Engine

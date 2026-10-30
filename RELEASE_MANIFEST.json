@@ -10,8 +10,8 @@
   "mcp_urls": {
     "chatgpt": "https://mcp.dwsoffshorepartners.com/mcp",
     "claude": "https://mcp.dwsoffshorepartners.com/mcp",
-    "cursor": "https://dwsoffshorepartners.com/api/integrations/ultiwrite/mcp",
-    "grokbot": "https://dwsoffshorepartners.com/api/integrations/ultiwrite/mcp",
+    "cursor": "https://mcp.dwsoffshorepartners.com/mcp",
+    "grokbot": "https://mcp.dwsoffshorepartners.com/mcp",
     "client": "https://dwsoffshorepartners.com/api/integrations/ultiwrite/mcp"
   },
   "change": "Cross-domain asymmetric diligence positioning, intent-based metadata, preserved account recovery and current portable ChatGPT MCP configuration, an unexecuted host discovery suite, and byte-exact synchronization of existing approved gold Uw brand assets. No analytical engine, pricing, permission or entitlement change.",
@@ -69,7 +69,7 @@
     },
     {
       "path": "INSTALL.md",
-      "sha256": "d722e327c1149d56e6a7e7f40f9bdedb22fda3488dcc2710639d8a6d27a9a61a"
+      "sha256": "c20fc50945b8737ef8605e1643e83a2956eeba6f2478fcb4165f95f232a4641a"
     },
     {
       "path": "LICENSE",
@@ -81,11 +81,11 @@
     },
     {
       "path": "POSITIONING.md",
-      "sha256": "cd0ea425436b650b0728708cc34e70ef0101d3dcab30fb503d37133d04b57d70"
+      "sha256": "5f24e2815faeb4eceded9c3f0241a28d8f49359a39d2846150a773e7409823e2"
     },
     {
       "path": "README.md",
-      "sha256": "624023d97b101545ef70fded872a2cb51e8472b8cac389769e8be302c10f7dcf"
+      "sha256": "d169d42eacb85ead77376abe2e3e4ea22780f66cebd7d20e40d2d5cd1c2fbc52"
     },
     {
       "path": "chatgpt/LICENSE",
@@ -157,7 +157,7 @@
     },
     {
       "path": "client/README.md",
-      "sha256": "ee11ac2cbaf6f3918bf34c653f23872e76d29724708562f88bf4313044e6cc55"
+      "sha256": "b3f1ede6e0facc7f73cab186d1408722a81543357c63ddff8fc51eb7a42b8c2c"
     },
     {
       "path": "client/bin/ultiwrite-mcp.js",
@@ -189,7 +189,7 @@
     },
     {
       "path": "cursor/README.md",
-      "sha256": "923bcca95d987057bd3964fc81b274af147f8f1688442178342f3027c1193c04"
+      "sha256": "cc7a440ee787eb68ad636846c8c682948b9a51b2b847e177debf90a3b1d239b7"
     },
     {
       "path": "cursor/assets/logo.png",
@@ -197,7 +197,7 @@
     },
     {
       "path": "cursor/mcp.json",
-      "sha256": "9d3f3737200d1f0434bb218cc8de3c8fb3d0a22bd13b205a735c4701cf3d2858"
+      "sha256": "b58605b1536159e225e0c338a99fbadfb5395067191a651882b3e46791003dd1"
     },
     {
       "path": "cursor/skills/ultiwrite/SKILL.md",
@@ -213,11 +213,11 @@
     },
     {
       "path": "grokbot/FIELDS.json",
-      "sha256": "c94be53bee8efa9bd78c23c8dd9dd327c1f6afc96f42eabc685d0c01fbeebd96"
+      "sha256": "abbee2b4e3500b6dd65253704bb284224aaa34a3a5f68ed213a82c71d2929f7a"
     },
     {
       "path": "grokbot/INSTALL.md",
-      "sha256": "b5de2d4b23d5b20ea1aa6c0039a7ae8e42011cf0431f248249190785a4835e69"
+      "sha256": "b607700b7211623de9eb50d08c413b3fd4098efe8b66ba9f1a047479640e7e97"
     },
     {
       "path": "grokbot/LICENSE",
@@ -225,11 +225,11 @@
     },
     {
       "path": "grokbot/OAUTH.md",
-      "sha256": "67cf3bbe74322352381ec05fddc4ee3d39b22dd752182b71d664d74fb3fc387a"
+      "sha256": "33b92b670f3b6f83144c66aaacefda493468365a63dc629128532f201025d65f"
     },
     {
       "path": "grokbot/README.md",
-      "sha256": "f6a9ec5637d0091a15263931e9251c6b7bc555b183991345b173f0a9c4b2d7ff"
+      "sha256": "d19e19c756236d49aa74767e2ca357ccfae09969082a74ddbead767c6dee7a87"
     },
     {
       "path": "grokbot/TESTING.md",
@@ -245,7 +245,7 @@
     },
     {
       "path": "grokbot/mcp.json",
-      "sha256": "9d3f3737200d1f0434bb218cc8de3c8fb3d0a22bd13b205a735c4701cf3d2858"
+      "sha256": "b58605b1536159e225e0c338a99fbadfb5395067191a651882b3e46791003dd1"
     },
     {
       "path": "release/CLAUDE_0.8.3_AUTH_VERIFICATION.json",
@@ -253,11 +253,11 @@
     },
     {
       "path": "release/INVENTORY.json",
-      "sha256": "6e20028eebda6d2d8f9a2c9f738131f26a1cdfe49f532dbb6e9ba6964f54a727"
+      "sha256": "40e7a8aef9aa10e8abc2077d839751a48a58bcf0aad909f275b83d64bba303c7"
     },
     {
       "path": "release/SHA256SUMS.txt",
-      "sha256": "314f2f582edaed4c3777b58490a8f9bb9082a39b9db08e006e3c8210f9ef4bff"
+      "sha256": "da175831b13789a26b88e233bbcd90aad76116f6d51c893470ef10e9c92e0410"
     },
     {
       "path": "release/Ultiwrite_Claude_Plugin_v0.8.0.zip",
@@ -293,19 +293,19 @@
     },
     {
       "path": "release/ultiwrite-cursor-plugin-0.9.0.zip",
-      "sha256": "be750b8ec849b695fbd8752852720644e0036b25b1d95ba2debc8711a6081661"
+      "sha256": "345d714ba6205a70dc38f43e1f45d82e83e01ab9499f1410197b44b5e7f440fd"
     },
     {
       "path": "scripts/pack-public-connectors.mjs",
-      "sha256": "2b1840a3de44f29d5866a3465d75c005a81a1acfa15edde3ad8ff70650538235"
+      "sha256": "4831ec39a22c95ab766940163c4788819760728f8704115164d013158e9ba6ed"
     },
     {
       "path": "scripts/validate-public-plugins.mjs",
-      "sha256": "51948c196393db889cea2161b7ab0a3bf9f93c2056428bbd49d8179b12651c34"
+      "sha256": "7f221fff1d8103d32b6a74d9744534e95748a83ff8dce85194266d1b2a5824ce"
     },
     {
       "path": "server.draft.json",
-      "sha256": "8577c53840ae170ce13d6510ab83a94b1061fc9ffa674375ed67c7be2b63d8e4"
+      "sha256": "8e8f9bfda9241d55d7a896f2cf797a5d3eec971cc0da009f6cb880972f5a0aec"
     }
   ],
   "brand_asset_provenance": {
@@ -333,5 +333,13 @@
       "copy": "Claude unchanged; Cursor and Grok Bot copied byte-identically from the existing approved gold Uw asset"
     },
     "historical_archives": "unchanged; retain original artwork"
+  },
+  "endpoint_provenance": {
+    "source_repository": "dennis430/merchant-risk-app",
+    "source_base_commit": "02204f92755d2efb91cfcb43d77b2ed25ae7466d",
+    "native_remote_configs": "Preserves pinned canonical clean MCP resource for ChatGPT, Claude, Cursor and Grok Bot; Grok OAuth discovery guidance copied byte-identically from canonical source.",
+    "local_bridge": "Existing apex issuer and /api/integrations/ultiwrite/mcp runtime defaults retained byte-identically except the package version string for saved-credential compatibility.",
+    "historical_archives": "unchanged; retain original endpoints",
+    "verification": "source and package parity only; no new host execution or authentication behavior"
   }
 }

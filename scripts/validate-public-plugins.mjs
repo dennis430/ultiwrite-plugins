@@ -8,7 +8,7 @@ const root = process.argv[2] ? process.argv[2] : process.cwd()
 const errors = []
 const fail = message => errors.push(message)
 const VERSION = '0.9.0'
-const MCP_URL = 'https://dwsoffshorepartners.com/api/integrations/ultiwrite/mcp'
+const MCP_URL = 'https://mcp.dwsoffshorepartners.com/mcp'
 const CHATGPT_MCP_URL = 'https://mcp.dwsoffshorepartners.com/mcp'
 // Claude uses the same server through its clean host, matching its directory connector listing.
 const CLAUDE_MCP_URL = 'https://mcp.dwsoffshorepartners.com/mcp'

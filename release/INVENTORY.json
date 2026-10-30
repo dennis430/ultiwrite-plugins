@@ -1,6 +1,6 @@
 {
   "version": "0.9.0",
-  "mcp_url": "https://dwsoffshorepartners.com/api/integrations/ultiwrite/mcp",
+  "mcp_url": "https://mcp.dwsoffshorepartners.com/mcp",
   "chatgpt": {
     "version": "0.9.0",
     "mcp_url": "https://mcp.dwsoffshorepartners.com/mcp",
@@ -21,6 +21,18 @@
     "ultiwrite_report_export"
   ],
   "oauth": {
+    "discovery": "service challenge and discovery metadata; host execution not verified by packaging",
+    "protected_resource_metadata": "https://mcp.dwsoffshorepartners.com/.well-known/oauth-protected-resource/mcp",
+    "authorization_server_metadata": "https://mcp.dwsoffshorepartners.com/.well-known/oauth-authorization-server",
+    "code_challenge_method": "S256",
+    "scopes": [
+      "ultiwrite:read",
+      "ultiwrite:evidence"
+    ]
+  },
+  "legacy_client_oauth": {
+    "mcp_url": "https://dwsoffshorepartners.com/api/integrations/ultiwrite/mcp",
+    "purpose": "existing local bridge issuer and saved-credential compatibility; unchanged runtime defaults",
     "authorization_endpoint": "https://dwsoffshorepartners.com/api/integrations/ultiwrite/oauth/authorize",
     "token_endpoint": "https://dwsoffshorepartners.com/api/integrations/ultiwrite/oauth/token",
     "registration_endpoint": "https://dwsoffshorepartners.com/api/integrations/ultiwrite/oauth/register",
@@ -70,8 +82,8 @@
     },
     {
       "file": "release/ultiwrite-cursor-plugin-0.9.0.zip",
-      "sha256": "be750b8ec849b695fbd8752852720644e0036b25b1d95ba2debc8711a6081661",
-      "bytes": 24427,
+      "sha256": "345d714ba6205a70dc38f43e1f45d82e83e01ab9499f1410197b44b5e7f440fd",
+      "bytes": 24405,
       "members": [
         {
           "name": ".cursor-plugin/plugin.json",
@@ -85,8 +97,8 @@
         },
         {
           "name": "README.md",
-          "sha256": "923bcca95d987057bd3964fc81b274af147f8f1688442178342f3027c1193c04",
-          "bytes": 2328
+          "sha256": "cc7a440ee787eb68ad636846c8c682948b9a51b2b847e177debf90a3b1d239b7",
+          "bytes": 2305
         },
         {
           "name": "assets/logo.png",
@@ -95,8 +107,8 @@
         },
         {
           "name": "mcp.json",
-          "sha256": "9d3f3737200d1f0434bb218cc8de3c8fb3d0a22bd13b205a735c4701cf3d2858",
-          "bytes": 234
+          "sha256": "b58605b1536159e225e0c338a99fbadfb5395067191a651882b3e46791003dd1",
+          "bytes": 211
         },
         {
           "name": "skills/ultiwrite/SKILL.md",

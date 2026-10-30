@@ -8,7 +8,7 @@ The evidence you provide starts the inquiry. Ultiwrite connects financial, ident
 
 Remote MCP, production, no API key:
 
-https://dwsoffshorepartners.com/api/integrations/ultiwrite/mcp
+https://mcp.dwsoffshorepartners.com/mcp
 
 This directory is the Cursor plugin. The repository root `.cursor-plugin/marketplace.json` lists it with `source` set to `cursor`. The manifest points at `assets/logo.png`. Installing an approved marketplace plugin is separate from connecting the raw MCP URL. This package was not submitted to the Cursor Marketplace.
 

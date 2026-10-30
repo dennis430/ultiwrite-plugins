@@ -11,7 +11,7 @@ Version 0.9.0. This folder prepares a Grok Bot connector submission. It is not a
 | Publisher | DWS Offshore Fund |
 | Product | Ultiwrite |
 | Category | Commercial Diligence |
-| MCP URL | https://dwsoffshorepartners.com/api/integrations/ultiwrite/mcp |
+| MCP URL | https://mcp.dwsoffshorepartners.com/mcp |
 | Logo | `assets/logo.png` (512×512, opaque square plate) |
 | Website | https://dwsoffshorepartners.com |
 | Privacy | https://dwsoffshorepartners.com/privacy |

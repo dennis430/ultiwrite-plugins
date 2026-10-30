@@ -6,7 +6,7 @@ The evidence you provide starts the inquiry. Ultiwrite connects financial, ident
 
 This thin client connects to the canonical hosted service. It does not contain the analytical engine.
 
-Endpoint: `https://dwsoffshorepartners.com/api/integrations/ultiwrite/mcp`
+Preferred native remote endpoint: `https://mcp.dwsoffshorepartners.com/mcp`
 
 This package is **not published**. `npx ultiwrite-mcp` will not work until an authorized npm account publishes it. License: MIT for this client wrapper only. The analytical service is not included.
 
@@ -38,3 +38,5 @@ npm publish --access public
 `npm whoami` was unauthenticated in the Stage 1 environment, so publication was not performed.
 
 First completed analysis is $0.00. Contact us for further-analysis pricing. No card is required and there is no automatic charge. This client does not take payment.
+
+The local bridge retains its existing issuer and `/api/integrations/ultiwrite/mcp` transport defaults for saved-credential compatibility. Native remote clients should use the preferred clean URL above. Existing server registrations and already distributed 0.7.0 packages retain their current endpoints.

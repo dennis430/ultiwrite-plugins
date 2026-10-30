@@ -4,17 +4,17 @@ Ultiwrite MCP authentication is OAuth. A shared API key is not accepted. An unau
 
 Canonical resource:
 
-https://dwsoffshorepartners.com/api/integrations/ultiwrite/mcp
+https://mcp.dwsoffshorepartners.com/mcp
 
-Discovery, both live on the public site:
+Discovery for the clean endpoint:
 
-- `https://dwsoffshorepartners.com/.well-known/oauth-protected-resource`
-- `https://dwsoffshorepartners.com/.well-known/oauth-authorization-server`
+- `https://mcp.dwsoffshorepartners.com/.well-known/oauth-protected-resource/mcp`
+- `https://mcp.dwsoffshorepartners.com/.well-known/oauth-authorization-server`
 
-Observed production metadata during Sequence 1 packaging, re-check before a host test:
+Expected clean-endpoint metadata after authorized deployment; re-check before a host test:
 
 - Resource matches the canonical MCP URL
-- Issuer is `https://dwsoffshorepartners.com`
+- Issuer is `https://mcp.dwsoffshorepartners.com`
 - Grant types: authorization code and refresh token
 - PKCE method: S256
 - Token endpoint authentication method: none (public client)
@@ -22,7 +22,9 @@ Observed production metadata during Sequence 1 packaging, re-check before a host
 - Scopes: `ultiwrite:read`, `ultiwrite:evidence`
 - Bearer tokens are sent in the Authorization header
 
-The public authorize path on `dwsoffshorepartners.com` redirects to the canonical consent host and keeps the public resource. Clients that follow discovery should use the advertised authorization endpoint rather than a guessed host. This package does not embed a client credential, refresh token, or bearer token.
+The advertised authorization endpoint uses the existing consent page on `dwsoffshorepartners.com` and preserves the exact requested resource. Token and registration endpoints use the MCP issuer host. Clients should follow discovery rather than guess a host. This package does not embed a client credential, refresh token, or bearer token.
+
+Sequence 1 packaging observed the legacy apex resource and issuer. Those existing identities remain valid; changing this source does not migrate registered connections or establish live verification of the new URL.
 
 `ultiwrite:read` covers account capability, case list, status, findings, coherence, and export links for the signed-in account.
 `ultiwrite:evidence` covers submitting authorized evidence into that same account.

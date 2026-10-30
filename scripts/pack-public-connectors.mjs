@@ -12,7 +12,7 @@ const root = fileURLToPath(new URL('..', import.meta.url))
 const outDir = join(root, 'release')
 const checkOnly = process.argv.includes('--check')
 const VERSION = '0.9.0'
-const MCP_URL = 'https://dwsoffshorepartners.com/api/integrations/ultiwrite/mcp'
+const MCP_URL = 'https://mcp.dwsoffshorepartners.com/mcp'
 const CHATGPT_MCP_URL = 'https://mcp.dwsoffshorepartners.com/mcp'
 const TOOLS = [
   'ultiwrite_account_get',
@@ -246,6 +246,15 @@ writeArtifact(join(outDir, 'INVENTORY.json'), JSON.stringify({
   claude: { version: CLAUDE_VERSION, mcp_url: CLAUDE_MCP_URL },
   tools: TOOLS,
   oauth: {
+    discovery: 'service challenge and discovery metadata; host execution not verified by packaging',
+    protected_resource_metadata: 'https://mcp.dwsoffshorepartners.com/.well-known/oauth-protected-resource/mcp',
+    authorization_server_metadata: 'https://mcp.dwsoffshorepartners.com/.well-known/oauth-authorization-server',
+    code_challenge_method: 'S256',
+    scopes: ['ultiwrite:read', 'ultiwrite:evidence'],
+  },
+  legacy_client_oauth: {
+    mcp_url: 'https://dwsoffshorepartners.com/api/integrations/ultiwrite/mcp',
+    purpose: 'existing local bridge issuer and saved-credential compatibility; unchanged runtime defaults',
     authorization_endpoint: 'https://dwsoffshorepartners.com/api/integrations/ultiwrite/oauth/authorize',
     token_endpoint: 'https://dwsoffshorepartners.com/api/integrations/ultiwrite/oauth/token',
     registration_endpoint: 'https://dwsoffshorepartners.com/api/integrations/ultiwrite/oauth/register',

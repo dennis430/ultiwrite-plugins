@@ -1,9 +1,9 @@
 # Ultiwrite connectors — install and upload
 
-Remote MCP URL: https://dwsoffshorepartners.com/api/integrations/ultiwrite/mcp
+Remote MCP URL: https://mcp.dwsoffshorepartners.com/mcp
 Setup guide: https://dwsoffshorepartners.com/docs/mcp
 
-Add the remote server in the client's MCP settings, authenticate with Ultiwrite and approve account access. Canonical sign-in happens on the existing engine host; the resource and issuer remain the public connector URL. An existing account and available analysis allowance are required. Connecting does not grant extra credits. Report review/publication, upload limits and export entitlement follow the website's canonical policy.
+Add the remote server in the client's MCP settings, authenticate with Ultiwrite and approve account access. Authorization uses the existing Ultiwrite sign-in and consent page. The clean resource is `https://mcp.dwsoffshorepartners.com/mcp`; discover its authorization server from `/.well-known/oauth-protected-resource/mcp` on that host. An existing account and available analysis allowance are required. Connecting does not grant extra credits. Report review/publication, upload limits and export entitlement follow the website's canonical policy.
 
 Claude Code remote setup:
 
@@ -11,7 +11,7 @@ Claude Code remote setup:
 
 Cursor configuration:
 
-    {"mcpServers":{"ultiwrite":{"url":"https://dwsoffshorepartners.com/api/integrations/ultiwrite/mcp"}}}
+    {"mcpServers":{"ultiwrite":{"url":"https://mcp.dwsoffshorepartners.com/mcp"}}}
 
 ChatGPT: use the custom MCP app path where supported, or prepare the current portable plugin ZIP for the existing OpenAI publisher identity. Do not create a duplicate listing. Existing plugin id: plugin_asdk_app_6ad72494738c8191af2df24a75ab4afc. Inspect the current portal state before replacing a draft. The 0.9.0 source retains the parser-compatible 0.7.2 portable MCP configuration and uses https://mcp.dwsoffshorepartners.com/mcp. Rebuild with `node scripts/pack-public-connectors.mjs`. Source packaging alone does not establish publication or an installed version.
 
@@ -37,3 +37,5 @@ Do not advertise `npx ultiwrite-mcp` until an authorized npm publisher publishes
 This repository covers the connector packages above. Other product surfaces have separate release and verification records.
 
 Repository status: the public thin source is https://github.com/dennis430/ultiwrite-plugins. Directory review, publication and host installation are verified in the corresponding portals; this source package alone does not establish them. The production MCP endpoint is independent of marketplace review.
+
+The local bridge retains its existing issuer and `/api/integrations/ultiwrite/mcp` transport defaults for saved-credential compatibility. Native remote clients should use the preferred clean URL above. Existing server registrations and already distributed 0.7.0 packages retain their current endpoints.
