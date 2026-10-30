@@ -6,7 +6,7 @@
   "mcp_url": "https://dwsoffshorepartners.com/api/integrations/ultiwrite/mcp",
   "source_repository": "dennis430/merchant-risk-app",
   "source_commit": "f7b292857f5c1c6c91c63806c53f4c98bf0816d3",
-  "note": "SHA-256 of every file except this manifest. version and mcp_url describe the 0.7.1 ChatGPT, Cursor, Grok Bot and client packages; claude describes the Claude 0.8.0 plugin, built in dennis430/merchant-risk-app at source_commit. Archives are not an installed client, a directory submission or an approval.",
+  "note": "SHA-256 of every file except this manifest. Top-level version, mcp_url and source_commit retain the historical 0.7.1 non-Claude package provenance. claude describes the current package maintained in this public repository. Source and archive publication do not establish Claude directory ingestion, approval or installed-client acceptance.",
   "files": [
     {
       "path": ".claude-plugin/marketplace.json",
@@ -18,7 +18,7 @@
     },
     {
       "path": ".github/workflows/validate.yml",
-      "sha256": "94d78a666045ccc680b65fc125ff6fe975c51c4860d131a15333305f48d10a7d"
+      "sha256": "11a70498d45edf58de9e11417e466d6ea3f5179266db4fbfbaac997c299549a4"
     },
     {
       "path": ".gitignore",
@@ -26,7 +26,7 @@
     },
     {
       "path": "INSTALL.md",
-      "sha256": "b592611d61c5039a76901f82ec60f1523e732f9861cd64b73e1e8974a6472685"
+      "sha256": "1e49c00dc9f8f3c5ca0b2425a81a705aec88bab8c218ca2ef024a506cac25d3b"
     },
     {
       "path": "LICENSE",
@@ -38,7 +38,7 @@
     },
     {
       "path": "README.md",
-      "sha256": "da585085a83abd6b8a74551fae3cecab31db0d5160f39e691c214ea14d40d76d"
+      "sha256": "a4c30cbd7e05cc0b93f45736acdf2d724c3503495614a77939154917047b9463"
     },
     {
       "path": "chatgpt/LICENSE",
@@ -66,7 +66,7 @@
     },
     {
       "path": "claude/.claude-plugin/plugin.json",
-      "sha256": "f23d6fa241b3ef0767da5374c89d09b08dfc532a602e8b86360e1968d5a1da12"
+      "sha256": "687c07a56856fd9775c63554f37dd8878cd835a631e9e1647102387277d74cc1"
     },
     {
       "path": "claude/.mcp.json",
@@ -78,11 +78,15 @@
     },
     {
       "path": "claude/README.md",
-      "sha256": "b1aeb587f2f49bfa6283d3f51d21677fbf95ab54d4d837c83938845857681bf7"
+      "sha256": "aa6ff9915e5557060d56d559914008065d97825eedb6e1af400b61bfcce762ba"
     },
     {
       "path": "claude/assets/logo.png",
-      "sha256": "0b274d5691e551b86d1ba6def763d33ad0d4c3c0b7ccd000656bd3fad43ae131"
+      "sha256": "cc0a3c229347e47a154a00c9e6dfa774c0e1f07ee9fc063935af5bc4897f4b18"
+    },
+    {
+      "path": "claude/skills/connect-account/SKILL.md",
+      "sha256": "583bd4129f8c94390606e98afaa846eaa4e57f494e3d264f4e8560f9f77b15ac"
     },
     {
       "path": "claude/skills/follow-up/SKILL.md",
@@ -98,7 +102,7 @@
     },
     {
       "path": "claude/skills/ultiwrite/SKILL.md",
-      "sha256": "fc77a87bd5094f9a5d1081b29edbe87ff09acf7ce8d3dcc13049ed824359efe0"
+      "sha256": "72ac253bf3db65d8c9323b646b8f3a5cc7772910d97e6a454ce9006a8f4bb9b9"
     },
     {
       "path": "client/LICENSE",
@@ -189,12 +193,16 @@
       "sha256": "9d3f3737200d1f0434bb218cc8de3c8fb3d0a22bd13b205a735c4701cf3d2858"
     },
     {
+      "path": "release/CLAUDE_0.8.3_AUTH_VERIFICATION.json",
+      "sha256": "b9003ebb3bea1ecafe81e6ec5246a04ab2bd966da68d092674e5a2de07484c30"
+    },
+    {
       "path": "release/INVENTORY.json",
-      "sha256": "20c607adc8e7d8a4ac7ad6b86b36cc52ca7310c6f8270161a3b95b9ad9e2e3e7"
+      "sha256": "85a3cfdba98f5dd4c6ca8d032bc9f2225505f30468ed0e5cc2a26f563b420e66"
     },
     {
       "path": "release/SHA256SUMS.txt",
-      "sha256": "5974390d2d896c5f509394ffc9d78b6896015635a5d56150ef7460e000bb7e0d"
+      "sha256": "2da4f2628451a02d6da0464c9b3e75d003405ece2f3913e9aa42cdf1e8802cea"
     },
     {
       "path": "release/Ultiwrite_Claude_Plugin_v0.8.0.zip",
@@ -203,6 +211,10 @@
     {
       "path": "release/Ultiwrite_Claude_Plugin_v0.8.1.zip",
       "sha256": "11520ccd818dddd576a7b230e08b74142f3012fb0ea2d10f4b6f37c105e6e8b0"
+    },
+    {
+      "path": "release/Ultiwrite_Claude_Plugin_v0.8.3.zip",
+      "sha256": "97e3cfd855c3b1344a9bbfbe6cc1b9d317403d7c869ac416d3bec23989803f00"
     },
     {
       "path": "release/ultiwrite-chatgpt-plugin-0.7.1.zip",
@@ -218,11 +230,11 @@
     },
     {
       "path": "scripts/pack-public-connectors.mjs",
-      "sha256": "24170213e2b30f97ea80f4e8525398833e337e44dc0732b68e6429c9db33bd1b"
+      "sha256": "696abdb715a3d0f12550b3c7df8ebcaa18b0068dd914761c1128fc5935b8836f"
     },
     {
       "path": "scripts/validate-public-plugins.mjs",
-      "sha256": "ea32bef74a28588137c85da2892efc270d3b206e4bfc4bae742d1f93a27aeb63"
+      "sha256": "9645617ab8bba84dcf8f5a62cd740ad461368595934264db50c3453c0e9ca370"
     },
     {
       "path": "server.draft.json",
@@ -230,15 +242,25 @@
     }
   ],
   "claude": {
-    "version": "0.8.1",
+    "version": "0.8.3",
     "mcp_url": "https://mcp.dwsoffshorepartners.com/mcp",
-    "zip": "release/Ultiwrite_Claude_Plugin_v0.8.1.zip",
-    "zip_sha256": "11520ccd818dddd576a7b230e08b74142f3012fb0ea2d10f4b6f37c105e6e8b0",
+    "zip": "release/Ultiwrite_Claude_Plugin_v0.8.3.zip",
+    "zip_sha256": "97e3cfd855c3b1344a9bbfbe6cc1b9d317403d7c869ac416d3bec23989803f00",
     "previous": {
-      "version": "0.8.0",
-      "source_commit": "9e000dec0c327401122f8489dc2eed760644fb78",
-      "zip_sha256": "619656fae4e9b9db2d7a7e0c813713d859cde291062c21912bb38fc7297ca28e"
+      "version": "0.8.1",
+      "mcp_url": "https://mcp.dwsoffshorepartners.com/mcp",
+      "zip": "release/Ultiwrite_Claude_Plugin_v0.8.1.zip",
+      "zip_sha256": "11520ccd818dddd576a7b230e08b74142f3012fb0ea2d10f4b6f37c105e6e8b0",
+      "previous": {
+        "version": "0.8.0",
+        "source_commit": "9e000dec0c327401122f8489dc2eed760644fb78",
+        "zip_sha256": "619656fae4e9b9db2d7a7e0c813713d859cde291062c21912bb38fc7297ca28e"
+      },
+      "change": "listing positioning only: Asymmetric Diligence and independent verification in description, keywords and README"
     },
-    "change": "listing positioning only: Asymmetric Diligence and independent verification in description, keywords and README"
+    "change": "Add protected-account connection recovery, dismissed-popup retry and account-switching guidance; include canonical gold Uw icon; build exact current source and preserve historical archives.",
+    "source_repository": "dennis430/ultiwrite-plugins",
+    "source_base_commit": "822663e978db2f461943781a4aabba835ca5caf3",
+    "verification": "release/CLAUDE_0.8.3_AUTH_VERIFICATION.json"
   }
 }

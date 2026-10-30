@@ -8,7 +8,7 @@ const root = process.argv[2] ? process.argv[2] : process.cwd()
 const errors = []
 const fail = message => errors.push(message)
 const MCP_URL = 'https://dwsoffshorepartners.com/api/integrations/ultiwrite/mcp'
-// Claude 0.8.1 uses the same server through its clean host, matching its directory connector listing.
+// Claude uses the same server through its clean host, matching its directory connector listing.
 const CLAUDE_MCP_URL = 'https://mcp.dwsoffshorepartners.com/mcp'
 const privateHost = ['engine', 'dwsoffshorepartners', 'com'].join('.')
 const secretNeedles = [
@@ -163,7 +163,7 @@ if (!readFileSync(join(root, 'grokbot/TESTING.md'), 'utf8').includes('NOT_RUN'))
 const claude = readJson('claude/.mcp.json')
 if (claude?.mcpServers?.ultiwrite?.type !== 'http' || claude?.mcpServers?.ultiwrite?.url !== CLAUDE_MCP_URL || Object.keys(claude?.mcpServers?.ultiwrite ?? {}).length !== 2) fail('claude mcp')
 const claudeListing = readJson('claude/.claude-plugin/plugin.json')
-if (claudeListing?.name !== 'ultiwrite' || claudeListing?.displayName !== 'Ultiwrite' || claudeListing?.icon !== './assets/logo.png' || claudeListing?.version !== '0.8.1') fail('claude directory branding')
+if (claudeListing?.name !== 'ultiwrite' || claudeListing?.displayName !== 'Ultiwrite' || claudeListing?.icon !== './assets/logo.png' || claudeListing?.version !== '0.8.3') fail('claude directory branding')
 for (const field of ['documentationUrl', 'supportUrl', 'privacyPolicyUrl', 'termsOfServiceUrl']) {
   if (typeof claudeListing?.[field] !== 'string' || !claudeListing[field].startsWith('https://dwsoffshorepartners.com/')) fail(`claude directory ${field}`)
 }
@@ -181,6 +181,7 @@ if (claudeReadme.split(/\s+/).filter(Boolean).length < 40) fail('claude README m
 if (!/^## Privacy/m.test(claudeReadme)) fail('claude README must disclose data handling under ## Privacy')
 const claudeSkills = claudeFiles.filter(rel => /^claude\/skills\/[^/]+\/SKILL\.md$/.test(rel))
 if (!claudeSkills.length) fail('claude plugin has no skills')
+if (!claudeSkills.includes('claude/skills/connect-account/SKILL.md')) fail('claude connection recovery skill missing')
 const TOOL_NAMES = ['ultiwrite_account_get', 'ultiwrite_capabilities_get', 'ultiwrite_cases_list', 'ultiwrite_case_status', 'ultiwrite_coherence_get',
   'ultiwrite_findings_get', 'ultiwrite_report_export', 'ultiwrite_evidence_submit']
 for (const rel of claudeSkills) {

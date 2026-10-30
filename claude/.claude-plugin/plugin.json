@@ -1,7 +1,7 @@
 {
   "name": "ultiwrite",
   "displayName": "Ultiwrite",
-  "version": "0.8.1",
+  "version": "0.8.3",
   "description": "Asymmetric Diligence. Connect Claude to Ultiwrite's Asymmetric Diligence Engine to investigate commercial opportunities through document analysis, independent verification and evidence-backed findings, then read the reconciled report.",
   "author": {
     "name": "DWS Offshore Fund",

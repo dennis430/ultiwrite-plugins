@@ -14,3 +14,5 @@ jobs:
           node-version: 22
       - name: Structural and secret checks
         run: node scripts/validate-public-plugins.mjs
+      - name: Release archive and source parity
+        run: node scripts/pack-public-connectors.mjs --check
