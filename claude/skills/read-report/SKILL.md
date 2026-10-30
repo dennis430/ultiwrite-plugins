@@ -1,6 +1,6 @@
 ---
 name: read-report
-description: Read and explain a saved Ultiwrite Commercial Diligence report, its findings, Decision Brief and downloads. Use when the user asks about their Ultiwrite cases, a report's findings, contradictions, confidence, decision, or how to download the report.
+description: "Read and explain a saved Ultiwrite asymmetric diligence assessment, its findings, supporting evidence, confidence, contradictions, unresolved questions, Decision Brief and downloads. Use when the user asks what their investigation established, what was inferred, what remains open, or wants their Ultiwrite cases, reports or report files. This reads existing results and does not start an analysis."
 ---
 
 # Read an Ultiwrite report

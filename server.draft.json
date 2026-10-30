@@ -1,8 +1,8 @@
 {
   "name": "io.github.dennis430/ultiwrite",
   "title": "Ultiwrite",
-  "description": "NOT PUBLISHED to the MCP Registry. Draft metadata for the existing Ultiwrite remote MCP. Commercial Diligence: submit authorized evidence and read the saved report from the existing Ultiwrite account.",
-  "version": "0.7.1",
+  "description": "NOT PUBLISHED to the MCP Registry. Ultiwrite asymmetric diligence turns ordinary commercial documents into a wider investigation across financial, identity, integrity, operational and external-context evidence, with reconciled findings and unresolved questions.",
+  "version": "0.9.0",
   "remotes": [
     {
       "type": "streamable-http",

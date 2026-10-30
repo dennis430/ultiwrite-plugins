@@ -48,6 +48,6 @@ export function expectedDoctor(origin = DEFAULT_ORIGIN) {
     issuer: origin,
     scopes: ['ultiwrite:read', 'ultiwrite:evidence'],
     redirectUri: REDIRECT_URI,
-    package: 'ultiwrite-mcp@0.7.1',
+    package: 'ultiwrite-mcp@0.9.0',
   }
 }

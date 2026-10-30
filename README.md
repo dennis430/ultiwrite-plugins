@@ -1,54 +1,77 @@
-# Ultiwrite plugins
+# Ultiwrite
 
-Thin connectors for Ultiwrite Commercial Diligence. Publisher: DWS Offshore Fund. Product: Ultiwrite.
+## Ordinary documents. A much wider investigation.
 
-This repository is plugin packaging only. It is not the Ultiwrite service, and it does not include the private analytical implementation or customer records. The MIT license covers the original thin connector code. The service itself remains proprietary. See LICENSE and NOTICE.
+**Ultiwrite is an asymmetric diligence engine that turns ordinary documents into a much wider investigation.**
 
-Remote MCP: https://mcp.dwsoffshorepartners.com/mcp (Claude 0.8.3) and https://dwsoffshorepartners.com/api/integrations/ultiwrite/mcp (ChatGPT, Cursor, Grok Bot 0.7.1). Both reach the same Ultiwrite server and account.
-Setup guide: https://dwsoffshorepartners.com/docs/mcp
+Your documents tell a story. Ultiwrite investigates whether it’s true—and what else the evidence reveals.
+
+Start with the materials you already have: statements, applications, financials, property documents, portfolio schedules or a mixed evidence package. Ultiwrite investigates businesses, people, assets and relationships, connecting the documents with company records, digital footprints and relevant external evidence. It follows financial, identity, integrity and operational signals to expose risk, reconstruct economics and identify opportunities. The assessment brings cross-domain contradictions, corroboration and unexpected implications together with supporting evidence, confidence, unresolved questions and next steps.
+
+The submitted package establishes the starting point. The investigative scope follows the evidence.
+
+## What the investigation connects
+
+| Domain | Investigative questions |
+| --- | --- |
+| Financial and economic evidence | Do the figures agree across records? Do the reported economics and operating patterns hold together? |
+| Identity and relationships | Do names, entities, ownership details and related records describe the same parties? Which relationships affect the reading? |
+| Document integrity and provenance | What do the documents’ structure, history and integrity indicators imply about the evidence being relied on? |
+| Operations and external context | Does relevant operating context or independently obtained evidence support or challenge the submitted account? |
+| Cross-domain synthesis | What changes when these signals are considered together? What is supported, inferred, contradicted or still unresolved? |
+
+Acquisitions, financing, property, counterparty reviews, merchants, residual or ISO books and portfolios are applications of the same engine. Ultiwrite determines which supported analyses apply to each package. Its reports make the evidence and remaining uncertainty visible; a signal is interpreted in context.
+
+## Ask in your own words
+
+- “I’m buying this business. Check what supports the seller’s claims, what conflicts, and what else the documents reveal.”
+- “Do these bank statements and processing records support the revenue figures?”
+- “Investigate this property package across the financials, parties and supporting evidence.”
+- “Which relationships, inconsistencies and unresolved questions in this portfolio deserve a closer look?”
+- “Show my latest Ultiwrite report and explain its evidence, confidence and next steps.”
+
+Connect the account you intend to use and authorize evidence submission when you want an analysis. The plugin can submit supported host attachments or return a secure upload handoff, follow the saved workflow, and retrieve authorized reports. A processing case remains in progress until its report is available.
+
+## Use Ultiwrite
+
 Website: https://dwsoffshorepartners.com
+Setup guide: https://dwsoffshorepartners.com/docs/mcp
 Privacy: https://dwsoffshorepartners.com/privacy
 Terms: https://dwsoffshorepartners.com/terms
 Support: https://dwsoffshorepartners.com/contact
 
-| Directory | Version | What it is |
+| Source | Version | Interface |
 | --- | --- | --- |
-| `claude/` | 0.8.3 | Claude plugin: the Ultiwrite remote MCP server (`https://mcp.dwsoffshorepartners.com/mcp`) plus five skills (`ultiwrite`, `connect-account`, `submit-evidence`, `read-report`, `follow-up`). Source for the Claude directory submission and the Claude marketplace entry. |
-| `chatgpt/` | 0.7.1 | ChatGPT/Codex plugin source for the existing unpublished listing identity. Not uploaded by this repository. |
-| `cursor/` | 0.7.1 | Cursor plugin. Manifest `.cursor-plugin/plugin.json`, remote Streamable HTTP `mcp.json`. |
-| `grokbot/` | 0.7.1 | Grok Bot submission dossier. Not consumer Grok, and not a completed host test. |
-| `client/` | 0.7.1 | Local `ultiwrite-mcp` wrapper. Not published to npm. |
+| `claude/` | 0.9.0 | Claude remote MCP plus five skills for connection recovery, evidence submission, report reading and follow-up. |
+| `chatgpt/` | 0.9.0 | ChatGPT/Codex portable package for the existing Ultiwrite identity. Includes the current portable MCP configuration. |
+| `cursor/` | 0.9.0 | Cursor remote MCP package and evidence investigation skill. |
+| `grokbot/` | 0.9.0 | Grok Bot submission dossier; host evaluation remains `NOT_RUN`. |
+| `client/` | 0.9.0 | Local `ultiwrite-mcp` wrapper; npm publication is a separate release. |
 
-## Downloads
+ChatGPT and Claude use `https://mcp.dwsoffshorepartners.com/mcp`. Existing Cursor, Grok Bot and client configurations retain `https://dwsoffshorepartners.com/api/integrations/ultiwrite/mcp`. Both public endpoints reach the same Ultiwrite service and account.
 
-| File | Package | SHA-256 |
-| --- | --- | --- |
-| [`release/Ultiwrite_Claude_Plugin_v0.8.3.zip`](https://github.com/dennis430/ultiwrite-plugins/raw/main/release/Ultiwrite_Claude_Plugin_v0.8.3.zip) | Claude plugin 0.8.3 (current) | `97e3cfd855c3b1344a9bbfbe6cc1b9d317403d7c869ac416d3bec23989803f00` |
-| [`release/Ultiwrite_Claude_Plugin_v0.8.1.zip`](https://github.com/dennis430/ultiwrite-plugins/raw/main/release/Ultiwrite_Claude_Plugin_v0.8.1.zip) | Claude plugin 0.8.1 (superseded, kept for existing links) | `11520ccd818dddd576a7b230e08b74142f3012fb0ea2d10f4b6f37c105e6e8b0` |
-| [`release/Ultiwrite_Claude_Plugin_v0.8.0.zip`](https://github.com/dennis430/ultiwrite-plugins/raw/main/release/Ultiwrite_Claude_Plugin_v0.8.0.zip) | Claude plugin 0.8.0 (superseded, kept for existing links) | `619656fae4e9b9db2d7a7e0c813713d859cde291062c21912bb38fc7297ca28e` |
-| [`release/ultiwrite-chatgpt-plugin-0.7.1.zip`](https://github.com/dennis430/ultiwrite-plugins/raw/main/release/ultiwrite-chatgpt-plugin-0.7.1.zip) | ChatGPT plugin 0.7.1 | `457004b3d46b7aeaddabc1a5d065c181aac2b5a280369be7f9539de39d1339a4` |
-| [`release/ultiwrite-cursor-plugin-0.7.1.zip`](https://github.com/dennis430/ultiwrite-plugins/raw/main/release/ultiwrite-cursor-plugin-0.7.1.zip) | Cursor plugin 0.7.1 | `e34aa2e43d7062871de121c479ef5e8a7fe214f20b400464624605fc419e15f1` |
-| [`release/ultiwrite-claude-plugin-0.7.1.zip`](https://github.com/dennis430/ultiwrite-plugins/raw/main/release/ultiwrite-claude-plugin-0.7.1.zip) | Claude plugin 0.7.1 (superseded, kept for existing links) | `7b53857bcd7450b68a869b90d29c1112e89fcb3f707fd87ccadcacc73f906bfe` |
+### Current source archives
 
-`release/SHA256SUMS.txt` and `release/INVENTORY.json` list the same hashes and every archive member. `node scripts/pack-public-connectors.mjs` reproducibly rebuilds the current archives from source. Add `--check` to verify source/archive parity without rewriting them. Historical ZIPs stay unchanged.
+| Archive | SHA-256 |
+| --- | --- |
+| [ChatGPT/Codex 0.9.0](release/ultiwrite-chatgpt-plugin-0.9.0.zip) | `633906c6c8cc7d673518714fa9fde2fed7a54feace3aa5bf6607b8091cdec483` |
+| [Claude 0.9.0](release/Ultiwrite_Claude_Plugin_v0.9.0.zip) | `03651e6ba207224b895c384b07bb81c6d4be3a2493db594ca29efd511a933472` |
+| [Cursor 0.9.0](release/ultiwrite-cursor-plugin-0.9.0.zip) | `be750b8ec849b695fbd8752852720644e0036b25b1d95ba2debc8711a6081661` |
 
-## Install the Claude plugin
+Historical archives remain unchanged under `release/`. [SHA256SUMS.txt](release/SHA256SUMS.txt) and [INVENTORY.json](release/INVENTORY.json) record every retained archive. Run `node scripts/pack-public-connectors.mjs` to rebuild the current packages or add `--check` to verify source/archive parity.
 
-- claude.ai, Claude Desktop, Cowork: Plugins > Add > Upload plugin (Customize > Plugins on the older interface), and choose `Ultiwrite_Claude_Plugin_v0.8.3.zip`.
-- Claude Code: `/plugin marketplace add dennis430/ultiwrite-plugins`, then `/plugin install ultiwrite@ultiwrite`. For one session, clone the repository and run `claude --plugin-dir ./claude`, or pass the extracted ZIP directory containing `.claude-plugin/plugin.json`.
-- Ask "Connect Ultiwrite and confirm which account is connected." The protected account check starts native OAuth when needed. No API key goes in any config.
+### Claude setup and connection recovery
 
-If the sign-in window closes, open **Plugins > Ultiwrite > Connectors** and select **Connect**, or use **Customize > Connectors > Ultiwrite** on the older interface. Claude Code offers **`/mcp` > Ultiwrite > Authenticate**. Ask "Reconnect Ultiwrite" to use the bundled recovery workflow. For another account, start a fresh authorization and choose **Use a different account** on Ultiwrite's consent screen. See [Claude connection recovery](claude/README.md#connect-again-or-use-a-different-account).
+For Claude Code, add `/plugin marketplace add dennis430/ultiwrite-plugins`, then `/plugin install ultiwrite@ultiwrite`. For supported Claude plugin upload surfaces, use `Ultiwrite_Claude_Plugin_v0.9.0.zip`. See [Claude setup](claude/README.md) for the current package workflow.
 
-Cursor multi-plugin entry: `.cursor-plugin/marketplace.json` points at `cursor`.
-Claude marketplace entry: `.claude-plugin/marketplace.json` points at `./claude`.
+Ask “Connect Ultiwrite and confirm which account is connected.” If the sign-in window closes, ask “Reconnect Ultiwrite” or open **Plugins > Ultiwrite > Connectors** and select **Connect**. The older interface uses **Customize > Connectors > Ultiwrite**; Claude Code uses **`/mcp` > Ultiwrite > Authenticate**. A new authorization can use **Use a different account** on Ultiwrite’s consent screen. See [connection recovery](claude/README.md#connect-again-or-use-a-different-account).
 
-Direct remote MCP, which does not require this repository:
+Claude’s marketplace entry points to `./claude`; Cursor’s points to `cursor`. The Claude directory can scan its configured repository branch. Directory review, publication and installed-client versions are verified separately from repository availability. `server.draft.json` remains unpublished MCP Registry preparation. This source revision makes no claim of new marketplace submission, npm publication or completed host evaluation.
 
-    claude mcp add --transport http ultiwrite https://mcp.dwsoffshorepartners.com/mcp
+## Source and commercial consistency
 
-Cursor settings can use either Remote MCP URL above. Do not put an API key in either config. The host completes Ultiwrite OAuth.
+[POSITIONING.md](POSITIONING.md) is the canonical reference for public descriptions, capability copy, investor materials, customer outreach, broker outreach and partner communications. [The discovery suite](evals/README.md) covers ordinary customer language and action boundaries; actual host selection evaluations for this revision are **NOT RUN**.
 
-`server.draft.json` is unpublished MCP Registry metadata. Do not treat it as a listing.
+Product: **Ultiwrite**. Publisher: **DWS Offshore Fund**.
 
-Claude source and its ZIP are at 0.8.3; ChatGPT, Cursor, Grok Bot and the client remain at 0.7.1. npm is not published. The Claude directory tracks `claude/` on the configured GitHub branch. A new commit and version make the update available for Anthropic's scan; the portal's review and publication policy determines when it reaches users. GitHub availability does not establish directory approval or an installed client's version.
+This repository contains thin connector packages and their public documentation. The analytical service remains proprietary; private implementation and customer records are excluded. The MIT license covers the original connector code. See [LICENSE](LICENSE) and [NOTICE](NOTICE).

@@ -1,9 +1,11 @@
 ---
 name: ultiwrite
-description: Ultiwrite Commercial Diligence through the connected Ultiwrite account. Use when the user wants to connect, reconnect, authenticate, recover a dismissed sign-in window, switch Ultiwrite accounts, investigate a business, merchant, residual or ISO book, portfolio, property, financing, counterparty or other commercial opportunity from documentary evidence, asks what Ultiwrite does, or mentions a saved Ultiwrite case or report. Not for payments, purchases or inventing records.
+description: "Use Ultiwrite for asymmetric diligence when the user wants to investigate a commercial opportunity from authorized documents: business acquisitions, financing, counterparties, property, merchants, residual or ISO books and portfolios. Recognize requests to cross-check financial claims, reconcile identities, examine document integrity, connect external context or uncover contradictions and unresolved implications. Also use to explain Ultiwrite, connect, reconnect, recover dismissed sign-in, switch accounts or read saved cases and reports. General definitions and ordinary summaries alone do not require an Ultiwrite analysis; connection-only requests never authorize submission."
 ---
 
-# Ultiwrite Commercial Diligence
+# Ultiwrite Asymmetric Diligence
+
+Ultiwrite is an asymmetric diligence engine that turns ordinary documents into a much wider investigation. Connect financial, identity, document-integrity, operational and relevant external-context evidence to examine the claims, relationships and implications around a commercial opportunity. The submitted package starts the inquiry; applicable analyses and their cross-domain connections contribute to one cohesive assessment, with supporting evidence, confidence and unresolved questions.
 
 Ultiwrite is the analytical authority. Claude is the interface. Every finding, grade, confidence, decision and price you state must come from an Ultiwrite tool result in this conversation. Never analyze the user's files yourself as a substitute for the engine, and never present your own summary as an Ultiwrite finding.
 

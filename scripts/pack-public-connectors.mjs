@@ -11,8 +11,9 @@ import { fileURLToPath } from 'node:url'
 const root = fileURLToPath(new URL('..', import.meta.url))
 const outDir = join(root, 'release')
 const checkOnly = process.argv.includes('--check')
-const VERSION = '0.7.1'
+const VERSION = '0.9.0'
 const MCP_URL = 'https://dwsoffshorepartners.com/api/integrations/ultiwrite/mcp'
+const CHATGPT_MCP_URL = 'https://mcp.dwsoffshorepartners.com/mcp'
 const TOOLS = [
   'ultiwrite_account_get',
   'ultiwrite_capabilities_get',
@@ -23,15 +24,22 @@ const TOOLS = [
   'ultiwrite_findings_get',
   'ultiwrite_report_export',
 ]
-const CLAUDE_VERSION = '0.8.3'
+const CLAUDE_VERSION = VERSION
 const CLAUDE_MCP_URL = 'https://mcp.dwsoffshorepartners.com/mcp'
 const CLAUDE_ZIP = `Ultiwrite_Claude_Plugin_v${CLAUDE_VERSION}.zip`
-const CLAUDE_FROZEN = ['Ultiwrite_Claude_Plugin_v0.8.1.zip', 'Ultiwrite_Claude_Plugin_v0.8.0.zip', 'ultiwrite-claude-plugin-0.7.1.zip']
+const FROZEN_ARCHIVES = [
+  'Ultiwrite_Claude_Plugin_v0.8.3.zip',
+  'Ultiwrite_Claude_Plugin_v0.8.1.zip',
+  'Ultiwrite_Claude_Plugin_v0.8.0.zip',
+  'ultiwrite-claude-plugin-0.7.1.zip',
+  'ultiwrite-chatgpt-plugin-0.7.1.zip',
+  'ultiwrite-cursor-plugin-0.7.1.zip',
+]
 const PACKAGES = [
   {
     id: 'chatgpt',
     root: 'chatgpt',
-    files: ['assets/logo.png', 'mcp.json', 'plugin.json', 'README.md', 'skills/ultiwrite-read/SKILL.md'],
+    files: ['assets/logo.png', 'mcp.json', 'plugin.json', 'README.md', 'LICENSE', 'skills/ultiwrite-read/SKILL.md'],
   },
   {
     id: 'cursor',
@@ -158,13 +166,11 @@ assertTools(skillText, 'connector skills and Grok tool dossier')
 
 const chatgptMcp = JSON.parse(readFileSync(join(root, 'chatgpt/mcp.json'), 'utf8'))
 const server = chatgptMcp.mcpServers.ultiwrite
-if (server.url !== MCP_URL || server.type !== 'streamable-http') throw new Error('ChatGPT MCP URL drifted')
-const auth = server.extensions['com.openai'].auth
-for (const [key, path] of [['authorizationUrl', '/api/integrations/ultiwrite/oauth/authorize'], ['tokenUrl', '/api/integrations/ultiwrite/oauth/token'], ['registrationUrl', '/api/integrations/ultiwrite/oauth/register']]) {
-  if (auth[key] !== `https://dwsoffshorepartners.com${path}`) throw new Error(`${key} drifted`)
-}
-if (auth.client.mode !== 'dcr') throw new Error('ChatGPT client mode drifted')
-if (JSON.stringify(auth.defaultScopes) !== JSON.stringify(['ultiwrite:read', 'ultiwrite:evidence'])) throw new Error('scopes drifted')
+if (server.url !== CHATGPT_MCP_URL || server.type !== 'streamable-http') throw new Error('ChatGPT MCP URL drifted')
+// Preserve the canonical 0.7.2 portable-loader fix. OAuth is negotiated from
+// the service challenge and discovery metadata, never embedded client fields.
+if (chatgptMcp.$schema !== 'https://agent-plugins.org/schemas/1.0.0/mcp.schema.json') throw new Error('ChatGPT MCP schema drifted')
+if (JSON.stringify(Object.keys(server).sort()) !== JSON.stringify(['type', 'url'])) throw new Error('ChatGPT portable server has unsupported fields')
 
 if (!checkOnly) mkdirSync(outDir, { recursive: true })
 const inventory = []
@@ -216,12 +222,12 @@ inventory.push({
     bytes: member.bytes.length,
   })),
 })
-for (const name of CLAUDE_FROZEN) {
+for (const name of FROZEN_ARCHIVES) {
   const frozen = readFileSync(join(outDir, name))
   inventory.push({
     file: `release/${name}`,
     version: name.match(/(?:_v|-)(\d+\.\d+\.\d+)\.zip$/)?.[1],
-    status: `superseded by Claude ${CLAUDE_VERSION}; kept so existing links keep working; not rebuilt`,
+    status: `historical archive retained unchanged; current package sources are ${VERSION}`,
     sha256: createHash('sha256').update(frozen).digest('hex'),
     bytes: frozen.length,
     members: readZip(frozen).map(member => ({
@@ -236,6 +242,7 @@ writeArtifact(join(outDir, 'SHA256SUMS.txt'), sums)
 writeArtifact(join(outDir, 'INVENTORY.json'), JSON.stringify({
   version: VERSION,
   mcp_url: MCP_URL,
+  chatgpt: { version: VERSION, mcp_url: CHATGPT_MCP_URL, auth: 'service challenge and discovery metadata' },
   claude: { version: CLAUDE_VERSION, mcp_url: CLAUDE_MCP_URL },
   tools: TOOLS,
   oauth: {

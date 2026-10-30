@@ -1,6 +1,6 @@
 ---
 name: submit-evidence
-description: Submit the user's authorized commercial evidence (documents, spreadsheets, images, ZIP packages) to Ultiwrite and follow the case until its report is released. Use when the user asks to investigate, underwrite, diligence or check a business, merchant, residual book, portfolio, property or transaction from their files.
+description: "Submit authorized documents, spreadsheets, images or ZIP evidence packages to Ultiwrite for an asymmetric investigation of a business, acquisition, financing, counterparty, property, merchant, residual book or portfolio. Use when the user asks to test claims, financial consistency, business identities, document integrity, external context or cross-domain contradictions using their evidence. Follow the saved case to its report. Do not submit for an explanation, connection check, general definition or read-only request."
 ---
 
 # Submit evidence to Ultiwrite

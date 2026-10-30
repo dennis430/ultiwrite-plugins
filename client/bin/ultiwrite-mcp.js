@@ -41,7 +41,7 @@ async function doctor() {
   const resourceBody = await resource.json()
   const authorizationBody = await authorization.json()
   const ok = resource.ok && authorization.ok && resourceBody.resource === mcpUrl(base) && authorizationBody.issuer === base
-  process.stdout.write(`${JSON.stringify({ ok, endpoint: resourceBody.resource, issuer: authorizationBody.issuer, scopes: resourceBody.scopes_supported, package: 'ultiwrite-mcp@0.7.1' }, null, 2)}\n`)
+  process.stdout.write(`${JSON.stringify({ ok, endpoint: resourceBody.resource, issuer: authorizationBody.issuer, scopes: resourceBody.scopes_supported, package: 'ultiwrite-mcp@0.9.0' }, null, 2)}\n`)
   if (!ok) process.exitCode = 1
 }
 
