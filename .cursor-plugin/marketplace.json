@@ -5,13 +5,13 @@
     "email": "nick@ultiwrite.co"
   },
   "metadata": {
-    "description": "Ultiwrite Commercial Diligence connectors. Thin remote MCP packages only."
+    "description": "Ultiwrite: asymmetric diligence across commercial domains, connecting ordinary documents to a wider investigation."
   },
   "plugins": [
     {
       "name": "ultiwrite",
       "source": "cursor",
-      "description": "Commercial Diligence. Submit authorized evidence and read the saved Ultiwrite report."
+      "description": "Investigate financial consistency, identities, document integrity and external context; read reconciled Ultiwrite findings and evidence."
     }
   ]
 }

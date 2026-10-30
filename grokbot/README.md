@@ -1,13 +1,17 @@
 # Grok Bot submission dossier
 
-This folder prepares a Grok Bot connector submission. It is not a receipt. The form was not submitted in Sequence 1, and Grok Bot was not used to call Ultiwrite.
+Ultiwrite is an asymmetric diligence engine that turns ordinary documents into a much wider investigation.
+
+The evidence you provide starts the inquiry. Ultiwrite connects financial, identity, document-integrity, operational and relevant external-context signals, follows contradictions and unexpected implications across them, and brings the results into a cohesive assessment with supporting evidence, confidence and open questions.
+
+Version 0.9.0. This folder prepares a Grok Bot connector submission. It is not a receipt. The form was not submitted in Sequence 1, and Grok Bot was not used to call Ultiwrite.
 
 | Field | Value |
 | --- | --- |
 | Publisher | DWS Offshore Fund |
 | Product | Ultiwrite |
 | Category | Commercial Diligence |
-| MCP URL | https://dwsoffshorepartners.com/api/integrations/ultiwrite/mcp |
+| MCP URL | https://mcp.dwsoffshorepartners.com/mcp |
 | Logo | `assets/logo.png` (512×512, opaque square plate) |
 | Website | https://dwsoffshorepartners.com |
 | Privacy | https://dwsoffshorepartners.com/privacy |
@@ -26,4 +30,4 @@ Companion notes:
 
 Consumer Grok is a different product surface and was marked coming soon on the earlier form. Grok Build is the app-building environment, not this connector host. Do not describe either as a completed Ultiwrite plugin test.
 
-Repository status: the public thin source is https://github.com/dennis430/ultiwrite-plugins. It was not submitted to a plugin marketplace or directory. Cursor, Claude, ChatGPT, and Grok Bot host installation is not claimed from this package alone. The production MCP endpoint is independent of marketplace review.
+Repository status: the public thin source is https://github.com/dennis430/ultiwrite-plugins. This metadata revision does not establish a marketplace submission. Cursor, Claude, ChatGPT, and Grok Bot host installation is not claimed from this package alone. The production MCP endpoint is independent of marketplace review.

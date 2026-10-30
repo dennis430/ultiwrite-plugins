@@ -1,17 +1,21 @@
 # ultiwrite-mcp
 
-Thin client for the canonical Ultiwrite MCP service. It does not contain the diligence engine.
+Ultiwrite is an asymmetric diligence engine that turns ordinary documents into a much wider investigation.
 
-Endpoint: `https://dwsoffshorepartners.com/api/integrations/ultiwrite/mcp`
+The evidence you provide starts the inquiry. Ultiwrite connects financial, identity, document-integrity, operational and relevant external-context signals, follows contradictions and unexpected implications across them, and brings the results into a cohesive assessment with supporting evidence, confidence and open questions.
+
+This thin client connects to the canonical hosted service. It does not contain the analytical engine.
+
+Preferred native remote endpoint: `https://mcp.dwsoffshorepartners.com/mcp`
 
 This package is **not published**. `npx ultiwrite-mcp` will not work until an authorized npm account publishes it. License: MIT for this client wrapper only. The analytical service is not included.
 
 ## Local proof
 
 ```bash
-cd packaging/npx/ultiwrite-mcp
-npm pack --pack-destination ../../dist
-npx --package ../../dist/ultiwrite-mcp-0.7.1.tgz ultiwrite-mcp doctor --offline
+cd client
+npm pack --pack-destination ../release
+npx --package ../release/ultiwrite-mcp-0.9.0.tgz ultiwrite-mcp doctor --offline
 ```
 
 ## Commands
@@ -27,10 +31,12 @@ npx --package ../../dist/ultiwrite-mcp-0.7.1.tgz ultiwrite-mcp doctor --offline
 ## Publish, when an npm account is authorized
 
 ```bash
-cd packaging/npx/ultiwrite-mcp
+cd client
 npm publish --access public
 ```
 
 `npm whoami` was unauthenticated in the Stage 1 environment, so publication was not performed.
 
 First completed analysis is $0.00. Contact us for further-analysis pricing. No card is required and there is no automatic charge. This client does not take payment.
+
+The local bridge retains its existing issuer and `/api/integrations/ultiwrite/mcp` transport defaults for saved-credential compatibility. Native remote clients should use the preferred clean URL above. Existing server registrations and already distributed 0.7.0 packages retain their current endpoints.

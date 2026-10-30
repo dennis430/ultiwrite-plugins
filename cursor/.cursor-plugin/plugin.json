@@ -1,8 +1,8 @@
 {
   "name": "ultiwrite",
   "displayName": "Ultiwrite",
-  "version": "0.7.1",
-  "description": "Commercial Diligence. Submit authorized evidence and read the saved Ultiwrite report.",
+  "version": "0.9.0",
+  "description": "Ultiwrite turns ordinary documents into a wider commercial investigation. Connect financial, identity, document-integrity, operational and external-context evidence across acquisitions, financing, counterparties, property and portfolios, then read the reconciled findings, confidence and open questions.",
   "author": {
     "name": "DWS Offshore Fund",
     "email": "nick@ultiwrite.co"
@@ -12,7 +12,20 @@
   "homepage": "https://dwsoffshorepartners.com",
   "repository": "https://github.com/dennis430/ultiwrite-plugins",
   "logo": "assets/logo.png",
-  "keywords": ["commercial-diligence", "mcp", "evidence", "reports"],
+  "keywords": [
+    "asymmetric-diligence",
+    "commercial-evidence",
+    "due-diligence",
+    "business-acquisitions",
+    "counterparty-review",
+    "portfolio-analysis",
+    "financial-consistency",
+    "entity-verification",
+    "document-forensics",
+    "underwriting",
+    "property-diligence",
+    "evidence-reconciliation"
+  ],
   "category": "Commercial Diligence",
   "skills": "skills/ultiwrite/SKILL.md"
 }

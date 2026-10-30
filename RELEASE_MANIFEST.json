@@ -1,20 +1,59 @@
 {
   "product": "Ultiwrite",
   "distribution": "plugin-only",
-  "version": "0.7.1",
+  "version": "0.9.0",
   "publisher": "DWS Offshore Fund",
-  "mcp_url": "https://dwsoffshorepartners.com/api/integrations/ultiwrite/mcp",
-  "source_repository": "dennis430/merchant-risk-app",
-  "source_commit": "f7b292857f5c1c6c91c63806c53f4c98bf0816d3",
-  "note": "SHA-256 of every file except this manifest. Top-level version, mcp_url and source_commit retain the historical 0.7.1 non-Claude package provenance. claude describes the current package maintained in this public repository. Source and archive publication do not establish Claude directory ingestion, approval or installed-client acceptance.",
+  "source_repository": "dennis430/ultiwrite-plugins",
+  "source_base_commit": "3400001feec0d8722ca5840d545bcbd1d8c5838c",
+  "canonical_engine_repository": "dennis430/merchant-risk-app",
+  "canonical_engine_base_commit": "02204f92755d2efb91cfcb43d77b2ed25ae7466d",
+  "mcp_urls": {
+    "chatgpt": "https://mcp.dwsoffshorepartners.com/mcp",
+    "claude": "https://mcp.dwsoffshorepartners.com/mcp",
+    "cursor": "https://mcp.dwsoffshorepartners.com/mcp",
+    "grokbot": "https://mcp.dwsoffshorepartners.com/mcp",
+    "client": "https://dwsoffshorepartners.com/api/integrations/ultiwrite/mcp"
+  },
+  "change": "Cross-domain asymmetric diligence positioning, intent-based metadata, preserved account recovery and current portable ChatGPT MCP configuration, an unexecuted host discovery suite, and byte-exact synchronization of existing approved gold Uw brand assets. No analytical engine, pricing, permission or entitlement change.",
+  "package_status": "PREPARED",
+  "host_evaluation_status": "NOT_RUN",
+  "directory_publication_status": "NOT_VERIFIED_BY_THIS_SOURCE_REVISION",
+  "previous": {
+    "version": "0.7.1",
+    "source_repository": "dennis430/merchant-risk-app",
+    "source_commit": "f7b292857f5c1c6c91c63806c53f4c98bf0816d3",
+    "claude": {
+      "version": "0.8.3",
+      "mcp_url": "https://mcp.dwsoffshorepartners.com/mcp",
+      "zip": "release/Ultiwrite_Claude_Plugin_v0.8.3.zip",
+      "zip_sha256": "97e3cfd855c3b1344a9bbfbe6cc1b9d317403d7c869ac416d3bec23989803f00",
+      "previous": {
+        "version": "0.8.1",
+        "mcp_url": "https://mcp.dwsoffshorepartners.com/mcp",
+        "zip": "release/Ultiwrite_Claude_Plugin_v0.8.1.zip",
+        "zip_sha256": "11520ccd818dddd576a7b230e08b74142f3012fb0ea2d10f4b6f37c105e6e8b0",
+        "previous": {
+          "version": "0.8.0",
+          "source_commit": "9e000dec0c327401122f8489dc2eed760644fb78",
+          "zip_sha256": "619656fae4e9b9db2d7a7e0c813713d859cde291062c21912bb38fc7297ca28e"
+        },
+        "change": "listing positioning only: Asymmetric Diligence and independent verification in description, keywords and README"
+      },
+      "change": "Add protected-account connection recovery, dismissed-popup retry and account-switching guidance; include canonical gold Uw icon; build exact current source and preserve historical archives.",
+      "source_repository": "dennis430/ultiwrite-plugins",
+      "source_base_commit": "822663e978db2f461943781a4aabba835ca5caf3",
+      "verification": "release/CLAUDE_0.8.3_AUTH_VERIFICATION.json"
+    }
+  },
+  "note": "SHA-256 of every public source file except this manifest. All pre-existing release archives remain byte-identical. New package sources and archive parity do not establish directory ingestion, approval, host selection improvements or customer execution.",
   "files": [
     {
       "path": ".claude-plugin/marketplace.json",
-      "sha256": "8b5b0db5880bc9ab81fab860247a5ae0b64102fbf613951aca60bf007e572da8"
+      "sha256": "11ef5376e8b41748bf1dfc31e410a003cf377f6b75058384d7e9472ab3e22108"
     },
     {
       "path": ".cursor-plugin/marketplace.json",
-      "sha256": "ac087131e5a3670cc818b791aafb7de4b367c082972f57d3526399bd7abcb0a5"
+      "sha256": "100daa8ac68a79dedfc6ed574dcc3c4fc678dd69321255b3d5bea066325eb4c4"
     },
     {
       "path": ".github/workflows/validate.yml",
@@ -25,8 +64,12 @@
       "sha256": "5f70ee8df0ba474922bf182b542b64c5ec1d67f1c90085cbb97b786cb8f3c775"
     },
     {
+      "path": "AGENTS.md",
+      "sha256": "9ac7a22e1915e550f152fa489197b6959ed93b30ef9a3427ee39c54e437b9012"
+    },
+    {
       "path": "INSTALL.md",
-      "sha256": "1e49c00dc9f8f3c5ca0b2425a81a705aec88bab8c218ca2ef024a506cac25d3b"
+      "sha256": "c20fc50945b8737ef8605e1643e83a2956eeba6f2478fcb4165f95f232a4641a"
     },
     {
       "path": "LICENSE",
@@ -37,8 +80,12 @@
       "sha256": "879c535465b6737c67c9bda2b302d3a447a3275e80f06899cb8a3608fbe3dad8"
     },
     {
+      "path": "POSITIONING.md",
+      "sha256": "5f24e2815faeb4eceded9c3f0241a28d8f49359a39d2846150a773e7409823e2"
+    },
+    {
       "path": "README.md",
-      "sha256": "a4c30cbd7e05cc0b93f45736acdf2d724c3503495614a77939154917047b9463"
+      "sha256": "d169d42eacb85ead77376abe2e3e4ea22780f66cebd7d20e40d2d5cd1c2fbc52"
     },
     {
       "path": "chatgpt/LICENSE",
@@ -46,27 +93,27 @@
     },
     {
       "path": "chatgpt/README.md",
-      "sha256": "568ed3d5eb8050b2493ff583acc3b84b06c1d0547b3e36bbd4f28435ac92e73c"
+      "sha256": "595180489b8082ce1286254726e09e43023ca8a1050e4dbd5402db43a4dedf8f"
     },
     {
       "path": "chatgpt/assets/logo.png",
-      "sha256": "0b274d5691e551b86d1ba6def763d33ad0d4c3c0b7ccd000656bd3fad43ae131"
+      "sha256": "2523ad96e0dd452a7068ffd579c3fe73942b34a5d969e4c3ef45005986ddd940"
     },
     {
       "path": "chatgpt/mcp.json",
-      "sha256": "95000e3fdfd93383da4e2956ac33a265d9742ab591aa2b95e5fa00a52ae7e1ce"
+      "sha256": "b58605b1536159e225e0c338a99fbadfb5395067191a651882b3e46791003dd1"
     },
     {
       "path": "chatgpt/plugin.json",
-      "sha256": "68c26f38a8c648ea73d31c7eda0ae9aec9cc5df754a488bb3081a041eaa4309c"
+      "sha256": "ca79dc0aff805fe2b26e13eb315f29fa917a74f2110796269f7b80d00bce30ce"
     },
     {
       "path": "chatgpt/skills/ultiwrite-read/SKILL.md",
-      "sha256": "edd95c4e79385f7d8bf6bfd7c5f33d1d3a7a719141e83910b1f852521ae16add"
+      "sha256": "3f2ba9dc64653a62d9344944ac903141281ae3fad25bda9cc8aa97e35270e04a"
     },
     {
       "path": "claude/.claude-plugin/plugin.json",
-      "sha256": "687c07a56856fd9775c63554f37dd8878cd835a631e9e1647102387277d74cc1"
+      "sha256": "683f74ff21c8eaef7e7fcf57cb8103a17d15eedad882695565468d126161462f"
     },
     {
       "path": "claude/.mcp.json",
@@ -78,7 +125,7 @@
     },
     {
       "path": "claude/README.md",
-      "sha256": "aa6ff9915e5557060d56d559914008065d97825eedb6e1af400b61bfcce762ba"
+      "sha256": "4dbdb2572fd194848a4c9a64c8ca0c30c1c676565f7e6552eee265f7e90795ff"
     },
     {
       "path": "claude/assets/logo.png",
@@ -90,19 +137,19 @@
     },
     {
       "path": "claude/skills/follow-up/SKILL.md",
-      "sha256": "590bd1cd2ef89233a9a0e5fb2c6b7466b479443f3a5857730c7f800362f4fe04"
+      "sha256": "0ee2254c10ef92c5ffb1af44ea646b494b31418bcca4ca6217afd1ff2cacd9ea"
     },
     {
       "path": "claude/skills/read-report/SKILL.md",
-      "sha256": "234e28e869d491bf59fdd76c8a9261ee5b88271b33fac08c49f442b39d8723d7"
+      "sha256": "e591094f133f77d76b20108b8ad1b2ffd8962357939b0b596df93d53a3759add"
     },
     {
       "path": "claude/skills/submit-evidence/SKILL.md",
-      "sha256": "a2dfbd3e286ee0ca4c64df5c9f92c9e7ab1c69ed8ea3e99f84b697911ab2ec76"
+      "sha256": "ea3856ed6fb7994bcb4a580b5cb64c11fe484446e29fda617108372988966543"
     },
     {
       "path": "claude/skills/ultiwrite/SKILL.md",
-      "sha256": "72ac253bf3db65d8c9323b646b8f3a5cc7772910d97e6a454ce9006a8f4bb9b9"
+      "sha256": "88ae4c10d4585881be681b7b35c392868a28e545fdaba93bec8a940f88585ba8"
     },
     {
       "path": "client/LICENSE",
@@ -110,19 +157,19 @@
     },
     {
       "path": "client/README.md",
-      "sha256": "0cdb8ac9542bc5e551aa2ee7f887fe8f087fe0ae399311e4a16cee8738692cf7"
+      "sha256": "b3f1ede6e0facc7f73cab186d1408722a81543357c63ddff8fc51eb7a42b8c2c"
     },
     {
       "path": "client/bin/ultiwrite-mcp.js",
-      "sha256": "4a59661f75ea42f7beb1fad9951c2d92dd348555cdfa4d5e5b584f84a5f5275a"
+      "sha256": "c99dbd7d09446a51148d714a13472fdd46c93d5058709835889f39167156ea10"
     },
     {
       "path": "client/lib/pure.mjs",
-      "sha256": "80323f003ed983aa7d23c9c2df1131c775a17d74216b9ab2a7b2796fad9d3ff6"
+      "sha256": "9a1e44c7b86a1f342233d9c881e47b4462012a22eaa1d2af88bf148a6abfc000"
     },
     {
       "path": "client/package.json",
-      "sha256": "a01959fbca0f72562f9726f7541c49778113a126319239f40a9700adfbac4e63"
+      "sha256": "b87aae89e66ebaac9795d5707d79032e7aab26e1bb65f4bfe0ee352139aa7256"
     },
     {
       "path": "client/test/cli.test.mjs",
@@ -134,7 +181,7 @@
     },
     {
       "path": "cursor/.cursor-plugin/plugin.json",
-      "sha256": "5cb16dd0c921e4d2088168c178ef93433f4876e16a443f9cfdfa80671e040a5d"
+      "sha256": "3138b4d77d8b811e1451ad4dd76337d9d7af94b1d9a1a8b1dd021ef0aeb5eef5"
     },
     {
       "path": "cursor/LICENSE",
@@ -142,27 +189,35 @@
     },
     {
       "path": "cursor/README.md",
-      "sha256": "4fba238d5a1e87468c0b80a626466fc67d85640c5eefca484c880263b98644f8"
+      "sha256": "cc7a440ee787eb68ad636846c8c682948b9a51b2b847e177debf90a3b1d239b7"
     },
     {
       "path": "cursor/assets/logo.png",
-      "sha256": "0b274d5691e551b86d1ba6def763d33ad0d4c3c0b7ccd000656bd3fad43ae131"
+      "sha256": "cc0a3c229347e47a154a00c9e6dfa774c0e1f07ee9fc063935af5bc4897f4b18"
     },
     {
       "path": "cursor/mcp.json",
-      "sha256": "9d3f3737200d1f0434bb218cc8de3c8fb3d0a22bd13b205a735c4701cf3d2858"
+      "sha256": "b58605b1536159e225e0c338a99fbadfb5395067191a651882b3e46791003dd1"
     },
     {
       "path": "cursor/skills/ultiwrite/SKILL.md",
-      "sha256": "f4fbb0d2f03e459dbaea8ac8fbb918c204b1639e70b0390bb663399c660990ff"
+      "sha256": "aeb2bf5edd33ad9930ed7ab8c75022cfc2156cadf0d148459550e737c500a4ef"
+    },
+    {
+      "path": "evals/README.md",
+      "sha256": "602a44543f3795e523c53a60a27fb623b59185af52bc4f2d53adcc12b957a7fd"
+    },
+    {
+      "path": "evals/discovery-prompts.json",
+      "sha256": "c64ab757a19f919d9fac7fe1566acce97e8afa1fd8bbb71a91c4077aadc84411"
     },
     {
       "path": "grokbot/FIELDS.json",
-      "sha256": "c01fb5a16b4bbca61614f54dda61a27d2ec4e98419116304a1a064e136e1c8c6"
+      "sha256": "abbee2b4e3500b6dd65253704bb284224aaa34a3a5f68ed213a82c71d2929f7a"
     },
     {
       "path": "grokbot/INSTALL.md",
-      "sha256": "b5de2d4b23d5b20ea1aa6c0039a7ae8e42011cf0431f248249190785a4835e69"
+      "sha256": "b607700b7211623de9eb50d08c413b3fd4098efe8b66ba9f1a047479640e7e97"
     },
     {
       "path": "grokbot/LICENSE",
@@ -170,11 +225,11 @@
     },
     {
       "path": "grokbot/OAUTH.md",
-      "sha256": "67cf3bbe74322352381ec05fddc4ee3d39b22dd752182b71d664d74fb3fc387a"
+      "sha256": "33b92b670f3b6f83144c66aaacefda493468365a63dc629128532f201025d65f"
     },
     {
       "path": "grokbot/README.md",
-      "sha256": "882c00d1adfa11842e58f7d41b18db09f4c2a0d31164c61b391b99081ae791f2"
+      "sha256": "d19e19c756236d49aa74767e2ca357ccfae09969082a74ddbead767c6dee7a87"
     },
     {
       "path": "grokbot/TESTING.md",
@@ -182,15 +237,15 @@
     },
     {
       "path": "grokbot/TOOLS.md",
-      "sha256": "135a11a3e05482230344341aac2999edebbf56671cf0085e4e887913b090fa67"
+      "sha256": "17995aeac3cebd4af15ffea638178c6e7c30a0f30872a67aafdf88c15b907862"
     },
     {
       "path": "grokbot/assets/logo.png",
-      "sha256": "0b274d5691e551b86d1ba6def763d33ad0d4c3c0b7ccd000656bd3fad43ae131"
+      "sha256": "cc0a3c229347e47a154a00c9e6dfa774c0e1f07ee9fc063935af5bc4897f4b18"
     },
     {
       "path": "grokbot/mcp.json",
-      "sha256": "9d3f3737200d1f0434bb218cc8de3c8fb3d0a22bd13b205a735c4701cf3d2858"
+      "sha256": "b58605b1536159e225e0c338a99fbadfb5395067191a651882b3e46791003dd1"
     },
     {
       "path": "release/CLAUDE_0.8.3_AUTH_VERIFICATION.json",
@@ -198,11 +253,11 @@
     },
     {
       "path": "release/INVENTORY.json",
-      "sha256": "85a3cfdba98f5dd4c6ca8d032bc9f2225505f30468ed0e5cc2a26f563b420e66"
+      "sha256": "40e7a8aef9aa10e8abc2077d839751a48a58bcf0aad909f275b83d64bba303c7"
     },
     {
       "path": "release/SHA256SUMS.txt",
-      "sha256": "2da4f2628451a02d6da0464c9b3e75d003405ece2f3913e9aa42cdf1e8802cea"
+      "sha256": "da175831b13789a26b88e233bbcd90aad76116f6d51c893470ef10e9c92e0410"
     },
     {
       "path": "release/Ultiwrite_Claude_Plugin_v0.8.0.zip",
@@ -217,8 +272,16 @@
       "sha256": "97e3cfd855c3b1344a9bbfbe6cc1b9d317403d7c869ac416d3bec23989803f00"
     },
     {
+      "path": "release/Ultiwrite_Claude_Plugin_v0.9.0.zip",
+      "sha256": "03651e6ba207224b895c384b07bb81c6d4be3a2493db594ca29efd511a933472"
+    },
+    {
       "path": "release/ultiwrite-chatgpt-plugin-0.7.1.zip",
       "sha256": "457004b3d46b7aeaddabc1a5d065c181aac2b5a280369be7f9539de39d1339a4"
+    },
+    {
+      "path": "release/ultiwrite-chatgpt-plugin-0.9.0.zip",
+      "sha256": "633906c6c8cc7d673518714fa9fde2fed7a54feace3aa5bf6607b8091cdec483"
     },
     {
       "path": "release/ultiwrite-claude-plugin-0.7.1.zip",
@@ -229,38 +292,54 @@
       "sha256": "e34aa2e43d7062871de121c479ef5e8a7fe214f20b400464624605fc419e15f1"
     },
     {
+      "path": "release/ultiwrite-cursor-plugin-0.9.0.zip",
+      "sha256": "345d714ba6205a70dc38f43e1f45d82e83e01ab9499f1410197b44b5e7f440fd"
+    },
+    {
       "path": "scripts/pack-public-connectors.mjs",
-      "sha256": "696abdb715a3d0f12550b3c7df8ebcaa18b0068dd914761c1128fc5935b8836f"
+      "sha256": "4831ec39a22c95ab766940163c4788819760728f8704115164d013158e9ba6ed"
     },
     {
       "path": "scripts/validate-public-plugins.mjs",
-      "sha256": "9645617ab8bba84dcf8f5a62cd740ad461368595934264db50c3453c0e9ca370"
+      "sha256": "7f221fff1d8103d32b6a74d9744534e95748a83ff8dce85194266d1b2a5824ce"
     },
     {
       "path": "server.draft.json",
-      "sha256": "661f6d5ad4678dc3b32c83d1fbe05bde9cce24c2f11afd89fa01fe9aabcc7dcf"
+      "sha256": "8e8f9bfda9241d55d7a896f2cf797a5d3eec971cc0da009f6cb880972f5a0aec"
     }
   ],
-  "claude": {
-    "version": "0.8.3",
-    "mcp_url": "https://mcp.dwsoffshorepartners.com/mcp",
-    "zip": "release/Ultiwrite_Claude_Plugin_v0.8.3.zip",
-    "zip_sha256": "97e3cfd855c3b1344a9bbfbe6cc1b9d317403d7c869ac416d3bec23989803f00",
-    "previous": {
-      "version": "0.8.1",
-      "mcp_url": "https://mcp.dwsoffshorepartners.com/mcp",
-      "zip": "release/Ultiwrite_Claude_Plugin_v0.8.1.zip",
-      "zip_sha256": "11520ccd818dddd576a7b230e08b74142f3012fb0ea2d10f4b6f37c105e6e8b0",
-      "previous": {
-        "version": "0.8.0",
-        "source_commit": "9e000dec0c327401122f8489dc2eed760644fb78",
-        "zip_sha256": "619656fae4e9b9db2d7a7e0c813713d859cde291062c21912bb38fc7297ca28e"
-      },
-      "change": "listing positioning only: Asymmetric Diligence and independent verification in description, keywords and README"
+  "brand_asset_provenance": {
+    "design_change": false,
+    "chatgpt": {
+      "source_repository": "dennis430/merchant-risk-app",
+      "source_base_commit": "02204f92755d2efb91cfcb43d77b2ed25ae7466d",
+      "source_path": "packaging/chatgpt-plugin/assets/logo.png",
+      "sha256": "2523ad96e0dd452a7068ffd579c3fe73942b34a5d969e4c3ef45005986ddd940",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "copy": "byte-identical existing approved gold Uw asset"
     },
-    "change": "Add protected-account connection recovery, dismissed-popup retry and account-switching guidance; include canonical gold Uw icon; build exact current source and preserve historical archives.",
-    "source_repository": "dennis430/ultiwrite-plugins",
-    "source_base_commit": "822663e978db2f461943781a4aabba835ca5caf3",
-    "verification": "release/CLAUDE_0.8.3_AUTH_VERIFICATION.json"
+    "claude_cursor_grokbot": {
+      "source_repository": "dennis430/ultiwrite-plugins",
+      "source_base_commit": "3400001feec0d8722ca5840d545bcbd1d8c5838c",
+      "source_path": "claude/assets/logo.png",
+      "sha256": "cc0a3c229347e47a154a00c9e6dfa774c0e1f07ee9fc063935af5bc4897f4b18",
+      "dimensions": [
+        512,
+        512
+      ],
+      "copy": "Claude unchanged; Cursor and Grok Bot copied byte-identically from the existing approved gold Uw asset"
+    },
+    "historical_archives": "unchanged; retain original artwork"
+  },
+  "endpoint_provenance": {
+    "source_repository": "dennis430/merchant-risk-app",
+    "source_base_commit": "02204f92755d2efb91cfcb43d77b2ed25ae7466d",
+    "native_remote_configs": "Preserves pinned canonical clean MCP resource for ChatGPT, Claude, Cursor and Grok Bot; Grok OAuth discovery guidance copied byte-identically from canonical source.",
+    "local_bridge": "Existing apex issuer and /api/integrations/ultiwrite/mcp runtime defaults retained byte-identically except the package version string for saved-credential compatibility.",
+    "historical_archives": "unchanged; retain original endpoints",
+    "verification": "source and package parity only; no new host execution or authentication behavior"
   }
 }

@@ -1,8 +1,13 @@
 {
-  "version": "0.7.1",
-  "mcp_url": "https://dwsoffshorepartners.com/api/integrations/ultiwrite/mcp",
+  "version": "0.9.0",
+  "mcp_url": "https://mcp.dwsoffshorepartners.com/mcp",
+  "chatgpt": {
+    "version": "0.9.0",
+    "mcp_url": "https://mcp.dwsoffshorepartners.com/mcp",
+    "auth": "service challenge and discovery metadata"
+  },
   "claude": {
-    "version": "0.8.3",
+    "version": "0.9.0",
     "mcp_url": "https://mcp.dwsoffshorepartners.com/mcp"
   },
   "tools": [
@@ -16,6 +21,18 @@
     "ultiwrite_report_export"
   ],
   "oauth": {
+    "discovery": "service challenge and discovery metadata; host execution not verified by packaging",
+    "protected_resource_metadata": "https://mcp.dwsoffshorepartners.com/.well-known/oauth-protected-resource/mcp",
+    "authorization_server_metadata": "https://mcp.dwsoffshorepartners.com/.well-known/oauth-authorization-server",
+    "code_challenge_method": "S256",
+    "scopes": [
+      "ultiwrite:read",
+      "ultiwrite:evidence"
+    ]
+  },
+  "legacy_client_oauth": {
+    "mcp_url": "https://dwsoffshorepartners.com/api/integrations/ultiwrite/mcp",
+    "purpose": "existing local bridge issuer and saved-credential compatibility; unchanged runtime defaults",
     "authorization_endpoint": "https://dwsoffshorepartners.com/api/integrations/ultiwrite/oauth/authorize",
     "token_endpoint": "https://dwsoffshorepartners.com/api/integrations/ultiwrite/oauth/token",
     "registration_endpoint": "https://dwsoffshorepartners.com/api/integrations/ultiwrite/oauth/register",
@@ -27,46 +44,51 @@
   },
   "packages": [
     {
-      "file": "release/ultiwrite-chatgpt-plugin-0.7.1.zip",
-      "sha256": "457004b3d46b7aeaddabc1a5d065c181aac2b5a280369be7f9539de39d1339a4",
-      "bytes": 42585,
+      "file": "release/ultiwrite-chatgpt-plugin-0.9.0.zip",
+      "sha256": "633906c6c8cc7d673518714fa9fde2fed7a54feace3aa5bf6607b8091cdec483",
+      "bytes": 926461,
       "members": [
         {
           "name": "assets/logo.png",
-          "sha256": "0b274d5691e551b86d1ba6def763d33ad0d4c3c0b7ccd000656bd3fad43ae131",
-          "bytes": 36034
+          "sha256": "2523ad96e0dd452a7068ffd579c3fe73942b34a5d969e4c3ef45005986ddd940",
+          "bytes": 1153341
         },
         {
           "name": "mcp.json",
-          "sha256": "95000e3fdfd93383da4e2956ac33a265d9742ab591aa2b95e5fa00a52ae7e1ce",
-          "bytes": 929
+          "sha256": "b58605b1536159e225e0c338a99fbadfb5395067191a651882b3e46791003dd1",
+          "bytes": 211
         },
         {
           "name": "plugin.json",
-          "sha256": "68c26f38a8c648ea73d31c7eda0ae9aec9cc5df754a488bb3081a041eaa4309c",
-          "bytes": 9752
+          "sha256": "ca79dc0aff805fe2b26e13eb315f29fa917a74f2110796269f7b80d00bce30ce",
+          "bytes": 9649
         },
         {
           "name": "README.md",
-          "sha256": "568ed3d5eb8050b2493ff583acc3b84b06c1d0547b3e36bbd4f28435ac92e73c",
-          "bytes": 2283
+          "sha256": "595180489b8082ce1286254726e09e43023ca8a1050e4dbd5402db43a4dedf8f",
+          "bytes": 3163
+        },
+        {
+          "name": "LICENSE",
+          "sha256": "0122d7b57a1ef1e40944c88e2e0261b334fcf5f779e9deb52d49463de20a977d",
+          "bytes": 1767
         },
         {
           "name": "skills/ultiwrite-read/SKILL.md",
-          "sha256": "edd95c4e79385f7d8bf6bfd7c5f33d1d3a7a719141e83910b1f852521ae16add",
-          "bytes": 6606
+          "sha256": "3f2ba9dc64653a62d9344944ac903141281ae3fad25bda9cc8aa97e35270e04a",
+          "bytes": 8564
         }
       ]
     },
     {
-      "file": "release/ultiwrite-cursor-plugin-0.7.1.zip",
-      "sha256": "e34aa2e43d7062871de121c479ef5e8a7fe214f20b400464624605fc419e15f1",
-      "bytes": 38589,
+      "file": "release/ultiwrite-cursor-plugin-0.9.0.zip",
+      "sha256": "345d714ba6205a70dc38f43e1f45d82e83e01ab9499f1410197b44b5e7f440fd",
+      "bytes": 24405,
       "members": [
         {
           "name": ".cursor-plugin/plugin.json",
-          "sha256": "5cb16dd0c921e4d2088168c178ef93433f4876e16a443f9cfdfa80671e040a5d",
-          "bytes": 618
+          "sha256": "3138b4d77d8b811e1451ad4dd76337d9d7af94b1d9a1a8b1dd021ef0aeb5eef5",
+          "bytes": 1103
         },
         {
           "name": "LICENSE",
@@ -75,31 +97,90 @@
         },
         {
           "name": "README.md",
-          "sha256": "4fba238d5a1e87468c0b80a626466fc67d85640c5eefca484c880263b98644f8",
-          "bytes": 1804
+          "sha256": "cc7a440ee787eb68ad636846c8c682948b9a51b2b847e177debf90a3b1d239b7",
+          "bytes": 2305
         },
         {
           "name": "assets/logo.png",
-          "sha256": "0b274d5691e551b86d1ba6def763d33ad0d4c3c0b7ccd000656bd3fad43ae131",
-          "bytes": 36034
+          "sha256": "cc0a3c229347e47a154a00c9e6dfa774c0e1f07ee9fc063935af5bc4897f4b18",
+          "bytes": 21052
         },
         {
           "name": "mcp.json",
-          "sha256": "9d3f3737200d1f0434bb218cc8de3c8fb3d0a22bd13b205a735c4701cf3d2858",
-          "bytes": 234
+          "sha256": "b58605b1536159e225e0c338a99fbadfb5395067191a651882b3e46791003dd1",
+          "bytes": 211
         },
         {
           "name": "skills/ultiwrite/SKILL.md",
-          "sha256": "f4fbb0d2f03e459dbaea8ac8fbb918c204b1639e70b0390bb663399c660990ff",
-          "bytes": 1823
+          "sha256": "aeb2bf5edd33ad9930ed7ab8c75022cfc2156cadf0d148459550e737c500a4ef",
+          "bytes": 2802
+        }
+      ]
+    },
+    {
+      "file": "release/Ultiwrite_Claude_Plugin_v0.9.0.zip",
+      "version": "0.9.0",
+      "mcp_url": "https://mcp.dwsoffshorepartners.com/mcp",
+      "built_by": "scripts/pack-public-connectors.mjs: sorted entries, deflate level 9, fixed 2026-10-29 timestamps",
+      "sha256": "03651e6ba207224b895c384b07bb81c6d4be3a2493db594ca29efd511a933472",
+      "bytes": 32665,
+      "members": [
+        {
+          "name": ".claude-plugin/plugin.json",
+          "sha256": "683f74ff21c8eaef7e7fcf57cb8103a17d15eedad882695565468d126161462f",
+          "bytes": 1265
+        },
+        {
+          "name": ".mcp.json",
+          "sha256": "402ec557cf938178c278cb98658f91a2acb1fae2c9ed29a5e51c5bc67725a486",
+          "bytes": 128
+        },
+        {
+          "name": "LICENSE",
+          "sha256": "0122d7b57a1ef1e40944c88e2e0261b334fcf5f779e9deb52d49463de20a977d",
+          "bytes": 1767
+        },
+        {
+          "name": "README.md",
+          "sha256": "4dbdb2572fd194848a4c9a64c8ca0c30c1c676565f7e6552eee265f7e90795ff",
+          "bytes": 8164
+        },
+        {
+          "name": "assets/logo.png",
+          "sha256": "cc0a3c229347e47a154a00c9e6dfa774c0e1f07ee9fc063935af5bc4897f4b18",
+          "bytes": 21052
+        },
+        {
+          "name": "skills/connect-account/SKILL.md",
+          "sha256": "583bd4129f8c94390606e98afaa846eaa4e57f494e3d264f4e8560f9f77b15ac",
+          "bytes": 4479
+        },
+        {
+          "name": "skills/follow-up/SKILL.md",
+          "sha256": "0ee2254c10ef92c5ffb1af44ea646b494b31418bcca4ca6217afd1ff2cacd9ea",
+          "bytes": 1739
+        },
+        {
+          "name": "skills/read-report/SKILL.md",
+          "sha256": "e591094f133f77d76b20108b8ad1b2ffd8962357939b0b596df93d53a3759add",
+          "bytes": 2385
+        },
+        {
+          "name": "skills/submit-evidence/SKILL.md",
+          "sha256": "ea3856ed6fb7994bcb4a580b5cb64c11fe484446e29fda617108372988966543",
+          "bytes": 2695
+        },
+        {
+          "name": "skills/ultiwrite/SKILL.md",
+          "sha256": "88ae4c10d4585881be681b7b35c392868a28e545fdaba93bec8a940f88585ba8",
+          "bytes": 4265
         }
       ]
     },
     {
       "file": "release/Ultiwrite_Claude_Plugin_v0.8.3.zip",
       "version": "0.8.3",
-      "mcp_url": "https://mcp.dwsoffshorepartners.com/mcp",
-      "built_by": "scripts/pack-public-connectors.mjs: sorted entries, deflate level 9, fixed 2026-10-29 timestamps",
+      "status": "historical archive retained unchanged; current package sources are 0.9.0",
       "sha256": "97e3cfd855c3b1344a9bbfbe6cc1b9d317403d7c869ac416d3bec23989803f00",
       "bytes": 31912,
       "members": [
@@ -158,7 +239,7 @@
     {
       "file": "release/Ultiwrite_Claude_Plugin_v0.8.1.zip",
       "version": "0.8.1",
-      "status": "superseded by Claude 0.8.3; kept so existing links keep working; not rebuilt",
+      "status": "historical archive retained unchanged; current package sources are 0.9.0",
       "sha256": "11520ccd818dddd576a7b230e08b74142f3012fb0ea2d10f4b6f37c105e6e8b0",
       "bytes": 54244,
       "members": [
@@ -212,7 +293,7 @@
     {
       "file": "release/Ultiwrite_Claude_Plugin_v0.8.0.zip",
       "version": "0.8.0",
-      "status": "superseded by Claude 0.8.3; kept so existing links keep working; not rebuilt",
+      "status": "historical archive retained unchanged; current package sources are 0.9.0",
       "sha256": "619656fae4e9b9db2d7a7e0c813713d859cde291062c21912bb38fc7297ca28e",
       "bytes": 54083,
       "members": [
@@ -266,7 +347,7 @@
     {
       "file": "release/ultiwrite-claude-plugin-0.7.1.zip",
       "version": "0.7.1",
-      "status": "superseded by Claude 0.8.3; kept so existing links keep working; not rebuilt",
+      "status": "historical archive retained unchanged; current package sources are 0.9.0",
       "sha256": "7b53857bcd7450b68a869b90d29c1112e89fcb3f707fd87ccadcacc73f906bfe",
       "bytes": 39586,
       "members": [
@@ -304,6 +385,79 @@
           "name": "skills/ultiwrite/SKILL.md",
           "sha256": "1bd96522c11083f775b833a3d4b9bebf48eb98199589e8e485adfbf7e5551471",
           "bytes": 2709
+        }
+      ]
+    },
+    {
+      "file": "release/ultiwrite-chatgpt-plugin-0.7.1.zip",
+      "version": "0.7.1",
+      "status": "historical archive retained unchanged; current package sources are 0.9.0",
+      "sha256": "457004b3d46b7aeaddabc1a5d065c181aac2b5a280369be7f9539de39d1339a4",
+      "bytes": 42585,
+      "members": [
+        {
+          "name": "assets/logo.png",
+          "sha256": "0b274d5691e551b86d1ba6def763d33ad0d4c3c0b7ccd000656bd3fad43ae131",
+          "bytes": 36034
+        },
+        {
+          "name": "mcp.json",
+          "sha256": "95000e3fdfd93383da4e2956ac33a265d9742ab591aa2b95e5fa00a52ae7e1ce",
+          "bytes": 929
+        },
+        {
+          "name": "plugin.json",
+          "sha256": "68c26f38a8c648ea73d31c7eda0ae9aec9cc5df754a488bb3081a041eaa4309c",
+          "bytes": 9752
+        },
+        {
+          "name": "README.md",
+          "sha256": "568ed3d5eb8050b2493ff583acc3b84b06c1d0547b3e36bbd4f28435ac92e73c",
+          "bytes": 2283
+        },
+        {
+          "name": "skills/ultiwrite-read/SKILL.md",
+          "sha256": "edd95c4e79385f7d8bf6bfd7c5f33d1d3a7a719141e83910b1f852521ae16add",
+          "bytes": 6606
+        }
+      ]
+    },
+    {
+      "file": "release/ultiwrite-cursor-plugin-0.7.1.zip",
+      "version": "0.7.1",
+      "status": "historical archive retained unchanged; current package sources are 0.9.0",
+      "sha256": "e34aa2e43d7062871de121c479ef5e8a7fe214f20b400464624605fc419e15f1",
+      "bytes": 38589,
+      "members": [
+        {
+          "name": ".cursor-plugin/plugin.json",
+          "sha256": "5cb16dd0c921e4d2088168c178ef93433f4876e16a443f9cfdfa80671e040a5d",
+          "bytes": 618
+        },
+        {
+          "name": "LICENSE",
+          "sha256": "0122d7b57a1ef1e40944c88e2e0261b334fcf5f779e9deb52d49463de20a977d",
+          "bytes": 1767
+        },
+        {
+          "name": "README.md",
+          "sha256": "4fba238d5a1e87468c0b80a626466fc67d85640c5eefca484c880263b98644f8",
+          "bytes": 1804
+        },
+        {
+          "name": "assets/logo.png",
+          "sha256": "0b274d5691e551b86d1ba6def763d33ad0d4c3c0b7ccd000656bd3fad43ae131",
+          "bytes": 36034
+        },
+        {
+          "name": "mcp.json",
+          "sha256": "9d3f3737200d1f0434bb218cc8de3c8fb3d0a22bd13b205a735c4701cf3d2858",
+          "bytes": 234
+        },
+        {
+          "name": "skills/ultiwrite/SKILL.md",
+          "sha256": "f4fbb0d2f03e459dbaea8ac8fbb918c204b1639e70b0390bb663399c660990ff",
+          "bytes": 1823
         }
       ]
     }

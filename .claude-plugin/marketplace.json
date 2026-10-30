@@ -8,8 +8,8 @@
     {
       "name": "ultiwrite",
       "source": "./claude",
-      "description": "Ultiwrite Commercial Diligence connector"
+      "description": "Investigate business claims, cross-domain contradictions and evidence gaps with Ultiwrite’s asymmetric diligence engine."
     }
   ],
-  "description": "Ultiwrite Commercial Diligence: thin remote MCP connectors and client."
+  "description": "Ultiwrite: asymmetric diligence across commercial domains, from ordinary evidence to a wider investigation."
 }

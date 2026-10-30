@@ -1,13 +1,34 @@
 {
   "name": "ultiwrite-mcp",
-  "version": "0.7.1",
-  "description": "Ultiwrite Commercial Diligence connector. Talks to the canonical remote MCP service. Does not include the diligence engine.",
+  "version": "0.9.0",
+  "description": "Connect to Ultiwrite’s asymmetric diligence engine: ordinary commercial documents, wider investigation, reconciled evidence. Thin MCP client; analytical service hosted separately.",
   "type": "module",
   "bin": {
     "ultiwrite-mcp": "./bin/ultiwrite-mcp.js"
   },
-  "files": ["bin", "lib", "README.md", "LICENSE"],
-  "engines": { "node": ">=20" },
+  "files": [
+    "bin",
+    "lib",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
   "license": "MIT",
-  "private": false
+  "private": false,
+  "keywords": [
+    "asymmetric-diligence",
+    "commercial-evidence",
+    "due-diligence",
+    "business-acquisitions",
+    "counterparty-review",
+    "portfolio-analysis",
+    "financial-consistency",
+    "entity-verification",
+    "document-forensics",
+    "underwriting",
+    "property-diligence",
+    "evidence-reconciliation"
+  ]
 }

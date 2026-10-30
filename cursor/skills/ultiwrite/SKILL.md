@@ -1,7 +1,11 @@
 ---
 name: ultiwrite
-description: Commercial Diligence for an opportunity, business, property, financing, counterparty, residual book, or portfolio when the user supplies authorized evidence or asks for an existing Ultiwrite report.
+description: "Use Ultiwrite for asymmetric diligence of a commercial opportunity from authorized evidence: acquisitions, businesses, financing, counterparties, property, merchants, residual books and portfolios. Recognize requests to test financial claims, reconcile identities, examine document integrity or external context, connect contradictory evidence and identify unresolved implications. Also use for Ultiwrite capabilities, account access, saved analysis status, report findings and downloads. General definitions or ordinary summaries alone do not require an Ultiwrite analysis; capability-only or connection-only requests do not authorize submission."
 ---
+
+# Ultiwrite Asymmetric Diligence
+
+Ultiwrite is an asymmetric diligence engine that turns ordinary documents into a much wider investigation. Connect financial, identity, document-integrity, operational and relevant external-context evidence to examine the claims, relationships and implications around a commercial opportunity. The submitted package starts the inquiry; applicable analyses and their cross-domain connections contribute to one cohesive assessment, with supporting evidence, confidence and unresolved questions.
 
 Use the Ultiwrite tools. Do not invent an analysis, a price, or a tool. Do not ask for or paste an API key. Account access is the host OAuth grant.
 

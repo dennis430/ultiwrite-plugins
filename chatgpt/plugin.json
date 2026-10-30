@@ -1,8 +1,8 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "ultiwrite",
-  "version": "0.7.1",
-  "description": "Commercial Diligence in ChatGPT: submit consented evidence packages through Ultiwrite’s shared diligence workflow and read generated reports for your organization.",
+  "version": "0.9.0",
+  "description": "Asymmetric diligence across commercial domains. Investigate business claims, financial consistency, identities, document integrity and external context; retrieve reconciled findings and evidence from Ultiwrite.",
   "author": {
     "name": "DWS Offshore Fund",
     "email": "nick@ultiwrite.co",
@@ -10,33 +10,42 @@
   },
   "homepage": "https://dwsoffshorepartners.com",
   "keywords": [
-    "commercial-diligence",
-    "evidence",
-    "coherence",
-    "reports"
+    "asymmetric-diligence",
+    "commercial-evidence",
+    "due-diligence",
+    "business-acquisitions",
+    "counterparty-review",
+    "portfolio-analysis",
+    "financial-consistency",
+    "entity-verification",
+    "document-forensics",
+    "underwriting",
+    "property-diligence",
+    "evidence-reconciliation"
   ],
   "extensions": {
     "com.openai": {
       "interface": {
         "displayName": "Ultiwrite",
         "shortDescription": "Asymmetric Diligence Engine",
-        "longDescription": "Ultiwrite — Asymmetric Diligence Engine. Commercial Diligence by DWS Offshore Fund.\n\nExamine the evidence behind opportunities, organizations, counterparties, acquisitions, financings, assets, operating relationships and portfolios. Ultiwrite connects source economics, document integrity, material contradictions and unresolved claims to the next diligence move.\n\nConnect your existing account. ChatGPT can submit one to six attached files, 8 MiB each and 12 MiB together, from oaiusercontent.com or a valid subdomain. Larger selections use the signed Ultiwrite upload link and the account’s ordinary upload limits. Files enter the same saved upload and report workflow used on the Ultiwrite website. Follow processing and required-review states, then read the report in ChatGPT once it is generated. Missing evidence, unresolved claims and pending or failed capabilities remain explicit. A saved submission is not a completed assessment.\n\nAsk what Ultiwrite does or how to start an analysis for the current offer and account links. Your first Ultiwrite analysis includes the full applicable analysis and full report for $0.00 before public launch. Contact us for further-analysis pricing. No card required. No automatic charge. It is one first completed analysis per account; a failed analysis does not use it. Existing purchased entitlements remain available. This connection does not sell products or take payment. An optional staff-reviewed evaluation is separate.\n\nReading requires an authorized account. File submission requires separate evidence consent and the account’s existing processing allowance. Reports support human review; the connection does not issue a final business approval or decision authorization. It cannot analyze arbitrary web links or another organization’s records.\n\nRead report findings in ChatGPT using exactly one caseId or reportId. A known report id from an authorized website report works without creating a case. Case listing discovers authorized stored cases and released website reports, including reports without a case. Both read selectors use the same frozen assessment and tenant access. For delivery, the export tool returns the account report link, a sign-in link and the download formats your organization can use; CSV text may be included when entitled. Open website links in your browser and sign in to the same account for PDF, Excel or ZIP downloads. No public report URL, presigned link or binary download is returned to ChatGPT.",
+        "longDescription": "Ultiwrite is an asymmetric diligence engine that turns ordinary documents into a much wider investigation.\n\nStart with business applications, bank and processing statements, financials, property materials, portfolio schedules or mixed evidence packages. Ultiwrite investigates businesses, people, assets and relationships, connecting submitted evidence with company records, digital footprints and relevant external context. It follows financial, identity, document-integrity and operational signals to expose risk, reconstruct economics and identify opportunities. Cross-domain contradictions and unexpected implications contribute to a cohesive assessment with supporting evidence, confidence, unresolved questions and next steps.\n\nIts Commercial Diligence applications span business acquisitions, merchant and financing review, residual or ISO books, portfolios, property and counterparty investigations. The engine determines which supported analyses apply to the evidence.\n\nConnect your Ultiwrite account, submit evidence you are authorized to share, follow the saved analysis and read its findings. Where a host cannot transfer the selected files, continue through the returned secure upload link. Retrieve saved cases and reports, including website reports without a case, and open authorized downloads in the same account.\n\nFindings preserve what was observed, inferred or unresolved and disclose missing or unavailable coverage. Document forensics follows the user’s explicit choice or the engine’s applicability decision. Reports support the user’s investigation; submitting or reading evidence does not approve a transaction.",
         "developerName": "DWS Offshore Fund",
-        "category": "Productivity",
+        "category": "Business & Operations",
         "capabilities": [
-          "Explain Commercial Diligence, pricing and how to start an analysis",
-          "Submit consented ChatGPT attachments and ZIP evidence packages",
-          "Track saved diligence processing and required review",
-          "Read report findings and get authorized report downloads"
+          "Investigate commercial claims across financial, identity, document-integrity, operational and external-context evidence",
+          "Examine acquisitions, financing, counterparties, properties, merchant and residual portfolios from authorized documents",
+          "Connect contradictions, corroboration, evidence gaps and unexpected implications in a reconciled assessment",
+          "Submit authorized evidence, follow saved analysis and recover the connected account",
+          "Read findings with evidence, confidence and open questions, then retrieve authorized report downloads"
         ],
         "websiteURL": "https://dwsoffshorepartners.com",
         "supportURL": "https://dwsoffshorepartners.com/contact",
         "privacyPolicyURL": "https://dwsoffshorepartners.com/privacy",
         "termsOfServiceURL": "https://dwsoffshorepartners.com/terms",
         "defaultPrompt": [
-          "What can Ultiwrite establish about my commercial evidence, and how do I start an analysis?",
-          "Submit these files to Ultiwrite for Commercial Diligence.",
-          "Show my latest diligence report and how I can download it."
+          "Investigate this business opportunity from the attached documents. Check what supports the claims, what conflicts, and what else the evidence reveals.",
+          "I’m reviewing this portfolio. Which relationships, inconsistencies and unresolved risks deserve a closer look?",
+          "Show my latest Ultiwrite report, explain its evidence and confidence, and give me the download links."
         ],
         "brandColor": "#d39891",
         "logo": "./assets/logo.png",
@@ -99,10 +108,10 @@
           ]
         },
         "commerce": false,
-        "commerce_description": "This connection provides pricing information and account links. Your first Ultiwrite analysis includes the full applicable analysis and full report for $0.00 before public launch. Contact us for further-analysis pricing. No card required. No automatic charge. This connection does not sell products, start subscriptions or process payments. Existing purchased analysis entitlements remain available."
+        "commerce_description": "Authorized users can submit business evidence, track processing and retrieve saved diligence reports. This connection does not sell products, start subscriptions or process payments."
       },
       "publication": {
-        "release_notes": "0.7.1: manifest version matches the public connector source. Same production MCP server, tool names, and OAuth endpoints as 0.7.0. Not uploaded to the OpenAI directory. Replaces the unsubmitted 0.7.0 website candidate as the source archive."
+        "release_notes": "0.9.0: consistent asymmetric diligence positioning and customer-intent descriptions across listing and skill metadata. Retains the 0.7.2 portable MCP configuration and current report-discovery and document-forensics semantics. Synchronizes the existing approved gold Uw icon without redesign. Existing plugin identity, permissions and hosted tools are preserved. Package preparation does not establish directory publication or host evaluation."
       }
     }
   }

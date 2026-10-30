@@ -1,8 +1,8 @@
 {
   "name": "ultiwrite",
   "displayName": "Ultiwrite",
-  "version": "0.8.3",
-  "description": "Asymmetric Diligence. Connect Claude to Ultiwrite's Asymmetric Diligence Engine to investigate commercial opportunities through document analysis, independent verification and evidence-backed findings, then read the reconciled report.",
+  "version": "0.9.0",
+  "description": "Ultiwrite turns ordinary documents into a wider commercial investigation. Connect financial, identity, document-integrity, operational and external-context evidence across acquisitions, financing, counterparties, property and portfolios, then read the reconciled findings, confidence and open questions.",
   "author": {
     "name": "DWS Offshore Fund",
     "url": "https://dwsoffshorepartners.com"
@@ -10,7 +10,20 @@
   "homepage": "https://dwsoffshorepartners.com/docs/mcp",
   "repository": "https://github.com/dennis430/ultiwrite-plugins",
   "license": "MIT",
-  "keywords": ["asymmetric-diligence", "independent-verification", "commercial-diligence", "due-diligence", "underwriting", "document-forensics", "merchant-risk", "mcp"],
+  "keywords": [
+    "asymmetric-diligence",
+    "commercial-evidence",
+    "due-diligence",
+    "business-acquisitions",
+    "counterparty-review",
+    "portfolio-analysis",
+    "financial-consistency",
+    "entity-verification",
+    "document-forensics",
+    "underwriting",
+    "property-diligence",
+    "evidence-reconciliation"
+  ],
   "icon": "./assets/logo.png",
   "documentationUrl": "https://dwsoffshorepartners.com/docs/mcp",
   "supportUrl": "https://dwsoffshorepartners.com/contact",

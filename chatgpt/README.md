@@ -1,15 +1,30 @@
-# Ultiwrite ChatGPT plugin package
+# Ultiwrite for ChatGPT and Codex
 
-Version 0.7.1. Publisher: DWS Offshore Fund. This directory is the ZIP source for contract `ultiwrite-mcp-evidence@7`.
+Version 0.9.0. Publisher: DWS Offshore Fund. Portable package for the existing Ultiwrite plugin identity.
 
-The production MCP endpoint is `https://dwsoffshorepartners.com/api/integrations/ultiwrite/mcp`. This package does not prove a ChatGPT host install, an OpenAI directory upload, or a directory approval. The existing OpenAI draft identity remains the unpublished 0.4.1 listing. Do not create a second listing.
+Ultiwrite is an asymmetric diligence engine that turns ordinary documents into a much wider investigation.
 
-Rebuild the archive with `node scripts/pack-public-connectors.mjs`. That command writes `release/ultiwrite-chatgpt-plugin-0.7.1.zip` and the Claude and Cursor archives. A built ZIP is not an installed integration.
+The evidence you provide starts the inquiry. Ultiwrite connects financial, identity, document-integrity, operational and relevant external-context signals, follows contradictions and unexpected implications across them, and brings the results into a cohesive assessment with supporting evidence, confidence and open questions.
 
-The product is Ultiwrite — Asymmetric Diligence Engine; the category is Commercial Diligence; DWS Offshore Fund is the legal publisher. This adapter uses the shared DWS upload, evidence, comprehensive-report and publication controls. File submission accepts ChatGPT file objects from `files.oaiusercontent.com` with explicit `ultiwrite:evidence` consent and existing account allowance, including supported ZIP evidence packages. Processing and review states remain visible; a saved submission is not a completed assessment or a report release.
+Use Ultiwrite to investigate business acquisitions, financing, property, counterparties, merchants, residual or ISO books and portfolios. The service determines which supported analyses apply. The plugin connects the user’s task to that shared engine and returns its saved findings.
 
-`ultiwrite_capabilities_get` exposes the public pricing from the existing offer registry (first completed analysis $0.00 with the full applicable analysis and full report before public launch; contact us for further-analysis pricing; no card required and no automatic charge) and the account links. Requests do not commission work, take payment or create accounts. Released reports provide authenticated website report, sign-in and entitled download links. No public report access, presigned URL or binary file fetch is created.
+## Connect and investigate
 
-No credential belongs here. `mcp.json` names the canonical production endpoint, contains no server headers or client credential, and does not authorize deployment. `defaultScopes` requests evidence consent in addition to read; the user can decline. The logo is `assets/logo.png`. No ChatGPT UI screenshot is supplied because the plugin has no custom UI.
+The portable `mcp.json` uses `https://mcp.dwsoffshorepartners.com/mcp` with Streamable HTTP. It retains the 0.7.2 parser-compatible configuration: only transport type and URL in the server entry, with OAuth handled through the service’s authentication challenge and discovery metadata. No credential or static OAuth client configuration is packaged.
 
-`node scripts/pack-public-connectors.mjs` is the reproducible pack command. Do not publish to npm, submit a directory listing, or deploy the website from this repository.
+Connect the intended Ultiwrite account and approve the permissions needed for the task. Account checks verify the connected identity; capability questions do not submit evidence. Authorized submissions use actual supported attachment objects or the returned secure upload handoff when the host cannot transfer them. Follow the saved case and its returned continuation. A stored submission, `processing`, `action_required`, partial coverage or a failed capability must remain explicit.
+
+Saved cases and reports can be discovered together, including website reports without a case. Read a report with exactly one case or report identifier. Preserve the engine’s findings, supporting evidence, confidence, hypotheses and unresolved questions. Report and download links require the same account in a browser. This connection does not approve a transaction, create public report access or fetch PDF, Excel or ZIP binaries.
+
+Account allowance, pricing, supported inputs and current limits come from the canonical service. This metadata revision changes no commercial entitlement or processing behavior.
+
+## Package and verification
+
+From the repository root, run `node scripts/pack-public-connectors.mjs` to build `release/ultiwrite-chatgpt-plugin-0.9.0.zip`. The archive contains one portable plugin with its manifest, MCP configuration, skill, icon, README and license. Add `--check` for source/archive parity.
+
+Use the existing publisher identity when preparing an update. Source packaging does not establish portal upload, review, publication or an installed host version. Host selection evaluations for this metadata revision are **NOT RUN**; the repository’s discovery suite defines the prompts and expected action boundaries.
+
+Website: https://dwsoffshorepartners.com
+Docs: https://dwsoffshorepartners.com/docs/mcp
+Privacy: https://dwsoffshorepartners.com/privacy
+Support: https://dwsoffshorepartners.com/contact

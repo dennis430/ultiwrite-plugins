@@ -1,6 +1,6 @@
 ---
 name: follow-up
-description: Plan the next diligence step from a saved Ultiwrite report - unresolved questions, contradictions and the specific additional evidence that would change the reading. Use when the user asks what is still open, what to request from a seller or counterparty, or how to strengthen an Ultiwrite assessment.
+description: "Use a saved Ultiwrite investigation to identify the next evidence request or investigative step: unresolved claims, cross-domain contradictions, counter-evidence and information that could change a finding. Use when the user asks what else to examine, what to request from a seller or counterparty, or what remains unexplained in an Ultiwrite assessment. This plans from existing report evidence; it does not contact anyone or start a new analysis."
 ---
 
 # Follow up on an Ultiwrite assessment
