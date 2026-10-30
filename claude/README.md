@@ -1,6 +1,6 @@
 # Ultiwrite for Claude
 
-Ultiwrite Asymmetric Diligence, published by DWS Offshore Fund. Version 0.8.1.
+Ultiwrite Asymmetric Diligence, published by DWS Offshore Fund. Version 0.8.3.
 
 Ultiwrite examines the documents behind a commercial opportunity: an operating business, a merchant application, a residual or ISO book, a portfolio, a property, a financing or a counterparty. It classifies every file, runs every applicable analysis (document integrity, independent verification, identity and entity coherence, processing economics, portfolio relationships, cross-document contradictions, provenance and confidence) and saves one reconciled report. This plugin connects Claude to that same engine and teaches Claude how to use it. Claude does not produce the findings; Ultiwrite does.
 
@@ -8,6 +8,7 @@ Ultiwrite examines the documents behind a commercial opportunity: an operating b
 
 - `.mcp.json`: the Ultiwrite remote MCP server, `https://mcp.dwsoffshorepartners.com/mcp` (Streamable HTTP, OAuth).
 - `skills/ultiwrite`: what Ultiwrite is, which tool to use, permissions and boundaries.
+- `skills/connect-account`: connect, reconnect, recover a dismissed sign-in window and verify or switch the connected account.
 - `skills/submit-evidence`: submit authorized files through the signed upload link and follow the case.
 - `skills/read-report`: read, page and explain a saved report, its Decision Brief and downloads.
 - `skills/follow-up`: turn unresolved findings into a specific evidence request list.
@@ -16,18 +17,33 @@ No commands, hooks, agents, executables or local servers are included. Nothing r
 
 ## Requirements
 
-An existing Ultiwrite account. The first completed analysis on an account is free; `ultiwrite_capabilities_get` returns the current offer. Sign up at https://dwsoffshorepartners.com.
+An Ultiwrite account, which you can create during sign-in or at https://dwsoffshorepartners.com. The first completed analysis on an account is free; `ultiwrite_capabilities_get` returns the current offer. Signing in to the website alone does not connect Claude; complete the OAuth flow from Claude's Connect control.
 
 ## Install
 
-- claude.ai, Claude Desktop and Cowork: add Ultiwrite from the Claude directory once it is listed, or upload `Ultiwrite_Claude_Plugin_v0.8.1.zip` with Customize > Plugins > Add > Upload plugin.
-- Claude Code: `/plugin install ultiwrite --marketplace dennis430/ultiwrite-plugins`, or for one session `claude --plugin-dir ./Ultiwrite_Claude_Plugin_v0.8.1.zip`.
+- claude.ai, Claude Desktop and Cowork: add Ultiwrite from the Claude directory once it is listed, or upload `Ultiwrite_Claude_Plugin_v0.8.3.zip` from Plugins > Add > Upload plugin (Customize > Plugins on the older interface).
+- Claude Code: add the marketplace with `/plugin marketplace add dennis430/ultiwrite-plugins`, then run `/plugin install ultiwrite@ultiwrite`. For one session, clone this repository and run `claude --plugin-dir ./claude`, or extract the ZIP and pass the extracted directory containing `.claude-plugin/plugin.json`. `--plugin-dir` takes a directory, not a ZIP file.
 - Connector only, without the skills: add a custom connector with URL `https://mcp.dwsoffshorepartners.com/mcp`, or run `claude mcp add --transport http ultiwrite https://mcp.dwsoffshorepartners.com/mcp`.
 
-The first tool call opens Ultiwrite sign-in and a consent screen. Approve `ultiwrite:read` to read cases and reports and `ultiwrite:evidence` to submit evidence. No API key or password is ever entered in chat or stored in this plugin.
+Ask "Connect Ultiwrite and confirm which account is connected." Claude calls the protected `ultiwrite_account_get` tool, which triggers its native Connect prompt when authorization is needed. Capability information describes the service; the account check verifies the connected identity. Approve `ultiwrite:read` to read cases and reports and `ultiwrite:evidence` when you want to submit evidence. No API key or password is ever entered in chat or stored in this plugin.
+
+## Connect again or use a different account
+
+Closing the first sign-in popup does not require reinstalling the plugin:
+
+1. Ask "Reconnect Ultiwrite; I closed the sign-in window." Claude checks the account and uses the native authorization prompt when needed.
+2. You can also open **Plugins > Ultiwrite > Connectors**, select the Ultiwrite connector and choose **Connect** or its available reconnect action. On the older interface, use **Customize > Connectors > Ultiwrite > Connect**. If the connector has not been added yet, add it from the plugin's Connectors tab first. In Claude Code, use **`/mcp` > Ultiwrite > Authenticate**.
+3. Complete sign-in or sign-up in the browser window and approve the requested access. Return to Claude; it checks `ultiwrite_account_get` to confirm the account actually connected.
+
+To switch identities, use Claude's account-switching control if available, or disconnect this Ultiwrite connector and connect it again. On the Ultiwrite consent screen, choose **Use a different account**, sign in to the intended account and approve access. Claude confirms the new identity before continuing. The plugin does not disconnect a valid account unless you ask to switch or replace it.
+
+Claude owns its connection controls and decides whether it offers simultaneous accounts. This plugin supports a fresh authorization and account verification; it does not promise a Gmail-style **Connect another account** row on every host. A connection check never submits evidence or starts an analysis.
 
 ## Example prompts
 
+- "Connect Ultiwrite and confirm which account is connected."
+- "The sign-in window closed. Reconnect Ultiwrite."
+- "Switch Ultiwrite to a different account, then confirm the identity."
 - "What can Ultiwrite do with a seller's residual schedules?"
 - "I have a merchant application and three processing statements. Run Ultiwrite diligence on them."
 - "Show my Ultiwrite cases and summarize the highest-severity findings in the latest report."
@@ -44,7 +60,9 @@ The plugin itself collects nothing and contains no telemetry. When you use it, C
 
 ## Troubleshooting
 
-- "Permission missing" or "reconnect": disconnect and reconnect Ultiwrite in your connector settings and approve both permissions.
+- Sign-in window closed: use the persistent connection path above or ask Claude to reconnect. Reinstalling is unnecessary.
+- "Permission missing": complete Claude's reauthorization prompt for the requested operation. Reading needs `ultiwrite:read`; evidence submission needs `ultiwrite:evidence`. Use the connector's reconnect controls if no prompt is available.
+- "Reconnect" or expired connection: ask Claude to check the account and complete the native Connect prompt. Verify the account afterward; website sign-in alone does not restore Claude's grant.
 - Upload link expired: ask Claude to submit again; a new 30-minute link is issued.
 - Case still processing: ask Claude to check the case status later. Status reads do not advance processing; Claude continues a case only with the `caseId` the server returned.
 - PDF, Excel or ZIP will not download in chat: open the report link in a browser signed in to the same Ultiwrite account.

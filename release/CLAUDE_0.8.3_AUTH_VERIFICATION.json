@@ -1,0 +1,70 @@
+{
+  "checkedAt": "2026-10-30T03:33:22.843Z",
+  "endpoint": "https://mcp.dwsoffshorepartners.com/mcp",
+  "checks": [
+    {
+      "name": "missing_credentials_first",
+      "pass": true,
+      "status": 401
+    },
+    {
+      "name": "missing_credentials_retry",
+      "pass": true,
+      "status": 401
+    },
+    {
+      "name": "invalid_credentials",
+      "pass": true,
+      "status": 401
+    },
+    {
+      "name": "protected_resource_metadata",
+      "pass": true,
+      "status": 200
+    },
+    {
+      "name": "authorization_server_metadata",
+      "pass": true,
+      "status": 200
+    },
+    {
+      "name": "claude_dynamic_registration",
+      "pass": true,
+      "status": 201
+    },
+    {
+      "name": "first_authorization_reaches_login",
+      "pass": true,
+      "status": 302
+    },
+    {
+      "name": "abandoned_authorization_fresh_retry_reaches_login",
+      "pass": true,
+      "status": 302
+    },
+    {
+      "name": "retry_login_page",
+      "pass": true,
+      "status": 200
+    }
+  ],
+  "hostUi": "NOT_RUN",
+  "authenticatedAccount": "NOT_RUN",
+  "backendCommit": "02204f92755d2efb91cfcb43d77b2ed25ae7466d",
+  "deploymentId": "dpl_5za7V8Rfe3o1tBVAaT6wSXDYQRYw",
+  "scope": "Live protocol and fresh authorization entry only. No documents submitted, analysis created, authenticated account assumed, or Claude UI acceptance claimed.",
+  "directory": "Management portal required sign-in; ingestion and publication status unverified.",
+  "package": {
+    "version": "0.8.3",
+    "archive": "release/Ultiwrite_Claude_Plugin_v0.8.3.zip",
+    "sha256": "97e3cfd855c3b1344a9bbfbe6cc1b9d317403d7c869ac416d3bec23989803f00",
+    "officialValidator": {
+      "command": "claude plugin validate /vercel/plugins/claude",
+      "version": "2.1.312",
+      "exitCode": 0
+    },
+    "structuralValidation": "passed",
+    "archiveSourceParity": "passed",
+    "independentWorkflowReview": "passed"
+  }
+}

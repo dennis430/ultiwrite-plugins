@@ -1,6 +1,6 @@
 ---
 name: ultiwrite
-description: Ultiwrite Commercial Diligence through the connected Ultiwrite account. Use when the user wants to investigate a business, merchant, residual or ISO book, portfolio, property, financing, counterparty or other commercial opportunity from documentary evidence, asks what Ultiwrite does, or mentions a saved Ultiwrite case or report. Not for payments, purchases or inventing records.
+description: Ultiwrite Commercial Diligence through the connected Ultiwrite account. Use when the user wants to connect, reconnect, authenticate, recover a dismissed sign-in window, switch Ultiwrite accounts, investigate a business, merchant, residual or ISO book, portfolio, property, financing, counterparty or other commercial opportunity from documentary evidence, asks what Ultiwrite does, or mentions a saved Ultiwrite case or report. Not for payments, purchases or inventing records.
 ---
 
 # Ultiwrite Commercial Diligence
@@ -24,6 +24,7 @@ Use only tools the host actually exposes. If a tool is missing, say so; do not i
 
 ## Route the request
 
+- "Connect / reconnect / sign in / sign up / the login window closed / use another account / which account is connected": follow the `connect-account` skill. Start with `ultiwrite_account_get` and `{}`; capabilities describe the service, while the account tool verifies the connected identity.
 - "What is Ultiwrite / how do I get a report / what does it cost": call `ultiwrite_capabilities_get` with no arguments and repeat only what it returns. Do not quote a price, a free analysis or a charge it did not return.
 - "Investigate / underwrite / check these documents": follow the `submit-evidence` skill.
 - "What did my report say / show my cases": follow the `read-report` skill.
@@ -31,7 +32,7 @@ Use only tools the host actually exposes. If a tool is missing, say so; do not i
 
 ## Account and permissions
 
-Access is the OAuth grant the user approved when connecting Ultiwrite. Never ask for or accept an API key, password or token in chat. Reading needs `ultiwrite:read`; submitting needs `ultiwrite:evidence`. If a tool reports a missing permission or an expired connection, ask the user to reconnect Ultiwrite in their connector settings and approve it, then retry once.
+Access is the OAuth grant the user approved when connecting Ultiwrite. Never ask for or accept an API key, password or token in chat. Reading needs `ultiwrite:read`; submitting needs `ultiwrite:evidence`. If a tool reports missing permission or an expired connection, follow the `connect-account` recovery workflow. Let Claude's native authorization prompt handle the grant; after the user completes it, verify the identity with `ultiwrite_account_get` before retrying the original request once. Do not submit evidence to test authentication.
 
 ## Boundaries
 
