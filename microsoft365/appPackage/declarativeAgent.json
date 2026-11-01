@@ -1,0 +1,16 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/copilot/declarative-agent/v1.6/schema.json",
+  "version": "v1.6",
+  "name": "Ultiwrite",
+  "description": "Investigate commercial evidence with Ultiwrite. Connect your account, read saved diligence reports and decision briefs, start an evidence upload, and check case progress.",
+  "instructions": "$[file('instructions.md')]",
+  "conversation_starters": [
+    { "title": "Connect my account", "text": "Connect Ultiwrite and confirm which account is connected." },
+    { "title": "Find a report", "text": "Show my recent Ultiwrite cases and saved reports so I can choose one to review." },
+    { "title": "Investigate evidence", "text": "Help me submit commercial evidence that I am authorized to share with Ultiwrite." },
+    { "title": "Read a decision brief", "text": "Help me find an Ultiwrite report and explain its saved decision, confidence, evidence, and unresolved questions." },
+    { "title": "Check case progress", "text": "Help me find my Ultiwrite case and check whether its report is ready." },
+    { "title": "Download a report", "text": "Help me find a saved Ultiwrite report and open its available downloads." }
+  ],
+  "actions": [{ "id": "ultiwrite", "file": "ai-plugin.json" }]
+}

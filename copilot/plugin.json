@@ -1,0 +1,14 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "ultiwrite",
+  "version": "0.1.0",
+  "description": "Asymmetric diligence and investigative intelligence. Submit authorized evidence, follow investigations, and retrieve saved findings and reports through your Ultiwrite account.",
+  "author": {
+    "name": "DWS Offshore Fund, Inc.",
+    "email": "nick@ultiwrite.co"
+  },
+  "homepage": "https://dwsoffshorepartners.com",
+  "repository": "https://github.com/dennis430/ultiwrite-plugins",
+  "license": "MIT",
+  "keywords": ["diligence", "investigation", "business", "underwriting", "documents", "mcp"]
+}

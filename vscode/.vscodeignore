@@ -1,0 +1,11 @@
+src/**
+test/**
+node_modules/**
+dist/**
+.vscode-test/**
+tsconfig.json
+package-lock.json
+*.log
+.env*
+scripts/**
+.gitignore

@@ -51,4 +51,10 @@ Cursor settings can use either Remote MCP URL above. Do not put an API key in ei
 
 `server.draft.json` is unpublished MCP Registry metadata. Do not treat it as a listing.
 
+## Microsoft distribution review candidate
+
+The new [Microsoft distribution guide](DISTRIBUTION.md) covers `vscode/` (an installable VS Code extension), `copilot/` (a portable MCP plugin for GitHub Copilot), `microsoft365/` (the Microsoft 365 Copilot agent and provisioning project), and `registry/server.json` (domain-owned MCP Registry metadata). These are version 0.1.0 review candidates with separate publication and authenticated-host milestones. Existing client packages above retain their current versions.
+
+Build and check the new packages locally with `node scripts/build-microsoft-distribution.mjs`. GitHub Actions is not required; the command does not publish, register an OAuth client, provision a Microsoft tenant, or deploy the service.
+
 Claude source and its ZIP are at 0.8.3; ChatGPT, Cursor, Grok Bot and the client remain at 0.7.1. npm is not published. The Claude directory tracks `claude/` on the configured GitHub branch. A new commit and version make the update available for Anthropic's scan; the portal's review and publication policy determines when it reaches users. GitHub availability does not establish directory approval or an installed client's version.

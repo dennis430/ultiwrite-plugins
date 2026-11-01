@@ -1,0 +1,31 @@
+{
+  "name": "ultiwrite-microsoft365-agent-source",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Source and tenant provisioning for the Ultiwrite Microsoft 365 Copilot declarative agent",
+  "license": "MIT",
+  "engines": { "node": ">=22.8.0" },
+  "scripts": {
+    "setup": "node scripts/setup.mjs",
+    "preflight": "node scripts/preflight.mjs",
+    "register-client": "node scripts/register-client.mjs",
+    "provision": "node scripts/provision.mjs",
+    "icons": "node scripts/icons.mjs",
+    "validate": "node scripts/validate.mjs",
+    "test": "node --test --experimental-test-isolation=none tests/*.test.mjs",
+    "check": "npm run validate && npm test",
+    "build": "node scripts/build-source.mjs",
+    "package": "node scripts/package.mjs",
+    "atk": "atk"
+  },
+  "devDependencies": {
+    "@microsoft/m365agentstoolkit-cli": "1.1.18",
+    "ajv": "8.20.0",
+    "ajv-draft-04": "1.0.0",
+    "ajv-formats": "3.0.1",
+    "fflate": "0.8.3",
+    "sharp": "0.35.5",
+    "yaml": "2.9.1"
+  }
+}

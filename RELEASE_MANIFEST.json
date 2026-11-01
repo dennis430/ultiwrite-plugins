@@ -6,7 +6,7 @@
   "mcp_url": "https://dwsoffshorepartners.com/api/integrations/ultiwrite/mcp",
   "source_repository": "dennis430/merchant-risk-app",
   "source_commit": "f7b292857f5c1c6c91c63806c53f4c98bf0816d3",
-  "note": "SHA-256 of every file except this manifest. Top-level version, mcp_url and source_commit retain the historical 0.7.1 non-Claude package provenance. claude describes the current package maintained in this public repository. Source and archive publication do not establish Claude directory ingestion, approval or installed-client acceptance.",
+  "note": "SHA-256 of every file except this manifest. Top-level version, mcp_url and source_commit retain the historical 0.7.1 non-Claude package provenance. claude describes the current package maintained in this public repository. Source and archive publication do not establish Claude directory ingestion, approval or installed-client acceptance. microsoft describes the independent 0.1.0 distribution candidate added to this public repository. It is not a claim of marketplace approval, tenant provisioning or an authenticated customer journey.",
   "files": [
     {
       "path": ".claude-plugin/marketplace.json",
@@ -17,12 +17,20 @@
       "sha256": "ac087131e5a3670cc818b791aafb7de4b367c082972f57d3526399bd7abcb0a5"
     },
     {
+      "path": ".github/plugin/marketplace.json",
+      "sha256": "ecec4578bed2ebd9552b7ffad76c06f11ab9db761324438951fc664af7a30c43"
+    },
+    {
       "path": ".github/workflows/validate.yml",
       "sha256": "11a70498d45edf58de9e11417e466d6ea3f5179266db4fbfbaac997c299549a4"
     },
     {
       "path": ".gitignore",
-      "sha256": "5f70ee8df0ba474922bf182b542b64c5ec1d67f1c90085cbb97b786cb8f3c775"
+      "sha256": "81d600a28b2d1d8530fd381c04fa93d4362e0cc5342c378ef8de5896748ef1c3"
+    },
+    {
+      "path": "DISTRIBUTION.md",
+      "sha256": "f59534f33650bb8da0fc109bbc73fc589b966aa5565002335d06cba432fef715"
     },
     {
       "path": "INSTALL.md",
@@ -38,7 +46,7 @@
     },
     {
       "path": "README.md",
-      "sha256": "a4c30cbd7e05cc0b93f45736acdf2d724c3503495614a77939154917047b9463"
+      "sha256": "b465316df287cfb15bd4378e702fd52093fb243893301ad127b184274ba361a1"
     },
     {
       "path": "chatgpt/LICENSE",
@@ -133,6 +141,22 @@
       "sha256": "ec5d3531584c1ce33cc336e2dd24f0590fb37ed0ec8287ab546d6fdeb2ad2702"
     },
     {
+      "path": "copilot/LICENSE",
+      "sha256": "0122d7b57a1ef1e40944c88e2e0261b334fcf5f779e9deb52d49463de20a977d"
+    },
+    {
+      "path": "copilot/README.md",
+      "sha256": "2fe33b40fac88acea1b7c7933ab98f7a7d4fc3462f66fb7dfd41eaf71a21f55f"
+    },
+    {
+      "path": "copilot/mcp.json",
+      "sha256": "9d3f3737200d1f0434bb218cc8de3c8fb3d0a22bd13b205a735c4701cf3d2858"
+    },
+    {
+      "path": "copilot/plugin.json",
+      "sha256": "da19d3880788fd59f39185e41876188ed72743f15640b0bf380dd6847cf44bde"
+    },
+    {
       "path": "cursor/.cursor-plugin/plugin.json",
       "sha256": "5cb16dd0c921e4d2088168c178ef93433f4876e16a443f9cfdfa80671e040a5d"
     },
@@ -193,12 +217,192 @@
       "sha256": "9d3f3737200d1f0434bb218cc8de3c8fb3d0a22bd13b205a735c4701cf3d2858"
     },
     {
+      "path": "microsoft365/.gitignore",
+      "sha256": "5c6538a4c9036848fb52b7cb567a285fcfa20e875626d82bb14175f8a34df628"
+    },
+    {
+      "path": "microsoft365/LICENSE",
+      "sha256": "0122d7b57a1ef1e40944c88e2e0261b334fcf5f779e9deb52d49463de20a977d"
+    },
+    {
+      "path": "microsoft365/NOTICE",
+      "sha256": "879c535465b6737c67c9bda2b302d3a447a3275e80f06899cb8a3608fbe3dad8"
+    },
+    {
+      "path": "microsoft365/README.md",
+      "sha256": "c2762b764c3cecf281ad9ef7b8a8c80d7571f29795fc7ee5ff63c3a71537d655"
+    },
+    {
+      "path": "microsoft365/appPackage/ai-plugin.json",
+      "sha256": "6a651260303fff4c89d1debefb2370509f8c066aec200d52823e6ccd74b8215b"
+    },
+    {
+      "path": "microsoft365/appPackage/color.png",
+      "sha256": "eb96b672b49d6dc3c5e2517b2ff465d166e2c1ab40c8b776dd2e32ddcd231124"
+    },
+    {
+      "path": "microsoft365/appPackage/declarativeAgent.json",
+      "sha256": "d21d239e43fcde467ed4652063fc8a198f0b5d9427fe85261b3e5073c4a30f56"
+    },
+    {
+      "path": "microsoft365/appPackage/instructions.md",
+      "sha256": "8a4063daaff014ffa6b5f8784129e35b8b34bdafd34e8a67422aab77d8dbedd9"
+    },
+    {
+      "path": "microsoft365/appPackage/manifest.json",
+      "sha256": "edf5c7bd347959bdb16c51645d6e3ab873b6572f45d1f01d5a3fc8d4b75f9628"
+    },
+    {
+      "path": "microsoft365/appPackage/outline.png",
+      "sha256": "824a7ca517efb4b4e9ab5c8aebe5f8625fc85f51963f0fd686c3aaedb4707815"
+    },
+    {
+      "path": "microsoft365/assets/logo-source.png",
+      "sha256": "cc0a3c229347e47a154a00c9e6dfa774c0e1f07ee9fc063935af5bc4897f4b18"
+    },
+    {
+      "path": "microsoft365/assets/provenance.json",
+      "sha256": "91c312972b3b6b81e00308198c89b223b4065d209e7911e13c845186133cc832"
+    },
+    {
+      "path": "microsoft365/certification/README.md",
+      "sha256": "556faa606b20c56f9530a32c450319b4f2c4ea1f39502c7b40fb0285105c92a3"
+    },
+    {
+      "path": "microsoft365/certification/intro.md",
+      "sha256": "318e76da9c0122a76ce72c310f572e931e233dd75d2c6932b885366c38603e1f"
+    },
+    {
+      "path": "microsoft365/certification/manifest.template.json",
+      "sha256": "279a84bdac1e484ba49715e14bc4e42ffd8709141888ebf4f889f99ce965efd6"
+    },
+    {
+      "path": "microsoft365/certification/tool-inventory.json",
+      "sha256": "7c63185ce47677aec77a6195d767f68b37e8406e9ad9a12183614702ebae8fef"
+    },
+    {
+      "path": "microsoft365/docs/implementation-evidence.md",
+      "sha256": "295780740afb6ad343a52225d932db95e6f107aaa6d54bb5474cb3edfb3a07b4"
+    },
+    {
+      "path": "microsoft365/docs/marketplace-listing.md",
+      "sha256": "97c1c89f0f2df7289a027805392d8b0d0d401066d8672819cefd8754fb75d2a3"
+    },
+    {
+      "path": "microsoft365/docs/privacy-and-data-flow.md",
+      "sha256": "15b5164f94f8d3a32b6fb26438b7f5443e5dc876f2a3af0f85886dc9cadeae26"
+    },
+    {
+      "path": "microsoft365/docs/release.md",
+      "sha256": "dacfb6acbabe4a545bbc1cce66d0a35fb999852b7f9f52c8ba80d2ad45b0d7a7"
+    },
+    {
+      "path": "microsoft365/docs/reviewer-scenarios.md",
+      "sha256": "3376992019d1937b84f5b8f0bfa529e8df64af40a905506587a6c97253a9cc9b"
+    },
+    {
+      "path": "microsoft365/docs/support.md",
+      "sha256": "94c1d35d19362140e9daeeaa38d2f4454e19a10ed25b6844fd198077645c9755"
+    },
+    {
+      "path": "microsoft365/m365agents.local.yml",
+      "sha256": "b2c0333e249a76902cf0d9f2dd77708c0c1e2c100ad1af1498cf9423fce7bc37"
+    },
+    {
+      "path": "microsoft365/m365agents.yml",
+      "sha256": "b2c0333e249a76902cf0d9f2dd77708c0c1e2c100ad1af1498cf9423fce7bc37"
+    },
+    {
+      "path": "microsoft365/package-lock.json",
+      "sha256": "dc26f11bb8ba1c105a3d5ed5f1cb11b18871b1a8b6c0e2bf8de2034423df487d"
+    },
+    {
+      "path": "microsoft365/package.json",
+      "sha256": "0143217e8c6ed614567e7e23e9e9ccc2eea2868692c538bfed83e43df8ad7279"
+    },
+    {
+      "path": "microsoft365/scripts/build-source.mjs",
+      "sha256": "ac2b8d93ef25fd967ad42cbfdf4e6842ca52d20937742ce5514d5126e2f38e1b"
+    },
+    {
+      "path": "microsoft365/scripts/icons.mjs",
+      "sha256": "935c9d42d0f153eeaf742c2d488634345c50b733f9230533913a556827b12372"
+    },
+    {
+      "path": "microsoft365/scripts/lib.mjs",
+      "sha256": "4a26de4cf3057551d4669526ec884bd1c91ec918832aaaacd7806f3fc27b2272"
+    },
+    {
+      "path": "microsoft365/scripts/package.mjs",
+      "sha256": "54f3b708c0623ab6ff1797b8d54d1dc33a9aa67a5069c4a2faa7135f435a217f"
+    },
+    {
+      "path": "microsoft365/scripts/preflight.mjs",
+      "sha256": "b1f3b9660eefd7287f276287bb1a502d6d8f7c996c1c1e25abce9b8e5c0b5e12"
+    },
+    {
+      "path": "microsoft365/scripts/provision-precheck.mjs",
+      "sha256": "4785b025e4d074eec6f28968a7ab5820117798030bc5df409275a33fd340a717"
+    },
+    {
+      "path": "microsoft365/scripts/provision.mjs",
+      "sha256": "999b745dd347fe06a82acd835979abedd77674c3a7e9e47387648981a04aea8e"
+    },
+    {
+      "path": "microsoft365/scripts/register-client.mjs",
+      "sha256": "4e0c6c1d9841bd568fbbd9093a3c7f604eb9cbbebb2430f6dcc08f85366549a6"
+    },
+    {
+      "path": "microsoft365/scripts/setup.mjs",
+      "sha256": "b4ed05cbd829b03ca8e3e83d2d5a8de5497a5529ef81cd38d0260623095e438f"
+    },
+    {
+      "path": "microsoft365/scripts/validate.mjs",
+      "sha256": "5b947a0289867180765576a96ad40ff0c94add5f00633b14b39d4e850adb64aa"
+    },
+    {
+      "path": "microsoft365/scripts/validation.mjs",
+      "sha256": "71a380ef6b3f6b7f684c855b651b9ba6994470ea61d6c69a0cd6c7e1acecd579"
+    },
+    {
+      "path": "microsoft365/tests/package.test.mjs",
+      "sha256": "339de45aee2e906394e4eea00a0aae5056cc73780d2a2b013e86c3fdd0b14b4a"
+    },
+    {
+      "path": "registry/README.md",
+      "sha256": "7934638a2ae6d32f9032c46f7924ee1b9d02fa76cae3f3644c1ba0e4ce58f168"
+    },
+    {
+      "path": "registry/package-lock.json",
+      "sha256": "d7f48b4145b1c627718d90c079f3db2e006194a4fdecf687802f4de2a8a7a760"
+    },
+    {
+      "path": "registry/package.json",
+      "sha256": "f0b54ff394bd30f5b8ace552777c5ee3ec3e3e5318f06086a780e6b83a20608b"
+    },
+    {
+      "path": "registry/server.json",
+      "sha256": "2cdb37fe4e5d6fa5f3d28e219210f1205b56762a78d2d6f69067cda5a5ee73a4"
+    },
+    {
+      "path": "registry/validate.mjs",
+      "sha256": "1db90a21bf7f0dca50cee460a6571d7088da860f954103e34014b15303936728"
+    },
+    {
       "path": "release/CLAUDE_0.8.3_AUTH_VERIFICATION.json",
       "sha256": "b9003ebb3bea1ecafe81e6ec5246a04ab2bd966da68d092674e5a2de07484c30"
     },
     {
       "path": "release/INVENTORY.json",
       "sha256": "85a3cfdba98f5dd4c6ca8d032bc9f2225505f30468ed0e5cc2a26f563b420e66"
+    },
+    {
+      "path": "release/MICROSOFT_SHA256SUMS.txt",
+      "sha256": "b3ed99a42f849d568006e874bf09749b17720968373241a3a860c65e5be17e4e"
+    },
+    {
+      "path": "release/MICROSOFT_VERIFICATION.json",
+      "sha256": "f7de1015fa6fa32f103da3682f89c6772e69644433ade5338b85d8b54e5efbd4"
     },
     {
       "path": "release/SHA256SUMS.txt",
@@ -217,6 +421,10 @@
       "sha256": "97e3cfd855c3b1344a9bbfbe6cc1b9d317403d7c869ac416d3bec23989803f00"
     },
     {
+      "path": "release/Ultiwrite_Microsoft_Distribution_0.1.0.zip",
+      "sha256": "1d3fded6ba632f7674967ab7187615aa7c14ac1d1c8d84d415438ff1f3c2d7b6"
+    },
+    {
       "path": "release/ultiwrite-chatgpt-plugin-0.7.1.zip",
       "sha256": "457004b3d46b7aeaddabc1a5d065c181aac2b5a280369be7f9539de39d1339a4"
     },
@@ -225,20 +433,120 @@
       "sha256": "7b53857bcd7450b68a869b90d29c1112e89fcb3f707fd87ccadcacc73f906bfe"
     },
     {
+      "path": "release/ultiwrite-copilot-plugin-0.1.0.zip",
+      "sha256": "8227161a0f3780a106cf08d8ca888d099804516ee4fa420d2eca9d5d41f18aed"
+    },
+    {
       "path": "release/ultiwrite-cursor-plugin-0.7.1.zip",
       "sha256": "e34aa2e43d7062871de121c479ef5e8a7fe214f20b400464624605fc419e15f1"
+    },
+    {
+      "path": "release/ultiwrite-m365-source-0.1.0.zip",
+      "sha256": "d908545dc1e8e8f8038f8ed95579218d2c09614584bf6a49da4c2d9fc12a301e"
+    },
+    {
+      "path": "release/ultiwrite-vscode-0.1.0.vsix",
+      "sha256": "10404aba6129802c913f953c9a6552a8c40f11697ee5f82f32bfb3a2f6b6e6e0"
+    },
+    {
+      "path": "scripts/build-microsoft-distribution.mjs",
+      "sha256": "875e06213aa4360211c58d963dcbcdacff0db8aa8ae535a83f806109e00bdc40"
     },
     {
       "path": "scripts/pack-public-connectors.mjs",
       "sha256": "696abdb715a3d0f12550b3c7df8ebcaa18b0068dd914761c1128fc5935b8836f"
     },
     {
+      "path": "scripts/validate-microsoft-distribution.mjs",
+      "sha256": "516466da4807956cc87dbe6a52118546d48273b220a88bacc578ea93846c8a46"
+    },
+    {
       "path": "scripts/validate-public-plugins.mjs",
-      "sha256": "9645617ab8bba84dcf8f5a62cd740ad461368595934264db50c3453c0e9ca370"
+      "sha256": "c8d45eeadc9e28d6644aa0bb9ef606761f255162b135cfeea40a6e0ef8291c12"
+    },
+    {
+      "path": "scripts/validate-public-source.mjs",
+      "sha256": "547cfa7976605a08e0c087d70a74c455ac493a22531a0f7d1475017731f5d145"
     },
     {
       "path": "server.draft.json",
       "sha256": "661f6d5ad4678dc3b32c83d1fbe05bde9cce24c2f11afd89fa01fe9aabcc7dcf"
+    },
+    {
+      "path": "vscode/.gitignore",
+      "sha256": "048e045f8ff6692538d4aaff56363637a218c30a065d15a29190f9367776fcc6"
+    },
+    {
+      "path": "vscode/.vscodeignore",
+      "sha256": "7c8b003aafd1851e328bf27b1a746d3eddadd94e530b8c1586e7e02a2a0c04b4"
+    },
+    {
+      "path": "vscode/CHANGELOG.md",
+      "sha256": "a432d0f40af5e440830b2a75f4fe8a37bb90d9974839c19e2202ae3cd9d1ab92"
+    },
+    {
+      "path": "vscode/LICENSE",
+      "sha256": "023383575bf2fec80d9d98862c8a57f7a84b93fecd2af8d62545041f12c3391b"
+    },
+    {
+      "path": "vscode/NOTICE",
+      "sha256": "11065f1f49a063a76013b9c1fe05611eec9c3b0d6a99ce7700ed5377e0febea8"
+    },
+    {
+      "path": "vscode/README.md",
+      "sha256": "ed83e4d9d8ae65092c6fa3b7455bdeb8a3118a56524239805418d954e43afbc8"
+    },
+    {
+      "path": "vscode/TESTING.md",
+      "sha256": "81a2d6e0f37571bbe0f6203167097f1a0af82160d66c0a914ffd533b3a22180a"
+    },
+    {
+      "path": "vscode/assets/logo.png",
+      "sha256": "0b274d5691e551b86d1ba6def763d33ad0d4c3c0b7ccd000656bd3fad43ae131"
+    },
+    {
+      "path": "vscode/package-lock.json",
+      "sha256": "e0b7003657f680df3f3c77bf067689b1a41451b83ea9b49f476b187ad55b2d8d"
+    },
+    {
+      "path": "vscode/package.json",
+      "sha256": "e01ff5981ffe01110dde91e886d518668da3579f687361e83bf5d36edc7d3788"
+    },
+    {
+      "path": "vscode/scripts/package.cjs",
+      "sha256": "7098027aed0fec787d5ced82f49c985e1253a2716c27423e42ad62fece602557"
+    },
+    {
+      "path": "vscode/src/auth.ts",
+      "sha256": "934cfcc390081f54242d7c41a9dae83b7e2682e1912fa4061aa8e5d68ffe05a3"
+    },
+    {
+      "path": "vscode/src/extension.ts",
+      "sha256": "5200cadf0d8546ce42229f3c441e6cb16b3f56b0774fa2dd881c68bc02adefdb"
+    },
+    {
+      "path": "vscode/src/service.ts",
+      "sha256": "ec96b35e00f3f06b9c321d7afad02ba64f5631fc6e19cd9bfcb6d45719433a0d"
+    },
+    {
+      "path": "vscode/test/auth.test.cjs",
+      "sha256": "862ce51ad72d7eb54c0789490ccd21077b257c4a7518e4698ccdcd9c722acfb2"
+    },
+    {
+      "path": "vscode/test/host-suite.cjs",
+      "sha256": "3f8e92bcbabcbe5fad7862083bf1d97905a22b86c0ff95cb51c0e345fb14e438"
+    },
+    {
+      "path": "vscode/test/run-host.cjs",
+      "sha256": "01ce8a74573fe6548939e54e794b2b666882adc8f3d68a573131ba9236664c52"
+    },
+    {
+      "path": "vscode/test/service.test.cjs",
+      "sha256": "b82aeca75bef485b0d139befcb2ff287b9210696bce566a5351fd287786a5217"
+    },
+    {
+      "path": "vscode/tsconfig.json",
+      "sha256": "b00712ee7459dc8161ce839203a644d61dbf1240d5d0e3b0f8812295979d1179"
     }
   ],
   "claude": {
@@ -262,5 +570,36 @@
     "source_repository": "dennis430/ultiwrite-plugins",
     "source_base_commit": "822663e978db2f461943781a4aabba835ca5caf3",
     "verification": "release/CLAUDE_0.8.3_AUTH_VERIFICATION.json"
+  },
+  "microsoft": {
+    "version": "0.1.0",
+    "status": "review_candidate",
+    "source_repository": "dennis430/ultiwrite-plugins",
+    "source_base_commit": "3400001feec0d8722ca5840d545bcbd1d8c5838c",
+    "artifacts": [
+      {
+        "path": "release/ultiwrite-vscode-0.1.0.vsix",
+        "sha256": "10404aba6129802c913f953c9a6552a8c40f11697ee5f82f32bfb3a2f6b6e6e0",
+        "kind": "vscode-installation-candidate"
+      },
+      {
+        "path": "release/ultiwrite-m365-source-0.1.0.zip",
+        "sha256": "d908545dc1e8e8f8038f8ed95579218d2c09614584bf6a49da4c2d9fc12a301e",
+        "kind": "microsoft365-source-project"
+      },
+      {
+        "path": "release/ultiwrite-copilot-plugin-0.1.0.zip",
+        "sha256": "8227161a0f3780a106cf08d8ca888d099804516ee4fa420d2eca9d5d41f18aed",
+        "kind": "portable-mcp-agent-plugin"
+      }
+    ],
+    "bundle": {
+      "path": "release/Ultiwrite_Microsoft_Distribution_0.1.0.zip",
+      "sha256": "1d3fded6ba632f7674967ab7187615aa7c14ac1d1c8d84d415438ff1f3c2d7b6"
+    },
+    "verification": "release/MICROSOFT_VERIFICATION.json",
+    "marketplace_published": false,
+    "m365_tenant_provisioned": false,
+    "authenticated_customer_journey": "NOT_RUN"
   }
 }

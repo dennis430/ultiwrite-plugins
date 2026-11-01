@@ -4,3 +4,10 @@ node_modules/
 .env.*
 dist/
 *.tgz
+out/
+.vscode-test/
+*.vsix
+!release/*.vsix
+*.tsbuildinfo
+.m365/
+.local/

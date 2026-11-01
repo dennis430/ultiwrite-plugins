@@ -1,0 +1,52 @@
+# yaml-language-server: $schema=https://aka.ms/teams-toolkit/v1.13/yaml.schema.json
+version: v1.13
+environmentFolderPath: ./env
+
+provision:
+  - uses: script
+    with:
+      run: node scripts/provision-precheck.mjs
+  - uses: teamsApp/create
+    with:
+      name: Ultiwrite${{APP_NAME_SUFFIX}}
+    writeToEnvironmentFile:
+      teamsAppId: TEAMS_APP_ID
+  - uses: oauth/register
+    with:
+      name: ultiwrite-oauth
+      appId: ${{TEAMS_APP_ID}}
+      clientId: ${{ULTIWRITE_MCP_CLIENT_ID}}
+      authorizationUrl: https://dwsoffshorepartners.com/api/integrations/ultiwrite/oauth/authorize
+      tokenUrl: https://dwsoffshorepartners.com/api/integrations/ultiwrite/oauth/token
+      refreshUrl: https://dwsoffshorepartners.com/api/integrations/ultiwrite/oauth/token
+      scope: ultiwrite:read,ultiwrite:evidence
+      applicableToApps: AnyApp
+      targetAudience: AnyTenant
+      flow: authorizationCode
+      identityProvider: Custom
+      isPKCEEnabled: true
+      tokenExchangeMethodType: PostRequestBody
+      baseUrl: https://dwsoffshorepartners.com/api/integrations/ultiwrite/mcp
+    writeToEnvironmentFile:
+      configurationId: ULTIWRITE_MCP_AUTH_ID
+  - uses: teamsApp/validateManifest
+    with:
+      manifestPath: ./appPackage/manifest.json
+  - uses: teamsApp/zipAppPackage
+    with:
+      manifestPath: ./appPackage/manifest.json
+      outputZipPath: ./appPackage/build/appPackage.${{TEAMSFX_ENV}}.zip
+      outputFolder: ./appPackage/build
+  - uses: teamsApp/validateAppPackage
+    with:
+      appPackagePath: ./appPackage/build/appPackage.${{TEAMSFX_ENV}}.zip
+  - uses: teamsApp/update
+    with:
+      appPackagePath: ./appPackage/build/appPackage.${{TEAMSFX_ENV}}.zip
+  - uses: teamsApp/extendToM365
+    with:
+      appPackagePath: ./appPackage/build/appPackage.${{TEAMSFX_ENV}}.zip
+      scope: personal
+    writeToEnvironmentFile:
+      titleId: M365_TITLE_ID
+      appId: M365_APP_ID

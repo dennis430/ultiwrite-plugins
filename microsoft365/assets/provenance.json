@@ -1,0 +1,36 @@
+{
+  "source": "claude/assets/logo.png in dennis430/ultiwrite-plugins",
+  "bundledSource": "assets/logo-source.png",
+  "sourceSha256": "cc0a3c229347e47a154a00c9e6dfa774c0e1f07ee9fc063935af5bc4897f4b18",
+  "sourceDimensions": [
+    512,
+    512
+  ],
+  "method": "Deterministic format and size export of the existing approved gold Uw mark. Color retains the opaque background. Outline maps the existing gold glyph coverage to white with transparent background, preserving its geometry.",
+  "backgroundRGB": [
+    10,
+    10,
+    10
+  ],
+  "foregroundRGB": [
+    178,
+    154,
+    107
+  ],
+  "outputs": {
+    "appPackage/color.png": {
+      "dimensions": [
+        192,
+        192
+      ],
+      "sha256": "eb96b672b49d6dc3c5e2517b2ff465d166e2c1ab40c8b776dd2e32ddcd231124"
+    },
+    "appPackage/outline.png": {
+      "dimensions": [
+        32,
+        32
+      ],
+      "sha256": "824a7ca517efb4b4e9ab5c8aebe5f8625fc85f51963f0fd686c3aaedb4707815"
+    }
+  }
+}
