@@ -1,6 +1,33 @@
 # Ultiwrite plugins
 
-Thin connectors for Ultiwrite Commercial Diligence. Publisher: DWS Offshore Fund. Product: Ultiwrite.
+Install Ultiwrite asymmetric diligence and investigative intelligence in your AI tools. Publisher: DWS Offshore Fund. Product: Ultiwrite.
+
+## Install from your terminal
+
+Requires Node.js 22 or newer. The installer is prepared as `@ultiwrite/cli` version 0.1.0; **the npm package has not been published**. Use the public implementation branch while it is under review:
+
+```sh
+npx --yes github:dennis430/ultiwrite-plugins#codex/npx-plugin-installer-20261101 install cursor
+```
+
+Replace `cursor` with `claude-code`, `vscode`, or `codex`. Add `--dry-run` to preview the destination and change. Cline and legacy Windsurf take an explicit `--config` path; see [the CLI guide](cli/README.md). GitHub installs require Git. A branch follows its current commit; use an exact commit instead of the branch to pin the installer.
+
+The installer adds the hosted MCP connection and preserves other servers. Complete Ultiwrite sign-in in the chosen client after installation. Hosted ChatGPT, Claude Desktop, and Grok commands provide their connection instructions because those apps manage connections through their own account interfaces.
+
+After an authorized publisher releases and verifies the npm package, the short commands will be:
+
+```sh
+npx @ultiwrite/cli@latest install cursor
+npx @ultiwrite/cli@latest install claude-code
+npx @ultiwrite/cli@latest install vscode
+npx @ultiwrite/cli@latest install codex
+```
+
+[Installation, updating, and removal](cli/README.md) · [Publisher setup](cli/README.md#publish-the-npm-package) · [Plugin ZIPs and host instructions](INSTALL.md)
+
+Maintainers on Windows can run [`PUBLISH.cmd`](PUBLISH.cmd) from this checkout to validate and publish the installer. The launcher selects its own repository folder and publishes an inspected tarball containing exactly nine public files. `PUBLISH.cmd --dry-run` validates without requesting npm sign-in or publishing. It does not package the terminal's starting directory.
+
+## Plugin packages
 
 This repository is plugin packaging only. It is not the Ultiwrite service, and it does not include the private analytical implementation or customer records. The MIT license covers the original thin connector code. The service itself remains proprietary. See LICENSE and NOTICE.
 
@@ -18,6 +45,7 @@ Support: https://dwsoffshorepartners.com/contact
 | `cursor/` | 0.7.1 | Cursor plugin. Manifest `.cursor-plugin/plugin.json`, remote Streamable HTTP `mcp.json`. |
 | `grokbot/` | 0.7.1 | Grok Bot submission dossier. Not consumer Grok, and not a completed host test. |
 | `client/` | 0.7.1 | Local `ultiwrite-mcp` wrapper. Not published to npm. |
+| `cli/` | 0.1.0 | `@ultiwrite/cli` terminal installer. Installs hosted MCP configuration; separate from the local `ultiwrite-mcp` wrapper. npm publication pending. |
 
 ## Downloads
 
@@ -45,7 +73,7 @@ Claude marketplace entry: `.claude-plugin/marketplace.json` points at `./claude`
 
 Direct remote MCP, which does not require this repository:
 
-    claude mcp add --transport http ultiwrite https://mcp.dwsoffshorepartners.com/mcp
+    claude mcp add --transport http --scope user ultiwrite https://mcp.dwsoffshorepartners.com/mcp
 
 Cursor settings can use either Remote MCP URL above. Do not put an API key in either config. The host completes Ultiwrite OAuth.
 

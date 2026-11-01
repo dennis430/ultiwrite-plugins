@@ -32,11 +32,12 @@ const allowedTop = new Set([
   '.cursor-plugin', '.claude-plugin', 'README.md', 'LICENSE', 'NOTICE',
   'INSTALL.md', 'server.draft.json', '.gitignore', 'RELEASE_MANIFEST.json',
   'release',
+  'cli', 'package.json', 'package-lock.json', '.gitattributes', '.npmignore', 'PUBLISH.cmd',
 ])
 
 function walk(dir, out = []) {
   for (const name of readdirSync(dir)) {
-    if (name === '.git') continue
+    if (name === '.git' || name === 'node_modules' || name === 'dist') continue
     const path = join(dir, name)
     const rel = relative(root, path).split(sep).join('/')
     if (rel.split('/').some(part => part === '..' || part.startsWith('.env'))) fail(`forbidden path ${rel}`)
@@ -86,7 +87,7 @@ for (const rel of files) {
   const top = rel.split('/')[0]
   if (!allowedTop.has(top)) fail(`unexpected top-level path ${rel}`)
   const lower = rel.toLowerCase()
-  if (/(^|\/)(migrations|prisma|ios|app|lib)\//.test(lower) && !rel.startsWith('client/lib/')) {
+  if (/(^|\/)(migrations|prisma|ios|app|lib)\//.test(lower) && !rel.startsWith('client/lib/') && !rel.startsWith('cli/lib/')) {
     fail(`forbidden tree ${rel}`)
   }
   if (/\.(pem|key|p12|env)$/.test(lower)) fail(`forbidden file ${rel}`)
@@ -196,6 +197,12 @@ for (const rel of claudeSkills) {
 pngSquareOpaque('chatgpt/assets/logo.png')
 const pkg = readJson('client/package.json')
 if (pkg?.name !== 'ultiwrite-mcp' || pkg?.version !== '0.7.1' || pkg?.license !== 'MIT') fail('client package')
+const installer = readJson('package.json')
+if (installer?.name !== '@ultiwrite/cli' || installer?.bin?.ultiwrite !== 'cli/bin/ultiwrite.mjs' || installer?.license !== 'MIT') fail('installer package identity or executable')
+for (const key of ['preinstall', 'install', 'postinstall', 'prepare']) {
+  if (installer?.scripts?.[key]) fail(`installer must not use ${key} lifecycle hooks`)
+}
+if (!readFileSync(join(root, 'cli/bin/ultiwrite.mjs'), 'utf8').startsWith('#!/usr/bin/env node\n')) fail('installer executable shebang')
 if (readFileSync(join(root, 'server.draft.json'), 'utf8').includes('NOT PUBLISHED') === false) fail('registry draft must stay unpublished')
 
 if (errors.length) {

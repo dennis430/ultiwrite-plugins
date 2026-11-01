@@ -1,0 +1,65 @@
+name: Publish Ultiwrite CLI
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: Exact package.json version to publish from main
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: publish-ultiwrite-cli
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    if: github.repository == 'dennis430/ultiwrite-plugins' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          package-manager-cache: false
+      - name: Verify the selected release and publishing runtime
+        env:
+          RELEASE_VERSION: ${{ inputs.version }}
+        run: |
+          node --input-type=module <<'NODE'
+          import assert from 'node:assert/strict';
+          import { readFileSync } from 'node:fs';
+          import { execFileSync } from 'node:child_process';
+          const pkg = JSON.parse(readFileSync('package.json', 'utf8'));
+          assert.equal(process.env.GITHUB_REF, 'refs/heads/main', 'Publish from main only');
+          assert.equal(pkg.name, '@ultiwrite/cli', 'Unexpected package name');
+          assert.equal(process.env.RELEASE_VERSION, pkg.version, 'Version must exactly match package.json');
+          const version = execFileSync('npm', ['--version'], { encoding: 'utf8' }).trim();
+          const [major, minor, patch] = version.split('.').map(Number);
+          assert.ok(major > 11 || (major === 11 && (minor > 5 || (minor === 5 && patch >= 1))), 'Trusted publishing needs npm >=11.5.1');
+          assert.ok(Number(process.versions.node.split('.')[0]) >= 24, 'Publishing uses Node 24+');
+          console.log(`Publishing ${pkg.name}@${pkg.version} with npm ${version}`);
+          NODE
+      - name: Install declared dependencies
+        run: npm ci --ignore-scripts
+      - name: Audit the published dependency tree
+        run: npm audit --omit=dev --audit-level=high
+      - name: Check executable syntax
+        run: npm run build
+      - name: Test installer and existing client
+        run: npm test
+      - name: Verify plugin distribution
+        run: npm run validate
+      - name: Verify the packed installation
+        run: npm run test:package
+      - name: Publish using the configured npm trusted publisher
+        # The validation steps above already ran prepublishOnly's checks.
+        run: npm publish --access public --provenance --ignore-scripts
