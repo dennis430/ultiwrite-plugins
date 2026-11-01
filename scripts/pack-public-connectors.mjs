@@ -1,18 +1,21 @@
 #!/usr/bin/env node
 // Rebuild the current connector ZIPs from this public repository, then verify
-// every Claude archive member against claude/. Historical ZIPs remain unchanged.
+// every current archive member against its source. Historical ZIPs remain unchanged.
 // Does not publish, deploy, or submit a directory listing.
 import { createHash } from 'node:crypto'
 import { deflateRawSync, inflateRawSync } from 'node:zlib'
-import { mkdirSync, readFileSync, readdirSync, statSync, writeFileSync } from 'node:fs'
+import { existsSync, mkdirSync, readFileSync, readdirSync, statSync, writeFileSync } from 'node:fs'
 import { join, relative, sep } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 const root = fileURLToPath(new URL('..', import.meta.url))
 const outDir = join(root, 'release')
 const checkOnly = process.argv.includes('--check')
-const VERSION = '0.7.1'
-const MCP_URL = 'https://dwsoffshorepartners.com/api/integrations/ultiwrite/mcp'
+const VERSION = JSON.parse(readFileSync(join(root, 'chatgpt/plugin.json'), 'utf8')).version
+const CURSOR_VERSION = JSON.parse(readFileSync(join(root, 'cursor/.cursor-plugin/plugin.json'), 'utf8')).version
+const MCP_URL = 'https://mcp.dwsoffshorepartners.com/mcp'
+const COMPATIBILITY_MCP_URL = 'https://dwsoffshorepartners.com/api/integrations/ultiwrite/mcp'
+const CHATGPT_MCP_URL = 'https://mcp.dwsoffshorepartners.com/mcp'
 const TOOLS = [
   'ultiwrite_account_get',
   'ultiwrite_capabilities_get',
@@ -23,20 +26,21 @@ const TOOLS = [
   'ultiwrite_findings_get',
   'ultiwrite_report_export',
 ]
-const CLAUDE_VERSION = '0.8.3'
+const CLAUDE_VERSION = JSON.parse(readFileSync(join(root, 'claude/.claude-plugin/plugin.json'), 'utf8')).version
 const CLAUDE_MCP_URL = 'https://mcp.dwsoffshorepartners.com/mcp'
 const CLAUDE_ZIP = `Ultiwrite_Claude_Plugin_v${CLAUDE_VERSION}.zip`
-const CLAUDE_FROZEN = ['Ultiwrite_Claude_Plugin_v0.8.1.zip', 'Ultiwrite_Claude_Plugin_v0.8.0.zip', 'ultiwrite-claude-plugin-0.7.1.zip']
+const CURRENT_ARCHIVES = new Set([`ultiwrite-chatgpt-plugin-${VERSION}.zip`, `ultiwrite-cursor-plugin-${CURSOR_VERSION}.zip`, CLAUDE_ZIP])
+const FROZEN_ARCHIVES = (existsSync(outDir) ? readdirSync(outDir) : []).filter(name => name.endsWith('.zip') && !CURRENT_ARCHIVES.has(name)).sort()
 const PACKAGES = [
   {
     id: 'chatgpt',
     root: 'chatgpt',
-    files: ['assets/logo.png', 'mcp.json', 'plugin.json', 'README.md', 'skills/ultiwrite-read/SKILL.md'],
+    version: VERSION,
   },
   {
     id: 'cursor',
     root: 'cursor',
-    files: ['.cursor-plugin/plugin.json', 'LICENSE', 'README.md', 'assets/logo.png', 'mcp.json', 'skills/ultiwrite/SKILL.md'],
+    version: CURSOR_VERSION,
   },
 ]
 
@@ -158,26 +162,28 @@ assertTools(skillText, 'connector skills and Grok tool dossier')
 
 const chatgptMcp = JSON.parse(readFileSync(join(root, 'chatgpt/mcp.json'), 'utf8'))
 const server = chatgptMcp.mcpServers.ultiwrite
-if (server.url !== MCP_URL || server.type !== 'streamable-http') throw new Error('ChatGPT MCP URL drifted')
-const auth = server.extensions['com.openai'].auth
-for (const [key, path] of [['authorizationUrl', '/api/integrations/ultiwrite/oauth/authorize'], ['tokenUrl', '/api/integrations/ultiwrite/oauth/token'], ['registrationUrl', '/api/integrations/ultiwrite/oauth/register']]) {
-  if (auth[key] !== `https://dwsoffshorepartners.com${path}`) throw new Error(`${key} drifted`)
-}
-if (auth.client.mode !== 'dcr') throw new Error('ChatGPT client mode drifted')
-if (JSON.stringify(auth.defaultScopes) !== JSON.stringify(['ultiwrite:read', 'ultiwrite:evidence'])) throw new Error('scopes drifted')
+if (server.url !== CHATGPT_MCP_URL || server.type !== 'streamable-http') throw new Error('ChatGPT MCP URL drifted')
+if (JSON.stringify(Object.keys(server).sort()) !== JSON.stringify(['type', 'url'])) throw new Error('ChatGPT portable server must retain parser-safe transport and URL only; OAuth uses service discovery')
 
 if (!checkOnly) mkdirSync(outDir, { recursive: true })
 const inventory = []
 for (const pack of PACKAGES) {
-  const entries = pack.files.map(name => {
+  const sourceFiles = walk(join(root, pack.root)).map(path => path.slice(pack.root.length + 1)).sort()
+  const entries = sourceFiles.map(name => {
     const bytes = readFileSync(join(root, pack.root, name))
     return { name, bytes }
   })
   const archive = zip(entries)
-  const filename = `ultiwrite-${pack.id}-plugin-${VERSION}.zip`
+  const filename = `ultiwrite-${pack.id}-plugin-${pack.version}.zip`
+  const members = readZip(archive)
+  if (JSON.stringify(members.map(member => member.name)) !== JSON.stringify(sourceFiles)) throw new Error(`${filename} member list differs from source`)
+  for (const member of members) {
+    if (!member.bytes.equals(readFileSync(join(root, pack.root, member.name)))) throw new Error(`${filename} ${member.name} differs from source`)
+  }
   writeArtifact(join(outDir, filename), archive)
   inventory.push({
     file: `release/${filename}`,
+    version: pack.version,
     sha256: createHash('sha256').update(archive).digest('hex'),
     bytes: archive.length,
     members: entries.map(entry => ({
@@ -216,12 +222,12 @@ inventory.push({
     bytes: member.bytes.length,
   })),
 })
-for (const name of CLAUDE_FROZEN) {
+for (const name of FROZEN_ARCHIVES) {
   const frozen = readFileSync(join(outDir, name))
   inventory.push({
     file: `release/${name}`,
     version: name.match(/(?:_v|-)(\d+\.\d+\.\d+)\.zip$/)?.[1],
-    status: `superseded by Claude ${CLAUDE_VERSION}; kept so existing links keep working; not rebuilt`,
+    status: 'historical archive; kept so existing links keep working; not rebuilt',
     sha256: createHash('sha256').update(frozen).digest('hex'),
     bytes: frozen.length,
     members: readZip(frozen).map(member => ({
@@ -235,19 +241,58 @@ const sums = inventory.map(item => `${item.sha256}  ${item.file.split('/').pop()
 writeArtifact(join(outDir, 'SHA256SUMS.txt'), sums)
 writeArtifact(join(outDir, 'INVENTORY.json'), JSON.stringify({
   version: VERSION,
-  mcp_url: MCP_URL,
+  mcp_url: CHATGPT_MCP_URL,
+  compatibility_mcp_url: COMPATIBILITY_MCP_URL,
+  chatgpt: { version: VERSION, mcp_url: CHATGPT_MCP_URL },
   claude: { version: CLAUDE_VERSION, mcp_url: CLAUDE_MCP_URL },
+  cursor: { version: CURSOR_VERSION, mcp_url: MCP_URL },
   tools: TOOLS,
   oauth: {
+    source: 'expected canonical metadata; clients follow live service discovery',
+    issuer: 'https://mcp.dwsoffshorepartners.com',
+    protected_resource_metadata: 'https://mcp.dwsoffshorepartners.com/.well-known/oauth-protected-resource/mcp',
+    authorization_server_metadata: 'https://mcp.dwsoffshorepartners.com/.well-known/oauth-authorization-server',
     authorization_endpoint: 'https://dwsoffshorepartners.com/api/integrations/ultiwrite/oauth/authorize',
-    token_endpoint: 'https://dwsoffshorepartners.com/api/integrations/ultiwrite/oauth/token',
-    registration_endpoint: 'https://dwsoffshorepartners.com/api/integrations/ultiwrite/oauth/register',
+    token_endpoint: 'https://mcp.dwsoffshorepartners.com/api/integrations/ultiwrite/oauth/token',
+    registration_endpoint: 'https://mcp.dwsoffshorepartners.com/api/integrations/ultiwrite/oauth/register',
     code_challenge_method: 'S256',
     scopes: ['ultiwrite:read', 'ultiwrite:evidence'],
   },
   packages: inventory,
   not: ['installed integration', 'directory approval', 'npm publication', 'production deployment'],
 }, null, 2) + '\n')
+const downloadTable = ['| Archive | SHA-256 |', '| --- | --- |', ...inventory.slice(0, 3).map(item => {
+  const name = item.file.split('/').pop()
+  return `| [\`${name}\`](https://github.com/dennis430/ultiwrite-plugins/raw/main/${item.file}) | \`${item.sha256}\` |`
+})].join('\n')
+const readmePath = join(root, 'README.md')
+const readme = readFileSync(readmePath, 'utf8')
+const downloadsPattern = /<!-- CURRENT_DOWNLOADS_START -->[\s\S]*?<!-- CURRENT_DOWNLOADS_END -->/
+if (!downloadsPattern.test(readme)) throw new Error('README current download markers missing')
+writeArtifact(readmePath, readme.replace(downloadsPattern, `<!-- CURRENT_DOWNLOADS_START -->\n${downloadTable}\n<!-- CURRENT_DOWNLOADS_END -->`))
+const manifestPath = join(root, 'RELEASE_MANIFEST.json')
+const priorManifest = existsSync(manifestPath) ? JSON.parse(readFileSync(manifestPath, 'utf8')) : {}
+const releaseManifest = {
+  product: 'Ultiwrite',
+  distribution: 'plugin-only',
+  version: VERSION,
+  publisher: 'DWS Offshore Fund',
+  source_repository: 'dennis430/merchant-risk-app',
+  source_base_commit: process.env.ULTIWRITE_SOURCE_SHA || priorManifest.source_base_commit || priorManifest.source_commit || null,
+  public_source_base_commit: priorManifest.public_source_base_commit || null,
+  mcp_url: CHATGPT_MCP_URL,
+  compatibility_mcp_url: COMPATIBILITY_MCP_URL,
+  packages: {
+    chatgpt: { version: VERSION, zip: `release/ultiwrite-chatgpt-plugin-${VERSION}.zip`, mcp_url: CHATGPT_MCP_URL },
+    cursor: { version: CURSOR_VERSION, zip: `release/ultiwrite-cursor-plugin-${CURSOR_VERSION}.zip` },
+    claude: { version: CLAUDE_VERSION, zip: `release/${CLAUDE_ZIP}`, mcp_url: CLAUDE_MCP_URL },
+    grokbot: { version: JSON.parse(readFileSync(join(root, 'grokbot/FIELDS.json'), 'utf8')).version, status: 'submission dossier; host test not run' },
+    client: { version: JSON.parse(readFileSync(join(root, 'client/package.json'), 'utf8')).version, status: 'unchanged; npm publication not claimed' },
+  },
+  note: 'SHA-256 of every file except this manifest. Historical archives are preserved. Built source does not establish directory upload, review, installed-host acceptance or server deployment.',
+  files: walk(root).filter(path => path !== 'RELEASE_MANIFEST.json').sort().map(path => ({ path, sha256: createHash('sha256').update(readFileSync(join(root, path))).digest('hex') })),
+}
+writeArtifact(join(root, 'RELEASE_MANIFEST.json'), JSON.stringify(releaseManifest, null, 2) + '\n')
 process.stdout.write(`${checkOnly ? 'checked' : 'packed'} ${PACKAGES.length + 1} current archives, verified ${CLAUDE_ZIP}, recorded ${inventory.length} archives in release/\n`)
 
 function walk(dir, out = []) {

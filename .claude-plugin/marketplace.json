@@ -8,8 +8,8 @@
     {
       "name": "ultiwrite",
       "source": "./claude",
-      "description": "Ultiwrite Commercial Diligence connector"
+      "description": "Ultiwrite asymmetric diligence and investigative intelligence with account connection and five workflows."
     }
   ],
-  "description": "Ultiwrite Commercial Diligence: thin remote MCP connectors and client."
+  "description": "Ultiwrite asymmetric diligence: thin remote MCP connectors and workflows."
 }

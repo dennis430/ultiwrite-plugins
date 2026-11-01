@@ -1,13 +1,13 @@
 # Grok Bot submission dossier
 
-This folder prepares a Grok Bot connector submission. It is not a receipt. The form was not submitted in Sequence 1, and Grok Bot was not used to call Ultiwrite.
+Version 0.8.0. This folder prepares a Grok Bot connector submission. It is not a receipt. The form was not submitted in Sequence 1, and Grok Bot was not used to call Ultiwrite.
 
 | Field | Value |
 | --- | --- |
 | Publisher | DWS Offshore Fund |
 | Product | Ultiwrite |
 | Category | Commercial Diligence |
-| MCP URL | https://dwsoffshorepartners.com/api/integrations/ultiwrite/mcp |
+| MCP URL | https://mcp.dwsoffshorepartners.com/mcp |
 | Logo | `assets/logo.png` (512×512, opaque square plate) |
 | Website | https://dwsoffshorepartners.com |
 | Privacy | https://dwsoffshorepartners.com/privacy |
@@ -27,3 +27,9 @@ Companion notes:
 Consumer Grok is a different product surface and was marked coming soon on the earlier form. Grok Build is the app-building environment, not this connector host. Do not describe either as a completed Ultiwrite plugin test.
 
 Repository status: the public thin source is https://github.com/dennis430/ultiwrite-plugins. It was not submitted to a plugin marketplace or directory. Cursor, Claude, ChatGPT, and Grok Bot host installation is not claimed from this package alone. The production MCP endpoint is independent of marketplace review.
+
+## Accounts, permissions and feature controls
+
+The shared MCP service exposes a protected account check and action-specific permission metadata. Verify the actual account with `ultiwrite_account_get`. Use Grok Bot's native Connect/Reconnect and account selector where offered; otherwise reconnect this connection with **Use a different account** on Ultiwrite's consent screen.
+
+Native toggles, simultaneous accounts and approval modes depend on Grok Bot's supported interface. This dossier contains no unsupported switch or permission-mode fields, and does not claim those controls were observed in a host test. Shared OAuth scopes and account feature choices remain enforced by the server.

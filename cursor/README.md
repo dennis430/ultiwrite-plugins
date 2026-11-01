@@ -1,21 +1,27 @@
 # Ultiwrite for Cursor
 
-Version 0.7.1. Publisher: DWS Offshore Fund. License: MIT for this thin connector only. See LICENSE.
+Version 0.8.0. Product: Ultiwrite. Publisher: DWS Offshore Fund. License: MIT for this thin connector; the analytical service remains proprietary.
 
-Remote MCP, production, no API key:
+Connect Cursor to Ultiwrite for asymmetric diligence and investigative intelligence. The remote server is https://mcp.dwsoffshorepartners.com/mcp. The plugin uses OAuth and contains no API key or local server.
 
-https://dwsoffshorepartners.com/api/integrations/ultiwrite/mcp
+## Workflows and defaults
 
-This directory is the Cursor plugin. The repository root `.cursor-plugin/marketplace.json` lists it with `source` set to `cursor`. The manifest points at `assets/logo.png`. Installing an approved marketplace plugin is separate from connecting the raw MCP URL. This package was not submitted to the Cursor Marketplace.
+The plugin exposes five independent workflows under `skills/`: `ultiwrite`, `connect-account`, `submit-evidence`, `read-report` and `follow-up`. The manifest deliberately omits a `skills` override so Cursor discovers every skill directory. Each workflow contains display metadata and permits automatic invocation for compatible hosts. User-disabled workflows and host policy remain authoritative.
 
-Add the remote server in Cursor settings, connect, and approve Ultiwrite account access. Do not paste an API key. Use the signed upload handoff when the host cannot forward the original selected files. The account's allowance, limits, canonical analysis, and saved report are unchanged.
+Use the current Ultiwrite icon, service capabilities, verified account identity and native MCP approval controls. Cursor owns its tool switches, approval policy and connection UI; the package does not fabricate ChatGPT controls or force tool approval.
 
-The account selector label `default` in Grok Bot is host-managed connection-slot UI, not an Ultiwrite organization or identity. Do not fake or rewrite token subjects, organization IDs, or OAuth scopes to try to change it. OAuth consent shows the signed-in Ultiwrite account email and offers the actual account-switch sign-out link.
+## Connect or select an account
 
-No Cursor host session was run for 0.7.1. Grok Bot has a separate submission dossier and is not consumer Grok. Grok Build is not this connector.
+Add/install Ultiwrite and use the existing server's Connect/authentication control. Ask “Connect Ultiwrite and confirm which account is connected.” The protected `ultiwrite_account_get` tool verifies the selected grant. If the prompt closes, reopen the same server's connection controls and complete OAuth.
 
-Setup guide: https://dwsoffshorepartners.com/docs/mcp
+Use native account selection when Cursor offers it. Otherwise, when you request a switch, reconnect this Ultiwrite connection and select **Use a different account** on the consent screen. Confirm the returned identity before accessing reports or uploading evidence. A generic connection-slot label such as `default` is not proof of an account identity.
 
-The website still offers the older 0.7.0 zip. This directory is the repaired 0.7.1 source. Those bytes are not the same.
+Reading requires `ultiwrite:read`; submission also requires `ultiwrite:evidence`. Consent, account allowance and investigation-specific choices remain enforced by the service. Enabling a workflow never grants more credits or authorizes a charge.
 
-Repository status: the public thin source is https://github.com/dennis430/ultiwrite-plugins. It was not submitted to a plugin marketplace or directory. Cursor, Claude, ChatGPT, and Grok Bot host installation is not claimed from this package alone. The production MCP endpoint is independent of marketplace review.
+## Files and reports
+
+Pass original file objects only when the host and server schema support them. Otherwise use the exact secure upload link returned by `ultiwrite_evidence_submit`; never pass a local path as though it were uploaded bytes. Follow actual workflow status, then read the saved report. Downloads require the same account in the browser.
+
+Current archive: `release/ultiwrite-cursor-plugin-0.8.0.zip`. The root `.cursor-plugin/marketplace.json` points to this directory. Source packaging is separate from marketplace review and an installed Cursor test; neither is claimed by this release.
+
+Website: https://dwsoffshorepartners.com · Setup: https://dwsoffshorepartners.com/docs/mcp · Privacy: https://dwsoffshorepartners.com/privacy · Terms: https://dwsoffshorepartners.com/terms · Support: https://dwsoffshorepartners.com/contact

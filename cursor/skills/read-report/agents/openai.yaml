@@ -1,0 +1,8 @@
+interface:
+  display_name: "Read reports and downloads"
+  short_description: "Read saved findings, confidence and report downloads."
+  default_prompt: "Use $read-report to explain my latest Ultiwrite report."
+  brand_color: "#d39891"
+
+policy:
+  allow_implicit_invocation: true

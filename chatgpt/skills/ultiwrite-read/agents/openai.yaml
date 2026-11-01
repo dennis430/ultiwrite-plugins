@@ -1,0 +1,8 @@
+interface:
+  display_name: "Ultiwrite investigative intelligence"
+  short_description: "Explore asymmetric diligence and available workflows."
+  default_prompt: "Use $ultiwrite-read to explain how I can start an investigation."
+  brand_color: "#d39891"
+
+policy:
+  allow_implicit_invocation: true

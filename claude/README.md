@@ -1,6 +1,6 @@
 # Ultiwrite for Claude
 
-Ultiwrite Asymmetric Diligence, published by DWS Offshore Fund. Version 0.8.3.
+Ultiwrite Asymmetric Diligence, published by DWS Offshore Fund. Version 0.8.4.
 
 Ultiwrite examines the documents behind a commercial opportunity: an operating business, a merchant application, a residual or ISO book, a portfolio, a property, a financing or a counterparty. It classifies every file, runs every applicable analysis (document integrity, independent verification, identity and entity coherence, processing economics, portfolio relationships, cross-document contradictions, provenance and confidence) and saves one reconciled report. This plugin connects Claude to that same engine and teaches Claude how to use it. Claude does not produce the findings; Ultiwrite does.
 
@@ -15,13 +15,19 @@ Ultiwrite examines the documents behind a commercial opportunity: an operating b
 
 No commands, hooks, agents, executables or local servers are included. Nothing runs on your machine.
 
+## Workflow controls and defaults
+
+All five skills are independently discoverable and include human-readable display metadata. Their `policy.allow_implicit_invocation` is true for hosts that consume OpenAI skill metadata. Claude's manifest also sets `defaultEnabled: true`, the supported default for a newly installed plugin; an existing user choice to disable it takes precedence.
+
+Use Claude's own skill, connector and permission controls. A disabled workflow must not be invoked through another skill. Default availability does not grant OAuth scopes, start an investigation, select a paid add-on or authorize a charge. Ultiwrite's consent screen and account permissions remain the authority for service access.
+
 ## Requirements
 
-An Ultiwrite account, which you can create during sign-in or at https://dwsoffshorepartners.com. The first completed analysis on an account is free; `ultiwrite_capabilities_get` returns the current offer. Signing in to the website alone does not connect Claude; complete the OAuth flow from Claude's Connect control.
+An Ultiwrite account, which you can create during sign-in or at https://dwsoffshorepartners.com. `ultiwrite_capabilities_get` returns current offers, account links and input limits. Signing in to the website alone does not connect Claude; complete the OAuth flow from Claude's Connect control.
 
 ## Install
 
-- claude.ai, Claude Desktop and Cowork: add Ultiwrite from the Claude directory once it is listed, or upload `Ultiwrite_Claude_Plugin_v0.8.3.zip` from Plugins > Add > Upload plugin (Customize > Plugins on the older interface).
+- claude.ai, Claude Desktop and Cowork: add Ultiwrite from the Claude directory once it is listed, or upload `Ultiwrite_Claude_Plugin_v0.8.4.zip` from Plugins > Add > Upload plugin (Customize > Plugins on the older interface).
 - Claude Code: add the marketplace with `/plugin marketplace add dennis430/ultiwrite-plugins`, then run `/plugin install ultiwrite@ultiwrite`. For one session, clone this repository and run `claude --plugin-dir ./claude`, or extract the ZIP and pass the extracted directory containing `.claude-plugin/plugin.json`. `--plugin-dir` takes a directory, not a ZIP file.
 - Connector only, without the skills: add a custom connector with URL `https://mcp.dwsoffshorepartners.com/mcp`, or run `claude mcp add --transport http ultiwrite https://mcp.dwsoffshorepartners.com/mcp`.
 
@@ -52,7 +58,7 @@ Claude owns its connection controls and decides whether it offers simultaneous a
 
 ## How evidence is submitted
 
-Claude cannot hand chat attachments to the server as file objects. `ultiwrite_evidence_submit` therefore returns a signed upload link, valid for 30 minutes and bound to your account. You upload the files in your browser; the case then appears in `ultiwrite_cases_list` and analysis runs on Ultiwrite's servers. The link result can be marked `attachment_not_transferred`; that is the expected handoff, not a failure, and no analysis is used until files are uploaded.
+When Claude cannot forward compatible original file objects, `ultiwrite_evidence_submit` returns a signed upload link bound to your account. Use the expiry and instructions returned by the service. You upload the files in your browser; the case then appears in `ultiwrite_cases_list` and analysis runs on Ultiwrite's servers. The link result can be marked `attachment_not_transferred`; that is the expected handoff, not a failure, and no analysis is used until files are uploaded.
 
 ## Privacy
 
@@ -63,7 +69,7 @@ The plugin itself collects nothing and contains no telemetry. When you use it, C
 - Sign-in window closed: use the persistent connection path above or ask Claude to reconnect. Reinstalling is unnecessary.
 - "Permission missing": complete Claude's reauthorization prompt for the requested operation. Reading needs `ultiwrite:read`; evidence submission needs `ultiwrite:evidence`. Use the connector's reconnect controls if no prompt is available.
 - "Reconnect" or expired connection: ask Claude to check the account and complete the native Connect prompt. Verify the account afterward; website sign-in alone does not restore Claude's grant.
-- Upload link expired: ask Claude to submit again; a new 30-minute link is issued.
+- Upload link expired: request a fresh upload handoff and use the new returned link. Do not retry an already stored investigation as a new submission.
 - Case still processing: ask Claude to check the case status later. Status reads do not advance processing; Claude continues a case only with the `caseId` the server returned.
 - PDF, Excel or ZIP will not download in chat: open the report link in a browser signed in to the same Ultiwrite account.
 
