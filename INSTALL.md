@@ -1,5 +1,7 @@
 # Ultiwrite connectors — install and upload
 
+**Windows npm publishing:** run the checked-out repository's `PUBLISH.cmd`, or follow [the safe PowerShell download-and-publish command](cli/README.md#start-safely-from-any-windows-powershell-directory). The launcher anchors all operations to this package and publishes only its inspected nine-file tarball. Do not run a bare `npm publish` from your Windows home folder. Use `PUBLISH.cmd --dry-run` to verify without publishing.
+
 ## Terminal installer
 
 Node.js 22 or newer and Git are required for the GitHub route. The npm package `@ultiwrite/cli` is prepared but unpublished. Run the implementation branch directly:

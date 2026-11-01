@@ -25,6 +25,8 @@ npx @ultiwrite/cli@latest install codex
 
 [Installation, updating, and removal](cli/README.md) · [Publisher setup](cli/README.md#publish-the-npm-package) · [Plugin ZIPs and host instructions](INSTALL.md)
 
+Maintainers on Windows can run [`PUBLISH.cmd`](PUBLISH.cmd) from this checkout to validate and publish the installer. The launcher selects its own repository folder and publishes an inspected tarball containing exactly nine public files. `PUBLISH.cmd --dry-run` validates without requesting npm sign-in or publishing. It does not package the terminal's starting directory.
+
 ## Plugin packages
 
 This repository is plugin packaging only. It is not the Ultiwrite service, and it does not include the private analytical implementation or customer records. The MIT license covers the original thin connector code. The service itself remains proprietary. See LICENSE and NOTICE.

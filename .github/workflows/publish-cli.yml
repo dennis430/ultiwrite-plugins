@@ -50,6 +50,8 @@ jobs:
           NODE
       - name: Install declared dependencies
         run: npm ci --ignore-scripts
+      - name: Audit the published dependency tree
+        run: npm audit --omit=dev --audit-level=high
       - name: Check executable syntax
         run: npm run build
       - name: Test installer and existing client

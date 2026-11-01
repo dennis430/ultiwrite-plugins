@@ -32,7 +32,7 @@ const allowedTop = new Set([
   '.cursor-plugin', '.claude-plugin', 'README.md', 'LICENSE', 'NOTICE',
   'INSTALL.md', 'server.draft.json', '.gitignore', 'RELEASE_MANIFEST.json',
   'release',
-  'cli', 'package.json', 'package-lock.json', '.gitattributes',
+  'cli', 'package.json', 'package-lock.json', '.gitattributes', '.npmignore', 'PUBLISH.cmd',
 ])
 
 function walk(dir, out = []) {

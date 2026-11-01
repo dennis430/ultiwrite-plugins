@@ -18,11 +18,11 @@
     },
     {
       "path": ".gitattributes",
-      "sha256": "08debd3fe73a3051b0f89d0cb03f7518b8590f7cc6992f5afe25f3a0a016b87e"
+      "sha256": "e9e365b84d216ce910aef4fb5695690a68e8a5af4da06a4faa72aba498573722"
     },
     {
       "path": ".github/workflows/publish-cli.yml",
-      "sha256": "42ef9b763c3d4b41b61b258c74a41c82af4224787a8f7b00a9ba85aeefee5890"
+      "sha256": "2614a9f576bcedd97cb900544efc3c8e64833e14c5a9a04d06632f3fd1b3a397"
     },
     {
       "path": ".github/workflows/validate.yml",
@@ -33,8 +33,12 @@
       "sha256": "5f70ee8df0ba474922bf182b542b64c5ec1d67f1c90085cbb97b786cb8f3c775"
     },
     {
+      "path": ".npmignore",
+      "sha256": "d073bfba58bfe5bb73c3dccfd9c4cc90b75b9dd64206635a304f17f39168478a"
+    },
+    {
       "path": "INSTALL.md",
-      "sha256": "dee246bb1315417556ba7ebfc6472d848c20aa7fe2795bc75f1521baad1cf0ac"
+      "sha256": "b3d775ce95fdf2c610442ee7ff09edf588324efcb6c890d0d6450259729b3c68"
     },
     {
       "path": "LICENSE",
@@ -45,8 +49,12 @@
       "sha256": "879c535465b6737c67c9bda2b302d3a447a3275e80f06899cb8a3608fbe3dad8"
     },
     {
+      "path": "PUBLISH.cmd",
+      "sha256": "21befd9466d53a11768bcdb6ed6250dcb8da051c391b9094834831f4dfbb7128"
+    },
+    {
       "path": "README.md",
-      "sha256": "1ccb0d9c842c7ae2498ebb21c249f1a758f3a3c36b2bc21e70ac091fb70830df"
+      "sha256": "cab5eca8471dd5c284fb63d4ad723061390138eb5d6aeef269f4b11b62355541"
     },
     {
       "path": "chatgpt/LICENSE",
@@ -114,7 +122,7 @@
     },
     {
       "path": "cli/README.md",
-      "sha256": "efa031587358671428ef5195b3215e8ddea8087c6cc0c57ef0e7cd5d9a1256c8"
+      "sha256": "85ebcc64a10f85b3ad5b8c04eba97e68567f80327f50b44c22c805bdfc72b30d"
     },
     {
       "path": "cli/bin/ultiwrite.mjs",
@@ -139,6 +147,14 @@
     {
       "path": "cli/test/config.test.mjs",
       "sha256": "1845a57003996517d870ad04404991435db6648e69bec89473234da2cc988c43"
+    },
+    {
+      "path": "cli/test/package.test.mjs",
+      "sha256": "ecab6e6425aa67190d848e3c723a7302c527c6cf826ecaabcb5f8115cdce7711"
+    },
+    {
+      "path": "cli/test/publish.test.mjs",
+      "sha256": "8453c7fd235b0e0df0bc6eeea28436e5093b2ad1a64fce447845b4c367d85478"
     },
     {
       "path": "client/LICENSE",
@@ -234,7 +250,7 @@
     },
     {
       "path": "package.json",
-      "sha256": "de2024d1e921f7b559fc85d9041f8e895ce38393f6d65a46005cc83740b2f5c6"
+      "sha256": "7c59de5759b57f328ac66a917fe0db019a24bda38567e77b3e23c0346e16d2f4"
     },
     {
       "path": "release/CLAUDE_0.8.3_AUTH_VERIFICATION.json",
@@ -277,12 +293,16 @@
       "sha256": "696abdb715a3d0f12550b3c7df8ebcaa18b0068dd914761c1128fc5935b8836f"
     },
     {
+      "path": "scripts/publish-cli.mjs",
+      "sha256": "bb779eeaf6a8633a7febdb7e09cdf5f9fd9055ac2a2e4d90cae8b32d7ae4b6bc"
+    },
+    {
       "path": "scripts/validate-public-plugins.mjs",
-      "sha256": "8d017583a07150c0beabf3cc4d7670394250f7b12623fe69ece44fc88e8b835f"
+      "sha256": "8ac7a2715a89bf341310febcb8499a247d71231d04bc4a0bf784973fd64f7658"
     },
     {
       "path": "scripts/verify-npm-package.mjs",
-      "sha256": "b6fd9bd23e08862717e9be99ded2e46666b2f02cd4e28b3035d6be03c10d66c4"
+      "sha256": "30cd3f16ff7e737f588dfa21f6342e80dcfa831ed45782e640f68b5f395bf631"
     },
     {
       "path": "server.draft.json",
@@ -318,6 +338,7 @@
     "source_base_commit": "3400001feec0d8722ca5840d545bcbd1d8c5838c",
     "mcp_url": "https://mcp.dwsoffshorepartners.com/mcp",
     "npm_published": false,
-    "verification": "npm test; npm run test:package; npm run validate. Local Node 24 checks passed; native host OAuth remains separate."
+    "verification": "49 tests passed on Node 24; full guarded publisher dry run passed from /tmp; npm audit reports 0 vulnerabilities; npm outdated reports no outdated dependencies; package contains exactly nine public files; real Unix socket and private clutter exclusion verified. No npm publication or authentication performed.",
+    "publishing_launcher": "PUBLISH.cmd or node scripts/publish-cli.mjs; resolves its own repository and publishes only the inspected tarball."
   }
 }

@@ -135,16 +135,42 @@ Publishing is a separate release action. The prepared name is `@ultiwrite/cli`; 
 
 For the first release, use an authorized account on the publisher's computer. Sign up at [npm](https://www.npmjs.com/signup), create or join the appropriate organization, then authenticate through npm's browser flow. Do not send tokens or passwords in chat.
 
-From the approved repository checkout:
+Use the guarded publisher from the approved installer checkout. On Windows:
 
-```sh
-npm login --registry=https://registry.npmjs.org/
-npm whoami --registry=https://registry.npmjs.org/
-npm ci --ignore-scripts
-npm publish --access public
+```powershell
+.\PUBLISH.cmd
 ```
 
-The root `prepublishOnly` script runs build, tests, distribution validation, and the packed-install check before that publication. Complete npm's account and two-factor prompts. Confirm that the package version is not already published; npm versions cannot be reused. The first local release does not claim a GitHub provenance attestation.
+For a validation-only run:
+
+```powershell
+.\PUBLISH.cmd --dry-run
+```
+
+On macOS/Linux, or through npm from this checkout:
+
+```sh
+node scripts/publish-cli.mjs
+# Validation only:
+npm run release:check
+```
+
+The launcher resolves the repository from its own location, checks the package identity, installs the locked dependency, audits it, runs the build/tests/distribution checks, and inspects the exact nine files in the tarball before publishing that tarball. It refuses package paths or directory arguments. `.npmignore` excludes private folders, credentials, sockets, tests, and release artifacts, while `package.json` lists every allowed public file explicitly. Regressions are tested with a real Unix socket at the same `.codex/app-server-control/app-server-control.sock` path that caused a home-folder publish to fail.
+
+If your interactive terminal is not signed in to npm, the real publisher opens npm's login flow and checks sign-in before continuing. Complete npm's account and two-factor prompts using an account authorized for `@ultiwrite/cli`. Noninteractive environments need existing npm authentication. `--dry-run` never authenticates or publishes. npm versions cannot be reused. The first local release does not claim a GitHub provenance attestation.
+
+### Start safely from any Windows PowerShell directory
+
+This downloads the installer branch into a new temporary directory and invokes its publisher by absolute path. Requires Git and Node.js 22+:
+
+```powershell
+$ultiwritePublishDir = Join-Path $env:TEMP ("ultiwrite-publish-" + [guid]::NewGuid().ToString("N"))
+git clone --depth 1 --branch codex/npx-plugin-installer-20261101 https://github.com/dennis430/ultiwrite-plugins.git $ultiwritePublishDir
+if ($LASTEXITCODE -ne 0) { throw "Ultiwrite download failed; nothing was published." }
+& (Join-Path $ultiwritePublishDir "PUBLISH.cmd")
+```
+
+Do not run a bare `npm publish` from `C:\Users\dennis` or another home directory. npm interprets the current folder as the package, which can lead it into local application state such as `.codex` sockets. This is a package-location error; elevating the terminal to Administrator or forcing dependency upgrades does not select the correct source. If a home-directory install reports hundreds of packages or React Email warnings, inspect that separate project's manifest before changing it. The Ultiwrite installer has one declared dependency, `jsonc-parser`.
 
 After the package exists, configure its **Trusted Publisher** in npm with these values:
 

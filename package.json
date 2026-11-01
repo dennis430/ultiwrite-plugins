@@ -7,8 +7,9 @@
     "ultiwrite": "cli/bin/ultiwrite.mjs"
   },
   "files": [
-    "cli/bin/",
-    "cli/lib/",
+    "cli/bin/ultiwrite.mjs",
+    "cli/lib/config.mjs",
+    "cli/lib/codex.mjs",
     "cli/README.md",
     "README.md",
     "INSTALL.md",
@@ -20,7 +21,9 @@
     "test": "node --test",
     "validate": "node scripts/validate-public-plugins.mjs && node scripts/pack-public-connectors.mjs --check",
     "test:package": "node scripts/verify-npm-package.mjs",
-    "prepublishOnly": "npm run build && npm test && npm run validate && npm run test:package"
+    "prepublishOnly": "npm run build && npm test && npm run validate && npm run test:package",
+    "release": "node scripts/publish-cli.mjs",
+    "release:check": "node scripts/publish-cli.mjs --dry-run"
   },
   "engines": {
     "node": ">=22"

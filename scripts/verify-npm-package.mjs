@@ -60,12 +60,13 @@ try {
   const archive = packed[0];
   assert.equal(archive.name, '@ultiwrite/cli');
   assert.equal(archive.version, pkg.version);
-  const allowedTop = new Set(['package.json', 'README.md', 'INSTALL.md', 'LICENSE', 'NOTICE', 'cli/README.md']);
+  const allowedFiles = new Set(['package.json', 'README.md', 'INSTALL.md', 'LICENSE', 'NOTICE', 'cli/README.md', 'cli/bin/ultiwrite.mjs', 'cli/lib/config.mjs', 'cli/lib/codex.mjs']);
   const paths = archive.files.map(file => file.path);
   for (const path of paths) {
-    assert.ok(allowedTop.has(path) || /^cli\/(bin|lib)\/[a-z0-9-]+\.mjs$/.test(path), `Unexpected packed file: ${path}`);
+    assert.ok(allowedFiles.has(path), `Unexpected packed file: ${path}`);
   }
-  for (const path of ['package.json', 'cli/bin/ultiwrite.mjs', 'cli/lib/config.mjs', 'cli/lib/codex.mjs', 'LICENSE', 'NOTICE']) {
+  assert.equal(paths.length, allowedFiles.size, 'Package must contain exactly the reviewed files');
+  for (const path of allowedFiles) {
     assert.ok(paths.includes(path), `Missing packed file: ${path}`);
   }
   assert.equal(pkg.bin.ultiwrite, 'cli/bin/ultiwrite.mjs');
