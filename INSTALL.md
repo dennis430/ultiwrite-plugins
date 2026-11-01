@@ -1,5 +1,21 @@
 # Ultiwrite connectors — install and upload
 
+## Terminal installer
+
+Node.js 22 or newer and Git are required for the GitHub route. The npm package `@ultiwrite/cli` is prepared but unpublished. Run the implementation branch directly:
+
+```sh
+npx --yes github:dennis430/ultiwrite-plugins#codex/npx-plugin-installer-20261101 install cursor
+```
+
+Supported automatic targets are `cursor`, `claude-code` (alias `claude`), `vscode`, and `codex`; Cline and legacy Windsurf require `--config` pointing to the client's actual MCP JSON file. Installation defaults to user scope. Cursor, Claude Code, and VS Code also accept `--scope project`. `--dry-run` previews the change; `status <client>` checks configuration; `uninstall <client>` removes the Ultiwrite entry. Codex uses its installed CLI and supports user scope only.
+
+`install chatgpt`, `install claude-desktop`, and `install grok` print the appropriate hosted connection guidance. These commands do not install into a hosted account or complete OAuth. After local configuration is added, finish the client's sign-in prompt and verify the connected Ultiwrite account.
+
+The short `npx @ultiwrite/cli@latest install cursor` command becomes available after the first authorized npm publication. See [the CLI guide](cli/README.md) for every option, standard configuration locations, recovery, and the exact publisher setup.
+
+## Native client and plugin setup
+
 Remote MCP URL: https://dwsoffshorepartners.com/api/integrations/ultiwrite/mcp
 Setup guide: https://dwsoffshorepartners.com/docs/mcp
 
@@ -7,7 +23,7 @@ Add the remote server in the client's MCP settings, authenticate with Ultiwrite 
 
 Claude Code remote setup:
 
-    claude mcp add --transport http ultiwrite https://mcp.dwsoffshorepartners.com/mcp
+    claude mcp add --transport http --scope user ultiwrite https://mcp.dwsoffshorepartners.com/mcp
 
 Cursor configuration:
 

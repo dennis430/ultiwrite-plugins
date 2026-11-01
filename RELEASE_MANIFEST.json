@@ -17,8 +17,16 @@
       "sha256": "ac087131e5a3670cc818b791aafb7de4b367c082972f57d3526399bd7abcb0a5"
     },
     {
+      "path": ".gitattributes",
+      "sha256": "08debd3fe73a3051b0f89d0cb03f7518b8590f7cc6992f5afe25f3a0a016b87e"
+    },
+    {
+      "path": ".github/workflows/publish-cli.yml",
+      "sha256": "42ef9b763c3d4b41b61b258c74a41c82af4224787a8f7b00a9ba85aeefee5890"
+    },
+    {
       "path": ".github/workflows/validate.yml",
-      "sha256": "11a70498d45edf58de9e11417e466d6ea3f5179266db4fbfbaac997c299549a4"
+      "sha256": "a34f72f5b3c05b335029a7a5108115e86bc26700c914fe964f7bf48219cef5eb"
     },
     {
       "path": ".gitignore",
@@ -26,7 +34,7 @@
     },
     {
       "path": "INSTALL.md",
-      "sha256": "1e49c00dc9f8f3c5ca0b2425a81a705aec88bab8c218ca2ef024a506cac25d3b"
+      "sha256": "dee246bb1315417556ba7ebfc6472d848c20aa7fe2795bc75f1521baad1cf0ac"
     },
     {
       "path": "LICENSE",
@@ -38,7 +46,7 @@
     },
     {
       "path": "README.md",
-      "sha256": "a4c30cbd7e05cc0b93f45736acdf2d724c3503495614a77939154917047b9463"
+      "sha256": "1ccb0d9c842c7ae2498ebb21c249f1a758f3a3c36b2bc21e70ac091fb70830df"
     },
     {
       "path": "chatgpt/LICENSE",
@@ -105,6 +113,34 @@
       "sha256": "72ac253bf3db65d8c9323b646b8f3a5cc7772910d97e6a454ce9006a8f4bb9b9"
     },
     {
+      "path": "cli/README.md",
+      "sha256": "efa031587358671428ef5195b3215e8ddea8087c6cc0c57ef0e7cd5d9a1256c8"
+    },
+    {
+      "path": "cli/bin/ultiwrite.mjs",
+      "sha256": "8b12cde7738c98536636e0c614e9620ce6e3f8a68462de8dd419cc0458b838c9"
+    },
+    {
+      "path": "cli/lib/codex.mjs",
+      "sha256": "988bc2fcb7d19a113fc66f803c78fc8aac3e4986d6fe46933a9ed26d7a67c950"
+    },
+    {
+      "path": "cli/lib/config.mjs",
+      "sha256": "c5bc7379f09a22dc8de31f801d19f023fca34a1abe7640d31be4283e4bbecb0f"
+    },
+    {
+      "path": "cli/test/cli.test.mjs",
+      "sha256": "9bcc965728bdb77d4b2f558959d39dfbf1a1befd25c8165d6f5393e0aefcc9bb"
+    },
+    {
+      "path": "cli/test/codex.test.mjs",
+      "sha256": "d761315c1f6a9bb3d5afab6b4472bf74d639f953919823d4617598182e9b3bc3"
+    },
+    {
+      "path": "cli/test/config.test.mjs",
+      "sha256": "1845a57003996517d870ad04404991435db6648e69bec89473234da2cc988c43"
+    },
+    {
       "path": "client/LICENSE",
       "sha256": "0122d7b57a1ef1e40944c88e2e0261b334fcf5f779e9deb52d49463de20a977d"
     },
@@ -126,11 +162,11 @@
     },
     {
       "path": "client/test/cli.test.mjs",
-      "sha256": "2c12a916ce1a12f74408e8876386399da6e4c5052358cd10924addde243e6a3b"
+      "sha256": "1530b2d4d02f78698d1827f92168f615149a01de24d4bf0ddbf1fa11c76081b6"
     },
     {
       "path": "client/test/transport.test.mjs",
-      "sha256": "ec5d3531584c1ce33cc336e2dd24f0590fb37ed0ec8287ab546d6fdeb2ad2702"
+      "sha256": "ee34480fbcd263b68a48b91ac16953e0e6eeaee9e46eeaad8678037f50d2018f"
     },
     {
       "path": "cursor/.cursor-plugin/plugin.json",
@@ -193,6 +229,14 @@
       "sha256": "9d3f3737200d1f0434bb218cc8de3c8fb3d0a22bd13b205a735c4701cf3d2858"
     },
     {
+      "path": "package-lock.json",
+      "sha256": "556ce4bbe33429cdcfdfef201cdfa1eca64365f20170530903115245e9059497"
+    },
+    {
+      "path": "package.json",
+      "sha256": "de2024d1e921f7b559fc85d9041f8e895ce38393f6d65a46005cc83740b2f5c6"
+    },
+    {
       "path": "release/CLAUDE_0.8.3_AUTH_VERIFICATION.json",
       "sha256": "b9003ebb3bea1ecafe81e6ec5246a04ab2bd966da68d092674e5a2de07484c30"
     },
@@ -234,7 +278,11 @@
     },
     {
       "path": "scripts/validate-public-plugins.mjs",
-      "sha256": "9645617ab8bba84dcf8f5a62cd740ad461368595934264db50c3453c0e9ca370"
+      "sha256": "8d017583a07150c0beabf3cc4d7670394250f7b12623fe69ece44fc88e8b835f"
+    },
+    {
+      "path": "scripts/verify-npm-package.mjs",
+      "sha256": "b6fd9bd23e08862717e9be99ded2e46666b2f02cd4e28b3035d6be03c10d66c4"
     },
     {
       "path": "server.draft.json",
@@ -262,5 +310,14 @@
     "source_repository": "dennis430/ultiwrite-plugins",
     "source_base_commit": "822663e978db2f461943781a4aabba835ca5caf3",
     "verification": "release/CLAUDE_0.8.3_AUTH_VERIFICATION.json"
+  },
+  "cli": {
+    "name": "@ultiwrite/cli",
+    "version": "0.1.0",
+    "source_repository": "dennis430/ultiwrite-plugins",
+    "source_base_commit": "3400001feec0d8722ca5840d545bcbd1d8c5838c",
+    "mcp_url": "https://mcp.dwsoffshorepartners.com/mcp",
+    "npm_published": false,
+    "verification": "npm test; npm run test:package; npm run validate. Local Node 24 checks passed; native host OAuth remains separate."
   }
 }

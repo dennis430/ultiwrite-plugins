@@ -1,0 +1,49 @@
+{
+  "name": "@ultiwrite/cli",
+  "version": "0.1.0",
+  "description": "Install Ultiwrite asymmetric diligence and investigative intelligence in your AI tools.",
+  "type": "module",
+  "bin": {
+    "ultiwrite": "cli/bin/ultiwrite.mjs"
+  },
+  "files": [
+    "cli/bin/",
+    "cli/lib/",
+    "cli/README.md",
+    "README.md",
+    "INSTALL.md",
+    "LICENSE",
+    "NOTICE"
+  ],
+  "scripts": {
+    "build": "node --check cli/bin/ultiwrite.mjs && node --check cli/lib/config.mjs && node --check cli/lib/codex.mjs",
+    "test": "node --test",
+    "validate": "node scripts/validate-public-plugins.mjs && node scripts/pack-public-connectors.mjs --check",
+    "test:package": "node scripts/verify-npm-package.mjs",
+    "prepublishOnly": "npm run build && npm test && npm run validate && npm run test:package"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "jsonc-parser": "3.3.1"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "DWS Offshore Fund",
+    "email": "nick@ultiwrite.co"
+  },
+  "homepage": "https://dwsoffshorepartners.com/docs/mcp",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dennis430/ultiwrite-plugins.git"
+  },
+  "bugs": {
+    "url": "https://github.com/dennis430/ultiwrite-plugins/issues"
+  },
+  "keywords": ["ultiwrite", "mcp", "cursor", "claude", "codex", "diligence", "investigative-intelligence"],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  }
+}

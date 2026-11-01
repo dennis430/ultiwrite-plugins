@@ -31,7 +31,7 @@ const path = credentialPath({ ULTIWRITE_HOME: home, HOME: home })
 await mkdir(join(home, '.config', 'ultiwrite'), { recursive: true })
 await writeFile(path, JSON.stringify({ access_token: 'not-printed' }), { mode: 0o600 })
 await chmod(path, 0o600)
-assert.equal(statSync(path).mode & 0o777, 0o600)
+if (process.platform !== 'win32') assert.equal(statSync(path).mode & 0o777, 0o600)
 assert.equal(readFileSync(path, 'utf8').includes('not-printed'), true)
 
 const loggedOut = spawnSync(process.execPath, [bin, 'logout'], { encoding: 'utf8', env: { ...process.env, HOME: home, ULTIWRITE_HOME: home } })
