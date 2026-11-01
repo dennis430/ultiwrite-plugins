@@ -1,0 +1,11 @@
+import test from 'node:test';import assert from 'node:assert/strict';
+import {finalize} from '../../scripts/finalize-microsoft.mjs';
+const env={ULTIWRITE_MS_APP_ID:'11111111-1111-4111-8111-111111111111',ULTIWRITE_MS_CONNECTOR_ID:'22222222-2222-4222-8222-222222222222',ULTIWRITE_MS_VAULT_URI:'https://test-vault.vault.azure.net/secrets/test-reference'};
+const template={id:'REQUIRED_APP_GUID',agentConnectors:[{id:'REQUIRED_CONNECTOR_GUID',toolSource:{remoteMcpServer:{authorization:{type:'AzureKeyVault',referenceId:'REQUIRED_VAULT_AUTHORIZATION_URI'}}}}]};
+const discovery={tools:[{name:'ultiwrite_account_get',inputSchema:{type:'object',properties:{}}}]};
+test('certification requires assigned identities',()=>assert.throws(()=>finalize(template,discovery,{}),/GUID/));
+test('certification rejects non-vault and credential URLs',()=>{for(const uri of ['https://evil.example/secrets/x','http://test-vault.vault.azure.net/secrets/x','https://user:pass@test-vault.vault.azure.net/secrets/x'])assert.throws(()=>finalize(template,discovery,{...env,ULTIWRITE_MS_VAULT_URI:uri}));});
+test('certification refuses missing tools',()=>assert.throws(()=>finalize(template,{tools:[]},env),/discovery/));
+test('certification rejects fabricated wrong tool schema',()=>assert.throws(()=>finalize(template,{tools:[{name:'get_anything',inputSchema:{type:'object'}}]},env),/tool/));
+test('certification rejects repeated tools',()=>assert.throws(()=>finalize(template,{tools:[...discovery.tools,...discovery.tools]},env),/duplicate/));
+test('certification never upgrades local checking to host approval',()=>{const r=finalize(template,discovery,env);assert.equal(r.receipt.hostAcceptance,'NOT_RUN');assert.equal(r.receipt.publication,'NOT_PERFORMED');assert.equal(template.id,'REQUIRED_APP_GUID');assert.equal(r.manifest.id,env.ULTIWRITE_MS_APP_ID);});

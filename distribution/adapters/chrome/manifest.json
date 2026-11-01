@@ -1,0 +1,1 @@
+{"manifest_version":3,"name":"Ultiwrite — Evidence Handoff","version":"0.1.0","description":"Capture selected evidence for an Ultiwrite investigation. Review locally, export, then upload with your account.","permissions":["activeTab","scripting"],"action":{"default_popup":"popup.html","default_title":"Ultiwrite evidence handoff"},"homepage_url":"https://dwsoffshorepartners.com"}

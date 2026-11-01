@@ -1,0 +1,11 @@
+{
+  "name": "ultiwrite",
+  "version": "0.1.0",
+  "description": "Asymmetric diligence and investigative intelligence beyond the supplied evidence.",
+  "contextFileName": "GEMINI.md",
+  "mcpServers": {
+    "ultiwrite": {
+      "httpUrl": "https://dwsoffshorepartners.com/api/integrations/ultiwrite/mcp"
+    }
+  }
+}
