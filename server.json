@@ -1,0 +1,27 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.dennis430/ultiwrite",
+  "title": "Ultiwrite",
+  "description": "Asymmetric diligence and investigative intelligence beyond the supplied evidence.",
+  "version": "0.1.0",
+  "repository": {
+    "url": "https://github.com/dennis430/ultiwrite-plugins",
+    "source": "github"
+  },
+  "websiteUrl": "https://dwsoffshorepartners.com",
+  "icons": [
+    {
+      "src": "https://raw.githubusercontent.com/dennis430/ultiwrite-plugins/3400001feec0d8722ca5840d545bcbd1d8c5838c/claude/assets/logo.png",
+      "mimeType": "image/png",
+      "sizes": [
+        "512x512"
+      ]
+    }
+  ],
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://dwsoffshorepartners.com/api/integrations/ultiwrite/mcp"
+    }
+  ]
+}

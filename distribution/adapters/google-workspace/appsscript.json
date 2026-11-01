@@ -1,0 +1,16 @@
+{
+  "timeZone": "America/Los_Angeles",
+  "runtimeVersion": "V8",
+  "oauthScopes": ["https://www.googleapis.com/auth/script.external_request", "https://www.googleapis.com/auth/script.locale"],
+  "urlFetchWhitelist": ["https://dwsoffshorepartners.com/api/v1/"],
+  "addOns": {
+    "common": {
+      "name": "Ultiwrite",
+      "logoUrl": "https://raw.githubusercontent.com/dennis430/ultiwrite-plugins/3400001feec0d8722ca5840d545bcbd1d8c5838c/claude/assets/logo.png",
+      "homepageTrigger": {"runFunction": "ultiwriteHome", "enabled": true},
+      "openLinkUrlPrefixes": ["https://dwsoffshorepartners.com/"],
+      "layoutProperties": {"primaryColor": "#171C24", "secondaryColor": "#B6A471"}
+    },
+    "drive": {}
+  }
+}

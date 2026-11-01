@@ -1,0 +1,58 @@
+name: Validate distribution preparation
+on:
+  push:
+    paths: ['distribution/**', 'scripts/**', '.github/workflows/validate-distribution.yml', 'gemini-extension.json', 'server.json', 'glama.json']
+  pull_request:
+    paths: ['distribution/**', 'scripts/**', '.github/workflows/validate-distribution.yml', 'gemini-extension.json', 'server.json', 'glama.json']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  local-contracts:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node scripts/verify-distribution.mjs
+      - run: node scripts/validate-public-plugins.mjs
+      - run: node scripts/pack-public-connectors.mjs --check
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Ultiwrite-distribution-preparation
+          path: |
+            dist/distribution/
+            distribution/verification/
+          if-no-files-found: error
+  native-package-checks:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        package: [n8n, zapier]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node scripts/build-distribution.mjs
+      - name: Resolve development dependencies for native validation
+        working-directory: dist/distribution/${{ matrix.package }}
+        run: npm install --ignore-scripts
+      - name: Native n8n lint and build
+        if: matrix.package == 'n8n'
+        working-directory: dist/distribution/n8n
+        run: |
+          npm run lint
+          npm run build
+      - name: Native Zapier validation
+        if: matrix.package == 'zapier'
+        working-directory: dist/distribution/zapier
+        run: npm run validate
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: native-${{ matrix.package }}-resolution
+          path: dist/distribution/${{ matrix.package }}/package-lock.json
+          if-no-files-found: ignore
