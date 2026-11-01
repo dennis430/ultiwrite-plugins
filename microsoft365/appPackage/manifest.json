@@ -1,0 +1,26 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/teams/v1.29/MicrosoftTeams.schema.json",
+  "manifestVersion": "1.29",
+  "version": "0.1.0",
+  "id": "${{TEAMS_APP_ID}}",
+  "developer": {
+    "name": "DWS Offshore Fund, Inc.",
+    "websiteUrl": "https://dwsoffshorepartners.com",
+    "privacyUrl": "https://dwsoffshorepartners.com/privacy",
+    "termsOfUseUrl": "https://dwsoffshorepartners.com/terms"
+  },
+  "name": {
+    "short": "Ultiwrite${{APP_NAME_SUFFIX}}",
+    "full": "Ultiwrite — Asymmetric Diligence"
+  },
+  "description": {
+    "short": "Investigate commercial evidence and read saved Ultiwrite diligence reports.",
+    "full": "Ultiwrite brings asymmetric diligence and investigative intelligence to Microsoft 365 Copilot. Connect your Ultiwrite account, find saved cases and reports, read evidence-backed findings and decision briefs, and open report downloads. Start an authorized evidence submission through a secure browser upload handoff, then check its progress and read the resulting report. Ultiwrite preserves the saved decision, confidence, severity, and evidence references. A linked Ultiwrite account and the permissions you approve are required. Account eligibility and usage limits are provided by the service. File upload and report downloads open in your browser. The agent does not automatically transfer Copilot attachments to Ultiwrite."
+  },
+  "icons": { "outline": "outline.png", "color": "color.png" },
+  "accentColor": "#C9A65B",
+  "validDomains": ["dwsoffshorepartners.com"],
+  "copilotAgents": {
+    "declarativeAgents": [{ "id": "ultiwrite", "file": "declarativeAgent.json" }]
+  }
+}

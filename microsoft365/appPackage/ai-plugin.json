@@ -1,0 +1,16 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/copilot/plugin/v2.4/schema.json",
+  "schema_version": "v2.4",
+  "name_for_human": "Ultiwrite",
+  "namespace": "ultiwrite",
+  "description_for_human": "Read Ultiwrite cases, findings, decision briefs and export links, or start an authorized evidence upload.",
+  "functions": [],
+  "runtimes": [
+    {
+      "type": "RemoteMCPServer",
+      "auth": { "type": "OAuthPluginVault", "reference_id": "${{ULTIWRITE_MCP_AUTH_ID}}" },
+      "spec": { "url": "https://dwsoffshorepartners.com/api/integrations/ultiwrite/mcp" },
+      "run_for_functions": ["*"]
+    }
+  ]
+}

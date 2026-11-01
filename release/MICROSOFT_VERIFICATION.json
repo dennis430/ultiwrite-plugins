@@ -1,0 +1,137 @@
+{
+  "schema_version": 1,
+  "product": "Ultiwrite",
+  "distribution_version": "0.1.0",
+  "status": "REVIEW_CANDIDATE",
+  "observed_date": "2026-11-01",
+  "source_repository": "dennis430/ultiwrite-plugins",
+  "source_base_commit": "3400001feec0d8722ca5840d545bcbd1d8c5838c",
+  "service": "https://dwsoffshorepartners.com/api/integrations/ultiwrite/mcp",
+  "qualification": "Local implementation and package proof. No actual signed-in customer investigation, Microsoft tenant provisioning, marketplace approval, public registry publication, or production deployment is claimed.",
+  "toolchain": {
+    "node": "24.22.1",
+    "npm": "11.9.0",
+    "typescript": "5.9.3",
+    "vscode_api_types": "1.102.0",
+    "vsce": "4.1.0",
+    "vscode_test_electron": "3.1.0",
+    "vscode_host": "1.102.3",
+    "vscode_host_commit": "b224f6bf5a4fcad5fa4c640ed10f179c3b613e48",
+    "github_copilot_cli": "1.0.105",
+    "microsoft_agents_toolkit_cli": "1.1.18",
+    "microsoft_teamsfx_core": "3.1.4"
+  },
+  "checks": [
+    {
+      "id": "vscode-client-tests",
+      "result": "PASS",
+      "command": "cd vscode && npm test",
+      "passed": 21,
+      "failed": 0,
+      "scope": "Actual client implementation with synthetic HTTP servers, loopback OAuth callbacks, single and multipart file bytes, refresh, cancellation, account-switch races, continuation and request budgets. No production account."
+    },
+    {
+      "id": "vscode-package",
+      "result": "PASS",
+      "command": "cd vscode && npm run package",
+      "scope": "Official vsce packaging, deterministic ZIP metadata, archive integrity and 12-member package inspection. No third-party runtime dependencies bundled."
+    },
+    {
+      "id": "vscode-cli-installation",
+      "result": "PASS",
+      "scope": "Official VS Code 1.102.3 CLI installed the exact VSIX in isolated temporary profile and extension directories. list-extensions --show-versions returned ultiwrite.ultiwrite@0.1.0."
+    },
+    {
+      "id": "vscode-extension-host",
+      "result": "PASS",
+      "runner": "@vscode/test-electron.runTests with the existing test/host-suite.cjs and an explicit fresh official VS Code executable",
+      "vscode_executable": "/tmp/ultiwrite-xvfb/vscode-cache/vscode-linux-x64-1.102.3/code",
+      "launch_args": ["--user-data-dir", "/tmp/ultiwrite-xvfb/host-profile", "--extensions-dir", "/tmp/ultiwrite-xvfb/host-extensions", "--disable-extensions", "--disable-workspace-trust", "--no-sandbox", "--disable-gpu", "--skip-welcome", "--skip-release-notes"],
+      "reproduction": "cd vscode && npm run test:host on a working desktop or Xvfb",
+      "scope": "Actual VS Code 1.102.3 Extension Host under temporary Xvfb loaded the development extension, activated it, registered the stable MCP provider API and all 11 commands; exit 0. No authenticated native MCP call or customer investigation."
+    },
+    {
+      "id": "microsoft365-source-checks",
+      "result": "PASS",
+      "command": "cd microsoft365 && npm run check",
+      "passed": 10,
+      "failed": 0,
+      "scope": "Official app 1.29, declarative agent 1.6, plugin 2.4 and Toolkit lifecycle 1.13 schemas; static PKCE semantics; approved icon exports; registration response binding; unsafe-path and missing-configuration rejection; archive contents."
+    },
+    {
+      "id": "microsoft365-source-package",
+      "result": "PASS",
+      "command": "cd microsoft365 && npm run build",
+      "scope": "38-file reproducible source archive. This is a source project, not a tenant-installable app ZIP."
+    },
+    {
+      "id": "microsoft365-incomplete-config-rejection",
+      "result": "PASS",
+      "command": "cd microsoft365 && npm run setup -- --env dev && npm run package -- --env dev",
+      "scope": "Local setup succeeded; packaging correctly exited 1 for a missing real public-client ID. No tenant ZIP or external registration was created."
+    },
+    {
+      "id": "public-oauth-discovery",
+      "result": "PASS",
+      "scope": "Read-only public GET requests verified the canonical resource, apex issuer, S256 PKCE, public-client authentication method none and both scopes. This does not prove the new Microsoft callback is deployed."
+    },
+    {
+      "id": "copilot-cli-marketplace-installation",
+      "result": "PASS",
+      "scope": "Official Copilot CLI 1.0.105 added the local repository marketplace and installed ultiwrite@ultiwrite-copilot in an isolated temporary profile. The enabled plugin was listed at version 0.1.0. No user sign-in or authenticated tool call."
+    },
+    {
+      "id": "portable-official-schemas",
+      "result": "PASS",
+      "command": "node registry/validate.mjs --schemas /path/to/official-schema-cache",
+      "schemas": {
+        "mcp-server.json": "3fba09590c99f61735d234822279f4223fab9e300c0a81e81c91ab62a4114de0",
+        "agent-plugin.json": "0a4aad95ce337878ad38802ebf0daa3fde76abe3f65400c86bcbb1ec0b3ab883",
+        "agent-mcp.json": "6539175bfcdf43085855183e86da40ea94b166547a72b47ae9a0a390516d3acb"
+      }
+    },
+    {
+      "id": "cross-package-contract",
+      "result": "PASS",
+      "command": "node scripts/validate-microsoft-distribution.mjs"
+    },
+    {
+      "id": "historical-archive-parity",
+      "result": "PASS",
+      "command": "node scripts/pack-public-connectors.mjs --check",
+      "scope": "Existing connector source/archive parity and preserved historical release artifacts."
+    },
+    {
+      "id": "public-source-boundary",
+      "result": "PASS",
+      "command": "node scripts/validate-public-source.mjs",
+      "scope": "Legacy public structural and forbidden-material checks over all tracked and non-ignored candidate files. Installed dependencies and ignored local configuration are outside the published source inventory."
+    }
+  ],
+  "artifacts": [
+    {
+      "file": "ultiwrite-vscode-0.1.0.vsix",
+      "kind": "vscode-installation-candidate",
+      "sha256": "10404aba6129802c913f953c9a6552a8c40f11697ee5f82f32bfb3a2f6b6e6e0"
+    },
+    {
+      "file": "ultiwrite-m365-source-0.1.0.zip",
+      "kind": "microsoft365-source-project",
+      "sha256": "d908545dc1e8e8f8038f8ed95579218d2c09614584bf6a49da4c2d9fc12a301e"
+    },
+    {
+      "file": "ultiwrite-copilot-plugin-0.1.0.zip",
+      "kind": "portable-mcp-agent-plugin",
+      "sha256": "8227161a0f3780a106cf08d8ca888d099804516ee4fa420d2eca9d5d41f18aed"
+    }
+  ],
+  "remaining_acceptance": [
+    "Confirm ownership of the intended VS Code Marketplace publisher ID, rebuild if it differs from ultiwrite, and complete the authorized listing submission.",
+    "Observe a real signed-in VS Code account connection, selected-file transfer, investigation, saved report, export access, disconnect and account switch.",
+    "Observe a long native Copilot tool call across access-token renewal. VS Code can restart its MCP connection when the definition's authorization header changes; interrupted work must be recovered through the existing case before resubmitting evidence.",
+    "Review and deploy the separately prepared exact Microsoft callback change, then register the static public client and provision the real Microsoft tenant app/OAuth token-store reference.",
+    "Validate the resolved Microsoft app ZIP and complete the reviewer scenarios in each claimed host; finish Partner Center identity, program enrollment, screenshots, reviewer access and submission.",
+    "Establish domain ownership for com.dwsoffshorepartners/ultiwrite and authorize the registry publication. Curated registry inclusion is separate.",
+    "The separate direct MCP certification draft remains incomplete pending its own authentication requirements and a current authenticated tool-schema export."
+  ]
+}

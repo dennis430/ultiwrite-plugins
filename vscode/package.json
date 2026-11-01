@@ -1,0 +1,175 @@
+{
+  "name": "ultiwrite",
+  "displayName": "Ultiwrite — Asymmetric Diligence",
+  "description": "Investigate authorized business evidence with Ultiwrite. Connect Copilot to your account, upload selected files, and retrieve saved diligence reports.",
+  "version": "0.1.0",
+  "publisher": "ultiwrite",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dennis430/ultiwrite-plugins.git",
+    "directory": "vscode"
+  },
+  "homepage": "https://dwsoffshorepartners.com",
+  "bugs": {
+    "url": "https://github.com/dennis430/ultiwrite-plugins/issues"
+  },
+  "icon": "assets/logo.png",
+  "categories": [
+    "AI",
+    "Other"
+  ],
+  "keywords": [
+    "ultiwrite",
+    "MCP",
+    "Copilot",
+    "due diligence",
+    "investigative intelligence",
+    "document forensics",
+    "underwriting"
+  ],
+  "engines": {
+    "vscode": "^1.102.0"
+  },
+  "main": "./out/extension.js",
+  "extensionKind": [
+    "ui"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "capabilities": {
+    "untrustedWorkspaces": {
+      "supported": false,
+      "description": "Ultiwrite uploads only files you explicitly select from a trusted VS Code session."
+    },
+    "virtualWorkspaces": false
+  },
+  "contributes": {
+    "commands": [
+      {
+        "command": "ultiwrite.connect",
+        "title": "Connect",
+        "category": "Ultiwrite",
+        "icon": "$(plug)"
+      },
+      {
+        "command": "ultiwrite.reconnect",
+        "title": "Reconnect",
+        "category": "Ultiwrite"
+      },
+      {
+        "command": "ultiwrite.switchAccount",
+        "title": "Connect Another Account",
+        "category": "Ultiwrite"
+      },
+      {
+        "command": "ultiwrite.disconnect",
+        "title": "Disconnect",
+        "category": "Ultiwrite"
+      },
+      {
+        "command": "ultiwrite.analyzeFiles",
+        "title": "Analyze Selected Files",
+        "category": "Ultiwrite",
+        "icon": "$(cloud-upload)"
+      },
+      {
+        "command": "ultiwrite.listCases",
+        "title": "Browse Cases and Reports",
+        "category": "Ultiwrite",
+        "icon": "$(list-selection)"
+      },
+      {
+        "command": "ultiwrite.checkStatus",
+        "title": "Check Analysis Status",
+        "category": "Ultiwrite",
+        "icon": "$(sync)"
+      },
+      {
+        "command": "ultiwrite.openReport",
+        "title": "Open Saved Report",
+        "category": "Ultiwrite",
+        "icon": "$(file-text)"
+      },
+      {
+        "command": "ultiwrite.account",
+        "title": "Account and Permissions",
+        "category": "Ultiwrite",
+        "icon": "$(account)"
+      },
+      {
+        "command": "ultiwrite.dashboard",
+        "title": "Open Dashboard",
+        "category": "Ultiwrite",
+        "icon": "$(link-external)"
+      },
+      {
+        "command": "ultiwrite.help",
+        "title": "Connection Help",
+        "category": "Ultiwrite",
+        "icon": "$(question)"
+      }
+    ],
+    "mcpServerDefinitionProviders": [
+      {
+        "id": "ultiwrite.mcp",
+        "label": "Ultiwrite"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "ultiwrite",
+          "title": "Ultiwrite",
+          "icon": "assets/logo.png"
+        }
+      ]
+    },
+    "views": {
+      "ultiwrite": [
+        {
+          "id": "ultiwrite.home",
+          "name": "Asymmetric Diligence"
+        }
+      ]
+    },
+    "viewsWelcome": [
+      {
+        "view": "ultiwrite.home",
+        "contents": "Investigate your business evidence with Ultiwrite.\n[Connect Ultiwrite](command:ultiwrite.connect)\n[Setup and privacy](https://dwsoffshorepartners.com/docs/mcp)",
+        "when": "!ultiwrite.connected"
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "ultiwrite.analyzeFiles",
+          "when": "resourceScheme == file && !explorerResourceIsFolder && isWorkspaceTrusted",
+          "group": "navigation@30"
+        }
+      ],
+      "view/title": [
+        {
+          "command": "ultiwrite.listCases",
+          "when": "view == ultiwrite.home",
+          "group": "navigation"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "build": "tsc -p .",
+    "test": "npm run build && node --test test/*.test.cjs",
+    "test:host": "npm run build && node test/run-host.cjs",
+    "package": "npm run build && node scripts/package.cjs",
+    "vscode:prepublish": "npm run build"
+  },
+  "devDependencies": {
+    "@types/node": "22.18.6",
+    "@types/vscode": "1.102.0",
+    "@vscode/test-electron": "3.1.0",
+    "@vscode/vsce": "4.1.0",
+    "typescript": "5.9.3"
+  }
+}

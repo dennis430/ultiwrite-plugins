@@ -1,0 +1,15 @@
+{
+  "name": "ultiwrite-registry-validation",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "scripts": {
+    "check": "node validate.mjs"
+  },
+  "engines": { "node": ">=22" },
+  "devDependencies": {
+    "ajv": "8.20.0",
+    "ajv-formats": "3.0.1"
+  }
+}

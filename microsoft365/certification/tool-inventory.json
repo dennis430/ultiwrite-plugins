@@ -1,0 +1,15 @@
+{
+  "kind": "public-tool-name-inventory-not-a-tool-schema",
+  "status": "Requires an authenticated current tools/list export and Microsoft format validation before certification packaging.",
+  "endpoint": "https://dwsoffshorepartners.com/api/integrations/ultiwrite/mcp",
+  "tools": [
+    { "name": "ultiwrite_account_get", "purpose": "Confirm the connected account" },
+    { "name": "ultiwrite_capabilities_get", "purpose": "Read current capabilities and input limits" },
+    { "name": "ultiwrite_cases_list", "purpose": "Find authorized cases and saved reports" },
+    { "name": "ultiwrite_case_status", "purpose": "Read case progress and continuation availability" },
+    { "name": "ultiwrite_coherence_get", "purpose": "Read a saved Decision Brief" },
+    { "name": "ultiwrite_findings_get", "purpose": "Read saved findings and paginated report fields" },
+    { "name": "ultiwrite_report_export", "purpose": "Obtain authorized browser report links" },
+    { "name": "ultiwrite_evidence_submit", "purpose": "Request an upload handoff or continue a case" }
+  ]
+}

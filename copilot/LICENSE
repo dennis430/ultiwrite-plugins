@@ -1,0 +1,36 @@
+MIT License
+
+Copyright (c) 2026 DWS Offshore Fund
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+License boundary
+
+This MIT grant covers only the original thin connector in the directory where
+this file appears: manifests, skill instructions, distribution text, and the
+local MCP client wrapper when that wrapper is present.
+
+It does not license, and these packages do not contain, the Ultiwrite
+analytical service, scoring, evidence ledgers, report composition, database
+schemas, migrations, or customer records. Those remain Copyright DWS Offshore
+Fund. All rights reserved.
+
+No third-party source is vendored in these packages. The remote service at
+https://dwsoffshorepartners.com is not open source. Connecting requires an
+Ultiwrite account and the permissions that account approves.

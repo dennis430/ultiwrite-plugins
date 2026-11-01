@@ -32,6 +32,7 @@ const allowedTop = new Set([
   '.cursor-plugin', '.claude-plugin', 'README.md', 'LICENSE', 'NOTICE',
   'INSTALL.md', 'server.draft.json', '.gitignore', 'RELEASE_MANIFEST.json',
   'release',
+  'vscode', 'microsoft365', 'copilot', 'registry', 'DISTRIBUTION.md',
 ])
 
 function walk(dir, out = []) {
@@ -90,7 +91,7 @@ for (const rel of files) {
     fail(`forbidden tree ${rel}`)
   }
   if (/\.(pem|key|p12|env)$/.test(lower)) fail(`forbidden file ${rel}`)
-  if (rel.endsWith('.png') || rel.endsWith('.zip')) continue
+  if (rel.endsWith('.png') || rel.endsWith('.zip') || rel.endsWith('.vsix')) continue
   const text = readFileSync(join(root, rel), 'utf8')
   for (const needle of secretNeedles) {
     if (text.includes(needle)) fail(`${rel} contains forbidden material`)

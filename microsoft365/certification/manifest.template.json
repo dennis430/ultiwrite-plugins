@@ -1,0 +1,33 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/teams/v1.29/MicrosoftTeams.schema.json",
+  "manifestVersion": "1.29",
+  "version": "0.1.0",
+  "id": "${{CERTIFICATION_APP_ID}}",
+  "developer": {
+    "name": "DWS Offshore Fund, Inc.",
+    "websiteUrl": "https://dwsoffshorepartners.com",
+    "privacyUrl": "https://dwsoffshorepartners.com/privacy",
+    "termsOfUseUrl": "https://dwsoffshorepartners.com/terms"
+  },
+  "name": { "short": "Ultiwrite", "full": "Ultiwrite MCP" },
+  "description": {
+    "short": "Investigate commercial evidence and read saved Ultiwrite diligence reports.",
+    "full": "Connect an Ultiwrite account to read authorized cases, saved findings, decision briefs, and report download links, or start an authorized evidence upload through a browser handoff. Service access and approved scopes are required."
+  },
+  "agentConnectors": [
+    {
+      "id": "ultiwrite",
+      "displayName": "Ultiwrite",
+      "description": "Ultiwrite asymmetric diligence and investigative intelligence tools.",
+      "toolSource": {
+        "remoteMcpServer": {
+          "mcpServerUrl": "https://dwsoffshorepartners.com/api/integrations/ultiwrite/mcp",
+          "mcpToolDescription": { "file": "mcptools.json" },
+          "authorization": { "type": "AzureKeyVault", "referenceId": "${{CERTIFICATION_KEY_VAULT_URI}}" }
+        }
+      }
+    }
+  ],
+  "icons": { "outline": "outline.png", "color": "color.png" },
+  "accentColor": "#C9A65B"
+}
