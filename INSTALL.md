@@ -38,7 +38,7 @@ The five packaged workflows permit automatic invocation by default. Claude also 
 
 ## Release status
 
-Version 0.9.1 combines current account and workflow controls with the asymmetric diligence descriptions. These archives are prepared source artifacts until the release is merged and deployed. The public website served the older 0.7.1 ChatGPT archive when this release was prepared; the deployment must replace and verify that download. Updating the original directory listing and verifying its installed experience remain separate steps; no duplicate identity is needed.
+Version 0.9.1 combines current account and workflow controls with the asymmetric diligence descriptions. It is published in this repository, and the production website serves the same versioned plugin archives. See [the live release receipt](release/PLUGIN_0.9.1_LIVE_RECEIPT.json) for the merged commits, deployment and verified download hashes. The historical ChatGPT 0.7.1 download retains its original bytes, and the 0.7.0 download remains available as version 0.7.0. Updating the original directory listing, recording the demo and running the installed-host review cases remain separate steps; no duplicate identity is needed.
 
 ## Source validation
 

@@ -31,7 +31,7 @@ The five workflows explain capabilities, connect/select accounts, submit evidenc
 
 ## Downloads
 
-This commit prepares the combined 0.9.1 release. The links below resolve after these archives reach `main`; website deployment and directory updates must be verified separately. Packaging and discovery evaluation status are recorded in `release/PLUGIN_0.9.1_VERIFICATION.json`.
+Version 0.9.1 is published in this repository following [PR #17](https://github.com/dennis430/ultiwrite-plugins/pull/17). The production website mirrors the versioned archives below. Publication, deployment and download checks are recorded in [the live release receipt](release/PLUGIN_0.9.1_LIVE_RECEIPT.json); [the build verification](release/PLUGIN_0.9.1_VERIFICATION.json) preserves the packaging evidence. Directory approval and installed-host review cases remain unverified.
 
 <!-- CURRENT_DOWNLOADS_START -->
 | Archive | SHA-256 |
@@ -68,9 +68,9 @@ See [POSITIONING.md](POSITIONING.md) for the maintained commercial description a
 
 ## Source ownership and compatibility
 
-Canonical editable package paths are `packaging/chatgpt-plugin`, `packaging/claude-plugin`, `packaging/cursor-plugin` and `packaging/grokbot` in the private application repository. This public tree is their distribution surface. Keep those sources synchronized before exporting a new public release. Historical private handoff exports and website ZIPs remain labeled snapshots; they are not the current source.
+Canonical editable package paths are `packaging/chatgpt-plugin`, `packaging/claude-plugin`, `packaging/cursor-plugin` and `packaging/grokbot` in the private application repository. This public tree is their distribution surface. Keep those sources synchronized before exporting a new public release. Historical private handoff exports and earlier website ZIPs remain labeled snapshots. Current website downloads mirror the published versioned archives; canonical editable source remains in the package directories above.
 
-The private exporter writes only to a new or empty directory outside the private repository. Run `node scripts/export-plugin-distribution.mjs --out <new-directory>` there, then run `node scripts/pack-public-connectors.mjs` in that exported tree. Integrate the reviewed files into this existing distribution repository while retaining its historical archives. The older `pack-mcp-release.mjs` website builder and private release handoff snapshots are outside this release.
+The private exporter writes only to a new or empty directory outside the private repository. Run `node scripts/export-plugin-distribution.mjs --out <new-directory>` there, then run `node scripts/pack-public-connectors.mjs` in that exported tree. Integrate the reviewed files into this existing distribution repository while retaining its historical archives. Current releases use the public packer and new versioned website paths. The legacy `pack-mcp-release.mjs` website builder refuses to overwrite its frozen historical archives.
 
 The ChatGPT portable connection retains the canonical parser-compatible `type`/`url`-only entry and uses OAuth discovery. Native permission choices and feature defaults come from the service and supported host metadata, not undocumented or incompatible per-server fields.
 

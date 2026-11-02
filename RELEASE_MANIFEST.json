@@ -56,7 +56,7 @@
     },
     {
       "path": "INSTALL.md",
-      "sha256": "f12ef560bd1b00a721e384454852677b1a9c7a8d52087f4dafaab6775e2006c8"
+      "sha256": "bb33e4729094bb29076b3e9fad5da9cf47ebb7b50ece7bbdd9367e7e72fe6256"
     },
     {
       "path": "LICENSE",
@@ -72,7 +72,7 @@
     },
     {
       "path": "README.md",
-      "sha256": "7d9a5b1ff963d9a20f734e64ae429cd52ed21af26980a51220448810b2de647d"
+      "sha256": "51d408792c74d1d3e14e7957d1740d66cf59aa209442751ea79d883fefa17443"
     },
     {
       "path": "chatgpt/LICENSE",
@@ -333,6 +333,10 @@
     {
       "path": "release/INVENTORY.json",
       "sha256": "79c81a4ca5cdd0ce97622859e7be76b684a4b7beef791c79a7a19904ce4c0b1c"
+    },
+    {
+      "path": "release/PLUGIN_0.9.1_LIVE_RECEIPT.json",
+      "sha256": "01288edc9b143f941af2850708fb69c7be98e3a327a2a5a09a57e278c4c05be8"
     },
     {
       "path": "release/PLUGIN_0.9.1_VERIFICATION.json",
