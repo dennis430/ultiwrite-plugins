@@ -1,15 +1,55 @@
-# Ultiwrite ChatGPT plugin package
+# Ultiwrite for ChatGPT and Codex
 
-Version 0.7.1. Publisher: DWS Offshore Fund. This directory is the ZIP source for contract `ultiwrite-mcp-evidence@7`.
+Version 0.9.1. Product: Ultiwrite. Publisher: DWS Offshore Fund. This is the source package for the existing Ultiwrite plugin identity.
 
-The production MCP endpoint is `https://dwsoffshorepartners.com/api/integrations/ultiwrite/mcp`. This package does not prove a ChatGPT host install, an OpenAI directory upload, or a directory approval. The existing OpenAI draft identity remains the unpublished 0.4.1 listing. Do not create a second listing.
+Ultiwrite turns ordinary documents into a wider commercial investigation. Connect financial, identity, document-integrity, operational and external-context evidence across acquisitions, financing, counterparties, property and portfolios, then read reconciled findings, confidence and open questions. Submit only authorized evidence and use the live service for current capabilities and terms.
 
-Rebuild the archive with `node scripts/pack-public-connectors.mjs`. That command writes `release/ultiwrite-chatgpt-plugin-0.7.1.zip` and the Claude and Cursor archives. A built ZIP is not an installed integration.
+## Installed experience
 
-The product is Ultiwrite — Asymmetric Diligence Engine; the category is Commercial Diligence; DWS Offshore Fund is the legal publisher. This adapter uses the shared DWS upload, evidence, comprehensive-report and publication controls. File submission accepts ChatGPT file objects from `files.oaiusercontent.com` with explicit `ultiwrite:evidence` consent and existing account allowance, including supported ZIP evidence packages. Processing and review states remain visible; a saved submission is not a completed assessment or a report release.
+The portable plugin contains a remote MCP connection that discovers OAuth from the protected-resource challenge, current Ultiwrite branding, developer and policy links, and five separately discoverable skills:
 
-`ultiwrite_capabilities_get` exposes the public pricing from the existing offer registry (first completed analysis $0.00 with the full applicable analysis and full report before public launch; contact us for further-analysis pricing; no card required and no automatic charge) and the account links. Requests do not commission work, take payment or create accounts. Released reports provide authenticated website report, sign-in and entitled download links. No public report access, presigned URL or binary file fetch is created.
+| Skill | What it does |
+| --- | --- |
+| `ultiwrite-read` | Explain capabilities and route a request |
+| `connect-account` | Connect, reconnect, add/switch where supported and verify the selected account |
+| `submit-evidence` | Submit authorized files or open the secure upload handoff |
+| `read-report` | Read saved findings, confidence, Decision Brief and download links |
+| `follow-up` | Turn unresolved findings into evidence requests |
 
-No credential belongs here. `mcp.json` names the canonical production endpoint, contains no server headers or client credential, and does not authorize deployment. `defaultScopes` requests evidence consent in addition to read; the user can decline. The logo is `assets/logo.png`. No ChatGPT UI screenshot is supplied because the plugin has no custom UI.
+Every skill includes its own display name, short description and `policy.allow_implicit_invocation: true`. The onboarding entry opens `connect-account`. New installations therefore allow automatic workflow selection; a host policy or a user's disabled skill stays authoritative. This setting does not force an existing user's toggle back on.
 
-`node scripts/pack-public-connectors.mjs` is the reproducible pack command. Do not publish to npm, submit a directory listing, or deploy the website from this repository.
+ChatGPT renders the **Permissions**, **Connected accounts**, **Connect another account** and **Skills** controls. The service supplies OAuth discovery and a verified account profile; the package supplies skills and listing metadata. It does not render a substitute settings page or change ChatGPT's global approval policy. Host versions and workspace policy determine the controls shown.
+
+## Account selection and permissions
+
+1. Install the package or open the existing Ultiwrite plugin.
+2. Choose **Connect** and complete Ultiwrite's OAuth flow. `ultiwrite:read` permits account/report reads; `ultiwrite:evidence` permits evidence submission. The service advertises both permissions through OAuth discovery; the user chooses access in the actual consent flow.
+3. Ask “Which Ultiwrite account is connected?” The protected `ultiwrite_account_get` call returns the verified profile from the selected grant. The server marks it with OpenAI's profile metadata so compatible hosts can name connected accounts.
+4. To add an identity, use **Connect another account** when the host offers it. To replace one, reconnect and choose **Use a different account** on Ultiwrite's consent screen. Verify the returned identity before continuing.
+5. If the sign-in window closed or the grant expired, use the plugin's persistent Connect/Reconnect control; reinstalling is unnecessary.
+
+The host permission modes determine when ChatGPT asks before using tools. They do not grant scopes, alter account entitlements or authorize an investigation purchase. Enabled skills are available workflows, not automatic evidence submission or a paid add-on choice.
+
+## Evidence and reports
+
+Use only original file objects supported by the host and live tool schema. When the host cannot forward file contents, Ultiwrite returns an account-bound upload link. Follow the returned expiry and upload instructions; obtaining a link alone is not an analysis. The service returns current accepted inputs, limits and offers through `ultiwrite_capabilities_get`.
+
+Read the actual saved workflow state before describing results. Reports retain their saved findings, confidence, evidence and limitations. PDF, Excel or ZIP downloads open in the browser signed in to the same account; the plugin does not expose public report links or process payments.
+
+## Portable client compatibility
+
+The MCP server entry contains only `type` and the clean canonical `url`. OAuth comes from the server's protected-resource challenge and discovery metadata. This preserves the canonical 0.7.2 fix for a portable client that rejected per-server `extensions` before loading the connection. Do not reintroduce static provider auth fields in this portable artifact merely to describe permission defaults. The existing apex endpoint remains a server compatibility route for previously configured connections.
+
+## Build and publish
+
+Run `node scripts/validate-public-plugins.mjs` and `node scripts/pack-public-connectors.mjs` from the repository root. The current archive is `release/ultiwrite-chatgpt-plugin-0.9.1.zip`; `--check` verifies source/archive parity. Historical archives remain intact.
+
+Update the existing OpenAI listing; inspect its current portal state before uploading and preserve its identity. This source release does not prove directory upload, review, account labels in an installed host, or a completed customer journey. Its server contract and live host behavior require separate verification.
+
+## Links and data handling
+
+MCP: https://mcp.dwsoffshorepartners.com/mcp
+
+Website: https://dwsoffshorepartners.com · Setup: https://dwsoffshorepartners.com/docs/mcp · Support: https://dwsoffshorepartners.com/contact · Privacy: https://dwsoffshorepartners.com/privacy · Terms: https://dwsoffshorepartners.com/terms
+
+OAuth credentials stay with the host. This package contains no credentials or telemetry. Authorized requests and submitted evidence are processed by the existing Ultiwrite service under its privacy policy and account controls. The MIT license covers this thin package only; the analytical service remains proprietary.

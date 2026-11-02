@@ -1,13 +1,14 @@
 #!/usr/bin/env node
 // Structural validator for the public Ultiwrite plugin tree.
 // It does not publish, deploy, or contact a marketplace.
-import { readFileSync, readdirSync, statSync } from 'node:fs'
+import { readFileSync, readdirSync, lstatSync } from 'node:fs'
 import { join, relative, sep } from 'node:path'
 
 const root = process.argv[2] ? process.argv[2] : process.cwd()
 const errors = []
 const fail = message => errors.push(message)
-const MCP_URL = 'https://dwsoffshorepartners.com/api/integrations/ultiwrite/mcp'
+const MCP_URL = 'https://mcp.dwsoffshorepartners.com/mcp'
+const CHATGPT_MCP_URL = 'https://mcp.dwsoffshorepartners.com/mcp'
 // Claude uses the same server through its clean host, matching its directory connector listing.
 const CLAUDE_MCP_URL = 'https://mcp.dwsoffshorepartners.com/mcp'
 const privateHost = ['engine', 'dwsoffshorepartners', 'com'].join('.')
@@ -31,16 +32,18 @@ const allowedTop = new Set([
   'cursor', 'claude', 'chatgpt', 'grokbot', 'client', 'scripts', '.github',
   '.cursor-plugin', '.claude-plugin', 'README.md', 'LICENSE', 'NOTICE',
   'INSTALL.md', 'server.draft.json', '.gitignore', 'RELEASE_MANIFEST.json',
-  'release',
+  'release', 'AGENTS.md', 'POSITIONING.md', 'evals',
 ])
 
 function walk(dir, out = []) {
   for (const name of readdirSync(dir)) {
-    if (name === '.git') continue
+    if (['.git', 'node_modules', 'dist', 'coverage', '.cache', '__MACOSX', '.DS_Store', 'Thumbs.db'].includes(name) || name.endsWith('.tgz')) continue
     const path = join(dir, name)
     const rel = relative(root, path).split(sep).join('/')
     if (rel.split('/').some(part => part === '..' || part.startsWith('.env'))) fail(`forbidden path ${rel}`)
-    if (statSync(path).isDirectory()) walk(path, out)
+    const entry = lstatSync(path)
+    if (entry.isSymbolicLink() || (!entry.isDirectory() && !entry.isFile())) { fail(`nonregular release path ${rel}`); continue }
+    if (entry.isDirectory()) walk(path, out)
     else out.push(rel)
   }
   return out
@@ -122,10 +125,10 @@ const plugin = readJson('cursor/.cursor-plugin/plugin.json')
 const pluginKeys = ['name', 'displayName', 'version', 'description', 'author', 'publisher', 'license', 'homepage', 'repository', 'logo', 'keywords', 'category', 'skills']
 if (plugin) {
   for (const key of Object.keys(plugin)) if (!pluginKeys.includes(key)) fail(`plugin.json has ${key}`)
-  if (plugin.name !== 'ultiwrite' || plugin.version !== '0.7.1' || plugin.license !== 'MIT') fail('plugin identity')
+  if (plugin.name !== 'ultiwrite' || plugin.version !== '0.9.1' || plugin.license !== 'MIT') fail('plugin identity')
   if (plugin.author?.url || plugin.author?.name !== 'DWS Offshore Fund' || plugin.author?.email !== 'nick@ultiwrite.co') fail('plugin author')
   if (plugin.logo !== 'assets/logo.png') fail('plugin logo path')
-  if (plugin.skills !== 'skills/ultiwrite/SKILL.md') fail('plugin skill path')
+  if ('skills' in plugin) fail('Cursor must discover every skills/ workflow; do not override discovery with a single path')
   if (plugin.repository !== 'https://github.com/dennis430/ultiwrite-plugins') fail('plugin repository')
 }
 pngSquareOpaque('cursor/assets/logo.png')
@@ -163,13 +166,15 @@ if (!readFileSync(join(root, 'grokbot/TESTING.md'), 'utf8').includes('NOT_RUN'))
 const claude = readJson('claude/.mcp.json')
 if (claude?.mcpServers?.ultiwrite?.type !== 'http' || claude?.mcpServers?.ultiwrite?.url !== CLAUDE_MCP_URL || Object.keys(claude?.mcpServers?.ultiwrite ?? {}).length !== 2) fail('claude mcp')
 const claudeListing = readJson('claude/.claude-plugin/plugin.json')
-if (claudeListing?.name !== 'ultiwrite' || claudeListing?.displayName !== 'Ultiwrite' || claudeListing?.icon !== './assets/logo.png' || claudeListing?.version !== '0.8.3') fail('claude directory branding')
+if (claudeListing?.name !== 'ultiwrite' || claudeListing?.displayName !== 'Ultiwrite' || claudeListing?.icon !== './assets/logo.png' || claudeListing?.version !== '0.9.1') fail('claude directory branding')
 for (const field of ['documentationUrl', 'supportUrl', 'privacyPolicyUrl', 'termsOfServiceUrl']) {
   if (typeof claudeListing?.[field] !== 'string' || !claudeListing[field].startsWith('https://dwsoffshorepartners.com/')) fail(`claude directory ${field}`)
 }
 const chatgptListing = readJson('chatgpt/plugin.json')
 const openaiInterface = chatgptListing?.extensions?.['com.openai']?.interface
-if (openaiInterface?.displayName !== 'Ultiwrite' || openaiInterface?.logo !== './assets/logo.png' || openaiInterface?.composerIcon !== './assets/logo.png' || chatgptListing?.version !== '0.7.1') fail('ChatGPT directory branding')
+if (chatgptListing?.name !== 'ultiwrite' || chatgptListing?.$schema !== 'https://agent-plugins.org/schemas/1.0.0/plugin.schema.json') fail('ChatGPT portable identity or schema')
+if (chatgptListing?.apps || chatgptListing?.extensions?.['com.openai']?.apps || files.includes('chatgpt/.app.json')) fail('public ChatGPT package must not include private app bindings')
+if (openaiInterface?.displayName !== 'Ultiwrite' || openaiInterface?.logo !== './assets/logo.png' || openaiInterface?.composerIcon !== './assets/logo.png' || chatgptListing?.version !== '0.9.1') fail('ChatGPT directory branding')
 pngSquareOpaque('claude/assets/logo.png')
 // Anthropic directory rules the CLI validator does not check (claude.com/docs/plugins/pre-submission-checklist).
 const claudeFiles = files.filter(rel => rel.startsWith('claude/'))
@@ -179,19 +184,59 @@ if (!claudeFiles.includes('claude/LICENSE')) fail('claude plugin LICENSE missing
 const claudeReadme = readFileSync(join(root, 'claude/README.md'), 'utf8').replace(/```[\s\S]*?```/g, ' ')
 if (claudeReadme.split(/\s+/).filter(Boolean).length < 40) fail('claude README must have at least 40 words outside code blocks')
 if (!/^## Privacy/m.test(claudeReadme)) fail('claude README must disclose data handling under ## Privacy')
-const claudeSkills = claudeFiles.filter(rel => /^claude\/skills\/[^/]+\/SKILL\.md$/.test(rel))
-if (!claudeSkills.length) fail('claude plugin has no skills')
-if (!claudeSkills.includes('claude/skills/connect-account/SKILL.md')) fail('claude connection recovery skill missing')
 const TOOL_NAMES = ['ultiwrite_account_get', 'ultiwrite_capabilities_get', 'ultiwrite_cases_list', 'ultiwrite_case_status', 'ultiwrite_coherence_get',
   'ultiwrite_findings_get', 'ultiwrite_report_export', 'ultiwrite_evidence_submit']
-for (const rel of claudeSkills) {
-  const text = readFileSync(join(root, rel), 'utf8')
-  const front = /^---\n([\s\S]*?)\n---\n/.exec(text)
-  if (!front) { fail(`${rel} has no front matter`); continue }
-  if (!new RegExp(`^name: ${rel.split('/')[2]}$`, 'm').test(front[1])) fail(`${rel} name must equal its folder`)
-  const description = /^description: (.+)$/m.exec(front[1])?.[1] ?? ''
-  if (description.length < 40 || description.length > 1024) fail(`${rel} description length`)
-  for (const tool of text.match(/ultiwrite_[a-z_]+/g) ?? []) if (!TOOL_NAMES.includes(tool)) fail(`${rel} names unknown tool ${tool}`)
+const EXPECTED_SKILLS = {
+  chatgpt: ['ultiwrite-read', 'connect-account', 'submit-evidence', 'read-report', 'follow-up'],
+  claude: ['ultiwrite', 'connect-account', 'submit-evidence', 'read-report', 'follow-up'],
+  cursor: ['ultiwrite', 'connect-account', 'submit-evidence', 'read-report', 'follow-up'],
+}
+for (const [host, expected] of Object.entries(EXPECTED_SKILLS)) {
+  const found = files.filter(rel => new RegExp(`^${host}/skills/[^/]+/SKILL\\.md$`).test(rel))
+  const names = found.map(rel => rel.split('/')[2]).sort()
+  if (JSON.stringify(names) !== JSON.stringify([...expected].sort())) fail(`${host} must package all five independently discoverable workflows`)
+  for (const rel of found) {
+    const text = readFileSync(join(root, rel), 'utf8')
+    const front = /^---\n([\s\S]*?)\n---\n/.exec(text)
+    if (!front) { fail(`${rel} has no front matter`); continue }
+    if (!new RegExp(`^name: ${rel.split('/')[2]}$`, 'm').test(front[1])) fail(`${rel} name must equal its folder`)
+    const description = /^description: (.+)$/m.exec(front[1])?.[1] ?? ''
+    if (description.length < 40 || description.length > 1024) fail(`${rel} description length`)
+    for (const tool of text.match(/ultiwrite_[a-z_]+/g) ?? []) if (!TOOL_NAMES.includes(tool)) fail(`${rel} names unknown tool ${tool}`)
+    const metadataPath = rel.replace('SKILL.md', 'agents/openai.yaml')
+    if (!files.includes(metadataPath)) { fail(`${metadataPath} missing`); continue }
+    const metadata = readFileSync(join(root, metadataPath), 'utf8')
+    // This package emits this small YAML subset; reject unrecognized policy keys
+    // rather than treating an arbitrary string or an unsupported force-enable field as true.
+    if (!/^policy:\n  allow_implicit_invocation: true\n$/.test(metadata.slice(metadata.indexOf('policy:')))) fail(`${metadataPath} must leave automatic invocation enabled by default`)
+    for (const key of ['display_name', 'short_description', 'default_prompt']) {
+      const encoded = new RegExp(`^  ${key}: (.+)$`, 'm').exec(metadata)?.[1]
+      try {
+        const value = JSON.parse(encoded ?? '')
+        if (typeof value !== 'string' || !value.trim()) fail(`${metadataPath} ${key} must be a nonblank string`)
+        if (key === 'short_description' && (value.length < 25 || value.length > 64)) fail(`${metadataPath} description length`)
+        if (key === 'default_prompt' && !value.includes(`$${rel.split('/')[2]}`)) fail(`${metadataPath} prompt must name the skill`)
+      } catch { fail(`${metadataPath} invalid ${key}`) }
+    }
+  }
+}
+if (claudeListing?.defaultEnabled !== true) fail('Claude plugin defaultEnabled must be true; existing user overrides remain authoritative')
+if (chatgptListing?.extensions?.['com.openai']?.onboardingSkill !== './skills/connect-account/SKILL.md') fail('ChatGPT onboarding must start with account connection')
+if ((openaiInterface?.shortDescription?.length ?? 999) > 30) fail('ChatGPT subtitle exceeds 30 characters')
+for (const field of ['websiteURL', 'supportURL', 'privacyPolicyURL', 'termsOfServiceURL']) {
+  if (!openaiInterface?.[field]?.startsWith('https://dwsoffshorepartners.com')) fail(`ChatGPT ${field}`)
+}
+const chatgptMcp = readJson('chatgpt/mcp.json')
+const chatgptServer = chatgptMcp?.mcpServers?.ultiwrite
+if (JSON.stringify(Object.keys(chatgptMcp?.mcpServers ?? {})) !== JSON.stringify(['ultiwrite'])) fail('ChatGPT must preserve the single ultiwrite server identity')
+if (chatgptServer?.type !== 'streamable-http' || chatgptServer?.url !== CHATGPT_MCP_URL || chatgptServer?.headers) fail('ChatGPT MCP connection')
+if (JSON.stringify(Object.keys(chatgptServer ?? {}).sort()) !== JSON.stringify(['type', 'url'])) fail('ChatGPT uses the portable parser-safe transport and URL only; OAuth is discovered from the service')
+if (openaiInterface?.category !== 'Business & Operations') fail('ChatGPT must preserve the canonical listing category')
+if (chatgptListing?.extensions?.['com.openai']?.review?.test_cases?.positive?.length !== 5 || chatgptListing?.extensions?.['com.openai']?.review?.test_cases?.negative?.length !== 3) fail('ChatGPT must preserve five positive and three negative review cases')
+const canonicalLogo = readFileSync(join(root, 'claude/assets/logo.png'))
+// ChatGPT keeps its canonical approved gold icon; other hosts share the current directory icon.
+for (const host of ['cursor', 'grokbot']) {
+  if (!readFileSync(join(root, host, 'assets/logo.png')).equals(canonicalLogo)) fail(`${host} logo differs from the approved Ultiwrite identity`)
 }
 pngSquareOpaque('chatgpt/assets/logo.png')
 const pkg = readJson('client/package.json')
