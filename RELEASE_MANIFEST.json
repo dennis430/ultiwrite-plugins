@@ -284,15 +284,15 @@
     },
     {
       "path": "distribution/README.md",
-      "sha256": "b86a4065c1c219152edbffc4c0e127eb00e36e5befb4f42342858e8c94de1af4"
+      "sha256": "26809c94da0c639e31163d149d50342d691c29b75e626371024e8103ebeb3139"
     },
     {
       "path": "distribution/VALIDATION.json",
-      "sha256": "21df0303f98ab449eb492215075b5deb19ddf87949c4ea402d096acae66328de"
+      "sha256": "8cdc52dbcc4d489e7da75ebca269c2f015835e90ed20fa7ac7249efd733412b3"
     },
     {
       "path": "distribution/VALIDATION.md",
-      "sha256": "3816fdef08bc8c04ebedf8bd7b6fbd592f802a6a634f3325c1234ec1f0dab792"
+      "sha256": "7fba5b659daccf5fe586fb1dee86dd5d78053c7cf28e613b40843a81e7c02bfc"
     },
     {
       "path": "distribution/aws/BUYER_SETUP.md",
@@ -395,8 +395,12 @@
       "sha256": "7abaf0c82fb9e6159870843061ab9a2e52eb1a85cfe87eb90049f34318de50c9"
     },
     {
+      "path": "distribution/microsoft/NEXT_STEPS.md",
+      "sha256": "232cce94ed67925d1878b5a59f50772180955d763b8dda57196c8772884a008e"
+    },
+    {
       "path": "distribution/microsoft/README.md",
-      "sha256": "2b4ec566a44be4772f7fc2a705732a1f9f01e5dbcd2ce1a5a3d232566172a43f"
+      "sha256": "5546351515acc21221c9aec7fd9c714bf036aef7eb5f0b81814e80a49675c2bc"
     },
     {
       "path": "distribution/microsoft/SUBMISSION.md",
@@ -416,7 +420,7 @@
     },
     {
       "path": "distribution/microsoft/appPackage/manifest.json",
-      "sha256": "6e65d490cee91910849a7e2d96433b7a3bc7fe61b05a34da9e5c9dc8f545c48e"
+      "sha256": "27342a0bb0b3640d10662acdc667787cf5e7a823c9bd8ec90a76e2c35337c787"
     },
     {
       "path": "distribution/microsoft/appPackage/outline.png",
@@ -459,8 +463,16 @@
       "sha256": "bc009988b3d38c6a5a27d5550254e766cef092d9ada334a5973933a12d10f0b5"
     },
     {
+      "path": "distribution/microsoft/scripts/prepare_submission.py",
+      "sha256": "01d450e02327507f9bd5822e05fa9ce5abe4f5875f60270fcdd9bdc04a5ad114"
+    },
+    {
       "path": "distribution/microsoft/scripts/register_public_client.mjs",
       "sha256": "305b39f0e6b353b3d376a884943ce52ab04483affa27b9bfef323556ff9ba1f5"
+    },
+    {
+      "path": "distribution/microsoft/scripts/test_prepare_submission.py",
+      "sha256": "6ba69717b4d970f293c4be76038946ed1dce00db84db0bf2df4eb21ac1279cef"
     },
     {
       "path": "distribution/microsoft/sources.json",
@@ -468,7 +480,7 @@
     },
     {
       "path": "distribution/microsoft/validation.json",
-      "sha256": "dce26f5a2ebdf62c9f8856b36c9ff9dca917ab2f01973d1a1e859708ce92e018"
+      "sha256": "c57ce014906dafa8ea5c9a6957ed2cfb74e0564b5a68f25ed009c43467492ed0"
     },
     {
       "path": "distribution/registry/README.md",
@@ -552,7 +564,7 @@
     },
     {
       "path": "distribution/shared/profile.json",
-      "sha256": "d0f0e350239ef748a9d0eff0e10d35b72f292954d7a1cb53bad985359ff0aabf"
+      "sha256": "1f7c31caf0cef9a7cf2d42485609f04356ab54622f319612d0d2da2956b024dd"
     },
     {
       "path": "evals/README.md",
@@ -708,7 +720,7 @@
     },
     {
       "path": "scripts/pack-distribution.py",
-      "sha256": "a59a858004ee62172f82f9e5c776855dda835b660372d1ed0a278ed0f9a422f3"
+      "sha256": "5245b6d203239da71f07a11807efa33f78531a91fc4297cb5b3799dfa45619cb"
     },
     {
       "path": "scripts/pack-public-connectors.mjs",

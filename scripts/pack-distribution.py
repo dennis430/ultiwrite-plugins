@@ -34,6 +34,7 @@ def main():
     payload['START_HERE.md'] = (
         '# Ultiwrite remaining MCP submission kit\n\n'
         'Open [the seven-channel guide](distribution/README.md) for every signup link, prepared file, account step and remaining integration requirement.\n\n'
+        'Already registered with Microsoft? Open [Microsoft next steps](distribution/microsoft/NEXT_STEPS.md) to create the app, configure OAuth and build the real-ID upload package.\n\n'
         'The prepared Cursor ZIP is in `release/`. Its editable plugin is in `cursor/`. '
         'Microsoft has a source package and builder that requires real Microsoft app/auth IDs. '
         'Other channel folders contain their supported source or clearly labeled submission worksheets.\n\n'

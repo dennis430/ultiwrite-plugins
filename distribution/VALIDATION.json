@@ -42,5 +42,21 @@
     "excludedPackageFilesUnchanged": 46,
     "preExistingArchivesUnchanged": 18,
     "baseline": "origin/main 63adef9"
+  },
+  "microsoftPublisherFollowup": {
+    "kitVersion": "1.0.2",
+    "microsoftPackageVersion": "0.9.6",
+    "publisherEnrollment": "user_reports_registered",
+    "microsoftAppId": "NOT_PROVIDED",
+    "microsoftAuthConfigId": "NOT_PROVIDED",
+    "publisherPreparationTests": {
+      "passed": 5,
+      "failed": 0,
+      "scope": "local fixtures only; no Microsoft tenant registration"
+    },
+    "schemaValidation": "PASS_TEMPLATE_ONLY",
+    "hostTested": false,
+    "submitted": false,
+    "newDependencies": false
   }
 }

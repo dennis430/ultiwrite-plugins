@@ -62,3 +62,22 @@ AWS account signup alone does not finish its service integration. Salesforce's a
 Kit 1.0.1 records the confirmed legal entity as **DWS Offshore Fund** and the separate DBA as **Ultiwrite**. All 13 incorrect publisher references were corrected. Microsoft source is now 0.9.5; its three-schema template validation was regenerated. Cursor remains 0.9.4. The shared profile and generated handoff inventory keep legal entity and DBA in separate fields.
 
 Local public-source and seven-channel validation, current-archive checking, and all five packaging regressions passed. Every pre-existing release ZIP and excluded ChatGPT/Claude/Grok source file remains byte-identical to the prior PR head. The rebuilt handoff is checked against source bytes and its SHA-256 inventory. These checks do not assert a hosted CI pass or a provisioned Microsoft upload package.
+
+## Registered Microsoft publisher follow-up
+
+Kit 1.0.2 / Microsoft source 0.9.6 adds `microsoft/NEXT_STEPS.md` and a local
+`prepare_submission.py` command. It creates portal fields and an explicit readiness
+record, then calls the existing schema-validating ZIP builder once the app and
+auth-config IDs are supplied. It performs no account registration or network call.
+Five new local tests passed: missing-ID handoff, missing-ID build refusal, secret/
+unknown-field refusal, preservation of prior output, and a five-file ZIP with
+resolved fixture identities. The fixture ZIP was temporary and is not a submission
+artifact. Three Microsoft schemas, public-source/distribution validation, five
+release regressions and refreshed archive inventories passed. No dependency was
+added. Python used the installed jsonschema 4.26.0; the source requirements retain
+the existing 4.25.1 pin.
+
+The user reports publisher registration only. No Microsoft app ID, OAuth auth-config
+ID, installed Copilot journey, reviewer screenshot or submission receipt has been
+provided. Template validation does not close these requirements. No final Microsoft
+upload ZIP with real IDs is included in this handoff.

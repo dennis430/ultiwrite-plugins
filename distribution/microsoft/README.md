@@ -1,6 +1,10 @@
 # Ultiwrite for Microsoft 365 Copilot
 
-Prepared on November 1, 2026. Microsoft source package version **0.9.5**, preserving the **0.9.2 evidence-handoff contract**. This is the **declarative agent route to the Copilot Agent Store**. It wraps the existing hosted Ultiwrite MCP service; it adds no second analytical engine.
+Prepared on November 1, 2026. Microsoft source package version **0.9.6**, preserving the **0.9.2 evidence-handoff contract**. This is the **declarative agent route to the Copilot Agent Store**. It wraps the existing hosted Ultiwrite MCP service; it adds no second analytical engine.
+
+Already enrolled? Start with [your next publishing steps](NEXT_STEPS.md). The local
+`prepare_submission.py` helper generates portal fields, a readiness record and, once
+you supply the actual Microsoft IDs, the upload ZIP. It performs no network mutation.
 
 ## What is prepared
 
@@ -89,7 +93,7 @@ That command validates the templates with clearly labeled local fixture IDs and 
 
 On macOS or Linux, the equivalent command is `.venv/bin/python scripts/build_package.py --package`.
 
-The output is `build/ultiwrite-m365-0.9.5.zip`, with its checksum printed. It contains the three resolved manifests and two icons at the ZIP root. Existing archives are preserved; select `--output` for a different filename if needed. No credential, registration record, schema cache or source documentation is included in that upload ZIP.
+The output is `build/ultiwrite-m365-0.9.6.zip`, with its checksum printed. It contains the three resolved manifests and two icons at the ZIP root. Existing archives are preserved; select `--output` for a different filename if needed. No credential, registration record, schema cache or source documentation is included in that upload ZIP.
 
 Run the current toolkit's manifest validation and sideload the exact configured package. Complete the scenarios in [SUBMISSION.md](SUBMISSION.md). Store approval and installed-host success have not been established by the offline schema checks.
 

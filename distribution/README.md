@@ -1,6 +1,6 @@
 # Ultiwrite: seven remaining MCP channels
 
-Prepared November 1, 2026 (America/Los_Angeles). New distribution kit version **1.0.1**, prepared workflow contract **0.9.2**, current public repository baseline **0.9.3**, Cursor package candidate **0.9.4** and Microsoft package candidate **0.9.5**. Brand: **Ultiwrite — asymmetric diligence and investigative intelligence**. Legal publisher: **DWS Offshore Fund**.
+Prepared November 1, 2026 (America/Los_Angeles). New distribution kit version **1.0.2**, prepared workflow contract **0.9.2**, current public repository baseline **0.9.3**, Cursor package candidate **0.9.4** and Microsoft package candidate **0.9.6**. Brand: **Ultiwrite — asymmetric diligence and investigative intelligence**. Legal publisher: **DWS Offshore Fund**.
 
 This kit covers the seven requested channels. Each directory contains its actual supported preparation materials, account steps and remaining dependencies. A JSON worksheet is labeled as such when a platform does not document an importer. No account, tenant-specific identity, review receipt or host success is invented.
 
