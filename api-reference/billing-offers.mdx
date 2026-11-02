@@ -1,0 +1,13 @@
+---
+title: "List investigation offers"
+sidebarTitle: "List offers"
+description: "Read the current investigation offers for an authorized Ultiwrite account before selecting a purchase, using a dashboard key or Partner OAuth."
+keywords: ["Ultiwrite", "billing", "offers", "investigation"]
+openapi: "https://dwsoffshorepartners.com/.well-known/openapi.json GET /billing/offers"
+---
+
+Read the Ultiwrite offer catalog for the authorized account before presenting a purchase. Use an approved dashboard API key or Partner OAuth with `ultiwrite:read`. The generated reference below uses the [canonical OpenAPI contract](https://dwsoffshorepartners.com/.well-known/openapi.json).
+
+Use the returned catalog for current availability and price information. Do not hard-code prices or infer an entitlement from this documentation. Reading offers does not create a payment or add analysis credits.
+
+[Creating a checkout link](/api-reference/create-checkout) requires separate, optional OAuth checkout consent. A dashboard key that can read this catalog cannot create checkout. See [authentication](/partner-api/authentication) and [usage and payment recovery](/partner-api/usage).

@@ -16,15 +16,19 @@ GET /usage reads the shared account ledger: allowance, used, in-progress reserva
 
 ## Retry the same package
 
-Submission is content-addressed within the organization. Preserve filenames, bytes and the forensic choice when replaying an uncertain submission. Identical retries return the existing case without another analysis. No Idempotency-Key header is required or interpreted. Renaming or changing files can produce a different package and a new analysis.
+Submission is content-addressed within the organization. Preserve filenames, bytes and the forensic choice when replaying an uncertain submission. Identical retries return the existing case without another analysis. No Idempotency-Key header is required or interpreted for POST /cases; checkout creation has its own required header. Renaming or changing files can produce a different package and a new analysis.
 
 ## Separate analysis credits from API requests
 
 Status, findings, brief and delivery-option reads do not consume a new analysis. Continuation advances the saved case without another analysis credit. Every admitted Partner API request still consumes one request from the shared monthly pool, including input/handler failures. Authentication, approval, rate, quota and concurrency refusals do not. A lower platform ceiling or concurrency guard may apply. Rate/quota responses contain Retry-After; admitted responses show X-Api-Requests-Limit, Remaining and Reset headers. Use dashboard usage when the API pool is exhausted.
 
-## Do not invent a commercial entitlement
+## Request existing Stripe checkout with permission
 
-Purchases happen in the signed-in dashboard. The API cannot take payment, grant credits or choose P1/P2/P3 through undocumented fields. Use whatever the canonical billing and account path actually grants. Public integration docs do not establish new prices or promises of a particular model or analysis effort.
+Read GET /billing/offers for the authenticated account catalog. POST /billing/checkouts requires Partner API OAuth with read and explicitly selected optional ultiwrite:checkout permission; ordinary keys and read/evidence grants cannot create checkout. Send strict JSON offer P1, P2, P3 or document_forensics, with investigationId only for an owned unstarted P1/P2 portal Upload draft when buying Forensics. It is not an API case id. Send a stable 16–128 character Idempotency-Key using letters, digits, underscores or hyphens. Retry uncertain creation only with the identical key and selection. Identity, price, amount and return origin come from trusted server state. [Read checkout requests](https://dwsoffshorepartners.com/docs/downloads/partner-api/README.md#agent-checkout-through-stripe).
+
+## Wait for verified payment and fulfillment
+
+Checkout creation returns a private Stripe URL, requiresUserAction true and state open. The intended user reviews and pays on Stripe; creating a link does not charge a payment method, use the complimentary analysis, grant credit or change API approval. `GET /billing/checkouts/{sessionId}` requires the same OAuth checkout permission and uses existing Stripe verification and canonical ledger recovery. Only credited confirms fulfillment. Pending means wait and check again before paying. Preserve open, expired, failed, reversed and needs_review states; service-unavailable and not-found errors do not confirm payment; a forensic payment needing review must not prompt a second payment. Keep checkout URLs out of logs and analytics. Normal API quotas and shared browser/agent checkout throttling apply. This human-approved Stripe flow does not declare MPP, AP2, ACP, UCP or x402 support.
 
 ## Handle exhaustion honestly
 

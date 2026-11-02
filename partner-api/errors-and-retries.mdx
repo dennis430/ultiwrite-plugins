@@ -18,6 +18,8 @@ Record the operation, UTC time, HTTP status, X-Request-Id and Ultiwrite-Api-Vers
 
 A 401 can mean expiry, revocation or the wrong resource audience. A 403 can mean missing ultiwrite:evidence consent. Repeated retries do not repair either. A 404 can mean the API is disabled, the object is absent or the account cannot access it. Check live discovery and GET /me without trying other tenants’ identifiers. A 403 api_access_denied requires explicit administrator approval; a 429 api_quota_exceeded means the account monthly request pool is exhausted.
 
+Checkout creation/status require an OAuth grant with explicitly approved ultiwrite:checkout permission; re-authorize and have the user select it. Adding payment fields to an ordinary read/evidence request or using a dashboard key does not provide that authority.
+
 ## Distinguish input and capacity problems
 
 A 400 requires correcting the documented request. A 409 can mean a frozen forensic choice. A 413 needs a smaller direct payload or the upload-link path. A 415 or 422 requires reading the actual input/workflow requirement. None of these should be replaced by an empty successful analysis in your application.

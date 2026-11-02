@@ -1,0 +1,15 @@
+---
+title: "Read checkout and fulfillment status"
+sidebarTitle: "Checkout status"
+description: "Recover the status of an Ultiwrite Stripe checkout with explicit OAuth checkout permission and distinguish verified fulfillment from pending payment."
+keywords: ["Ultiwrite", "checkout", "fulfillment", "payment recovery"]
+openapi: "https://dwsoffshorepartners.com/.well-known/openapi.json GET /billing/checkouts/{sessionId}"
+---
+
+Read the saved Ultiwrite checkout status before deciding whether fulfillment has completed or another user action is needed. This operation requires Partner API OAuth with `ultiwrite:read` and the separately consented optional `ultiwrite:checkout` scope. Dashboard keys and ordinary read/evidence grants cannot recover checkout status.
+
+Only `credited` confirms fulfillment. A `pending` state means wait and check again before paying. Preserve `open`, `expired`, `failed`, `reversed` and `needs_review` distinctly in your application. A service-unavailable or not-found error does not confirm payment, and a forensic payment needing review must not prompt a second payment.
+
+Use the session identifier returned by [checkout creation](/api-reference/create-checkout). Keep private checkout URLs out of logs and analytics. The generated reference below uses the [canonical OpenAPI contract](https://dwsoffshorepartners.com/.well-known/openapi.json).
+
+Read [usage and payment recovery](/partner-api/usage#wait-for-verified-payment-and-fulfillment) for the complete account and fulfillment boundaries.
