@@ -3,18 +3,20 @@
 from __future__ import annotations
 
 import argparse
+import binascii
 import hashlib
 import json
 import os
 from pathlib import Path
 import re
+import struct
 import sys
 import uuid
 import zipfile
+import zlib
 
 try:
     from jsonschema import validators
-    from PIL import Image
 except ImportError:
     raise SystemExit("Install the requirements in this folder before validation.")
 
@@ -28,6 +30,90 @@ TEMPLATE_AUTH_ID = "template-validation-only"
 def check(condition: bool, message: str) -> None:
     if not condition:
         raise ValueError(message)
+
+
+def validate_png(path: Path, dimensions: tuple[int, int], outline: bool = False) -> None:
+    """Validate the checked-in 8-bit RGB/RGBA icons without an imaging dependency.
+
+    Only the simple, noninterlaced PNG formats used by these assets are accepted.
+    Input and decoded output are bounded before decoding; every chunk CRC is
+    checked. Ancillary metadata is not interpreted or decompressed.
+    """
+    check(path.stat().st_size <= 1024 * 1024, f"Icon is too large: {path.name}")
+    blob = path.read_bytes()
+    check(blob[:8] == b"\x89PNG\r\n\x1a\n", f"Invalid PNG signature: {path.name}")
+    offset, channels = 8, 0
+    compressed = bytearray()
+    ended = False
+    while offset < len(blob):
+        check(offset + 12 <= len(blob), f"Truncated PNG chunk: {path.name}")
+        size = struct.unpack_from(">I", blob, offset)[0]
+        kind = blob[offset + 4:offset + 8]
+        end = offset + size + 12
+        check(end <= len(blob), f"Truncated PNG data: {path.name}")
+        data = blob[offset + 8:offset + 8 + size]
+        crc = struct.unpack_from(">I", blob, end - 4)[0]
+        check((binascii.crc32(kind + data) & 0xFFFFFFFF) == crc, f"PNG checksum mismatch: {path.name}")
+        if kind == b"IHDR":
+            check(offset == 8 and size == 13 and channels == 0, f"Invalid PNG header: {path.name}")
+            width, height, depth, color, compression, filtering, interlace = struct.unpack(">IIBBBBB", data)
+            check((width, height) == dimensions, f"Invalid Microsoft icon dimensions: {path.name}")
+            check(depth == 8 and color in (2, 6) and (compression, filtering, interlace) == (0, 0, 0), f"Unsupported PNG encoding: {path.name}")
+            channels = 3 if color == 2 else 4
+            check(not outline or channels == 4, "Outline icon must support transparency.")
+        elif kind == b"IDAT":
+            check(channels != 0, f"PNG image data precedes its header: {path.name}")
+            compressed.extend(data)
+        elif kind == b"IEND":
+            check(size == 0 and bool(compressed) and end == len(blob), f"Invalid PNG ending: {path.name}")
+            ended = True
+            break
+        else:
+            check(channels != 0 and bool(kind[0] & 32), f"Unsupported PNG critical chunk: {path.name}")
+        offset = end
+    check(ended, f"PNG end marker is missing: {path.name}")
+    stride = dimensions[0] * channels
+    expected = (stride + 1) * dimensions[1]
+    try:
+        decoder = zlib.decompressobj()
+        decoded = decoder.decompress(bytes(compressed), expected + 1)
+    except zlib.error as exc:
+        raise ValueError(f"Invalid PNG image stream: {path.name}") from exc
+    check(len(decoded) == expected and decoder.eof and not decoder.unused_data and not decoder.unconsumed_tail, f"Invalid PNG decoded size: {path.name}")
+    previous = bytearray(stride)
+    transparent = visible = False
+    for y in range(dimensions[1]):
+        start = y * (stride + 1)
+        filter_type = decoded[start]
+        check(filter_type <= 4, f"Unsupported PNG row filter: {path.name}")
+        row = bytearray(decoded[start + 1:start + 1 + stride])
+        for x in range(stride):
+            left = row[x - channels] if x >= channels else 0
+            above = previous[x]
+            corner = previous[x - channels] if x >= channels else 0
+            if filter_type == 0:
+                predictor = 0
+            elif filter_type == 1:
+                predictor = left
+            elif filter_type == 2:
+                predictor = above
+            elif filter_type == 3:
+                predictor = (left + above) // 2
+            else:
+                estimate = left + above - corner
+                distances = (abs(estimate - left), abs(estimate - above), abs(estimate - corner))
+                predictor = (left, above, corner)[distances.index(min(distances))]
+            row[x] = (row[x] + predictor) & 255
+        if outline:
+            for x in range(0, stride, 4):
+                r, g, b, alpha = row[x:x + 4]
+                transparent |= alpha == 0
+                visible |= alpha > 0
+                check(alpha == 0 or (r, g, b) == (255, 255, 255), "Outline icon must use a white foreground.")
+        previous = row
+    if outline:
+        check(transparent, "Outline icon must have transparent pixels.")
+        check(visible, "Outline icon is empty.")
 
 
 def main() -> None:
@@ -79,14 +165,7 @@ def main() -> None:
     check(runtime["spec"] == {"url": "https://mcp.dwsoffshorepartners.com/mcp"}, "Unexpected MCP endpoint or pinned tool surface.")
     check(not app.get("permissions") and not app.get("authorization") and not agent.get("capabilities"), "This wrapper does not require Microsoft data permissions.")
     for name, dimensions in (("color.png", (192, 192)), ("outline.png", (32, 32))):
-        with Image.open(ROOT / "appPackage" / name) as icon:
-            check(icon.format == "PNG" and icon.size == dimensions, f"Invalid Microsoft icon: {name}")
-            if name == "outline.png":
-                check(icon.mode == "RGBA", "Outline icon must support transparency.")
-                pixels = list(icon.getdata())
-                check(any(a == 0 for _, _, _, a in pixels), "Outline icon must have transparent pixels.")
-                check(any(a > 0 for _, _, _, a in pixels), "Outline icon is empty.")
-                check(all((r, g, b) == (255, 255, 255) for r, g, b, a in pixels if a > 0), "Outline icon must use a white foreground.")
+        validate_png(ROOT / "appPackage" / name, dimensions, outline=name == "outline.png")
 
     result = {
         "status": "PASS",

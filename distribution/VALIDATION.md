@@ -37,6 +37,12 @@ Source validators check JSON, local links, exact channel scope, endpoint agreeme
 
 The restricted execution wrapper dropped child-process stdout in the regression harness. Running the same unchanged assertions with normal subprocess execution passed all five tests. This was an execution-environment issue, not a relaxed test expectation. The completed command results are also recorded in the preparation pull request. The handoff includes a SHA-256 inventory.
 
+## Hosted checks and dependency follow-up
+
+The GitHub validation jobs inspected during preparation ended before any workflow step ran. Their job-step lists were empty and no job log was available. These hosted results are not counted as validation passes; the passing commands above are local execution evidence. The current hosted status is visible in pull request #20's Checks tab.
+
+The dependency scan flagged the Microsoft helper's initial Pillow pin. Pillow was removed: the builder validates the two checked-in PNG icons with bounded standard-library decoding and keeps the existing image bytes unchanged. The schema/package validation and malformed-icon refusal checks were rerun after this change.
+
 ## Remaining proof
 
 | Channel | Not established by this preparation |

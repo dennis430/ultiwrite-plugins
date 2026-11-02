@@ -292,7 +292,7 @@
     },
     {
       "path": "distribution/VALIDATION.md",
-      "sha256": "2866cb2880a581a2573d8ba7ba2ca85dacda33d71d99d863cecc85e4b265299d"
+      "sha256": "c4786c15ef95cc874543a9b81940e764b617e570f99bd7d594315494d0e00011"
     },
     {
       "path": "distribution/aws/BUYER_SETUP.md",
@@ -436,7 +436,7 @@
     },
     {
       "path": "distribution/microsoft/requirements.txt",
-      "sha256": "64c987f46401807f6ce637f5fee335dd3660f5f03f8ecf85f048c5e827f38e0d"
+      "sha256": "44ff0dc2f1e40311b8239e83146749ab9d9cee2a650e699f5464755d552ee20d"
     },
     {
       "path": "distribution/microsoft/schemas/README.md",
@@ -456,7 +456,7 @@
     },
     {
       "path": "distribution/microsoft/scripts/build_package.py",
-      "sha256": "c5b38ab53d3299bf10356c39e2b56f3dc8067e8b7d950e56f994ae7a3892f155"
+      "sha256": "bc009988b3d38c6a5a27d5550254e766cef092d9ada334a5973933a12d10f0b5"
     },
     {
       "path": "distribution/microsoft/scripts/register_public_client.mjs",
