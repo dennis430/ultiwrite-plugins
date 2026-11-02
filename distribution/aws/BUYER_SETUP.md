@@ -2,7 +2,7 @@
 
 This is prepared buyer copy for an AWS Marketplace listing. Publish it with the approved listing after Marketplace account fulfillment is working. No AWS subscription or new Ultiwrite entitlement has been created by this package.
 
-The workflow below follows the prepared canonical 0.9.2 contract. The public connector baseline reviewed for this kit is 0.9.1. Always obtain the actual advertised schemas from the connected service before making a tool call.
+The workflow below follows the prepared canonical 0.9.2 contract. The reconciled public connector baseline for this kit is 0.9.3. Always obtain the actual advertised schemas from the connected service before making a tool call.
 
 ## Prerequisites
 
@@ -69,4 +69,4 @@ A missing or expired grant normally triggers an HTTP `401` challenge and the hos
 
 Support: [Ultiwrite contact](https://dwsoffshorepartners.com/contact). Documentation: [MCP setup](https://dwsoffshorepartners.com/docs/mcp). Privacy: [privacy policy](https://dwsoffshorepartners.com/privacy). Terms: [terms of service](https://dwsoffshorepartners.com/terms).
 
-Product baseline: public `ultiwrite-plugins` revision `4ba87f09c3a7607f8af54a9777af3e6df68b761a`, especially `cursor/skills/` and `release/PLUGIN_0.9.1_LIVE_RECEIPT.json`. Exact upload recovery and response-field guidance were reconciled against the newer canonical 0.9.2 source. This preparation does not claim a new authenticated AWS buyer test or a public 0.9.2 release.
+Product baseline: public `ultiwrite-plugins` revision `63adef9ae6ae0bacf3cdc6a59c20a5513831a1ac`, version 0.9.3. Exact upload recovery and response-field guidance use the prepared canonical 0.9.2 workflow contract. This preparation does not claim an authenticated AWS buyer test or Marketplace publication.

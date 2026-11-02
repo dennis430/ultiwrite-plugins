@@ -35,5 +35,12 @@
     "Microsoft tenant IDs and host test",
     "Salesforce actual per-user OAuth and retrieved metadata",
     "AWS buyer fulfillment, event reconciliation and billing integration"
-  ]
+  ],
+  "preparedPackageVersion": "0.9.4",
+  "publicRepositoryBaseline": "63adef9ae6ae0bacf3cdc6a59c20a5513831a1ac",
+  "integrity": {
+    "excludedPackageFilesUnchanged": 46,
+    "preExistingArchivesUnchanged": 18,
+    "baseline": "origin/main 63adef9"
+  }
 }

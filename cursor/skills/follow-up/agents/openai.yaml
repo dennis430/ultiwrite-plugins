@@ -3,6 +3,8 @@ interface:
   short_description: "Turn unresolved findings into evidence requests."
   default_prompt: "Use $follow-up to identify what evidence I should obtain next."
   brand_color: "#d39891"
+  icon_small: "../../assets/logo.png"
+  icon_large: "../../assets/logo.png"
 
 policy:
   allow_implicit_invocation: true

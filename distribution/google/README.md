@@ -1,6 +1,6 @@
 # Ultiwrite for Google Connected Apps
 
-Prepared November 1, 2026. Channel package version 0.1.0. Published public plugin source is 0.9.1; this kit targets the prepared 0.9.2 evidence-handoff contract at canonical source pin `00682b0179824fcf182856713de5864b54b140c2`. This source pin does not establish runtime deployment or completed host validation.
+Prepared November 1, 2026. Channel package version 0.1.0. Published public plugin source is 0.9.3 at public source commit `63adef9ae6ae0bacf3cdc6a59c20a5513831a1ac`; this kit targets the prepared 0.9.2 evidence-handoff contract at canonical source pin `00682b0179824fcf182856713de5864b54b140c2`. This source pin does not establish runtime deployment or completed host validation.
 
 **Route:** Google Connected Console → preview → review → Gemini and Search. Google's public launch announcement is dated October 28, 2026. Access is opening in phases. This package prepares the existing remote MCP; it does not register or publish a Google app. [Google launch](https://blog.google/innovation-and-ai/technology/developers-tools/connected-apps-one-place/)
 

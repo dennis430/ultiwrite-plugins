@@ -2,7 +2,7 @@
 
 Run this after the signed-in platform specifies the connector format and accepts the endpoint/authentication configuration. These are Ultiwrite acceptance criteria, not an asserted Meta test specification.
 
-The workflow targets prepared contract 0.9.2 at canonical source pin `00682b0179824fcf182856713de5864b54b140c2`; published public plugin source remains 0.9.1. Confirm the live tool schema before a host run. A source update alone does not prove runtime deployment or Muse compatibility.
+The workflow targets prepared contract 0.9.2 at canonical source pin `00682b0179824fcf182856713de5864b54b140c2`; published public plugin source remains 0.9.3. Confirm the live tool schema before a host run. A source update alone does not prove runtime deployment or Muse compatibility.
 
 | Journey | Expected evidence |
 |---|---|

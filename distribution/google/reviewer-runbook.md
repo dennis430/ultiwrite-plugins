@@ -1,6 +1,6 @@
 # Google review demonstration
 
-This is a proposed demonstration targeting the prepared 0.9.2 contract at canonical source pin `00682b0179824fcf182856713de5864b54b140c2`. Published public plugin source is 0.9.1. Source preparation does not establish that the runtime has deployed this contract or that a Google host run has passed. Confirm the live schema and execute with a dedicated test account and synthetic commercial evidence. No credentials or real customer files belong in this repository.
+This is a proposed demonstration targeting the prepared 0.9.2 contract at canonical source pin `00682b0179824fcf182856713de5864b54b140c2`. Published public plugin source is 0.9.3. Source preparation does not establish that the runtime has deployed this contract or that a Google host run has passed. Confirm the live schema and execute with a dedicated test account and synthetic commercial evidence. No credentials or real customer files belong in this repository.
 
 1. In [Gemini Developer Mode](https://gemini.google.com/devmode), connect the public endpoint and complete Ultiwrite OAuth. Ask `@Ultiwrite which account is connected?` Verify the identity returned by `ultiwrite_account_get`.
 2. Ask `@Ultiwrite what evidence can I submit for an acquisition investigation?` Verify current capabilities and limitations returned by `ultiwrite_capabilities_get`.

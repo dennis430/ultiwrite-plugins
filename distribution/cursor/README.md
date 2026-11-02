@@ -1,16 +1,16 @@
 # Cursor Marketplace
 
-The repository contains the prepared **Ultiwrite 0.9.2** Cursor plugin: `.cursor-plugin/marketplace.json` points to `cursor/`, which contains the manifest, current logo, remote MCP configuration and five workflows. The 0.9.2 candidate incorporates the canonical exact browser-upload recovery through `handoffId` and explicit report/sign-in response links. The previously published release remains 0.9.1 until the prepared source is approved for release.
+The repository contains the prepared **Ultiwrite 0.9.4** Cursor plugin: `.cursor-plugin/marketplace.json` points to `cursor/`, which contains the manifest, current logo, remote MCP configuration and five workflows. The 0.9.4 candidate incorporates the canonical exact browser-upload recovery through `handoffId` and explicit report/sign-in response links. The previously published repository release remains 0.9.3 until the prepared source is approved for release.
 
 ## Submit
 
 1. Sign in to Cursor at **https://cursor.com/marketplace/publish**. Use the existing account if one is already registered.
-2. After the prepared 0.9.2 source is released to the repository's main branch, submit **https://github.com/dennis430/ultiwrite-plugins** as the public repository URL. The root marketplace manifest resolves the plugin from `cursor/`; do not submit an inaccessible private application repository.
+2. After the prepared 0.9.4 source is released to the repository's main branch, submit **https://github.com/dennis430/ultiwrite-plugins** as the public repository URL. The root marketplace manifest resolves the plugin from `cursor/`; do not submit an inaccessible private application repository.
 3. Use `listing-fields.json` and `../shared/LISTING_COPY.md` for the title, description, contact, logo and supporting links.
 4. Test the plugin locally using Cursor's documented local-import directory or Import from Disk. Confirm all five workflows appear, OAuth connects to the intended account, and one authorized sample case reaches a usable report. Use `../shared/REVIEWER_TEST_PLAN.md`.
 5. Submit for Cursor's manual review. Record the submission/review receipt; a source commit or one-click remote install does not establish Marketplace approval.
 
-The prepared archive is `release/ultiwrite-cursor-plugin-0.9.2.zip` at repository root. The handoff ZIP includes that archive and the full `cursor/` source. An MCP install link alone installs the remote server; the full Cursor plugin adds its five workflow instructions. Local validation does not prove a successful Cursor account/upload/report journey.
+The prepared archive is `release/ultiwrite-cursor-plugin-0.9.4.zip` at repository root. The handoff ZIP includes that archive and the full `cursor/` source. An MCP install link alone installs the remote server; the full Cursor plugin adds its five workflow instructions. Local validation does not prove a successful Cursor account/upload/report journey.
 
 ## One-click remote install
 

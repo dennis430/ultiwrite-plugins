@@ -40,7 +40,7 @@ def main():
         'No marketplace submission, account creation or production deployment is claimed. '
         'ChatGPT, Claude and Grok packages are outside this handoff.\n'
     ).encode()
-    inventory = {'product': 'Ultiwrite', 'kitVersion': '1.0.0', 'preparedContractVersion': manifest['version'], 'files': [
+    inventory = {'product': 'Ultiwrite', 'kitVersion': '1.0.0', 'preparedPackageVersion': manifest['version'], 'preparedWorkflowContract': '0.9.2', 'files': [
         {'path': name, 'bytes': len(data), 'sha256': hashlib.sha256(data).hexdigest()}
         for name, data in sorted(payload.items())
     ]}

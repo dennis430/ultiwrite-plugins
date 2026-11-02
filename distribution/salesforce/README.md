@@ -1,6 +1,6 @@
 # Ultiwrite for Salesforce AgentExchange
 
-Prepared November 1, 2026. Channel package version 0.1.0. Published public plugin source is 0.9.1; this kit targets the prepared 0.9.2 evidence-handoff contract at canonical source pin `00682b0179824fcf182856713de5864b54b140c2`. This source pin does not establish runtime deployment or completed host validation.
+Prepared November 1, 2026. Channel package version 0.1.0. Published public plugin source is 0.9.3 at public source commit `63adef9ae6ae0bacf3cdc6a59c20a5513831a1ac`; this kit targets the prepared 0.9.2 evidence-handoff contract at canonical source pin `00682b0179824fcf182856713de5864b54b140c2`. This source pin does not establish runtime deployment or completed host validation.
 
 **Route:** register the externally hosted MCP with Agentforce, package its connection metadata, then submit an AgentExchange listing. Salesforce confirms external MCP tool listings and the April 2026 marketplace unification. The merger does not automatically publish an existing Slack app as a Salesforce integration. [Summer '26 ISV guidance](https://www.salesforce.com/blog/isv-strategy-for-the-salesforce-summer-26-release/)
 

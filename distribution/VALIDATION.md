@@ -4,9 +4,9 @@ Prepared November 1, 2026 (America/Los_Angeles). This record describes source an
 
 ## Source basis
 
-- Public plugin baseline: `4ba87f09c3a7607f8af54a9777af3e6df68b761a` (published packages 0.9.1).
+- Current public repository baseline: `63adef9ae6ae0bacf3cdc6a59c20a5513831a1ac` (0.9.3 branding release). The preparation began at 0.9.1 and was reconciled with this newer release before handoff.
 - Canonical 0.9.2 Cursor workflow source: `00682b0179824fcf182856713de5864b54b140c2`.
-- The exact four canonical Cursor changes update package/readme versions, required nullable `handoffId`, exact uploaded-case recovery, and returned report/sign-in link handling. Other Cursor files are unchanged.
+- The two updated Cursor workflow files exactly match the canonical 0.9.2 source. The candidate version is 0.9.4, and the current 0.9.3 artwork/UI metadata is preserved.
 - New host preparation uses that 0.9.2 contract. The current live authenticated runtime and seven host journeys were not exercised.
 
 ## Public endpoint observations
@@ -30,7 +30,7 @@ Source validators check JSON, local links, exact channel scope, endpoint agreeme
 | `node scripts/validate-public-plugins.mjs` | PASS: public source boundary, manifests, secrets scan and package identities |
 | `node scripts/validate-distribution.mjs` | PASS: seven channels, JSON, local links, endpoint and package invariants |
 | `node --test scripts/test/release.test.mjs` | PASS: five packaging regressions, using normal subprocess execution |
-| `python3 distribution/microsoft/scripts/build_package.py` | PASS: three official schemas and package structure at 0.9.2; template mode only |
+| `python3 distribution/microsoft/scripts/build_package.py` | PASS: three official schemas and package structure at 0.9.4; template mode only |
 | Official registry schema, both manifests | PASS: Draft 7 validation against the retrieved 2025-12-11 schema; descriptions are 96 characters |
 | `node scripts/pack-public-connectors.mjs --check` | PASS: current archives match source; historical archives preserved |
 | `python3 scripts/pack-distribution.py` | PASS: archive CRC and every included byte compared with source |
@@ -44,7 +44,7 @@ The restricted execution wrapper dropped child-process stdout in the regression 
 | Registry | Namespace ownership authentication or publication |
 | Google | Preview access, real verification deployment, exact callback rollout or Google OAuth journey |
 | Meta | Signed-in form/schema acceptance, current callback confirmation or actual Muse journey |
-| Cursor | Candidate release to main, installed 0.9.2 journey or Marketplace review |
+| Cursor | Candidate release to main, installed 0.9.4 journey or Marketplace review |
 | Microsoft | Real app/auth-config provisioning, sideloaded package journey, screenshots or store review |
 | Salesforce | Public-client token exchange in an org, actual retrieved metadata, managed package or security review |
 | AWS | Seller enrollment, selected commercial model, buyer fulfillment/entitlement/billing integration or Marketplace review |

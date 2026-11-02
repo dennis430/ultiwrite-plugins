@@ -29,17 +29,17 @@ before(async () => {
   // Fresh canonical exports have no historical ZIPs. Seed one inside the test
   // fixture so preservation is still exercised before a public-repo merge.
   await pack()
-  await cp(join(fixture, 'release/ultiwrite-chatgpt-plugin-0.9.1.zip'), join(fixture, 'release/ultiwrite-chatgpt-plugin-0.0.0.zip'))
+  await cp(join(fixture, 'release/ultiwrite-chatgpt-plugin-0.9.3.zip'), join(fixture, 'release/ultiwrite-chatgpt-plugin-0.0.0.zip'))
   frozen = new Map(await Promise.all((await readdir(join(fixture, 'release')))
-    .filter(name => name.endsWith('.zip') && !name.includes('0.9.1'))
+    .filter(name => name.endsWith('.zip') && !name.includes('0.9.3'))
     .map(async name => [name, await digest(join(fixture, 'release', name))])))
 })
 after(async () => { if (scratch) await rm(scratch, { recursive: true, force: true }) })
 
-test('channel preparation preserves excluded releases and the canonical Cursor candidate', async () => {
+test('channel preparation preserves the current branding release and Cursor candidate', async () => {
   const plugin = await readJson(join(root, 'chatgpt/plugin.json'))
   assert.equal(plugin.name, 'ultiwrite')
-  assert.equal(plugin.version, '0.9.1')
+  assert.equal(plugin.version, '0.9.3')
   const openai = plugin.extensions['com.openai']
   assert.equal(openai.interface.category, 'Business & Operations')
   assert.ok(openai.interface.shortDescription.length <= 30)
@@ -54,8 +54,8 @@ test('channel preparation preserves excluded releases and the canonical Cursor c
   assert.deepEqual((await readJson(join(root, 'chatgpt/mcp.json'))).mcpServers, {
     ultiwrite: { type: 'streamable-http', url: 'https://mcp.dwsoffshorepartners.com/mcp' },
   })
-  assert.equal(await digest(join(root, 'chatgpt/assets/logo.png')), '2523ad96e0dd452a7068ffd579c3fe73942b34a5d969e4c3ef45005986ddd940')
-  for (const [host, manifest, version] of [['claude', '.claude-plugin', '0.9.1'], ['cursor', '.cursor-plugin', '0.9.2']]) {
+  assert.equal(await digest(join(root, 'chatgpt/assets/logo.png')), 'cc0a3c229347e47a154a00c9e6dfa774c0e1f07ee9fc063935af5bc4897f4b18')
+  for (const [host, manifest, version] of [['claude', '.claude-plugin', '0.9.3'], ['cursor', '.cursor-plugin', '0.9.4']]) {
     assert.equal((await readJson(join(root, host, manifest, 'plugin.json'))).version, version)
   }
   const submit = await readFile(join(root, 'cursor/skills/submit-evidence/SKILL.md'), 'utf8')
@@ -81,7 +81,7 @@ test('packing ignores generated files, retains extension metadata and preserves 
   assert.deepEqual(rebuilt.future_release_metadata, { retained: true })
   assert.deepEqual(rebuilt.packages.cli, manifest.packages.cli)
   assert.equal(rebuilt.packages.chatgpt.extra_provenance, 'retained')
-  assert.equal(rebuilt.packages.chatgpt.version, '0.9.1')
+  assert.equal(rebuilt.packages.chatgpt.version, '0.9.3')
   assert.ok(!rebuilt.files.some(item => /^(node_modules|dist|coverage|\.cache)\//.test(item.path) || item.path.endsWith('.tgz')))
   assert.ok(frozen.size >= 1, 'historical archive preservation must be exercised')
   for (const [name, hash] of frozen) assert.equal(await digest(join(fixture, 'release', name)), hash, name)
@@ -99,7 +99,7 @@ test('source/archive verification rejects a changed workflow', async () => {
 
 test('a private configuration file is rejected before the archive changes', async () => {
   const path = join(fixture, '.env.local')
-  const archive = join(fixture, 'release/ultiwrite-chatgpt-plugin-0.9.1.zip')
+  const archive = join(fixture, 'release/ultiwrite-chatgpt-plugin-0.9.3.zip')
   const beforeHash = await digest(archive)
   try {
     await writeFile(path, 'PRIVATE_FIXTURE=true\n')

@@ -2,7 +2,7 @@
 
 Prepared November 1, 2026. **Preparation complete for listing copy and client setup; AWS account, pricing selection, and Marketplace fulfillment integration remain outstanding.** Nothing in this folder creates an AWS listing or claims AWS approval.
 
-The prepared workflow contract includes the canonical **0.9.2** exact upload-handoff recovery guidance. The public connector baseline inspected during preparation remains **0.9.1**; the newer instructions alone do not establish a public package release or authenticated AWS buyer test.
+The prepared workflow contract includes the canonical **0.9.2** exact upload-handoff recovery guidance. The reconciled public connector baseline is **0.9.3**, including the subsequent logo/UI release. These workflow instructions do not establish an authenticated AWS buyer test or Marketplace publication.
 
 ## Sign up and open the listing
 

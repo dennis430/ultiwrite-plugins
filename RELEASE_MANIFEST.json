@@ -1,26 +1,26 @@
 {
   "product": "Ultiwrite",
   "distribution": "plugin-only",
-  "version": "0.9.1",
+  "version": "0.9.3",
   "publisher": "DWS Offshore Fund",
   "source_repository": "dennis430/merchant-risk-app",
   "source_base_commit": "71bf158a4c0e6233fb495c3cfe7504ee40844356",
-  "public_source_base_commit": "3400001feec0d8722ca5840d545bcbd1d8c5838c",
+  "public_source_base_commit": "4ba87f09c3a7607f8af54a9777af3e6df68b761a",
   "mcp_url": "https://mcp.dwsoffshorepartners.com/mcp",
   "compatibility_mcp_url": "https://dwsoffshorepartners.com/api/integrations/ultiwrite/mcp",
   "packages": {
     "chatgpt": {
-      "version": "0.9.1",
-      "zip": "release/ultiwrite-chatgpt-plugin-0.9.1.zip",
+      "version": "0.9.3",
+      "zip": "release/ultiwrite-chatgpt-plugin-0.9.3.zip",
       "mcp_url": "https://mcp.dwsoffshorepartners.com/mcp"
     },
     "cursor": {
-      "version": "0.9.2",
-      "zip": "release/ultiwrite-cursor-plugin-0.9.2.zip"
+      "version": "0.9.4",
+      "zip": "release/ultiwrite-cursor-plugin-0.9.4.zip"
     },
     "claude": {
-      "version": "0.9.1",
-      "zip": "release/Ultiwrite_Claude_Plugin_v0.9.1.zip",
+      "version": "0.9.3",
+      "zip": "release/Ultiwrite_Claude_Plugin_v0.9.3.zip",
       "mcp_url": "https://mcp.dwsoffshorepartners.com/mcp"
     },
     "grokbot": {
@@ -56,7 +56,7 @@
     },
     {
       "path": "INSTALL.md",
-      "sha256": "bb33e4729094bb29076b3e9fad5da9cf47ebb7b50ece7bbdd9367e7e72fe6256"
+      "sha256": "a4063cea3fd8b56dde2395dbb0c614c987db8189e7d56fa1b4d4331dc9ffecbc"
     },
     {
       "path": "LICENSE",
@@ -72,7 +72,7 @@
     },
     {
       "path": "README.md",
-      "sha256": "ecd51a320d27416bfb35c970979bdde37dc52234bb2ebd669208625ffdc738ae"
+      "sha256": "fcf4940fa1430c7d908e87f9aca80974e85e1f442468e709ef29d8ea8670cc08"
     },
     {
       "path": "chatgpt/LICENSE",
@@ -80,11 +80,11 @@
     },
     {
       "path": "chatgpt/README.md",
-      "sha256": "e54fe9f08732cf69e2924d16a673c9dcf303f38c444aaae0e46b63bb295e5dcd"
+      "sha256": "297654c4986b42a8d1a386e49ee32b058a4fd4716f50fb6e12c6fde8e3752fd1"
     },
     {
       "path": "chatgpt/assets/logo.png",
-      "sha256": "2523ad96e0dd452a7068ffd579c3fe73942b34a5d969e4c3ef45005986ddd940"
+      "sha256": "cc0a3c229347e47a154a00c9e6dfa774c0e1f07ee9fc063935af5bc4897f4b18"
     },
     {
       "path": "chatgpt/mcp.json",
@@ -92,7 +92,7 @@
     },
     {
       "path": "chatgpt/plugin.json",
-      "sha256": "a0e4613f7bcda7508f1c2bf06e98bc5f839440a8742dbe6d8934840a8d8f38ab"
+      "sha256": "809c1e4e33e9ce1b2d41cee4c21616e4e3b990906297b268881e56a534b15abf"
     },
     {
       "path": "chatgpt/skills/connect-account/SKILL.md",
@@ -100,7 +100,7 @@
     },
     {
       "path": "chatgpt/skills/connect-account/agents/openai.yaml",
-      "sha256": "364e8d375114f5e65a86e59007582a14d45e3cee2c44570dcec25d59c05d27b8"
+      "sha256": "df34937d382ae79595b248a1ee3ea8fab7a96cc7d9a2ab525866a832cb4aa52a"
     },
     {
       "path": "chatgpt/skills/follow-up/SKILL.md",
@@ -108,7 +108,7 @@
     },
     {
       "path": "chatgpt/skills/follow-up/agents/openai.yaml",
-      "sha256": "4e541a497a771b8875f92a06dfed6843e53667c0c8252f6a74e06dee9b8e33c2"
+      "sha256": "c213986c9fa6504e37f598c92a39c38aa5b01630f7915995b172ee9e9f828329"
     },
     {
       "path": "chatgpt/skills/read-report/SKILL.md",
@@ -116,7 +116,7 @@
     },
     {
       "path": "chatgpt/skills/read-report/agents/openai.yaml",
-      "sha256": "33df7eb31f96d38296c9409156baf872f887d78c45c4adfa564d0cfaf4846a77"
+      "sha256": "71c2e24c037ddb3a7d55712cf65479654cd8795cc6235a760afa97d91f22ef18"
     },
     {
       "path": "chatgpt/skills/submit-evidence/SKILL.md",
@@ -124,7 +124,7 @@
     },
     {
       "path": "chatgpt/skills/submit-evidence/agents/openai.yaml",
-      "sha256": "925f5959b7983ffa28c116cd10ba985285381800a0adf4a7df3f7f3a5633aee5"
+      "sha256": "cb6fa12dfd157a240f76b8c33fd27cb3a7d832484d05caf71852f760b25ae3f6"
     },
     {
       "path": "chatgpt/skills/ultiwrite-read/SKILL.md",
@@ -132,11 +132,11 @@
     },
     {
       "path": "chatgpt/skills/ultiwrite-read/agents/openai.yaml",
-      "sha256": "e5de0c16f994af40b5cd8ba59c3a9ce3b3b26b9cecdf2ebbbb363241bae7878e"
+      "sha256": "0e3cc169f3c454d373fad56287579cb820dc820843f4f19f9aebd56e14d13138"
     },
     {
       "path": "claude/.claude-plugin/plugin.json",
-      "sha256": "35a9360d7ec96d63624b3537e1d474d40a4a5b9c3ebb2dfa17451b1d8e5b8a78"
+      "sha256": "6b45933f0510765d5d5815e4f917d0d2e04a26764258eb62e733527513876752"
     },
     {
       "path": "claude/.mcp.json",
@@ -148,7 +148,7 @@
     },
     {
       "path": "claude/README.md",
-      "sha256": "40fae5e49b3dcc4884988f1180fa3fd94569d8d7d6ed806fc54dbd813c6a839f"
+      "sha256": "f9a6759c266ad2be684dbeeb5acab7397f6acdec2d1fcc58006ae9241c6b4f1a"
     },
     {
       "path": "claude/assets/logo.png",
@@ -160,7 +160,7 @@
     },
     {
       "path": "claude/skills/connect-account/agents/openai.yaml",
-      "sha256": "364e8d375114f5e65a86e59007582a14d45e3cee2c44570dcec25d59c05d27b8"
+      "sha256": "df34937d382ae79595b248a1ee3ea8fab7a96cc7d9a2ab525866a832cb4aa52a"
     },
     {
       "path": "claude/skills/follow-up/SKILL.md",
@@ -168,7 +168,7 @@
     },
     {
       "path": "claude/skills/follow-up/agents/openai.yaml",
-      "sha256": "4e541a497a771b8875f92a06dfed6843e53667c0c8252f6a74e06dee9b8e33c2"
+      "sha256": "c213986c9fa6504e37f598c92a39c38aa5b01630f7915995b172ee9e9f828329"
     },
     {
       "path": "claude/skills/read-report/SKILL.md",
@@ -176,7 +176,7 @@
     },
     {
       "path": "claude/skills/read-report/agents/openai.yaml",
-      "sha256": "33df7eb31f96d38296c9409156baf872f887d78c45c4adfa564d0cfaf4846a77"
+      "sha256": "71c2e24c037ddb3a7d55712cf65479654cd8795cc6235a760afa97d91f22ef18"
     },
     {
       "path": "claude/skills/submit-evidence/SKILL.md",
@@ -184,7 +184,7 @@
     },
     {
       "path": "claude/skills/submit-evidence/agents/openai.yaml",
-      "sha256": "925f5959b7983ffa28c116cd10ba985285381800a0adf4a7df3f7f3a5633aee5"
+      "sha256": "cb6fa12dfd157a240f76b8c33fd27cb3a7d832484d05caf71852f760b25ae3f6"
     },
     {
       "path": "claude/skills/ultiwrite/SKILL.md",
@@ -192,7 +192,7 @@
     },
     {
       "path": "claude/skills/ultiwrite/agents/openai.yaml",
-      "sha256": "74771ace7de121c114963e84b406a9bc44dc6ad19b4c042e00d25c9f6670d15a"
+      "sha256": "6df156fae5e567c58a69ed02be600f61370b9c41445b748388edd13628e75840"
     },
     {
       "path": "client/LICENSE",
@@ -224,7 +224,7 @@
     },
     {
       "path": "cursor/.cursor-plugin/plugin.json",
-      "sha256": "24d78d6a8093971afff7613627741a7cfbd5abebb15d9f6f15da8e23c6f8c393"
+      "sha256": "66c8e8c0230c793a637e6c206a4f1a874c174461d1409c3d66a124955626fc74"
     },
     {
       "path": "cursor/LICENSE",
@@ -232,7 +232,7 @@
     },
     {
       "path": "cursor/README.md",
-      "sha256": "f3105504bd44177344eba8967fa440d53656227ccf60fff0d18cf7b6c279dbc0"
+      "sha256": "4d7b36ac43c95d9308db33186d3ff4fc1743ec07d940705eb78b69daab3dfce1"
     },
     {
       "path": "cursor/assets/logo.png",
@@ -248,7 +248,7 @@
     },
     {
       "path": "cursor/skills/connect-account/agents/openai.yaml",
-      "sha256": "364e8d375114f5e65a86e59007582a14d45e3cee2c44570dcec25d59c05d27b8"
+      "sha256": "df34937d382ae79595b248a1ee3ea8fab7a96cc7d9a2ab525866a832cb4aa52a"
     },
     {
       "path": "cursor/skills/follow-up/SKILL.md",
@@ -256,7 +256,7 @@
     },
     {
       "path": "cursor/skills/follow-up/agents/openai.yaml",
-      "sha256": "4e541a497a771b8875f92a06dfed6843e53667c0c8252f6a74e06dee9b8e33c2"
+      "sha256": "c213986c9fa6504e37f598c92a39c38aa5b01630f7915995b172ee9e9f828329"
     },
     {
       "path": "cursor/skills/read-report/SKILL.md",
@@ -264,7 +264,7 @@
     },
     {
       "path": "cursor/skills/read-report/agents/openai.yaml",
-      "sha256": "33df7eb31f96d38296c9409156baf872f887d78c45c4adfa564d0cfaf4846a77"
+      "sha256": "71c2e24c037ddb3a7d55712cf65479654cd8795cc6235a760afa97d91f22ef18"
     },
     {
       "path": "cursor/skills/submit-evidence/SKILL.md",
@@ -272,7 +272,7 @@
     },
     {
       "path": "cursor/skills/submit-evidence/agents/openai.yaml",
-      "sha256": "925f5959b7983ffa28c116cd10ba985285381800a0adf4a7df3f7f3a5633aee5"
+      "sha256": "cb6fa12dfd157a240f76b8c33fd27cb3a7d832484d05caf71852f760b25ae3f6"
     },
     {
       "path": "cursor/skills/ultiwrite/SKILL.md",
@@ -280,31 +280,31 @@
     },
     {
       "path": "cursor/skills/ultiwrite/agents/openai.yaml",
-      "sha256": "74771ace7de121c114963e84b406a9bc44dc6ad19b4c042e00d25c9f6670d15a"
+      "sha256": "6df156fae5e567c58a69ed02be600f61370b9c41445b748388edd13628e75840"
     },
     {
       "path": "distribution/README.md",
-      "sha256": "b8b068b450c70f80f144ab65a99b096cf0d97564e29d7c2218f912d00f20dd95"
+      "sha256": "de6ebffe0933476ff4b289c4323c19300c15397fcdb5d3e5029ba959f12afc80"
     },
     {
       "path": "distribution/VALIDATION.json",
-      "sha256": "225eb52059b333c15171837fca227d2e0513a05fb2048929a6f20f3911129804"
+      "sha256": "21df0303f98ab449eb492215075b5deb19ddf87949c4ea402d096acae66328de"
     },
     {
       "path": "distribution/VALIDATION.md",
-      "sha256": "2434f1a2ea42182fb81ee65c9d71b6ce1a07f9008cbcae47b644b85fee53d4f2"
+      "sha256": "2866cb2880a581a2573d8ba7ba2ca85dacda33d71d99d863cecc85e4b265299d"
     },
     {
       "path": "distribution/aws/BUYER_SETUP.md",
-      "sha256": "934b00db95b4263631669775d4e0b57b2fbe8391d0140c4fd0a21d6ba056aa84"
+      "sha256": "a0db04d3f6d413a414c3e17a78006ed055ed2c31cb7de9f6efab478e2a004eaf"
     },
     {
       "path": "distribution/aws/README.md",
-      "sha256": "0dce278bbbeb929f587bea42fb5d6cb3185e40b6e7959323fa5d9a12840a8d8c"
+      "sha256": "ba6cf737a96f220c177f4167f27bae4b9d85664648d06d2968c3d63afa745ace"
     },
     {
       "path": "distribution/aws/SOURCES.md",
-      "sha256": "a96f3abc684d0e1282b7ab303f29762b13835d04d6e0ff3e6e5919fed1b44d18"
+      "sha256": "10b2dde6c7fe0944002f30178777a1e28ceae58018f5781be1a460410c59ff50"
     },
     {
       "path": "distribution/aws/TECHNICAL_HANDOFF.md",
@@ -312,7 +312,7 @@
     },
     {
       "path": "distribution/aws/listing.draft.json",
-      "sha256": "80ecc3d7bd9290499efc0c6dc7441e9fe350ebe0acfa090f611b5509ba8c6a50"
+      "sha256": "0352b529f991494ae87e85fb9c637ed7337d30a9ab8b595add85a88065f10240"
     },
     {
       "path": "distribution/aws/mcp-client.json",
@@ -320,7 +320,7 @@
     },
     {
       "path": "distribution/cursor/README.md",
-      "sha256": "0a88c3c96ba93b3b4495f2060d341756d82f18be5a1ab01db6f2877c48428093"
+      "sha256": "25b7f0a48d5064ecfb3d88fd47f240539c42d8378ce67d708b2424bcaf8b21dc"
     },
     {
       "path": "distribution/cursor/install-links.json",
@@ -328,11 +328,11 @@
     },
     {
       "path": "distribution/cursor/listing-fields.json",
-      "sha256": "68173ec8112a4b128b7e5248ba92c6be71c956ab4cac75a7b62942050158756a"
+      "sha256": "007b05e97aa1da37de02715d1f1d2ba96d7edb0c569248270c8a1f88a56b802c"
     },
     {
       "path": "distribution/google/README.md",
-      "sha256": "7d0cee888b204b91b64219eaa3e13f1fb545f3f2113bee18bba8a3e8a7e18aec"
+      "sha256": "0caa49dbaa8706cd572250d59261d048169229812bd655e094ea0f4d405e4256"
     },
     {
       "path": "distribution/google/assets/logo.png",
@@ -344,11 +344,11 @@
     },
     {
       "path": "distribution/google/console-fields.json",
-      "sha256": "5d2d5f93467fde139cc328d9e75083036b0860c6ba66151208ff3f6c6e50579a"
+      "sha256": "59bdcaca70cd33c8227aff7be69b608b5b979e453e34f311bfaae329c0e9a129"
     },
     {
       "path": "distribution/google/reviewer-runbook.md",
-      "sha256": "666a7469a06e42a5bc648d7375876752255da0a08110b0f60f4ec260206bb14a"
+      "sha256": "386727d1db20a94be4f70c4ccc1595389349ddb1fff8566e686301a5685b704c"
     },
     {
       "path": "distribution/google/scripts/prepare-oauth-registration.mjs",
@@ -368,7 +368,7 @@
     },
     {
       "path": "distribution/meta/README.md",
-      "sha256": "484c6d85fe49a65d45eb3a4ab86da8c234e7f14da48232ef81db694dc340fb68"
+      "sha256": "4a13e2edbe2ba09215ebaaa4ef7b746310b57e59d9a321872ccddd5acd035577"
     },
     {
       "path": "distribution/meta/assets/logo.png",
@@ -376,11 +376,11 @@
     },
     {
       "path": "distribution/meta/connection-profile.json",
-      "sha256": "8649e0a94d64fef043afaef106f065b0f6360a27fc2c71f4876f3f436b7b5c77"
+      "sha256": "0788c9fb57d36eb6a7750ab24b39393fc583bacfbda80ca4abc653d00a9b7d30"
     },
     {
       "path": "distribution/meta/reviewer-runbook.md",
-      "sha256": "ba46bebaa731effd07532a4f790742a6a31730b7ea67bdc79f8b7626a60b9d16"
+      "sha256": "0a4fbdc7372faf618fefb518e049ba4ec2575fc45d2a8ed48695d16996ea6e3b"
     },
     {
       "path": "distribution/meta/sources.json",
@@ -396,7 +396,7 @@
     },
     {
       "path": "distribution/microsoft/README.md",
-      "sha256": "30a134052978ea2decc61c7d0e1a9504464ee80f971f39daa39507e4e74e6815"
+      "sha256": "e046a1e07eb30326da6152f2ed8ea51199f55b1f8712019cf02dae4af4fce784"
     },
     {
       "path": "distribution/microsoft/SUBMISSION.md",
@@ -416,7 +416,7 @@
     },
     {
       "path": "distribution/microsoft/appPackage/manifest.json",
-      "sha256": "8cdfe1e4b4e240129e4be80a07bbaa9ce7110f76ddb49993f566c42febc35099"
+      "sha256": "6082106eb0344fb028bf501df7385768e3bbcc03878859af65c07be9cc138e5c"
     },
     {
       "path": "distribution/microsoft/appPackage/outline.png",
@@ -468,7 +468,7 @@
     },
     {
       "path": "distribution/microsoft/validation.json",
-      "sha256": "e60d82dfe6f955c556fa37279d9f00bdbd42f750947fbbe7d54dfdc46d2b7ed2"
+      "sha256": "436b0b97085e1bd51da730864a6ff1da5303b9818ce682ebd25b06e0a842c827"
     },
     {
       "path": "distribution/registry/README.md",
@@ -484,15 +484,15 @@
     },
     {
       "path": "distribution/registry/server.github.json",
-      "sha256": "cb66dee22f76563b86663914f24bcb9f2dd079d38ee17475acd355e19b79edbe"
+      "sha256": "b3372cbcbed5b1783ed699e6cdb06755d5cfdb7c522926cecb788ba48a66686d"
     },
     {
       "path": "distribution/registry/server.json",
-      "sha256": "865443fc16daf62b628b8180a64f4128c93fe78e29efd251deca3d3ea2283840"
+      "sha256": "da57984dd7f319086e902fd940bc327c1d2c85b88d600283ffb357014130f9bd"
     },
     {
       "path": "distribution/salesforce/README.md",
-      "sha256": "a93f0216022e0302dfc380b438e709c69abc13df9a6678a1a6507a00055eb491"
+      "sha256": "0b29f3dd32caecc278184ae346dd1ece9f3790a2b7d8ee4c9e1801c86ae65033"
     },
     {
       "path": "distribution/salesforce/assets/logo.png",
@@ -504,7 +504,7 @@
     },
     {
       "path": "distribution/salesforce/connection-profile.json",
-      "sha256": "a8081bb2d7e1c307d3eee3f8a6515429e30b49fefcc176ae7f0c16b355955607"
+      "sha256": "f8198017ea65b2cc75cb91d99c82d079ea04a53d2d5ff6b5f6747af7fa397237"
     },
     {
       "path": "distribution/salesforce/force-app/README.md",
@@ -532,7 +532,7 @@
     },
     {
       "path": "distribution/salesforce/setup-guide.md",
-      "sha256": "14c88221ada7e77dccdaacfc34c742f7fc4886aa11ff017ee223a755f3a5b5d9"
+      "sha256": "753d874f8c85217c22cc0027893bf7ba9734a056fcd0d765db0ab9b26472755a"
     },
     {
       "path": "distribution/salesforce/sfdx-project.json",
@@ -552,7 +552,7 @@
     },
     {
       "path": "distribution/shared/profile.json",
-      "sha256": "46b7f05af0faed857ae34b7ad49a728c2d7c6a673f83f1c755476fb35e6437c3"
+      "sha256": "b18495ed4ecaf90e06352560002cf0104920f5fbd95f9ce5e59963d6166a0b2e"
     },
     {
       "path": "evals/README.md",
@@ -604,7 +604,7 @@
     },
     {
       "path": "release/INVENTORY.json",
-      "sha256": "b5a22f3764f34d700147d8cb290cc75c305cebf3a5df9ad11fa7b8913e908133"
+      "sha256": "a08d7e9dab82cd1a007e98430f037814b195448d7d8843c847997f0a0f7322b1"
     },
     {
       "path": "release/PLUGIN_0.9.1_LIVE_RECEIPT.json",
@@ -615,12 +615,16 @@
       "sha256": "080cb4b22bdaae070441d02bc1268df4006af4d256ea5a6fb8893ab4f20f07f7"
     },
     {
+      "path": "release/PLUGIN_0.9.3_VERIFICATION.json",
+      "sha256": "6d54bb4209fe0fe052254518cb008448a6119b4ca32d36dcd556374ff4a12d36"
+    },
+    {
       "path": "release/PLUGIN_CONTROLS_0.8.0_VERIFICATION.json",
       "sha256": "2541f8217c8ad33bccae7fc9eccc2175193e2c5dbaab9acc4695cb82f98a2e40"
     },
     {
       "path": "release/SHA256SUMS.txt",
-      "sha256": "0bbaa732f3c9c6668fe1b57e2a47964e15c7e0db0d33db20a2e6ac313186e6c2"
+      "sha256": "9c05ef7679ffccc7e3884e5ac5582de3f20a921c5ab860febb39e92519a1973d"
     },
     {
       "path": "release/Ultiwrite_Claude_Plugin_v0.8.0.zip",
@@ -647,6 +651,10 @@
       "sha256": "a509a59979d21f9a63fa1e74dcdc1a1057f8af64f8f0efc6fcf25af2f756f9d6"
     },
     {
+      "path": "release/Ultiwrite_Claude_Plugin_v0.9.3.zip",
+      "sha256": "f00050a4d629eec6705f79da1f6e6b0b5aca7c73d5952463c36a25b7a5d77261"
+    },
+    {
       "path": "release/ultiwrite-chatgpt-plugin-0.7.1.zip",
       "sha256": "457004b3d46b7aeaddabc1a5d065c181aac2b5a280369be7f9539de39d1339a4"
     },
@@ -661,6 +669,10 @@
     {
       "path": "release/ultiwrite-chatgpt-plugin-0.9.1.zip",
       "sha256": "4f3210b56f1a6ccdbaaeca72aaf9c87f767cbc55125a6ca6718122dfe74cec27"
+    },
+    {
+      "path": "release/ultiwrite-chatgpt-plugin-0.9.3.zip",
+      "sha256": "1ed9d74e928e5d075db86e6635ea13bb530776e2c96d2ac9682c389b96169abe"
     },
     {
       "path": "release/ultiwrite-claude-plugin-0.7.1.zip",
@@ -687,8 +699,16 @@
       "sha256": "be339549b23bdc07268a6748eb408daaa346fe9287bac1e34ba9659ddb3582d7"
     },
     {
+      "path": "release/ultiwrite-cursor-plugin-0.9.3.zip",
+      "sha256": "6d8977daea01083dd3fb98cdec3826e29699274195d6e1dc16b6808447b4635e"
+    },
+    {
+      "path": "release/ultiwrite-cursor-plugin-0.9.4.zip",
+      "sha256": "ddddc32e186b41ba88a2e0d9b85b144fcbd6081f679917571f793163651a5ba5"
+    },
+    {
       "path": "scripts/pack-distribution.py",
-      "sha256": "a62758d2f0bee2a7b39700cfb7f9a793054df3170473038d52833130e1138283"
+      "sha256": "6c6984a494be86f344e1dd22f85cc8f9a24c08e61efeebacf45a7812d2a18cfe"
     },
     {
       "path": "scripts/pack-public-connectors.mjs",
@@ -696,15 +716,15 @@
     },
     {
       "path": "scripts/test/release.test.mjs",
-      "sha256": "72193efc09230724a8fb016f2df9ab8116e1d24eb6eac227433db71553727b95"
+      "sha256": "11d06733ac38d5389ea18d18a686c9d3825890af1be867beb62f834eb777f080"
     },
     {
       "path": "scripts/validate-distribution.mjs",
-      "sha256": "d7c72da956645ace841eda5fd21dc414557ed27b462eb97515870150bb80a962"
+      "sha256": "d0d694d1c3dbbca8157b2475bee950b6d53a936bf739924342788327e6353e75"
     },
     {
       "path": "scripts/validate-public-plugins.mjs",
-      "sha256": "4ffe99e49b2916e5bcea3466bec07154eab0ea381b1754085aca32536a318458"
+      "sha256": "12201f719033124447d21a4d81779260f40491942d71203680e74be9d711a517"
     },
     {
       "path": "server.draft.json",
@@ -721,5 +741,23 @@
       "commit": "83541bc88833f8706e0b6b6bfaaa074f4010c8f0"
     },
     "integration": "0.9.1 combines current workflow contracts and commercial metadata; canonical private package sources are synchronized separately."
+  },
+  "canonical_icon": {
+    "sha256": "cc0a3c229347e47a154a00c9e6dfa774c0e1f07ee9fc063935af5bc4897f4b18",
+    "mime_type": "image/png",
+    "dimensions": [
+      512,
+      512
+    ],
+    "bytes": 21052,
+    "source": "user-supplied Desktop/ultiwrite-uw-icon-512.png",
+    "application_deployment": "next Vercel deployment; no deploy triggered by this update"
+  },
+  "distribution_preparation": {
+    "preparedPackageVersion": "0.9.4",
+    "workflowContract": "0.9.2",
+    "publicBaseCommit": "63adef9ae6ae0bacf3cdc6a59c20a5513831a1ac",
+    "marketplaceSubmitted": false,
+    "productionDeployed": false
   }
 }

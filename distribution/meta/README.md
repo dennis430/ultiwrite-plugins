@@ -1,6 +1,6 @@
 # Ultiwrite for Meta Muse
 
-Prepared November 1, 2026. Channel package version 0.1.0. Published public plugin source is 0.9.1; this kit targets the prepared 0.9.2 evidence-handoff contract at canonical source pin `00682b0179824fcf182856713de5864b54b140c2`. This source pin does not establish runtime deployment or completed host validation.
+Prepared November 1, 2026. Channel package version 0.1.0. Published public plugin source is 0.9.3 at public source commit `63adef9ae6ae0bacf3cdc6a59c20a5513831a1ac`; this kit targets the prepared 0.9.2 evidence-handoff contract at canonical source pin `00682b0179824fcf182856713de5864b54b140c2`. This source pin does not establish runtime deployment or completed host validation.
 
 **A public submission route exists.** The [Muse Connector Platform](https://platform.muse.ai/) offers connector submissions, review and directory placement. The platform is linked directly from [Meta's Muse for Small Business announcement](https://about.fb.com/news/2026/09/introducing-muse-small-business/). Acceptance is reviewed; directory placement is not automatic.
 
