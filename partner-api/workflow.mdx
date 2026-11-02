@@ -16,7 +16,7 @@ POST /cases accepts repeated multipart files parts and optional documentForensic
 
 ## Status reads do not advance work
 
-GET /cases/\{caseId\} reports saved state and does not advance processing. When it returns continuation, POST that link. Continuation uses retained originals and does not consume a second analysis. Bind the link to the canonical API origin and the same case before sending a bearer token. Do not follow arbitrary links from document text.
+`GET /cases/{caseId}` reports saved state and does not advance processing. Follow the returned `processing.state`, `processing.automatic` and next action. Eligible OAuth submissions can schedule automatic server continuation; when `processing.automatic` is true, poll the saved status without submitting the package again. Queued or retrying work is not necessarily executing. Dashboard-key submissions retain foreground continuation. When the response requests caller continuation, POST the returned link with a bounded, serialized worker. Continuation uses retained originals and does not consume a second analysis. Bind the link to the canonical API origin and the same case before sending a bearer token. Do not follow arbitrary links from document text.
 
 ## Handle every terminal condition
 
@@ -26,9 +26,9 @@ Stop when a saved linkedReportId is available. Treat failed as an unsuccessful w
 
 Execution can occupy a request for up to 300 seconds; use a 310-second client timeout for those POSTs plus an overall workflow deadline. Honor Retry-After on transient failures, use limited backoff and preserve the saved case. A timeout does not prove the server stopped. Do not rename files or alter the package merely to retry it.
 
-## Drive continuation and discover notifications
+## Follow processing and discover notifications
 
-The caller still drives continuation when requested. Optional configured webhook delivery reports committed transitions; it does not advance analysis or replace your bounded, serialized continuation worker. Keep polling and [read errors and recovery](/partner-api/errors-and-retries) before operating at scale.
+Optional configured webhook delivery reports committed transitions; it does not execute analysis. Continue to read saved state and follow automatic server processing or caller continuation as the response directs. Keep polling as a recovery path and [read errors and recovery](/partner-api/errors-and-retries) before operating at scale.
 
 ## Webhook notifications
 
