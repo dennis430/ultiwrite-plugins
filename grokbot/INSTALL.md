@@ -1,6 +1,6 @@
 # Install and account connection
 
-1. Confirm the MCP URL is `https://dwsoffshorepartners.com/api/integrations/ultiwrite/mcp`.
+1. Confirm the MCP URL is `https://mcp.dwsoffshorepartners.com/mcp`.
 2. In Grok Bot's supported app connection, add that remote MCP server. Do not enter an API key.
 3. When the host opens Ultiwrite, sign in to the existing account and approve access.
 4. Scopes requested by the connector are `ultiwrite:read` and `ultiwrite:evidence`.

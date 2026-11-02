@@ -1,0 +1,184 @@
+{
+  "product": "Ultiwrite",
+  "version": "0.9.1",
+  "prepared_at_utc": "2026-11-02T00:31:44.862956+00:00",
+  "status": "source and deterministic archives prepared; remote publication and deployment are separate steps",
+  "public_base_commit": "3400001feec0d8722ca5840d545bcbd1d8c5838c",
+  "private_base_commit": "71bf158a4c0e6233fb495c3cfe7504ee40844356",
+  "combined_changes": [
+    {
+      "pull_request": 16,
+      "commit": "540a0a17aba6efce2d2ad207f0ad80aab013c9f7",
+      "scope": "Five default-available workflows, account onboarding, strict nullable contracts, parser-safe MCP and approved branding"
+    },
+    {
+      "pull_request": 11,
+      "commit": "83541bc88833f8706e0b6b6bfaaa074f4010c8f0",
+      "scope": "Commercial positioning, discovery descriptions/keywords and 32 unrun host-evaluation scenarios"
+    },
+    {
+      "scope": "0.9.1 integration",
+      "changes": "Preserved original ChatGPT prompts and required review counts; corrected contradictory negative review expectations; retained current capabilities-derived terms and updated stale discovery null semantics. Hardened packer traversal and preserved extension release metadata."
+    }
+  ],
+  "identity": {
+    "plugin": "ultiwrite",
+    "mcp_server": "ultiwrite",
+    "original_chatgpt_listing": "plugin_asdk_app_6ad72494738c8191af2df24a75ab4afc",
+    "category": "Business & Operations",
+    "chatgpt_logo_sha256": "2523ad96e0dd452a7068ffd579c3fe73942b34a5d969e4c3ef45005986ddd940",
+    "default_prompts": "preserved in original type, value and order"
+  },
+  "current_archives": [
+    {
+      "file": "release/ultiwrite-chatgpt-plugin-0.9.1.zip",
+      "sha256": "4f3210b56f1a6ccdbaaeca72aaf9c87f767cbc55125a6ca6718122dfe74cec27",
+      "bytes": 933098,
+      "members": 15,
+      "parity": "PASS; every decompressed member matches its package source"
+    },
+    {
+      "file": "release/ultiwrite-cursor-plugin-0.9.1.zip",
+      "sha256": "f41346af459431fd1f174111b5da3b361c54ee660575ca008a65d51bf1e556cc",
+      "bytes": 32175,
+      "members": 15,
+      "parity": "PASS; every decompressed member matches its package source"
+    },
+    {
+      "file": "release/Ultiwrite_Claude_Plugin_v0.9.1.zip",
+      "sha256": "a509a59979d21f9a63fa1e74dcdc1a1057f8af64f8f0efc6fcf25af2f756f9d6",
+      "bytes": 34188,
+      "members": 15,
+      "parity": "PASS; every decompressed member matches its package source"
+    }
+  ],
+  "historical_archives": {
+    "count": 12,
+    "result": "PASS; exact bytes compared to the source Git blobs",
+    "files": [
+      {
+        "file": "release/Ultiwrite_Claude_Plugin_v0.8.0.zip",
+        "sha256": "619656fae4e9b9db2d7a7e0c813713d859cde291062c21912bb38fc7297ca28e",
+        "source_commit": "3400001feec0d8722ca5840d545bcbd1d8c5838c",
+        "source_blob": "c4b954820df856e547b6ce88b260edd3229a18e5"
+      },
+      {
+        "file": "release/Ultiwrite_Claude_Plugin_v0.8.1.zip",
+        "sha256": "11520ccd818dddd576a7b230e08b74142f3012fb0ea2d10f4b6f37c105e6e8b0",
+        "source_commit": "3400001feec0d8722ca5840d545bcbd1d8c5838c",
+        "source_blob": "e768889e0d0370f433bfaf4688748d7e5de7e3b8"
+      },
+      {
+        "file": "release/Ultiwrite_Claude_Plugin_v0.8.3.zip",
+        "sha256": "97e3cfd855c3b1344a9bbfbe6cc1b9d317403d7c869ac416d3bec23989803f00",
+        "source_commit": "3400001feec0d8722ca5840d545bcbd1d8c5838c",
+        "source_blob": "6f321b8da36f985e8dbcd893c17cffff6216db39"
+      },
+      {
+        "file": "release/ultiwrite-chatgpt-plugin-0.7.1.zip",
+        "sha256": "457004b3d46b7aeaddabc1a5d065c181aac2b5a280369be7f9539de39d1339a4",
+        "source_commit": "3400001feec0d8722ca5840d545bcbd1d8c5838c",
+        "source_blob": "d341297154ff1d74dfabde80087da33a929b121d"
+      },
+      {
+        "file": "release/ultiwrite-claude-plugin-0.7.1.zip",
+        "sha256": "7b53857bcd7450b68a869b90d29c1112e89fcb3f707fd87ccadcacc73f906bfe",
+        "source_commit": "3400001feec0d8722ca5840d545bcbd1d8c5838c",
+        "source_blob": "775bdbed3cd2e5fe201832a63cc52a1c2cb5318e"
+      },
+      {
+        "file": "release/ultiwrite-cursor-plugin-0.7.1.zip",
+        "sha256": "e34aa2e43d7062871de121c479ef5e8a7fe214f20b400464624605fc419e15f1",
+        "source_commit": "3400001feec0d8722ca5840d545bcbd1d8c5838c",
+        "source_blob": "5c6321f4d3ac4349751dd70ccceea2e554d88b4a"
+      },
+      {
+        "file": "release/Ultiwrite_Claude_Plugin_v0.8.4.zip",
+        "sha256": "e5a3ddcd2fd150ca73bef84ab51b8fd5040d9e4e214dda53af0e615d0ba98350",
+        "source_commit": "540a0a17aba6efce2d2ad207f0ad80aab013c9f7",
+        "source_blob": "5a11859b1b8f1685e5f837f9ffb255cba2ead2eb"
+      },
+      {
+        "file": "release/ultiwrite-chatgpt-plugin-0.8.0.zip",
+        "sha256": "3570e327e17d7fd90f0d72b0a23b105635118579f8b69ba6aeb1e9d598c51111",
+        "source_commit": "540a0a17aba6efce2d2ad207f0ad80aab013c9f7",
+        "source_blob": "f28b11fb0a3dda6b6b66878037ac05fc98219021"
+      },
+      {
+        "file": "release/ultiwrite-cursor-plugin-0.8.0.zip",
+        "sha256": "eb3403b7e52e5301a112864fb8cd50351e012cf63ff1c5af124fbbae5a5c0129",
+        "source_commit": "540a0a17aba6efce2d2ad207f0ad80aab013c9f7",
+        "source_blob": "fc597755d5a61126111c93585e577d296d912e97"
+      },
+      {
+        "file": "release/Ultiwrite_Claude_Plugin_v0.9.0.zip",
+        "sha256": "03651e6ba207224b895c384b07bb81c6d4be3a2493db594ca29efd511a933472",
+        "source_commit": "83541bc88833f8706e0b6b6bfaaa074f4010c8f0",
+        "source_blob": "070174d53225f02d00eb338e32a44f86f5a96e29"
+      },
+      {
+        "file": "release/ultiwrite-chatgpt-plugin-0.9.0.zip",
+        "sha256": "633906c6c8cc7d673518714fa9fde2fed7a54feace3aa5bf6607b8091cdec483",
+        "source_commit": "83541bc88833f8706e0b6b6bfaaa074f4010c8f0",
+        "source_blob": "a444150bad35aadc48ace714ca410b6aec279171"
+      },
+      {
+        "file": "release/ultiwrite-cursor-plugin-0.9.0.zip",
+        "sha256": "345d714ba6205a70dc38f43e1f45d82e83e01ab9499f1410197b44b5e7f440fd",
+        "source_commit": "83541bc88833f8706e0b6b6bfaaa074f4010c8f0",
+        "source_blob": "306910db8bd70a151ea0854745a1821a197edf3f"
+      }
+    ]
+  },
+  "validation": [
+    {
+      "command": "node scripts/validate-public-plugins.mjs",
+      "status": "PASS"
+    },
+    {
+      "command": "node --test scripts/test/release.test.mjs",
+      "status": "PASS",
+      "tests": 5,
+      "coverage": [
+        "original identity/prompts/artwork/versions",
+        "generated-file exclusion and extension metadata preservation",
+        "historical archive preservation and reproducibility",
+        "changed source detection",
+        "private config and symlink rejection before writes"
+      ]
+    },
+    {
+      "command": "node --test client/test/transport.test.mjs client/test/cli.test.mjs",
+      "status": "PASS",
+      "tests": 2
+    },
+    {
+      "command": "Skill Creator quick_validate.py for each packaged skill directory",
+      "status": "PASS",
+      "skills": 15
+    },
+    {
+      "command": "node scripts/pack-public-connectors.mjs --check",
+      "status": "PASS"
+    },
+    {
+      "command": "independent Python zipfile CRC/member checks",
+      "status": "PASS",
+      "archives": 3,
+      "members_per_archive": 15
+    }
+  ],
+  "host_evaluation": {
+    "status": "NOT_RUN",
+    "declared_review_cases": {
+      "positive": 5,
+      "negative": 3
+    },
+    "discovery_scenarios": 32,
+    "metrics": null,
+    "demo_recording": "NOT_PRESENT",
+    "publisher_portal_update": "NOT_VERIFIED",
+    "installed_account_switching_and_reconnection": "NOT_VERIFIED"
+  },
+  "publication_boundary": "No directory approval, installed-host success, npm publication or live deployment is claimed by this source verification record. The existing plugin identity must be updated rather than duplicated."
+}

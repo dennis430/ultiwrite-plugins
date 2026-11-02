@@ -1,0 +1,109 @@
+{
+  "release": "Ultiwrite installed controls packages 2026-11-01",
+  "source_base_commit": "3400001feec0d8722ca5840d545bcbd1d8c5838c",
+  "versions": {
+    "chatgpt": "0.8.0",
+    "cursor": "0.8.0",
+    "claude": "0.8.4",
+    "grokbot": "0.8.0",
+    "client": "0.7.1 unchanged"
+  },
+  "implementation": [
+    "Five independently discoverable workflows per ChatGPT/Codex, Claude and Cursor package",
+    "All 15 skill YAML policies allow implicit invocation by default while preserving host/user overrides",
+    "ChatGPT onboardingSkill selects connect-account",
+    "Cursor default skills directory discovery replaces a single-file override",
+    "Claude top-level defaultEnabled is true",
+    "Canonical approved ChatGPT gold icon preserved byte-for-byte; current directory gold icon retained for Claude, Cursor and Grok",
+    "Original plugin identities and server-discovered OAuth scopes preserved",
+    "Schema-compatible submission payloads with explicit nullable required fields",
+    "Every current archive member is checked against source; historical ZIPs unchanged",
+    "Canonical private 0.7.2 parser fix retained: clean ChatGPT URL with transport-only server entry",
+    "Canonical Business & Operations category and five positive / three negative review cases retained",
+    "Canonical private host sources and exported public host files have exact byte parity",
+    "Private exporter includes current validator/packer, derives release versions from source and preserves provenance",
+    "Exporter refuses private paths, ancestors, symlink aliases and nonempty output; it never deletes an existing distribution",
+    "Preferred clean MCP endpoint retained for every newly packaged remote host; legacy endpoint remains for existing connections",
+    "Existing private release workflow validates the current temporary Claude candidate, retains the pinned official strict validator and adopts historical-output protection"
+  ],
+  "verification": [
+    {
+      "command": "node scripts/validate-public-plugins.mjs",
+      "result": "PASS"
+    },
+    {
+      "command": "Canonical skill-creator quick_validate.py for all 15 skill folders plus PyYAML safe_load of metadata",
+      "result": "PASS"
+    },
+    {
+      "command": "node scripts/pack-public-connectors.mjs && node scripts/pack-public-connectors.mjs --check",
+      "result": "PASS"
+    },
+    {
+      "command": "git diff --check",
+      "result": "PASS"
+    },
+    {
+      "command": "node --test client/test/*.test.mjs",
+      "environment": "Node.js 24.22.1 with local subprocess and loopback server permission",
+      "result": "PASS: 2 test files; CLI, streaming stdio, notifications, refresh rotation, synthetic local-file transfer, credential non-disclosure"
+    },
+    {
+      "command": "node --test client/test/*.test.mjs in restricted sandbox",
+      "result": "Environment failure: empty child stdout / unavailable loopback listener; identical tests pass with required local access"
+    },
+    {
+      "command": "Node22.23.4 scripts/export-plugin-distribution.test.mjs",
+      "result": "PASS: temporary export, exact source bytes, metadata, hashes, path guards, fresh archive build/check, private source provenance retained"
+    },
+    {
+      "command": "Node22.23.4 --import tsx scripts/pack-chatgpt-plugin.test.ts",
+      "result": "PASS: canonical/legacy root archives, complete source parity, reproducibility, frozen fixture preserved"
+    },
+    {
+      "command": "Node22.23.4 --import tsx lib/integrations/ultiwrite-mcp/package.test.ts",
+      "result": "PASS: candidate version, historical review draft, registered tools, original review-case counts, parser-compatible discovery"
+    },
+    {
+      "command": "Node22.23.4 scripts/pack-claude-plugin.test.mjs",
+      "result": "PASS: temporary candidate archive, all five agents/openai.yaml files, exact source parity and reproducibility"
+    },
+    {
+      "command": "Node22.23.4 scripts/pack-mcp-release.test.mjs",
+      "result": "PASS: legacy website builder refuses current source versions before any output mutation"
+    },
+    {
+      "command": "Node22.23.4 public validator, archive rebuild/check and node --test client/test/*.test.mjs",
+      "result": "PASS: final source validation, all three archive/source comparisons, both existing CLI test files"
+    },
+    {
+      "command": "npm exec --yes --package @anthropic-ai/claude-code@2.1.312 -- claude plugin validate --strict <canonical Claude package>",
+      "result": "PASS: official manifest/directory subset; directory policy and safety review remain separate"
+    }
+  ],
+  "review": [
+    "Independent host-contract review caught and corrected legacy omitted submission fields; explicit nulls now match strict tool schema",
+    "Independent host-contract review passed; account profile description corrected to identity only",
+    "Canonical private packaging audit found and retained parser compatibility and source ownership",
+    "Final canonical-source comparison retained Grok clean-issuer discovery documentation and legacy issuer qualification; inventory now labels canonical OAuth metadata as expected service discovery"
+  ],
+  "not_verified": [
+    "Directory upload or publication",
+    "Installed-host account-label rendering",
+    "Real account switching or denied-scope journey",
+    "Production deployment of any server changes"
+  ],
+  "host_boundaries": "Permission modes, simultaneous-account controls and skill switches are rendered by each host. Package defaults do not override a user-off setting, grant OAuth access, select a paid add-on or authorize charges.",
+  "canonical_source_repository": "dennis430/merchant-risk-app",
+  "canonical_source_base_commit": "d38fd4a3fa5a4f89a801ff490204ce6e54055d40",
+  "preserved_snapshots": [
+    "All six pre-existing public release ZIPs retain their original Git bytes",
+    "Private-release-materials handoff exports are historical snapshots and are untouched",
+    "Existing website download archives and packaging/anthropic/dist archives are untouched; they are not this new source candidate",
+    "Legacy0.7.0 website builder now refuses current manifest versions before mutations; website downloads and private historical archives were not rebuilt"
+  ],
+  "website_download_pointers": {
+    "setup_page": "Existing /docs/mcp setup page links /downloads/ultiwrite-{chatgpt,claude,cursor}-plugin-0.7.1.zip and retains0.7.0 links as historical",
+    "status": "Website source, middleware download allowlist and website ZIP bytes are unchanged; current candidate archives are versioned in this public repository"
+  }
+}
