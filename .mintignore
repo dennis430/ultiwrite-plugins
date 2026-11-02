@@ -1,0 +1,15 @@
+# This repository also distributes executable plugins and a Node CLI.
+# Publish only the customer documentation; do not inject CLI JavaScript into pages.
+/*
+!/.mintignore
+!/docs.json
+!/index.mdx
+!/quickstart.mdx
+!/api-keys.mdx
+!/api-contract.mdx
+!/partner-api/
+!/api-reference/
+/partner-api/**
+/api-reference/**
+!/partner-api/*.mdx
+!/api-reference/*.mdx
