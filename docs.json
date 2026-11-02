@@ -1,0 +1,122 @@
+{
+  "theme": "mint",
+  "name": "Ultiwrite API documentation",
+  "description": "Integrate Ultiwrite asymmetric diligence and investigative intelligence with authorized evidence uploads, saved investigations, reports and webhooks.",
+  "colors": {
+    "primary": "#D39891",
+    "light": "#E7B7B0",
+    "dark": "#9A645E"
+  },
+  "api": {
+    "openapi": "https://dwsoffshorepartners.com/.well-known/openapi.json",
+    "playground": {
+      "display": "simple",
+      "proxy": false
+    },
+    "examples": {
+      "languages": [
+        "bash",
+        "javascript",
+        "python"
+      ],
+      "prefill": false,
+      "autogenerate": true
+    }
+  },
+  "navbar": {
+    "links": [
+      {
+        "href": "https://dwsoffshorepartners.com/docs",
+        "label": "Product documentation"
+      },
+      {
+        "href": "https://dwsoffshorepartners.com/settings/api",
+        "label": "API access"
+      }
+    ],
+    "primary": {
+      "type": "button",
+      "label": "Open dashboard",
+      "href": "https://dwsoffshorepartners.com/dashboard"
+    }
+  },
+  "footer": {},
+  "search": {
+    "prompt": "Search Ultiwrite API docs"
+  },
+  "contextual": {
+    "options": [
+      "copy",
+      "view",
+      "chatgpt",
+      "claude",
+      "perplexity",
+      "mcp",
+      "cursor",
+      "vscode"
+    ],
+    "display": "header"
+  },
+  "navigation": {
+    "global": {
+      "anchors": [
+        {
+          "anchor": "API reference",
+          "icon": "code",
+          "href": "https://dwsoffshorepartners.com/docs/api"
+        },
+        {
+          "anchor": "Product documentation",
+          "icon": "book-open",
+          "href": "https://dwsoffshorepartners.com/docs"
+        }
+      ]
+    },
+    "pages": [
+      {
+        "group": "Getting started",
+        "pages": [
+          "index",
+          "quickstart",
+          "api-keys"
+        ]
+      },
+      {
+        "group": "Partner API",
+        "pages": [
+          "partner-api/overview",
+          "partner-api/authentication",
+          "partner-api/workflow",
+          "partner-api/uploads",
+          "partner-api/results",
+          "partner-api/usage",
+          "partner-api/errors-and-retries",
+          "partner-api/integration-checklist"
+        ]
+      },
+      {
+        "group": "API reference",
+        "pages": [
+          "api-contract",
+          "api-reference/account",
+          "api-reference/capabilities",
+          "api-reference/usage",
+          "api-reference/list-cases",
+          "api-reference/submit-evidence",
+          "api-reference/case-status",
+          "api-reference/continue-case",
+          "api-reference/case-findings",
+          "api-reference/case-brief",
+          "api-reference/report-findings",
+          "api-reference/report-brief",
+          "api-reference/report-delivery",
+          "api-reference/upload-link",
+          "api-reference/list-webhooks",
+          "api-reference/create-webhook",
+          "api-reference/revoke-webhook",
+          "api-reference/webhook-deliveries"
+        ]
+      }
+    ]
+  }
+}
