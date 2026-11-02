@@ -1,0 +1,381 @@
+{
+  "product": "Ultiwrite",
+  "version": "0.9.1",
+  "status": "PUBLISHED_AND_PRODUCTION_VERIFIED",
+  "verified_at_utc": "2026-11-02T01:07:42.877237+00:00",
+  "public_release": {
+    "repository": "dennis430/ultiwrite-plugins",
+    "pull_request": 17,
+    "merge_commit": "0ce19fae2ca30d28ac703aaaa109a3eca91bf471",
+    "tree": "a0d2bf1a872fab39b9ea2ddf9ccdb853ea516a60",
+    "status": "MERGED"
+  },
+  "canonical_application": {
+    "repository": "dennis430/merchant-risk-app",
+    "release_pull_request": 742,
+    "release_merge_commit": "07463d3240b2f5e58908d98e99a4b74b7f628d27",
+    "test_correction_pull_request": 744,
+    "test_correction_source_commit": "d0d641cc9102b418609106d0a82214bb77cc5f7a",
+    "production_source_commit": "78882062df876359ad063d5298ab90ce9017a933",
+    "correction_scope": "Three stale test source-selection and consent-copy assertions; application source and plugin ZIPs unchanged."
+  },
+  "build_history": [
+    {
+      "deployment_id": "dpl_67WEc3CFbACtYpsnqoas5DjZZAPr",
+      "source_commit": "07463d3240b2f5e58908d98e99a4b74b7f628d27",
+      "state": "ERROR",
+      "regression_files_passed": 157,
+      "regression_files_failed": [
+        "commercialJourney.test.ts",
+        "multiClientCopy.test.ts",
+        "stage3Oauth.test.ts"
+      ],
+      "resolution": "Three stale contract tests corrected in PR744; no application or ZIP changes."
+    },
+    {
+      "deployment_id": "dpl_3Z3UJKkfb22P5eXPGKZBkSyaR743",
+      "source_commit": "78882062df876359ad063d5298ab90ce9017a933",
+      "state": "READY",
+      "observed_at_utc": "2026-11-02 01:05:24 UTC",
+      "checks": {
+        "regressionFiles": 160,
+        "regressions": "PASS",
+        "typecheck": "PASS",
+        "lint": "PASS_WITH_WARNINGS",
+        "packageRegressions": "PASS",
+        "chatgptArchiveParity": "PASS",
+        "nextProductionBuild": "PASS",
+        "packagedRuntimeGates": "PASS"
+      }
+    }
+  ],
+  "production_deployment": {
+    "provider": "Vercel",
+    "deployment_id": "dpl_3Z3UJKkfb22P5eXPGKZBkSyaR743",
+    "state": "READY",
+    "target": "production",
+    "source_commit": "78882062df876359ad063d5298ab90ce9017a933",
+    "observed_at_utc": "2026-11-02T01:06:46.497Z",
+    "public_aliases_verified": [
+      "dwsoffshorepartners.com",
+      "mcp.dwsoffshorepartners.com"
+    ]
+  },
+  "current_downloads": [
+    {
+      "url": "https://dwsoffshorepartners.com/downloads/ultiwrite-chatgpt-plugin-0.9.1.zip",
+      "status": 200,
+      "bytes": 933098,
+      "sha256": "4f3210b56f1a6ccdbaaeca72aaf9c87f767cbc55125a6ca6718122dfe74cec27",
+      "manifest_version": "0.9.1",
+      "members": 15,
+      "crc": "PASS",
+      "result": "PASS",
+      "public_archive": "release/ultiwrite-chatgpt-plugin-0.9.1.zip",
+      "source_parity": "PASS; exact public archive bytes"
+    },
+    {
+      "url": "https://dwsoffshorepartners.com/downloads/Ultiwrite_Claude_Plugin_v0.9.1.zip",
+      "status": 200,
+      "bytes": 34188,
+      "sha256": "a509a59979d21f9a63fa1e74dcdc1a1057f8af64f8f0efc6fcf25af2f756f9d6",
+      "manifest_version": "0.9.1",
+      "members": 15,
+      "crc": "PASS",
+      "result": "PASS",
+      "public_archive": "release/Ultiwrite_Claude_Plugin_v0.9.1.zip",
+      "source_parity": "PASS; exact public archive bytes"
+    },
+    {
+      "url": "https://dwsoffshorepartners.com/downloads/ultiwrite-cursor-plugin-0.9.1.zip",
+      "status": 200,
+      "bytes": 32175,
+      "sha256": "f41346af459431fd1f174111b5da3b361c54ee660575ca008a65d51bf1e556cc",
+      "manifest_version": "0.9.1",
+      "members": 15,
+      "crc": "PASS",
+      "result": "PASS",
+      "public_archive": "release/ultiwrite-cursor-plugin-0.9.1.zip",
+      "source_parity": "PASS; exact public archive bytes"
+    }
+  ],
+  "historical_downloads": [
+    {
+      "url": "https://dwsoffshorepartners.com/downloads/ultiwrite-chatgpt-plugin-0.7.1.zip",
+      "status": 200,
+      "bytes": 42585,
+      "sha256": "457004b3d46b7aeaddabc1a5d065c181aac2b5a280369be7f9539de39d1339a4",
+      "manifest_version": "0.7.1",
+      "members": 5,
+      "crc": "PASS",
+      "result": "PASS",
+      "historical_parity": "PASS; exact previously recorded 0.7.1 bytes"
+    },
+    {
+      "url": "https://dwsoffshorepartners.com/downloads/ultiwrite-chatgpt-plugin-0.7.0.zip",
+      "status": 200,
+      "bytes": 44891,
+      "sha256": "16f3e43c1a9a848d098f096635c220d24ee28984fa97ffe523e1e49a95fa2cbb",
+      "manifest_version": "0.7.0",
+      "members": 5,
+      "crc": "PASS",
+      "result": "PASS"
+    }
+  ],
+  "setup_page": {
+    "url": "https://dwsoffshorepartners.com/docs/mcp",
+    "status": 200,
+    "download_links": [
+      {
+        "href": "/downloads/ultiwrite-chatgpt-plugin-0.9.1.zip",
+        "text": "Download the ChatGPT plugin · 0.9.1"
+      },
+      {
+        "href": "/downloads/ultiwrite-plugin-0.9.1-SHA256SUMS.txt",
+        "text": "Verify archive checksums."
+      },
+      {
+        "href": "/downloads/Ultiwrite_Claude_Plugin_v0.9.1.zip",
+        "text": "Download the Claude plugin · 0.9.1"
+      },
+      {
+        "href": "/downloads/ultiwrite-plugin-0.9.1-SHA256SUMS.txt",
+        "text": "Verify archive checksums."
+      },
+      {
+        "href": "/downloads/ultiwrite-cursor-plugin-0.9.1.zip",
+        "text": "Download the Cursor plugin · 0.9.1"
+      },
+      {
+        "href": "/downloads/ultiwrite-plugin-0.9.1-SHA256SUMS.txt",
+        "text": "Verify archive checksums."
+      }
+    ],
+    "result": "PASS"
+  },
+  "http_acceptance": {
+    "observed_at_utc": "2026-11-02T01:06:47.478819+00:00",
+    "checks_passed": 17,
+    "checks_total": 17,
+    "checks": [
+      {
+        "check": "New website ZIP exact bytes, hash and version",
+        "pass": true
+      },
+      {
+        "check": "New ZIP complete, no private bindings, and review metadata retained",
+        "pass": true
+      },
+      {
+        "check": "claude website ZIP exact bytes, hash and version",
+        "pass": true
+      },
+      {
+        "check": "cursor website ZIP exact bytes, hash and version",
+        "pass": true
+      },
+      {
+        "check": "Historical 0.7.1 ZIP retains exact baseline bytes",
+        "pass": true
+      },
+      {
+        "check": "Historical 0.7.0 ZIP remains available as 0.7.0",
+        "pass": true
+      },
+      {
+        "check": "Public setup page links the new version",
+        "pass": true
+      },
+      {
+        "check": "Public setup page links current Claude archive",
+        "pass": true
+      },
+      {
+        "check": "Public setup page links current Cursor archive",
+        "pass": true
+      },
+      {
+        "check": "Production health and database available",
+        "pass": true
+      },
+      {
+        "check": "clean protected-resource discovery",
+        "pass": true
+      },
+      {
+        "check": "clean OAuth issuer, browser authorization and PKCE",
+        "pass": true
+      },
+      {
+        "check": "clean unauthenticated MCP rejected without redirect",
+        "pass": true
+      },
+      {
+        "check": "canonical protected-resource discovery",
+        "pass": true
+      },
+      {
+        "check": "canonical OAuth issuer, browser authorization and PKCE",
+        "pass": true
+      },
+      {
+        "check": "canonical unauthenticated MCP rejected without redirect",
+        "pass": true
+      },
+      {
+        "check": "Cross-origin consent denied before authentication",
+        "pass": true
+      }
+    ],
+    "observations": [
+      {
+        "name": "health",
+        "url": "https://dwsoffshorepartners.com/api/health",
+        "status": 200,
+        "response_sha256": "f93c7960c52d3dea1034d13ba7f638513299bcd9deb496ca4afb7392bfa1ac8a",
+        "result": "PASS",
+        "observed": {
+          "ok": true,
+          "environment": "production",
+          "database_available": true
+        }
+      },
+      {
+        "name": "clean-resource",
+        "url": "https://mcp.dwsoffshorepartners.com/.well-known/oauth-protected-resource/mcp",
+        "status": 200,
+        "response_sha256": "f4dd3e59a8efd7a5180e8b42224b313955505ee2f947f89a8fdf94e295e744f8",
+        "result": "PASS",
+        "observed": {
+          "resource": "https://mcp.dwsoffshorepartners.com/mcp",
+          "authorization_servers": [
+            "https://mcp.dwsoffshorepartners.com"
+          ],
+          "scopes_supported": [
+            "ultiwrite:read",
+            "ultiwrite:evidence"
+          ]
+        }
+      },
+      {
+        "name": "clean-authorization",
+        "url": "https://mcp.dwsoffshorepartners.com/.well-known/oauth-authorization-server",
+        "status": 200,
+        "response_sha256": "81ca886fdec977af33c2c12f3b3ab22b0c9cd0b6fd614bd91c492ef7123525d9",
+        "result": "PASS",
+        "observed": {
+          "issuer": "https://mcp.dwsoffshorepartners.com",
+          "authorization_endpoint": "https://dwsoffshorepartners.com/api/integrations/ultiwrite/oauth/authorize",
+          "code_challenge_methods_supported": [
+            "S256"
+          ],
+          "scopes_supported": [
+            "ultiwrite:read",
+            "ultiwrite:evidence"
+          ]
+        }
+      },
+      {
+        "name": "canonical-resource",
+        "url": "https://dwsoffshorepartners.com/.well-known/oauth-protected-resource/api/integrations/ultiwrite/mcp",
+        "status": 200,
+        "response_sha256": "c0203b82e4ed5a38294dc82052bbf92201d48b52c9b005e98b7136c382561822",
+        "result": "PASS",
+        "observed": {
+          "resource": "https://dwsoffshorepartners.com/api/integrations/ultiwrite/mcp",
+          "authorization_servers": [
+            "https://dwsoffshorepartners.com"
+          ],
+          "scopes_supported": [
+            "ultiwrite:read",
+            "ultiwrite:evidence"
+          ]
+        }
+      },
+      {
+        "name": "canonical-authorization",
+        "url": "https://dwsoffshorepartners.com/.well-known/oauth-authorization-server",
+        "status": 200,
+        "response_sha256": "5102c9c77a0b01df48605934cdc9c5ffa8132718033e08bcdeb3eba3b2a0fef4",
+        "result": "PASS",
+        "observed": {
+          "issuer": "https://dwsoffshorepartners.com",
+          "authorization_endpoint": "https://dwsoffshorepartners.com/api/integrations/ultiwrite/oauth/authorize",
+          "code_challenge_methods_supported": [
+            "S256"
+          ],
+          "scopes_supported": [
+            "ultiwrite:read",
+            "ultiwrite:evidence"
+          ]
+        }
+      },
+      {
+        "name": "mcp-clean",
+        "url": "https://mcp.dwsoffshorepartners.com/mcp",
+        "status": 401,
+        "response_sha256": "05514f764dfa629a91a85e82cb22a8d8bf853d808063e5c72d828d613bcf7057",
+        "result": "PASS",
+        "www_authenticate": "Bearer resource_metadata=\"https://mcp.dwsoffshorepartners.com/.well-known/oauth-protected-resource/mcp\", scope=\"ultiwrite:read ultiwrite:evidence\", error=\"invalid_token\"",
+        "redirected": false
+      },
+      {
+        "name": "mcp-canonical",
+        "url": "https://dwsoffshorepartners.com/api/integrations/ultiwrite/mcp",
+        "status": 401,
+        "response_sha256": "05514f764dfa629a91a85e82cb22a8d8bf853d808063e5c72d828d613bcf7057",
+        "result": "PASS",
+        "www_authenticate": "Bearer resource_metadata=\"https://dwsoffshorepartners.com/.well-known/oauth-protected-resource/api/integrations/ultiwrite/mcp\", scope=\"ultiwrite:read ultiwrite:evidence\", error=\"invalid_token\"",
+        "redirected": false
+      },
+      {
+        "name": "consent-cross-origin",
+        "url": "https://dwsoffshorepartners.com/api/integrations/ultiwrite/oauth/authorize",
+        "status": 403,
+        "response_sha256": "0e738f039709874b27740446e599e2e06baacc50e4ec74a15edbe7ce89af4246",
+        "result": "PASS"
+      }
+    ]
+  },
+  "checksum_manifest": {
+    "checkedAt": "2026-11-02T01:07:42.877237+00:00",
+    "url": "https://dwsoffshorepartners.com/downloads/ultiwrite-plugin-0.9.1-SHA256SUMS.txt",
+    "status": 200,
+    "contentType": "text/plain; charset=utf-8",
+    "matchesDownloadedArchives": true,
+    "checksums": {
+      "ultiwrite-chatgpt-plugin-0.9.1.zip": "4f3210b56f1a6ccdbaaeca72aaf9c87f767cbc55125a6ca6718122dfe74cec27",
+      "Ultiwrite_Claude_Plugin_v0.9.1.zip": "a509a59979d21f9a63fa1e74dcdc1a1057f8af64f8f0efc6fcf25af2f756f9d6",
+      "ultiwrite-cursor-plugin-0.9.1.zip": "f41346af459431fd1f174111b5da3b361c54ee660575ca008a65d51bf1e556cc",
+      "ultiwrite-chatgpt-plugin-0.9.1-legacy-apex-root.zip": "ee9df746102b187de868246b8c077054653f4be5fef9b0bac3727778a025b9ad"
+    },
+    "verifiedCurrentArchiveCount": 3,
+    "additionalEntries": {
+      "ultiwrite-chatgpt-plugin-0.9.1-legacy-apex-root.zip": "ee9df746102b187de868246b8c077054653f4be5fef9b0bac3727778a025b9ad"
+    },
+    "qualification": "The three downloaded current archives match. The file also contains the legacy-apex-root compatibility archive checksum; this supplementary check did not download that compatibility artifact."
+  },
+  "directory_publication": {
+    "original_identity": "plugin_asdk_app_6ad72494738c8191af2df24a75ab4afc",
+    "publisher_upload": "NOT_PERFORMED",
+    "directory_approval": "NOT_VERIFIED"
+  },
+  "host_evaluation": {
+    "review_cases": "NOT_RUN",
+    "account_switching_and_reconnection": "NOT_RUN",
+    "discovery_scenarios": "NOT_RUN"
+  },
+  "demo_recording": "NOT_PRESENT",
+  "npm_publication": "NOT_PERFORMED_BY_THIS_RELEASE",
+  "limitations": [
+    "Live acceptance used public HTTP surfaces and downloaded archive bytes. No authenticated account OAuth flow, customer report, paid operation or publisher submission was performed.",
+    "The supplementary checksum check covered the three current primary archives. Its additional legacy-apex-root compatibility archive was not downloaded in that check."
+  ],
+  "build_verification": "release/PLUGIN_0.9.1_VERIFICATION.json",
+  "evidence_sha256": {
+    "deployment-ready.json": "bf9ebab899d2a31fd208e8fe040fa7d6ac78cab4836434a106d3fa9d3813ad06",
+    "post-live-acceptance.json": "24fac1ec8c7c65cad049881204653ae9cddaffc9f64cf997d094fce47b56cb2b",
+    "post-live-platform.json": "bfc38848c75b3fb56cd7d949391a20185932d4fe5bee15daa0ebfa96664148af",
+    "live-checksum-verification.json": "e6ce2ee5e6841363f1025d50141327429b0e9f5136f9370a00840a350495cb0b"
+  }
+}
