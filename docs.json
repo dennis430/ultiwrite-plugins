@@ -21,7 +21,8 @@
       ],
       "prefill": false,
       "autogenerate": true
-    }
+    },
+    "url": "full"
   },
   "navbar": {
     "links": [
