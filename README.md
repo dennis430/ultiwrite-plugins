@@ -8,9 +8,9 @@ This repository distributes thin public connectors and workflow instructions mai
 
 | Directory | Version | Contents |
 | --- | --- | --- |
-| `chatgpt/` | 0.9.1 | Portable ChatGPT/Codex plugin; OAuth, account-first onboarding and five skills |
-| `claude/` | 0.9.1 | Claude plugin; OAuth, connection recovery and five skills; enabled by default on a new installation |
-| `cursor/` | 0.9.1 | Cursor plugin; remote MCP, complete skill-directory discovery and five skills |
+| `chatgpt/` | 0.9.3 | Portable ChatGPT/Codex plugin; OAuth, account-first onboarding and five skills |
+| `claude/` | 0.9.3 | Claude plugin; OAuth, connection recovery and five skills; enabled by default on a new installation |
+| `cursor/` | 0.9.3 | Cursor plugin; remote MCP, complete skill-directory discovery and five skills |
 | `grokbot/` | 0.8.0 | Grok Bot submission dossier with shared account and permission contracts |
 | `client/` | 0.7.1 | Unchanged local `ultiwrite-mcp` wrapper; npm publication is not claimed |
 
@@ -31,14 +31,14 @@ The five workflows explain capabilities, connect/select accounts, submit evidenc
 
 ## Downloads
 
-Version 0.9.1 is published in this repository following [PR #17](https://github.com/dennis430/ultiwrite-plugins/pull/17). The production website mirrors the versioned archives below. Publication, deployment and download checks are recorded in [the live release receipt](release/PLUGIN_0.9.1_LIVE_RECEIPT.json); [the build verification](release/PLUGIN_0.9.1_VERIFICATION.json) preserves the packaging evidence. Directory approval and installed-host review cases remain unverified.
+Version 0.9.3 updates the plugin and per-skill icons to the exact supplied black-background gold Uw image while retaining the five 0.9.1 workflows. Its [build verification](release/PLUGIN_0.9.3_VERIFICATION.json) records archive parity and historical preservation. The production website remains on its previous deployment until the next authorized Vercel deployment; this package release does not trigger one. The prior 0.9.1 release remains recorded in [its live receipt](release/PLUGIN_0.9.1_LIVE_RECEIPT.json). Directory approval and installed-host refresh remain separate verification steps.
 
 <!-- CURRENT_DOWNLOADS_START -->
 | Archive | SHA-256 |
 | --- | --- |
-| [`ultiwrite-chatgpt-plugin-0.9.1.zip`](https://github.com/dennis430/ultiwrite-plugins/raw/main/release/ultiwrite-chatgpt-plugin-0.9.1.zip) | `4f3210b56f1a6ccdbaaeca72aaf9c87f767cbc55125a6ca6718122dfe74cec27` |
-| [`ultiwrite-cursor-plugin-0.9.1.zip`](https://github.com/dennis430/ultiwrite-plugins/raw/main/release/ultiwrite-cursor-plugin-0.9.1.zip) | `f41346af459431fd1f174111b5da3b361c54ee660575ca008a65d51bf1e556cc` |
-| [`Ultiwrite_Claude_Plugin_v0.9.1.zip`](https://github.com/dennis430/ultiwrite-plugins/raw/main/release/Ultiwrite_Claude_Plugin_v0.9.1.zip) | `a509a59979d21f9a63fa1e74dcdc1a1057f8af64f8f0efc6fcf25af2f756f9d6` |
+| [`ultiwrite-chatgpt-plugin-0.9.3.zip`](https://github.com/dennis430/ultiwrite-plugins/raw/main/release/ultiwrite-chatgpt-plugin-0.9.3.zip) | `1ed9d74e928e5d075db86e6635ea13bb530776e2c96d2ac9682c389b96169abe` |
+| [`ultiwrite-cursor-plugin-0.9.3.zip`](https://github.com/dennis430/ultiwrite-plugins/raw/main/release/ultiwrite-cursor-plugin-0.9.3.zip) | `6d8977daea01083dd3fb98cdec3826e29699274195d6e1dc16b6808447b4635e` |
+| [`Ultiwrite_Claude_Plugin_v0.9.3.zip`](https://github.com/dennis430/ultiwrite-plugins/raw/main/release/Ultiwrite_Claude_Plugin_v0.9.3.zip) | `f00050a4d629eec6705f79da1f6e6b0b5aca7c73d5952463c36a25b7a5d77261` |
 <!-- CURRENT_DOWNLOADS_END -->
 
 Historical ZIPs remain unchanged so existing links keep working. `release/SHA256SUMS.txt` and `release/INVENTORY.json` record every current and historical archive. `RELEASE_MANIFEST.json` records source-file hashes.
@@ -83,3 +83,9 @@ The ChatGPT portable connection retains the canonical parser-compatible `type`/`
 - [Claude default enablement](https://code.claude.com/docs/en/plugins-reference#defaultenabled)
 
 Website: https://dwsoffshorepartners.com · Setup: https://dwsoffshorepartners.com/docs/mcp · Privacy: https://dwsoffshorepartners.com/privacy · Terms: https://dwsoffshorepartners.com/terms · Support: https://dwsoffshorepartners.com/contact
+
+## Canonical icon — 0.9.3
+
+The supplied `ultiwrite-uw-icon-512.png` is the canonical image: 512 × 512 opaque RGB PNG, 21,052 bytes, SHA-256 `cc0a3c229347e47a154a00c9e6dfa774c0e1f07ee9fc063935af5bc4897f4b18`. Every host's `assets/logo.png` matches those exact bytes. ChatGPT light/dark logo and composer metadata use that image, and all fifteen ChatGPT/Claude/Cursor skill display files resolve both icon sizes to it. Grok Bot's existing 0.8.0 dossier already has the exact image and is unchanged.
+
+New versioned archive paths and marketplace commit updates distinguish this release from cached packages. Raw GitHub `main` image responses may remain cached briefly; verify the final approved commit URL and archive digest after merge. Refresh or update the existing installation rather than creating another plugin identity. An app-owned ChatGPT logo or directory listing can require its own owner-managed refresh or approved publication; a server deployment cannot prove that stored host artwork changed. The application asset changes are reserved for the next Vercel deployment.
