@@ -1,0 +1,62 @@
+{
+  "product": "Ultiwrite",
+  "preparedContractVersion": "0.9.2",
+  "preparedAtLocalDate": "2026-11-01",
+  "timezone": "America/Los_Angeles",
+  "sourceChecks": {
+    "publicSourceBoundary": "PASS",
+    "sevenChannelStructure": "PASS",
+    "releaseRegressions": {
+      "passed": 5,
+      "failed": 0
+    },
+    "microsoftOfficialSchemas": "PASS_TEMPLATE_ONLY",
+    "registryOfficialSchema": "PASS_BOTH_IDENTITIES",
+    "archiveSourceParity": "PASS"
+  },
+  "liveObservations": {
+    "authorizationDiscovery": 200,
+    "protectedResourceDiscovery": 200,
+    "anonymousInitialize": 401,
+    "anonymousToolsList": 401,
+    "registrySearchCount": 0
+  },
+  "hostJourneys": "NOT_RUN",
+  "marketplaceSubmissions": "NOT_SUBMITTED",
+  "productionChanges": "NONE",
+  "registrySchema": {
+    "url": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+    "sha256OfParsedSnapshot": "7f4f78e1da75dc8257af3ab367f04815618f750c67b784ac69b2b47205f79157"
+  },
+  "remaining": [
+    "namespace ownership and publication",
+    "platform account and reviewer access",
+    "Google exact callback and verification deployment",
+    "Microsoft tenant IDs and host test",
+    "Salesforce actual per-user OAuth and retrieved metadata",
+    "AWS buyer fulfillment, event reconciliation and billing integration"
+  ],
+  "preparedPackageVersion": "0.9.4",
+  "publicRepositoryBaseline": "63adef9ae6ae0bacf3cdc6a59c20a5513831a1ac",
+  "integrity": {
+    "excludedPackageFilesUnchanged": 46,
+    "preExistingArchivesUnchanged": 18,
+    "baseline": "origin/main 63adef9"
+  },
+  "microsoftPublisherFollowup": {
+    "kitVersion": "1.0.2",
+    "microsoftPackageVersion": "0.9.6",
+    "publisherEnrollment": "user_reports_registered",
+    "microsoftAppId": "NOT_PROVIDED",
+    "microsoftAuthConfigId": "NOT_PROVIDED",
+    "publisherPreparationTests": {
+      "passed": 5,
+      "failed": 0,
+      "scope": "local fixtures only; no Microsoft tenant registration"
+    },
+    "schemaValidation": "PASS_TEMPLATE_ONLY",
+    "hostTested": false,
+    "submitted": false,
+    "newDependencies": false
+  }
+}

@@ -4,3 +4,7 @@ node_modules/
 .env.*
 dist/
 *.tgz
+.venv/
+__pycache__/
+build/
+*.local.json

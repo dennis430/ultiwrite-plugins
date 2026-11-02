@@ -11,7 +11,7 @@
     "mcp_url": "https://mcp.dwsoffshorepartners.com/mcp"
   },
   "cursor": {
-    "version": "0.9.3",
+    "version": "0.9.4",
     "mcp_url": "https://mcp.dwsoffshorepartners.com/mcp"
   },
   "tools": [
@@ -123,14 +123,14 @@
       ]
     },
     {
-      "file": "release/ultiwrite-cursor-plugin-0.9.3.zip",
-      "version": "0.9.3",
-      "sha256": "6d8977daea01083dd3fb98cdec3826e29699274195d6e1dc16b6808447b4635e",
-      "bytes": 32334,
+      "file": "release/ultiwrite-cursor-plugin-0.9.4.zip",
+      "version": "0.9.4",
+      "sha256": "ddddc32e186b41ba88a2e0d9b85b144fcbd6081f679917571f793163651a5ba5",
+      "bytes": 32350,
       "members": [
         {
           "name": ".cursor-plugin/plugin.json",
-          "sha256": "111f7e2cd1f6c9461721a251d6b9eff73bcdf9087f93650cafd5e79f228dea64",
+          "sha256": "66c8e8c0230c793a637e6c206a4f1a874c174461d1409c3d66a124955626fc74",
           "bytes": 1062
         },
         {
@@ -140,7 +140,7 @@
         },
         {
           "name": "README.md",
-          "sha256": "c2d6fdc329fe1b761cdb6178c492b63a9e43bbe2e5a0fe7be818f9000af0383f",
+          "sha256": "4d7b36ac43c95d9308db33186d3ff4fc1743ec07d940705eb78b69daab3dfce1",
           "bytes": 3034
         },
         {
@@ -175,8 +175,8 @@
         },
         {
           "name": "skills/read-report/SKILL.md",
-          "sha256": "14f98f6e1ad419692acba2571c21577fcedcb7bdc63492f357b32b0d1b8eba01",
-          "bytes": 2647
+          "sha256": "e033479f88ee29b25479e24c102b17bda13d7ffdb33cef35f78bba8160a3b0aa",
+          "bytes": 2656
         },
         {
           "name": "skills/read-report/agents/openai.yaml",
@@ -185,8 +185,8 @@
         },
         {
           "name": "skills/submit-evidence/SKILL.md",
-          "sha256": "274d0e0031fc96e090daf0cea41489be473f42bb8531a74e1b2075fa884bf987",
-          "bytes": 3477
+          "sha256": "1607e76f791137781075f0f668ac36011ebe289732881f365896cd1f4665b0ec",
+          "bytes": 3692
         },
         {
           "name": "skills/submit-evidence/agents/openai.yaml",
@@ -1212,6 +1212,174 @@
           "name": "skills/ultiwrite/agents/openai.yaml",
           "sha256": "74771ace7de121c114963e84b406a9bc44dc6ad19b4c042e00d25c9f6670d15a",
           "bytes": 291
+        }
+      ]
+    },
+    {
+      "file": "release/ultiwrite-cursor-plugin-0.9.2.zip",
+      "version": "0.9.2",
+      "status": "historical archive; kept so existing links keep working; not rebuilt",
+      "sha256": "be339549b23bdc07268a6748eb408daaa346fe9287bac1e34ba9659ddb3582d7",
+      "bytes": 32192,
+      "members": [
+        {
+          "name": ".cursor-plugin/plugin.json",
+          "sha256": "24d78d6a8093971afff7613627741a7cfbd5abebb15d9f6f15da8e23c6f8c393",
+          "bytes": 1062
+        },
+        {
+          "name": "LICENSE",
+          "sha256": "0122d7b57a1ef1e40944c88e2e0261b334fcf5f779e9deb52d49463de20a977d",
+          "bytes": 1767
+        },
+        {
+          "name": "README.md",
+          "sha256": "f3105504bd44177344eba8967fa440d53656227ccf60fff0d18cf7b6c279dbc0",
+          "bytes": 3034
+        },
+        {
+          "name": "assets/logo.png",
+          "sha256": "cc0a3c229347e47a154a00c9e6dfa774c0e1f07ee9fc063935af5bc4897f4b18",
+          "bytes": 21052
+        },
+        {
+          "name": "mcp.json",
+          "sha256": "b58605b1536159e225e0c338a99fbadfb5395067191a651882b3e46791003dd1",
+          "bytes": 211
+        },
+        {
+          "name": "skills/connect-account/SKILL.md",
+          "sha256": "444e347909c4a620a8f2b1d96f055111648a8c1431ff07c4c00deb2d79c9a30e",
+          "bytes": 3430
+        },
+        {
+          "name": "skills/connect-account/agents/openai.yaml",
+          "sha256": "364e8d375114f5e65a86e59007582a14d45e3cee2c44570dcec25d59c05d27b8",
+          "bytes": 288
+        },
+        {
+          "name": "skills/follow-up/SKILL.md",
+          "sha256": "c1561ab0ae0067f6476528a1cc3388c76f5ef5fd058ff2ed9b60f03e5292a09b",
+          "bytes": 1661
+        },
+        {
+          "name": "skills/follow-up/agents/openai.yaml",
+          "sha256": "4e541a497a771b8875f92a06dfed6843e53667c0c8252f6a74e06dee9b8e33c2",
+          "bytes": 281
+        },
+        {
+          "name": "skills/read-report/SKILL.md",
+          "sha256": "e033479f88ee29b25479e24c102b17bda13d7ffdb33cef35f78bba8160a3b0aa",
+          "bytes": 2656
+        },
+        {
+          "name": "skills/read-report/agents/openai.yaml",
+          "sha256": "33df7eb31f96d38296c9409156baf872f887d78c45c4adfa564d0cfaf4846a77",
+          "bytes": 277
+        },
+        {
+          "name": "skills/submit-evidence/SKILL.md",
+          "sha256": "1607e76f791137781075f0f668ac36011ebe289732881f365896cd1f4665b0ec",
+          "bytes": 3692
+        },
+        {
+          "name": "skills/submit-evidence/agents/openai.yaml",
+          "sha256": "925f5959b7983ffa28c116cd10ba985285381800a0adf4a7df3f7f3a5633aee5",
+          "bytes": 279
+        },
+        {
+          "name": "skills/ultiwrite/SKILL.md",
+          "sha256": "a472e553dd64adc92605a23f5d8a8847ea2af868e467e002462facb1fa4ad464",
+          "bytes": 3507
+        },
+        {
+          "name": "skills/ultiwrite/agents/openai.yaml",
+          "sha256": "74771ace7de121c114963e84b406a9bc44dc6ad19b4c042e00d25c9f6670d15a",
+          "bytes": 291
+        }
+      ]
+    },
+    {
+      "file": "release/ultiwrite-cursor-plugin-0.9.3.zip",
+      "version": "0.9.3",
+      "status": "historical archive; kept so existing links keep working; not rebuilt",
+      "sha256": "6d8977daea01083dd3fb98cdec3826e29699274195d6e1dc16b6808447b4635e",
+      "bytes": 32334,
+      "members": [
+        {
+          "name": ".cursor-plugin/plugin.json",
+          "sha256": "111f7e2cd1f6c9461721a251d6b9eff73bcdf9087f93650cafd5e79f228dea64",
+          "bytes": 1062
+        },
+        {
+          "name": "LICENSE",
+          "sha256": "0122d7b57a1ef1e40944c88e2e0261b334fcf5f779e9deb52d49463de20a977d",
+          "bytes": 1767
+        },
+        {
+          "name": "README.md",
+          "sha256": "c2d6fdc329fe1b761cdb6178c492b63a9e43bbe2e5a0fe7be818f9000af0383f",
+          "bytes": 3034
+        },
+        {
+          "name": "assets/logo.png",
+          "sha256": "cc0a3c229347e47a154a00c9e6dfa774c0e1f07ee9fc063935af5bc4897f4b18",
+          "bytes": 21052
+        },
+        {
+          "name": "mcp.json",
+          "sha256": "b58605b1536159e225e0c338a99fbadfb5395067191a651882b3e46791003dd1",
+          "bytes": 211
+        },
+        {
+          "name": "skills/connect-account/SKILL.md",
+          "sha256": "444e347909c4a620a8f2b1d96f055111648a8c1431ff07c4c00deb2d79c9a30e",
+          "bytes": 3430
+        },
+        {
+          "name": "skills/connect-account/agents/openai.yaml",
+          "sha256": "df34937d382ae79595b248a1ee3ea8fab7a96cc7d9a2ab525866a832cb4aa52a",
+          "bytes": 364
+        },
+        {
+          "name": "skills/follow-up/SKILL.md",
+          "sha256": "c1561ab0ae0067f6476528a1cc3388c76f5ef5fd058ff2ed9b60f03e5292a09b",
+          "bytes": 1661
+        },
+        {
+          "name": "skills/follow-up/agents/openai.yaml",
+          "sha256": "c213986c9fa6504e37f598c92a39c38aa5b01630f7915995b172ee9e9f828329",
+          "bytes": 357
+        },
+        {
+          "name": "skills/read-report/SKILL.md",
+          "sha256": "14f98f6e1ad419692acba2571c21577fcedcb7bdc63492f357b32b0d1b8eba01",
+          "bytes": 2647
+        },
+        {
+          "name": "skills/read-report/agents/openai.yaml",
+          "sha256": "71c2e24c037ddb3a7d55712cf65479654cd8795cc6235a760afa97d91f22ef18",
+          "bytes": 353
+        },
+        {
+          "name": "skills/submit-evidence/SKILL.md",
+          "sha256": "274d0e0031fc96e090daf0cea41489be473f42bb8531a74e1b2075fa884bf987",
+          "bytes": 3477
+        },
+        {
+          "name": "skills/submit-evidence/agents/openai.yaml",
+          "sha256": "cb6fa12dfd157a240f76b8c33fd27cb3a7d832484d05caf71852f760b25ae3f6",
+          "bytes": 355
+        },
+        {
+          "name": "skills/ultiwrite/SKILL.md",
+          "sha256": "a472e553dd64adc92605a23f5d8a8847ea2af868e467e002462facb1fa4ad464",
+          "bytes": 3507
+        },
+        {
+          "name": "skills/ultiwrite/agents/openai.yaml",
+          "sha256": "6df156fae5e567c58a69ed02be600f61370b9c41445b748388edd13628e75840",
+          "bytes": 367
         }
       ]
     }

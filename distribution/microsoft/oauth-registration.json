@@ -1,0 +1,15 @@
+{
+  "client_name": "Ultiwrite Microsoft 365 Copilot",
+  "redirect_uris": [
+    "https://teams.microsoft.com/api/platform/v1.0/oAuthRedirect"
+  ],
+  "application_type": "web",
+  "token_endpoint_auth_method": "none",
+  "grant_types": [
+    "authorization_code",
+    "refresh_token"
+  ],
+  "response_types": [
+    "code"
+  ]
+}

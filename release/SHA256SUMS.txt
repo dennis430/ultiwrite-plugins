@@ -1,5 +1,5 @@
 1ed9d74e928e5d075db86e6635ea13bb530776e2c96d2ac9682c389b96169abe  ultiwrite-chatgpt-plugin-0.9.3.zip
-6d8977daea01083dd3fb98cdec3826e29699274195d6e1dc16b6808447b4635e  ultiwrite-cursor-plugin-0.9.3.zip
+ddddc32e186b41ba88a2e0d9b85b144fcbd6081f679917571f793163651a5ba5  ultiwrite-cursor-plugin-0.9.4.zip
 f00050a4d629eec6705f79da1f6e6b0b5aca7c73d5952463c36a25b7a5d77261  Ultiwrite_Claude_Plugin_v0.9.3.zip
 619656fae4e9b9db2d7a7e0c813713d859cde291062c21912bb38fc7297ca28e  Ultiwrite_Claude_Plugin_v0.8.0.zip
 11520ccd818dddd576a7b230e08b74142f3012fb0ea2d10f4b6f37c105e6e8b0  Ultiwrite_Claude_Plugin_v0.8.1.zip
@@ -16,3 +16,5 @@ e34aa2e43d7062871de121c479ef5e8a7fe214f20b400464624605fc419e15f1  ultiwrite-curs
 eb3403b7e52e5301a112864fb8cd50351e012cf63ff1c5af124fbbae5a5c0129  ultiwrite-cursor-plugin-0.8.0.zip
 345d714ba6205a70dc38f43e1f45d82e83e01ab9499f1410197b44b5e7f440fd  ultiwrite-cursor-plugin-0.9.0.zip
 f41346af459431fd1f174111b5da3b361c54ee660575ca008a65d51bf1e556cc  ultiwrite-cursor-plugin-0.9.1.zip
+be339549b23bdc07268a6748eb408daaa346fe9287bac1e34ba9659ddb3582d7  ultiwrite-cursor-plugin-0.9.2.zip
+6d8977daea01083dd3fb98cdec3826e29699274195d6e1dc16b6808447b4635e  ultiwrite-cursor-plugin-0.9.3.zip

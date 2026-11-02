@@ -1,0 +1,45 @@
+{
+  "checked_on": "2026-11-01",
+  "sources": [
+    {
+      "title": "ISV and MCP distribution",
+      "url": "https://www.salesforce.com/blog/isv-strategy-for-the-salesforce-summer-26-release/"
+    },
+    {
+      "title": "Partner enrollment",
+      "url": "https://partners.salesforce.com/pdx/s/signup?language=en_US"
+    },
+    {
+      "title": "ISV program",
+      "url": "https://www.salesforce.com/partners/become-an-isv-partner/"
+    },
+    {
+      "title": "ISV onboarding",
+      "url": "https://partners.salesforce.com/pdx/s/learn/article/appexchange-isv-partner-onboarding-guide-MCFQGJA5WXDNEOVETHGD7ZOVM43E?language=en_US"
+    },
+    {
+      "title": "Register external MCP",
+      "url": "https://help.salesforce.com/s/articleView?id=ai.agent_mcp_connect_register.htm&language=en_US&type=5"
+    },
+    {
+      "title": "MCP managed-package metadata",
+      "url": "https://developer.salesforce.com/docs/platform/pkg2-dev/guide/dev2gp-package-mcp-agentforce.html"
+    },
+    {
+      "title": "Package named credentials",
+      "url": "https://developer.salesforce.com/docs/platform/named-credentials/guide/nc-package-credentials.html"
+    },
+    {
+      "title": "External identity provider",
+      "url": "https://help.salesforce.com/s/articleView?id=sf.nc_create_edit_external_auth_identity_provider.htm&language=en_US&type=5"
+    },
+    {
+      "title": "Per-user browser OAuth",
+      "url": "https://help.salesforce.com/s/articleView?id=xcloud.nc_create_edit_oath_browser_ext_cred.htm&language=en_US&type=5"
+    },
+    {
+      "title": "List MCP servers",
+      "url": "https://help.salesforce.com/s/articleView?id=release-notes.rn_list_and_publish_mcp_servers_in_agentforce_extension_packages.htm&language=en_US&release=262&type=5"
+    }
+  ]
+}

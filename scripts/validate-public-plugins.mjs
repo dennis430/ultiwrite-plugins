@@ -33,15 +33,15 @@ const allowedTop = new Set([
   'cursor', 'claude', 'chatgpt', 'grokbot', 'client', 'scripts', '.github',
   '.cursor-plugin', '.claude-plugin', 'README.md', 'LICENSE', 'NOTICE',
   'INSTALL.md', 'server.draft.json', '.gitignore', 'RELEASE_MANIFEST.json',
-  'release', 'AGENTS.md', 'POSITIONING.md', 'evals',
+  'release', 'AGENTS.md', 'POSITIONING.md', 'evals', 'distribution',
 ])
 
 function walk(dir, out = []) {
   for (const name of readdirSync(dir)) {
-    if (['.git', 'node_modules', 'dist', 'coverage', '.cache', '__MACOSX', '.DS_Store', 'Thumbs.db'].includes(name) || name.endsWith('.tgz')) continue
+    if (['.git', 'node_modules', 'dist', 'coverage', '.cache', '__MACOSX', '.DS_Store', 'Thumbs.db', '.venv', '__pycache__', 'build'].includes(name) || name.endsWith('.tgz')) continue
     const path = join(dir, name)
     const rel = relative(root, path).split(sep).join('/')
-    if (rel.split('/').some(part => part === '..' || part.startsWith('.env'))) fail(`forbidden path ${rel}`)
+    if (rel.split('/').some(part => part === '..' || part.startsWith('.env')) || name.endsWith('.local.json')) fail(`forbidden path ${rel}`)
     const entry = lstatSync(path)
     if (entry.isSymbolicLink() || (!entry.isDirectory() && !entry.isFile())) { fail(`nonregular release path ${rel}`); continue }
     if (entry.isDirectory()) walk(path, out)
@@ -126,7 +126,7 @@ const plugin = readJson('cursor/.cursor-plugin/plugin.json')
 const pluginKeys = ['name', 'displayName', 'version', 'description', 'author', 'publisher', 'license', 'homepage', 'repository', 'logo', 'keywords', 'category', 'skills']
 if (plugin) {
   for (const key of Object.keys(plugin)) if (!pluginKeys.includes(key)) fail(`plugin.json has ${key}`)
-  if (plugin.name !== 'ultiwrite' || plugin.version !== '0.9.3' || plugin.license !== 'MIT') fail('plugin identity')
+  if (plugin.name !== 'ultiwrite' || plugin.version !== '0.9.4' || plugin.license !== 'MIT') fail('plugin identity')
   if (plugin.author?.url || plugin.author?.name !== 'DWS Offshore Fund' || plugin.author?.email !== 'nick@ultiwrite.co') fail('plugin author')
   if (plugin.logo !== 'assets/logo.png') fail('plugin logo path')
   if ('skills' in plugin) fail('Cursor must discover every skills/ workflow; do not override discovery with a single path')

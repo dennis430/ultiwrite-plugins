@@ -1,0 +1,11 @@
+{
+  "sourceRepository": "https://github.com/dennis430/ultiwrite-plugins",
+  "sourceRevision": "4ba87f09c3a7607f8af54a9777af3e6df68b761a",
+  "sourceAsset": "cursor/assets/logo.png",
+  "sourceSha256": "cc0a3c229347e47a154a00c9e6dfa774c0e1f07ee9fc063935af5bc4897f4b18",
+  "transforms": {
+    "color.png": "Existing brand icon resized to 192 x 192 pixels.",
+    "outline.png": "Existing letterform converted to white with transparent background and resized to 32 x 32 pixels."
+  },
+  "newArtwork": false
+}

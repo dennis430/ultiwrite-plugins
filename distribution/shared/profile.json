@@ -1,0 +1,69 @@
+{
+  "product": "Ultiwrite",
+  "legalEntity": "DWS Offshore Fund",
+  "dba": "Ultiwrite",
+  "category": "Asymmetric diligence and investigative intelligence",
+  "kitVersion": "1.0.2",
+  "sourceCommit": "63adef9ae6ae0bacf3cdc6a59c20a5513831a1ac",
+  "website": "https://dwsoffshorepartners.com",
+  "documentation": "https://dwsoffshorepartners.com/docs/mcp",
+  "privacy": "https://dwsoffshorepartners.com/privacy",
+  "terms": "https://dwsoffshorepartners.com/terms",
+  "support": "https://dwsoffshorepartners.com/contact",
+  "contactEmail": "nick@ultiwrite.co",
+  "repository": "https://github.com/dennis430/ultiwrite-plugins",
+  "logo": "https://raw.githubusercontent.com/dennis430/ultiwrite-plugins/main/cursor/assets/logo.png",
+  "mcp": {
+    "transport": "streamable-http",
+    "url": "https://mcp.dwsoffshorepartners.com/mcp",
+    "compatibilityUrl": "https://dwsoffshorepartners.com/api/integrations/ultiwrite/mcp",
+    "protectedResourceMetadata": "https://mcp.dwsoffshorepartners.com/.well-known/oauth-protected-resource/mcp",
+    "authorizationServerMetadata": "https://mcp.dwsoffshorepartners.com/.well-known/oauth-authorization-server",
+    "issuer": "https://mcp.dwsoffshorepartners.com",
+    "authorizationEndpoint": "https://dwsoffshorepartners.com/api/integrations/ultiwrite/oauth/authorize",
+    "tokenEndpoint": "https://mcp.dwsoffshorepartners.com/api/integrations/ultiwrite/oauth/token",
+    "registrationEndpoint": "https://mcp.dwsoffshorepartners.com/api/integrations/ultiwrite/oauth/register",
+    "revocationEndpoint": "https://mcp.dwsoffshorepartners.com/api/integrations/ultiwrite/oauth/revoke",
+    "scopes": [
+      "ultiwrite:read",
+      "ultiwrite:evidence"
+    ],
+    "grantTypes": [
+      "authorization_code",
+      "refresh_token"
+    ],
+    "pkce": "S256",
+    "tokenEndpointAuthMethod": "none"
+  },
+  "tools": [
+    "ultiwrite_account_get",
+    "ultiwrite_capabilities_get",
+    "ultiwrite_cases_list",
+    "ultiwrite_case_status",
+    "ultiwrite_coherence_get",
+    "ultiwrite_evidence_submit",
+    "ultiwrite_findings_get",
+    "ultiwrite_report_export"
+  ],
+  "scope": [
+    "registry",
+    "cursor",
+    "google",
+    "meta",
+    "microsoft",
+    "salesforce",
+    "aws"
+  ],
+  "excludedChannels": [
+    "claude",
+    "grok",
+    "chatgpt"
+  ],
+  "submissionStatus": "NOT_SUBMITTED",
+  "hostJourneyStatus": "NOT_RUN",
+  "publishedConnectorVersion": "0.9.3",
+  "preparedContractVersion": "0.9.2",
+  "canonicalSourceCommit": "00682b0179824fcf182856713de5864b54b140c2",
+  "liveAuthenticatedRuntime": "NOT_VERIFIED",
+  "preparedPackageVersion": "0.9.4"
+}

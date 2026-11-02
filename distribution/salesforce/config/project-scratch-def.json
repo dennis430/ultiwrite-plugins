@@ -1,0 +1,13 @@
+{
+  "orgName": "DWS Offshore Fund - Ultiwrite MCP Development",
+  "edition": "Partner Developer",
+  "features": [
+    "Chatbot",
+    "Einstein1AIPlatform"
+  ],
+  "settings": {
+    "botSettings": {
+      "enableBots": true
+    }
+  }
+}

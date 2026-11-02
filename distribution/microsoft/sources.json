@@ -1,0 +1,58 @@
+{
+  "verifiedDate": "2026-11-01",
+  "sources": [
+    {
+      "purpose": "MCP declarative agent route",
+      "url": "https://learn.microsoft.com/en-us/microsoft-365/copilot/extensibility/build-mcp-plugins"
+    },
+    {
+      "purpose": "Static public OAuth and vault settings",
+      "url": "https://learn.microsoft.com/en-us/microsoft-365/copilot/extensibility/plugin-authentication-oauth"
+    },
+    {
+      "purpose": "DCR requirements",
+      "url": "https://learn.microsoft.com/en-us/microsoft-365/copilot/extensibility/plugin-authentication-dynamic-client-registration"
+    },
+    {
+      "purpose": "Dynamic tool discovery",
+      "url": "https://learn.microsoft.com/en-us/microsoft-365/copilot/extensibility/plugin-dynamic-tool-discovery"
+    },
+    {
+      "purpose": "Publisher enrollment and Owner role",
+      "url": "https://learn.microsoft.com/en-us/partner-center/marketplace-offers/open-a-developer-account"
+    },
+    {
+      "purpose": "Marketplace offer and review route",
+      "url": "https://learn.microsoft.com/en-us/partner-center/marketplace-offers/submit-to-appsource-via-partner-center"
+    },
+    {
+      "purpose": "Marketplace publication guide",
+      "url": "https://learn.microsoft.com/en-us/microsoft-365/copilot/extensibility/publish-plugin-publicly"
+    },
+    {
+      "purpose": "Agent Store validation",
+      "url": "https://learn.microsoft.com/en-us/microsoftteams/platform/concepts/deploy-and-publish/appsource/prepare/review-copilot-validation-guidelines"
+    },
+    {
+      "purpose": "Separate standalone MCP certification route",
+      "url": "https://learn.microsoft.com/en-us/microsoft-agent-365/mcp-certification"
+    }
+  ],
+  "schemas": [
+    {
+      "path": "schemas/app.schema.json",
+      "url": "https://developer.microsoft.com/json-schemas/teams/v1.28/MicrosoftTeams.schema.json",
+      "sha256": "cce967bb1c77641634ce30353f2a699c44cf245e695d2c7a34bb8be771877c3d"
+    },
+    {
+      "path": "schemas/agent.schema.json",
+      "url": "https://developer.microsoft.com/json-schemas/copilot/declarative-agent/v1.9/schema.json",
+      "sha256": "102abde77894ed0d30c5e097a1b17181a16527865fdcd2f824e2578799abd3a5"
+    },
+    {
+      "path": "schemas/plugin.schema.json",
+      "url": "https://developer.microsoft.com/json-schemas/copilot/plugin/v2.4/schema.json",
+      "sha256": "ea3016aa4917e1b714454a6a7be9444f8aa7a1923cba0a42343a6fd234a0eb00"
+    }
+  ]
+}

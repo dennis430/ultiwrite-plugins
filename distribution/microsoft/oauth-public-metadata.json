@@ -1,0 +1,45 @@
+{
+  "observedDate": "2026-11-01",
+  "serverUrl": "https://mcp.dwsoffshorepartners.com/mcp",
+  "authorization": {
+    "issuer": "https://mcp.dwsoffshorepartners.com",
+    "authorization_endpoint": "https://dwsoffshorepartners.com/api/integrations/ultiwrite/oauth/authorize",
+    "token_endpoint": "https://mcp.dwsoffshorepartners.com/api/integrations/ultiwrite/oauth/token",
+    "registration_endpoint": "https://mcp.dwsoffshorepartners.com/api/integrations/ultiwrite/oauth/register",
+    "revocation_endpoint": "https://mcp.dwsoffshorepartners.com/api/integrations/ultiwrite/oauth/revoke",
+    "response_types_supported": [
+      "code"
+    ],
+    "grant_types_supported": [
+      "authorization_code",
+      "refresh_token"
+    ],
+    "code_challenge_methods_supported": [
+      "S256"
+    ],
+    "token_endpoint_auth_methods_supported": [
+      "none"
+    ],
+    "scopes_supported": [
+      "ultiwrite:read",
+      "ultiwrite:evidence"
+    ],
+    "authorization_response_iss_parameter_supported": true
+  },
+  "protectedResource": {
+    "resource": "https://mcp.dwsoffshorepartners.com/mcp",
+    "authorization_servers": [
+      "https://mcp.dwsoffshorepartners.com"
+    ],
+    "scopes_supported": [
+      "ultiwrite:read",
+      "ultiwrite:evidence"
+    ],
+    "bearer_methods_supported": [
+      "header"
+    ],
+    "resource_documentation": "https://mcp.dwsoffshorepartners.com/docs/mcp"
+  },
+  "microsoftRedirect": "https://teams.microsoft.com/api/platform/v1.0/oAuthRedirect",
+  "mode": "static public-client OAuth with S256 PKCE; Microsoft DCR is not used"
+}

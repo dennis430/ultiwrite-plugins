@@ -10,7 +10,7 @@ This repository distributes thin public connectors and workflow instructions mai
 | --- | --- | --- |
 | `chatgpt/` | 0.9.3 | Portable ChatGPT/Codex plugin; OAuth, account-first onboarding and five skills |
 | `claude/` | 0.9.3 | Claude plugin; OAuth, connection recovery and five skills; enabled by default on a new installation |
-| `cursor/` | 0.9.3 | Cursor plugin; remote MCP, complete skill-directory discovery and five skills |
+| `cursor/` | 0.9.4 | Prepared candidate: current Uw artwork, exact upload recovery, remote MCP and five workflows |
 | `grokbot/` | 0.8.0 | Grok Bot submission dossier with shared account and permission contracts |
 | `client/` | 0.7.1 | Unchanged local `ultiwrite-mcp` wrapper; npm publication is not claimed |
 
@@ -33,15 +33,21 @@ The five workflows explain capabilities, connect/select accounts, submit evidenc
 
 Version 0.9.3 updates the plugin and per-skill icons to the exact supplied black-background gold Uw image while retaining the five 0.9.1 workflows. Its [build verification](release/PLUGIN_0.9.3_VERIFICATION.json) records archive parity and historical preservation. The production website remains on its previous deployment until the next authorized Vercel deployment; this package release does not trigger one. The prior 0.9.1 release remains recorded in [its live receipt](release/PLUGIN_0.9.1_LIVE_RECEIPT.json). Directory approval and installed-host refresh remain separate verification steps.
 
+This review branch additionally prepares Cursor 0.9.4 with the canonical 0.9.2 upload-handoff contract while preserving the complete 0.9.3 branding release. The new candidate has not been submitted or established as a production website download.
+
 <!-- CURRENT_DOWNLOADS_START -->
 | Archive | SHA-256 |
 | --- | --- |
-| [`ultiwrite-chatgpt-plugin-0.9.3.zip`](https://github.com/dennis430/ultiwrite-plugins/raw/main/release/ultiwrite-chatgpt-plugin-0.9.3.zip) | `1ed9d74e928e5d075db86e6635ea13bb530776e2c96d2ac9682c389b96169abe` |
-| [`ultiwrite-cursor-plugin-0.9.3.zip`](https://github.com/dennis430/ultiwrite-plugins/raw/main/release/ultiwrite-cursor-plugin-0.9.3.zip) | `6d8977daea01083dd3fb98cdec3826e29699274195d6e1dc16b6808447b4635e` |
-| [`Ultiwrite_Claude_Plugin_v0.9.3.zip`](https://github.com/dennis430/ultiwrite-plugins/raw/main/release/Ultiwrite_Claude_Plugin_v0.9.3.zip) | `f00050a4d629eec6705f79da1f6e6b0b5aca7c73d5952463c36a25b7a5d77261` |
+| [`ultiwrite-chatgpt-plugin-0.9.3.zip`](release/ultiwrite-chatgpt-plugin-0.9.3.zip) | `1ed9d74e928e5d075db86e6635ea13bb530776e2c96d2ac9682c389b96169abe` |
+| [`ultiwrite-cursor-plugin-0.9.4.zip`](release/ultiwrite-cursor-plugin-0.9.4.zip) | `ddddc32e186b41ba88a2e0d9b85b144fcbd6081f679917571f793163651a5ba5` |
+| [`Ultiwrite_Claude_Plugin_v0.9.3.zip`](release/Ultiwrite_Claude_Plugin_v0.9.3.zip) | `f00050a4d629eec6705f79da1f6e6b0b5aca7c73d5952463c36a25b7a5d77261` |
 <!-- CURRENT_DOWNLOADS_END -->
 
 Historical ZIPs remain unchanged so existing links keep working. `release/SHA256SUMS.txt` and `release/INVENTORY.json` record every current and historical archive. `RELEASE_MANIFEST.json` records source-file hashes.
+
+## Remaining marketplace preparation
+
+[Seven-channel submission kit](distribution/README.md): Google Connected Apps, Meta Muse, Microsoft 365 Copilot Agent Store, Salesforce AgentExchange, AWS Marketplace, Cursor Marketplace and the official MCP Registry. Includes concrete source, account links, listing copy, validation and remaining integration requirements.
 
 ## Install and connect
 

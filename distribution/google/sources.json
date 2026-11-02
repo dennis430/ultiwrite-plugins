@@ -1,0 +1,41 @@
+{
+  "checked_on": "2026-11-01",
+  "sources": [
+    {
+      "title": "Launch",
+      "url": "https://blog.google/innovation-and-ai/technology/developers-tools/connected-apps-one-place/"
+    },
+    {
+      "title": "Platform",
+      "url": "https://developers.google.com/connected-apps"
+    },
+    {
+      "title": "MCP development",
+      "url": "https://developers.google.com/connected-apps/mcp/"
+    },
+    {
+      "title": "Prerequisites",
+      "url": "https://developers.google.com/connected-apps/gpc/prerequisites"
+    },
+    {
+      "title": "Registration and publishing",
+      "url": "https://developers.google.com/connected-apps/gpc/perform-the-steps"
+    },
+    {
+      "title": "OAuth",
+      "url": "https://developers.google.com/connected-apps/mcp/oauth"
+    },
+    {
+      "title": "Troubleshooting",
+      "url": "https://developers.google.com/connected-apps/gpc/troubleshooting"
+    },
+    {
+      "title": "Developer Mode",
+      "url": "https://developers.google.com/connected-apps/mcp/dev-mode"
+    },
+    {
+      "title": "Category journeys",
+      "url": "https://developers.google.com/connected-apps/mcp/vertical-journeys"
+    }
+  ]
+}

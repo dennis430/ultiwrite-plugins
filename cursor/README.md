@@ -1,6 +1,6 @@
 # Ultiwrite for Cursor
 
-Version 0.9.3. Product: Ultiwrite. Publisher: DWS Offshore Fund. License: MIT for this thin connector; the analytical service remains proprietary.
+Version 0.9.4. Product: Ultiwrite. Publisher: DWS Offshore Fund. License: MIT for this thin connector; the analytical service remains proprietary.
 
 Connect Cursor to Ultiwrite for asymmetric diligence across acquisitions, financing, counterparties, property and portfolios. Ordinary documents start a wider investigation across financial, identity, document-integrity, operational and external-context evidence. The remote server is https://mcp.dwsoffshorepartners.com/mcp. The plugin uses OAuth and contains no API key or local server.
 
@@ -22,6 +22,6 @@ Reading requires `ultiwrite:read`; submission also requires `ultiwrite:evidence`
 
 Pass original file objects only when the host and server schema support them. Otherwise use the exact secure upload link returned by `ultiwrite_evidence_submit`; never pass a local path as though it were uploaded bytes. Follow actual workflow status, then read the saved report. Downloads require the same account in the browser.
 
-Current archive: `release/ultiwrite-cursor-plugin-0.9.3.zip`. The root `.cursor-plugin/marketplace.json` points to this directory. Source packaging is separate from marketplace review and an installed Cursor test; neither is claimed by this release.
+Current archive: `release/ultiwrite-cursor-plugin-0.9.4.zip`. The root `.cursor-plugin/marketplace.json` points to this directory. Source packaging is separate from marketplace review and an installed Cursor test; neither is claimed by this release.
 
 Website: https://dwsoffshorepartners.com · Setup: https://dwsoffshorepartners.com/docs/mcp · Privacy: https://dwsoffshorepartners.com/privacy · Terms: https://dwsoffshorepartners.com/terms · Support: https://dwsoffshorepartners.com/contact

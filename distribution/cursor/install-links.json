@@ -1,0 +1,8 @@
+{
+  "serverOnly": true,
+  "config": {
+    "url": "https://mcp.dwsoffshorepartners.com/mcp"
+  },
+  "cursorUri": "cursor://anysphere.cursor-deeplink/mcp/install?name=Ultiwrite&config=eyJ1cmwiOiJodHRwczovL21jcC5kd3NvZmZzaG9yZXBhcnRuZXJzLmNvbS9tY3AifQ%3D%3D",
+  "fullPluginRepository": "https://github.com/dennis430/ultiwrite-plugins"
+}
