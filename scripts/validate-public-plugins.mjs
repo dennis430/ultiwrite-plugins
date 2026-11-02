@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 // Structural validator for the public Ultiwrite plugin tree.
 // It does not publish, deploy, or contact a marketplace.
+import { createHash } from 'node:crypto'
 import { readFileSync, readdirSync, lstatSync } from 'node:fs'
 import { join, relative, sep } from 'node:path'
 
@@ -125,7 +126,7 @@ const plugin = readJson('cursor/.cursor-plugin/plugin.json')
 const pluginKeys = ['name', 'displayName', 'version', 'description', 'author', 'publisher', 'license', 'homepage', 'repository', 'logo', 'keywords', 'category', 'skills']
 if (plugin) {
   for (const key of Object.keys(plugin)) if (!pluginKeys.includes(key)) fail(`plugin.json has ${key}`)
-  if (plugin.name !== 'ultiwrite' || plugin.version !== '0.9.1' || plugin.license !== 'MIT') fail('plugin identity')
+  if (plugin.name !== 'ultiwrite' || plugin.version !== '0.9.3' || plugin.license !== 'MIT') fail('plugin identity')
   if (plugin.author?.url || plugin.author?.name !== 'DWS Offshore Fund' || plugin.author?.email !== 'nick@ultiwrite.co') fail('plugin author')
   if (plugin.logo !== 'assets/logo.png') fail('plugin logo path')
   if ('skills' in plugin) fail('Cursor must discover every skills/ workflow; do not override discovery with a single path')
@@ -166,7 +167,7 @@ if (!readFileSync(join(root, 'grokbot/TESTING.md'), 'utf8').includes('NOT_RUN'))
 const claude = readJson('claude/.mcp.json')
 if (claude?.mcpServers?.ultiwrite?.type !== 'http' || claude?.mcpServers?.ultiwrite?.url !== CLAUDE_MCP_URL || Object.keys(claude?.mcpServers?.ultiwrite ?? {}).length !== 2) fail('claude mcp')
 const claudeListing = readJson('claude/.claude-plugin/plugin.json')
-if (claudeListing?.name !== 'ultiwrite' || claudeListing?.displayName !== 'Ultiwrite' || claudeListing?.icon !== './assets/logo.png' || claudeListing?.version !== '0.9.1') fail('claude directory branding')
+if (claudeListing?.name !== 'ultiwrite' || claudeListing?.displayName !== 'Ultiwrite' || claudeListing?.icon !== './assets/logo.png' || claudeListing?.version !== '0.9.3') fail('claude directory branding')
 for (const field of ['documentationUrl', 'supportUrl', 'privacyPolicyUrl', 'termsOfServiceUrl']) {
   if (typeof claudeListing?.[field] !== 'string' || !claudeListing[field].startsWith('https://dwsoffshorepartners.com/')) fail(`claude directory ${field}`)
 }
@@ -174,7 +175,8 @@ const chatgptListing = readJson('chatgpt/plugin.json')
 const openaiInterface = chatgptListing?.extensions?.['com.openai']?.interface
 if (chatgptListing?.name !== 'ultiwrite' || chatgptListing?.$schema !== 'https://agent-plugins.org/schemas/1.0.0/plugin.schema.json') fail('ChatGPT portable identity or schema')
 if (chatgptListing?.apps || chatgptListing?.extensions?.['com.openai']?.apps || files.includes('chatgpt/.app.json')) fail('public ChatGPT package must not include private app bindings')
-if (openaiInterface?.displayName !== 'Ultiwrite' || openaiInterface?.logo !== './assets/logo.png' || openaiInterface?.composerIcon !== './assets/logo.png' || chatgptListing?.version !== '0.9.1') fail('ChatGPT directory branding')
+if (openaiInterface?.logoDark !== './assets/logo.png' || openaiInterface?.composerIconDark !== './assets/logo.png') fail('ChatGPT dark icons must use the canonical asset')
+if (openaiInterface?.displayName !== 'Ultiwrite' || openaiInterface?.logo !== './assets/logo.png' || openaiInterface?.composerIcon !== './assets/logo.png' || chatgptListing?.version !== '0.9.3') fail('ChatGPT directory branding')
 pngSquareOpaque('claude/assets/logo.png')
 // Anthropic directory rules the CLI validator does not check (claude.com/docs/plugins/pre-submission-checklist).
 const claudeFiles = files.filter(rel => rel.startsWith('claude/'))
@@ -209,6 +211,12 @@ for (const [host, expected] of Object.entries(EXPECTED_SKILLS)) {
     // This package emits this small YAML subset; reject unrecognized policy keys
     // rather than treating an arbitrary string or an unsupported force-enable field as true.
     if (!/^policy:\n  allow_implicit_invocation: true\n$/.test(metadata.slice(metadata.indexOf('policy:')))) fail(`${metadataPath} must leave automatic invocation enabled by default`)
+    for (const key of ['icon_small', 'icon_large']) {
+      const encoded = new RegExp(`^  ${key}: (.+)$`, 'm').exec(metadata)?.[1]
+      try {
+        if (JSON.parse(encoded ?? '') !== '../../assets/logo.png') fail(`${metadataPath} ${key} must resolve to the canonical asset`)
+      } catch { fail(`${metadataPath} invalid ${key}`) }
+    }
     for (const key of ['display_name', 'short_description', 'default_prompt']) {
       const encoded = new RegExp(`^  ${key}: (.+)$`, 'm').exec(metadata)?.[1]
       try {
@@ -233,10 +241,10 @@ if (chatgptServer?.type !== 'streamable-http' || chatgptServer?.url !== CHATGPT_
 if (JSON.stringify(Object.keys(chatgptServer ?? {}).sort()) !== JSON.stringify(['type', 'url'])) fail('ChatGPT uses the portable parser-safe transport and URL only; OAuth is discovered from the service')
 if (openaiInterface?.category !== 'Business & Operations') fail('ChatGPT must preserve the canonical listing category')
 if (chatgptListing?.extensions?.['com.openai']?.review?.test_cases?.positive?.length !== 5 || chatgptListing?.extensions?.['com.openai']?.review?.test_cases?.negative?.length !== 3) fail('ChatGPT must preserve five positive and three negative review cases')
-const canonicalLogo = readFileSync(join(root, 'claude/assets/logo.png'))
-// ChatGPT keeps its canonical approved gold icon; other hosts share the current directory icon.
-for (const host of ['cursor', 'grokbot']) {
-  if (!readFileSync(join(root, host, 'assets/logo.png')).equals(canonicalLogo)) fail(`${host} logo differs from the approved Ultiwrite identity`)
+const canonicalLogoSha = 'cc0a3c229347e47a154a00c9e6dfa774c0e1f07ee9fc063935af5bc4897f4b18'
+for (const host of ['chatgpt', 'claude', 'cursor', 'grokbot']) {
+  const logo = readFileSync(join(root, host, 'assets/logo.png'))
+  if (createHash('sha256').update(logo).digest('hex') !== canonicalLogoSha) fail(`${host} logo differs from the supplied canonical Uw image`)
 }
 pngSquareOpaque('chatgpt/assets/logo.png')
 const pkg = readJson('client/package.json')

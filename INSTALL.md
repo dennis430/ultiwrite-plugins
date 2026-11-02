@@ -4,9 +4,9 @@ Use the package for the target host. All hosts connect to the same Ultiwrite ser
 
 | Host | Source/package | Connection recovery |
 | --- | --- | --- |
-| ChatGPT/Codex | `chatgpt/`, `release/ultiwrite-chatgpt-plugin-0.9.1.zip` | Plugin settings > Ultiwrite > Connect/Reconnect; Connect another account where offered |
-| Claude | `claude/`, `release/Ultiwrite_Claude_Plugin_v0.9.1.zip` | Plugins > Ultiwrite > Connectors > Connect; Claude Code `/mcp` > Authenticate |
-| Cursor | `cursor/`, `release/ultiwrite-cursor-plugin-0.9.1.zip` | Existing Ultiwrite MCP server's authentication control |
+| ChatGPT/Codex | `chatgpt/`, `release/ultiwrite-chatgpt-plugin-0.9.3.zip` | Plugin settings > Ultiwrite > Connect/Reconnect; Connect another account where offered |
+| Claude | `claude/`, `release/Ultiwrite_Claude_Plugin_v0.9.3.zip` | Plugins > Ultiwrite > Connectors > Connect; Claude Code `/mcp` > Authenticate |
+| Cursor | `cursor/`, `release/ultiwrite-cursor-plugin-0.9.3.zip` | Existing Ultiwrite MCP server's authentication control |
 | Grok Bot | `grokbot/` submission dossier | Host's supported MCP account controls |
 
 ChatGPT: update the original Ultiwrite listing rather than creating a duplicate. The previously recorded original identity is `plugin_asdk_app_6ad72494738c8191af2df24a75ab4afc`; inspect current publisher state before replacing a draft. A ZIP build alone does not upload or approve the listing.
@@ -45,3 +45,5 @@ Version 0.9.1 combines current account and workflow controls with the asymmetric
 Run `node scripts/validate-public-plugins.mjs`, rebuild with `node scripts/pack-public-connectors.mjs`, then verify with `node scripts/pack-public-connectors.mjs --check`. Historical archives remain intact. Test installation, account labels, switching, reconnect and declined permissions in the intended host before claiming the installed experience is verified.
 
 The local npm wrapper remains at 0.7.1 and is not published by this connector release. Do not advertise `npx ultiwrite-mcp` until the real package is published and a clean registry installation succeeds.
+
+Version 0.9.3 uses the supplied canonical black-background gold Uw image for all plugin and skill icon fields. Existing accounts, permissions, workflows and automatic-invocation choices are preserved. Update/reload the existing plugin or upload its new full archive as supported by the host. Application assets take effect on the next Vercel deployment; this release does not trigger deployment. Stored app logos and directory artwork require separate host verification.
