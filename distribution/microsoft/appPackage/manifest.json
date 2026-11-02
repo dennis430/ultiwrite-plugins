@@ -1,0 +1,37 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/teams/v1.28/MicrosoftTeams.schema.json",
+  "manifestVersion": "1.28",
+  "version": "0.9.2",
+  "id": "${{M365_APP_ID}}",
+  "developer": {
+    "name": "DWS Offshore Fund, Inc.",
+    "websiteUrl": "https://dwsoffshorepartners.com/contact",
+    "privacyUrl": "https://dwsoffshorepartners.com/privacy",
+    "termsOfUseUrl": "https://dwsoffshorepartners.com/terms"
+  },
+  "name": {
+    "short": "Ultiwrite",
+    "full": "Ultiwrite"
+  },
+  "description": {
+    "short": "Asymmetric diligence and investigative intelligence for commercial decisions.",
+    "full": "Use Ultiwrite in Microsoft 365 Copilot to investigate the commercial evidence behind a business, transaction, property, counterparty or portfolio. Documents open a wider investigation across financial, identity, document-integrity, operational and relevant external evidence. Ultiwrite reconciles applicable findings into a saved assessment with supporting evidence, confidence, unresolved questions and next steps.\n\nConnect an Ultiwrite account, submit authorized evidence through the secure browser upload handoff, follow the investigation and retrieve saved findings and report links. Ask: What does the evidence support, and what needs a closer look?\n\nAn Ultiwrite account and the applicable service entitlement are required. Additional service charges may apply under the current terms shown by Ultiwrite. The analytical service runs separately from Microsoft 365. This package requests Ultiwrite account and evidence permissions; it does not request access to Microsoft mail, calendar, Teams messages or SharePoint files. Report downloads may require sign-in to the same Ultiwrite account."
+  },
+  "icons": {
+    "color": "color.png",
+    "outline": "outline.png"
+  },
+  "accentColor": "#B09A6B",
+  "validDomains": [
+    "dwsoffshorepartners.com",
+    "mcp.dwsoffshorepartners.com"
+  ],
+  "copilotAgents": {
+    "declarativeAgents": [
+      {
+        "id": "ultiwrite",
+        "file": "declarativeAgent.json"
+      }
+    ]
+  }
+}

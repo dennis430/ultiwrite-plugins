@@ -1,0 +1,17 @@
+{
+  "status": "PASS",
+  "scope": "template-structure-only",
+  "version": "0.9.2",
+  "checks": [
+    "three official JSON schemas",
+    "cross-file references",
+    "OAuth runtime",
+    "dynamic discovery",
+    "identical product names",
+    "prompt starters",
+    "icon size and transparency",
+    "no Microsoft data permissions"
+  ],
+  "hostTested": false,
+  "submitted": false
+}

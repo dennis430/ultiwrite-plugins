@@ -36,7 +36,7 @@ before(async () => {
 })
 after(async () => { if (scratch) await rm(scratch, { recursive: true, force: true }) })
 
-test('combined release preserves ChatGPT identity, prompts, artwork and all three versions', async () => {
+test('channel preparation preserves excluded releases and the canonical Cursor candidate', async () => {
   const plugin = await readJson(join(root, 'chatgpt/plugin.json'))
   assert.equal(plugin.name, 'ultiwrite')
   assert.equal(plugin.version, '0.9.1')
@@ -55,9 +55,12 @@ test('combined release preserves ChatGPT identity, prompts, artwork and all thre
     ultiwrite: { type: 'streamable-http', url: 'https://mcp.dwsoffshorepartners.com/mcp' },
   })
   assert.equal(await digest(join(root, 'chatgpt/assets/logo.png')), '2523ad96e0dd452a7068ffd579c3fe73942b34a5d969e4c3ef45005986ddd940')
-  for (const [host, manifest] of [['claude', '.claude-plugin'], ['cursor', '.cursor-plugin']]) {
-    assert.equal((await readJson(join(root, host, manifest, 'plugin.json'))).version, '0.9.1')
+  for (const [host, manifest, version] of [['claude', '.claude-plugin', '0.9.1'], ['cursor', '.cursor-plugin', '0.9.2']]) {
+    assert.equal((await readJson(join(root, host, manifest, 'plugin.json'))).version, version)
   }
+  const submit = await readFile(join(root, 'cursor/skills/submit-evidence/SKILL.md'), 'utf8')
+  assert.match(submit, /handoffId: null/)
+  assert.match(submit, /handoffId: returnedHandoffId/)
 })
 
 test('packing ignores generated files, retains extension metadata and preserves historical archives', async () => {

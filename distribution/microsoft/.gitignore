@@ -1,0 +1,4 @@
+*.local.json
+build/
+__pycache__/
+.venv/

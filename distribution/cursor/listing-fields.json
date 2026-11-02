@@ -1,0 +1,13 @@
+{
+  "title": "Ultiwrite",
+  "pluginName": "ultiwrite",
+  "version": "0.9.2",
+  "repository": "https://github.com/dennis430/ultiwrite-plugins",
+  "pluginDirectory": "cursor",
+  "publisher": "DWS Offshore Fund, Inc.",
+  "contactEmail": "nick@ultiwrite.co",
+  "description": "Ultiwrite turns ordinary documents into a wider commercial investigation. Connect financial, identity, document-integrity, operational and external-context evidence across acquisitions, financing, counterparties, property and portfolios, then read the reconciled findings, confidence and open questions.",
+  "logoUrl": "https://raw.githubusercontent.com/dennis430/ultiwrite-plugins/main/cursor/assets/logo.png",
+  "submissionUrl": "https://cursor.com/marketplace/publish",
+  "status": "NOT_SUBMITTED"
+}

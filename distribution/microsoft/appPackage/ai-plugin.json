@@ -1,0 +1,27 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/copilot/plugin/v2.4/schema.json",
+  "schema_version": "v2.4",
+  "name_for_human": "Ultiwrite",
+  "namespace": "ultiwrite",
+  "description_for_human": "Asymmetric diligence and investigative intelligence for commercial decisions.",
+  "description_for_model": "Investigative intelligence for authorized commercial evidence. Obtain current service capabilities and connected account details, request an evidence upload handoff, follow an investigation, read saved findings and the Decision Brief, and retrieve entitled report links. The engine reconciles applicable financial, identity, document-integrity, operational and external evidence.",
+  "contact_email": "nick@ultiwrite.co",
+  "legal_info_url": "https://dwsoffshorepartners.com/terms",
+  "privacy_policy_url": "https://dwsoffshorepartners.com/privacy",
+  "functions": [],
+  "runtimes": [
+    {
+      "type": "RemoteMCPServer",
+      "auth": {
+        "type": "OAuthPluginVault",
+        "reference_id": "${{ULTIWRITE_MCP_AUTH_ID}}"
+      },
+      "spec": {
+        "url": "https://mcp.dwsoffshorepartners.com/mcp"
+      },
+      "run_for_functions": [
+        "*"
+      ]
+    }
+  ]
+}

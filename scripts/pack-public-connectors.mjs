@@ -265,7 +265,7 @@ writeArtifact(join(outDir, 'INVENTORY.json'), JSON.stringify({
 }, null, 2) + '\n')
 const downloadTable = ['| Archive | SHA-256 |', '| --- | --- |', ...inventory.slice(0, 3).map(item => {
   const name = item.file.split('/').pop()
-  return `| [\`${name}\`](https://github.com/dennis430/ultiwrite-plugins/raw/main/${item.file}) | \`${item.sha256}\` |`
+  return `| [\`${name}\`](${item.file}) | \`${item.sha256}\` |`
 })].join('\n')
 const readmePath = join(root, 'README.md')
 const readme = readFileSync(readmePath, 'utf8')
@@ -301,10 +301,10 @@ process.stdout.write(`${checkOnly ? 'checked' : 'packed'} ${PACKAGES.length + 1}
 
 function walk(dir, out = []) {
   for (const name of readdirSync(dir)) {
-    if (['.git', 'node_modules', 'dist', 'coverage', '.cache', '__MACOSX', '.DS_Store', 'Thumbs.db'].includes(name) || name.endsWith('.tgz')) continue
+    if (['.git', 'node_modules', 'dist', 'coverage', '.cache', '__MACOSX', '.DS_Store', 'Thumbs.db', '.venv', '__pycache__', 'build'].includes(name) || name.endsWith('.tgz')) continue
     const path = join(dir, name)
     const rel = relative(root, path).split(sep).join('/')
-    if (name.startsWith('.env') || ['.npmrc', '.netrc', '.ssh', '.aws', '.codex'].includes(name) || /\.(pem|key|p12)$/i.test(name)) throw new Error(`forbidden release path ${rel}`)
+    if (name.startsWith('.env') || name.endsWith('.local.json') || ['.npmrc', '.netrc', '.ssh', '.aws', '.codex'].includes(name) || /\.(pem|key|p12)$/i.test(name)) throw new Error(`forbidden release path ${rel}`)
     const entry = lstatSync(path)
     if (entry.isSymbolicLink() || (!entry.isDirectory() && !entry.isFile())) throw new Error(`release path must be a regular file or directory: ${rel}`)
     if (entry.isDirectory()) walk(path, out)

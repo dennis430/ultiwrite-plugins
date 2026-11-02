@@ -1,0 +1,84 @@
+{
+  "format": "ultiwrite-internal-submission-worksheet-v1",
+  "format_notice": "Prepared handoff metadata; not an official platform import schema.",
+  "name": "Ultiwrite",
+  "publisher": "DWS Offshore Fund, Inc.",
+  "channel_package_version": "0.1.0",
+  "website": "https://dwsoffshorepartners.com",
+  "privacy_policy": "https://dwsoffshorepartners.com/privacy",
+  "terms_of_service": "https://dwsoffshorepartners.com/terms",
+  "support_url": "https://dwsoffshorepartners.com/contact",
+  "support_email": "nick@ultiwrite.co",
+  "documentation": "https://dwsoffshorepartners.com/docs/mcp",
+  "repository": "https://github.com/dennis430/ultiwrite-plugins",
+  "mcp": {
+    "url": "https://mcp.dwsoffshorepartners.com/mcp",
+    "transport": "streamable-http",
+    "authorization": "user-delegated OAuth authorization code with PKCE S256",
+    "authorization_metadata": "https://mcp.dwsoffshorepartners.com/.well-known/oauth-authorization-server",
+    "protected_resource_metadata": "https://mcp.dwsoffshorepartners.com/.well-known/oauth-protected-resource/mcp",
+    "authorize_endpoint": "https://dwsoffshorepartners.com/api/integrations/ultiwrite/oauth/authorize",
+    "token_endpoint": "https://mcp.dwsoffshorepartners.com/api/integrations/ultiwrite/oauth/token",
+    "registration_endpoint": "https://mcp.dwsoffshorepartners.com/api/integrations/ultiwrite/oauth/register",
+    "token_endpoint_auth_method": "none",
+    "read_scope": "ultiwrite:read",
+    "evidence_scope": "ultiwrite:evidence"
+  },
+  "tools": [
+    {
+      "name": "ultiwrite_capabilities_get",
+      "purpose": "Current capabilities, inputs, limits and terms"
+    },
+    {
+      "name": "ultiwrite_account_get",
+      "purpose": "Identity from the authorized account grant"
+    },
+    {
+      "name": "ultiwrite_cases_list",
+      "purpose": "Authorized cases and saved reports"
+    },
+    {
+      "name": "ultiwrite_case_status",
+      "purpose": "Actual case state and required next action"
+    },
+    {
+      "name": "ultiwrite_evidence_submit",
+      "purpose": "Authorized evidence submission, upload handoff or case continuation",
+      "requires_user_intent": true
+    },
+    {
+      "name": "ultiwrite_findings_get",
+      "purpose": "Saved findings, pagination and supported long-field spans"
+    },
+    {
+      "name": "ultiwrite_coherence_get",
+      "purpose": "Saved Decision Brief"
+    },
+    {
+      "name": "ultiwrite_report_export",
+      "purpose": "Authorized report and download links"
+    }
+  ],
+  "prepared_on": "2026-11-01",
+  "status": "prepared-not-submitted",
+  "platform_host_run_completed": false,
+  "channel": "Meta Muse",
+  "submission_url": "https://platform.muse.ai/submission",
+  "platform_format_status": "Signed-in form must confirm accepted connector integration and callback requirements.",
+  "published_public_package_version": "0.9.1",
+  "prepared_contract_version": "0.9.2",
+  "canonical_contract_source_commit": "00682b0179824fcf182856713de5864b54b140c2",
+  "live_runtime_version_verified": false,
+  "evidence_submission_contract": {
+    "initial_upload_handoff": {
+      "files": [],
+      "caseId": null,
+      "handoffId": null,
+      "documentForensics": null
+    },
+    "original_files_rule": "When the host exposes supported original file objects, forward those objects unchanged as files, with caseId:null, handoffId:null and the authorized documentForensics choice.",
+    "recovery_rule": "Retain the exact returned handoffId. After browser upload confirms receipt, call ultiwrite_evidence_submit with files:[], caseId:null, handoffId:returnedHandoffId, documentForensics:null to recover the exact saved case. Do not infer the case from a newest-case list.",
+    "continuation_rule": "Only when requested by the server, call ultiwrite_evidence_submit with files:[], caseId:returnedCaseId, handoffId:null, documentForensics:null.",
+    "availability_rule": "Candidate contract 0.9.2 is prepared from the pinned source. Source and packaging do not prove deployed runtime availability or a completed platform host test. Verify the live schema before claiming the workflow works."
+  }
+}

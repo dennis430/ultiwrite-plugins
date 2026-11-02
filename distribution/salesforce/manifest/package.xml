@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <types><members>UltiwriteOAuth</members><name>ExternalCredential</name></types>
+    <types><members>Ultiwrite</members><name>ExternalServiceRegistration</name></types>
+    <types><members>Ultiwrite</members><name>NamedCredential</name></types>
+    <types><members>Ultiwrite_Perm_Set</members><name>PermissionSet</name></types>
+    <types><members>UltiwriteIdentity</members><name>ExternalAuthIdentityProvider</name></types>
+    <version>66.0</version>
+</Package>
