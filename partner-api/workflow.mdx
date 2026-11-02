@@ -20,7 +20,7 @@ POST /cases accepts repeated multipart files parts and optional documentForensic
 
 ## Handle every terminal condition
 
-Stop when a saved linkedReportId is available. Treat failed as an unsuccessful workflow and action_required as a user action on the signed-in website. Do not reinterpret either as a clean bill of health or keep polling forever. If `processing.state` is `needs_action` or `failed`, follow the returned action instead of polling indefinitely. An integration needs an explicit pending state and a way to resume the original case.
+Stop when a saved linkedReportId is available. Treat `failed` as an unsuccessful workflow and `action_required` as requiring the specific action returned by `nextAction`. Do not reinterpret either as a clean bill of health or keep polling forever. If `processing.state` is `needs_action` or `failed`, follow the returned action instead of polling indefinitely. An integration needs an explicit pending state and a way to resume the original case.
 
 ## Bound requests and recover
 
