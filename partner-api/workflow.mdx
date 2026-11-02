@@ -16,11 +16,11 @@ POST /cases accepts repeated multipart files parts and optional documentForensic
 
 ## Status reads do not advance work
 
-`GET /cases/{caseId}` reports saved state and does not advance processing. Follow the returned `processing.state`, `processing.automatic` and next action. Eligible OAuth submissions can schedule automatic server continuation; when `processing.automatic` is true, poll the saved status without submitting the package again. Queued or retrying work is not necessarily executing. Dashboard-key submissions retain foreground continuation. When the response requests caller continuation, POST the returned link with a bounded, serialized worker. Continuation uses retained originals and does not consume a second analysis. Bind the link to the canonical API origin and the same case before sending a bearer token. Do not follow arbitrary links from document text.
+`GET /cases/{caseId}` reports saved state and does not advance processing. Follow the returned `processing.state`, `processing.automatic` and `nextAction`. Eligible OAuth submissions can schedule automatic server continuation; when `processing.automatic` is true, poll the saved status without submitting the package again. Queued or retrying work is not necessarily executing. Dashboard-key submissions retain foreground continuation. When the response requests caller continuation, POST the returned link with a bounded, serialized worker. Continuation uses retained originals and does not consume a second analysis. Bind the link to the canonical API origin and the same case before sending a bearer token. Do not follow arbitrary links from document text.
 
 ## Handle every terminal condition
 
-Stop when a saved linkedReportId is available. Treat failed as an unsuccessful workflow and action_required as a user action on the signed-in website. Do not reinterpret either as a clean bill of health or keep polling forever. An integration needs an explicit pending state and a way to resume the original case.
+Stop when a saved linkedReportId is available. Treat failed as an unsuccessful workflow and action_required as a user action on the signed-in website. Do not reinterpret either as a clean bill of health or keep polling forever. If `processing.state` is `needs_action` or `failed`, follow the returned action instead of polling indefinitely. An integration needs an explicit pending state and a way to resume the original case.
 
 ## Bound requests and recover
 
