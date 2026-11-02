@@ -1,0 +1,35 @@
+---
+title: "Authorize a Partner API integration with a key or OAuth"
+sidebarTitle: "Authentication"
+description: "Create a key for an approved account or use OAuth and PKCE for delegated access, with the same account boundaries and request pool."
+keywords: ["OAuth","PKCE","authentication","partner API"]
+canonical: "https://dwsoffshorepartners.com/docs/partner-api/authentication"
+---
+
+Create a key for an approved account or use OAuth and PKCE for delegated access, with the same account boundaries and request pool.
+
+This guide mirrors the [native authentication guide](https://dwsoffshorepartners.com/docs/partner-api/authentication).
+
+## Get approval and create a dashboard key
+
+API access is visible to signed-in customers, but protected Partner API operations require explicit administrator approval. Submit API access requests only through [Enterprise & custom pricing in your signed-in customer dashboard](https://dwsoffshorepartners.com/dashboard#custom-pricing). Create a named, expiring ultiwrite_live_ key at [Dashboard → API access](https://dwsoffshorepartners.com/settings/api); copy it once into your server secret store. Default expiry is 90 days with five active/pending keys per account. Send it as Authorization: Bearer &lt;key&gt;. Refresh/list never returns plaintext. Revoke and retry pending provider cleanup in the dashboard; local revocation blocks use immediately. The private server UNKEY_ROOT_KEY is not a customer credential. [Read key management](/api-keys). If creation has an unknown outcome, refresh the list and resolve or revoke any pending creation before creating a replacement; a lost secret cannot be recovered.
+
+## Register a real callback
+
+OAuth uses authorization code with PKCE S256, no client secret, and the published authorization-server metadata. Registration accepts only Ultiwrite-approved exact HTTPS callbacks or native loopback callbacks, such as application_type=native with http://127.0.0.1:8765/callback. Arbitrary hosted callbacks return 400 invalid_redirect_uri; ask Ultiwrite to approve yours. No wildcards, query strings or fragments. The complete requests are in the [README](https://dwsoffshorepartners.com/docs/downloads/partner-api/README.md).
+
+## Bind consent to the session
+
+Generate a fresh random verifier and state for each authorization attempt. Store both in the initiating user’s server session. On callback, validate state, expiry and single use before exchanging the code. Never put the verifier, refresh token or full callback query in analytics, public client code or logs.
+
+## Use the exact resource and scopes
+
+Send resource=https://dwsoffshorepartners.com/api/v1 on authorization, token exchange and refresh. Request ultiwrite:read for reads and ultiwrite:evidence for submission and continuation; evidence permission requires read permission. A token issued for MCP is a different audience and is refused by this API. A legacy uw_live_ key is not a partner OAuth token.
+
+## Refresh without races
+
+Access tokens last 10 minutes, refresh tokens last 14 days and rotate, and authorization codes last 60 seconds. Serialize refresh within each grant and atomically store the new pair. Reusing a rotating refresh token or blindly retrying an exchange after an uncertain network response is unsafe. Re-consent when the grant is no longer recoverable. Revocation invalidates the grant family.
+
+## Keep organization authority server-side
+
+The organization is derived from the token; requests do not choose another tenant. A 401 calls for correcting authorization, while 403 can require consent for missing scope. An inaccessible tenant’s record is not distinguishable from an absent record through a 404. Never weaken that boundary to make an integration appear successful. Removing API approval, deactivating a user, credential expiry and revocation invalidate the relevant API authority. Partner approval does not change unrelated MCP grants.

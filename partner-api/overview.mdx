@@ -1,0 +1,31 @@
+---
+title: "Integrate Ultiwrite investigative intelligence"
+sidebarTitle: "Overview"
+description: "Connect your commercial workflow to evidence-package analysis, released findings and Decision Briefs through the Ultiwrite partner REST API."
+keywords: ["API","investigative intelligence","asymmetric diligence","integration"]
+canonical: "https://dwsoffshorepartners.com/docs/partner-api/overview"
+---
+
+Connect your commercial workflow to evidence-package analysis, released findings and Decision Briefs through the Ultiwrite partner REST API.
+
+This guide mirrors the [native integration overview](https://dwsoffshorepartners.com/docs/partner-api/overview); both use the same deployed API and saved reports.
+
+## What the integration delivers
+
+Ultiwrite investigates the evidence behind a business, counterparty or transaction. The partner API accepts an evidence package, runs the shared analysis workflow and exposes its released report. Its value is the reconciled result across documents and relevant evidence—not a disconnected list of lookups. The integrating application keeps its own commercial decision authority.
+
+## Choose the correct interface
+
+Use the partner REST API for a backend integration. Use MCP for an authorized assistant connection and the website for a human upload workflow. These interfaces share saved account evidence but do not share interchangeable tokens. Historical provisioned API-key scoring operations are a separate interface, not the way to submit a diligence package. Customer API keys are created at [Dashboard → API access](https://dwsoffshorepartners.com/settings/api) after explicit administrator approval. OAuth Partner API access requires the same approval. Buying a standard analysis does not grant it.
+
+## Check availability before development
+
+The live OpenAPI document determines whether partner operations are enabled on that deployment. Check that POST /cases is present. An unenabled partner API returns 404; published documentation alone is not a launch receipt. [Read the API reference](https://dwsoffshorepartners.com/docs/api) and confirm the authorized account through GET /me before submitting evidence.
+
+## One integration, one saved case
+
+Authorize the user, inspect capabilities and usage, submit a package, save its caseId, and follow the returned continuation until a report is linked. Read findings and the Decision Brief, then present entitled delivery options. [Follow the complete workflow](/partner-api/workflow) rather than treating an accepted upload as a completed investigation.
+
+## Start with a working example
+
+The [complete README](https://dwsoffshorepartners.com/docs/downloads/partner-api/README.md), [Node client](https://dwsoffshorepartners.com/docs/downloads/partner-api/client.mjs), [runner](https://dwsoffshorepartners.com/docs/downloads/partner-api/example.mjs) and [synthetic fixture](https://dwsoffshorepartners.com/docs/downloads/partner-api/synthetic-evidence.csv) provide a small integration starting point. Submitting the fixture may consume an analysis; local unit tests are not live acceptance evidence.

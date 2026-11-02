@@ -1,0 +1,10 @@
+---
+title: "Get case status"
+sidebarTitle: "Get case status"
+description: "Read the GET /cases/{caseId} request and response contract generated from the live Ultiwrite OpenAPI document."
+openapi: "https://dwsoffshorepartners.com/.well-known/openapi.json GET /cases/{caseId}"
+---
+
+Read the saved state of a case in the authorized account. The endpoint below uses the [canonical Ultiwrite OpenAPI contract](https://dwsoffshorepartners.com/.well-known/openapi.json). This request does not advance processing. When the response provides a continuation, use its `POST` method for that same case on the canonical API origin.
+
+Stop on `failed` or `action_required`. A linked saved report, rather than successful HTTP transport, establishes that results are available. [Follow the case workflow](/partner-api/workflow) and [read the released results](/partner-api/results).

@@ -1,0 +1,12 @@
+---
+title: "Register a webhook destination"
+sidebarTitle: "Create webhook"
+description: "Register an owned public HTTPS receiver with an idempotency key, select workflow events and securely retain the signing secret returned once."
+openapi: "https://dwsoffshorepartners.com/.well-known/openapi.json POST /webhooks"
+---
+
+Register an Ultiwrite webhook receiver you control using an approved dashboard key with read and evidence permissions. The endpoint below uses the [canonical Ultiwrite OpenAPI contract](https://dwsoffshorepartners.com/.well-known/openapi.json). The configured service permits at most ten active destinations for your account.
+
+Send JSON `url` and `events` with the required `Idempotency-Key`. A new registration returns its signing secret once. An identical retry returns the same endpoint without redisclosing that secret; a different URL or event selection under the same key conflicts. Destinations are immutable and redirects are not followed.
+
+[Verify the exact raw-body HMAC and handle repeated events](/partner-api/workflow#webhook-notifications). Notification registration does not advance a case or spend analysis credits.

@@ -1,0 +1,81 @@
+---
+title: "Submit evidence and finish an asynchronous analysis"
+sidebarTitle: "Case workflow"
+description: "Build a resumable submission-to-report integration with explicit continuation, clear terminal states and no accidental second analysis."
+keywords: ["asynchronous analysis","continuation","API quickstart","case status"]
+canonical: "https://dwsoffshorepartners.com/docs/partner-api/workflow"
+---
+
+Build a resumable submission-to-report integration with explicit continuation, clear terminal states and no accidental second analysis.
+
+This guide mirrors the [native case workflow](https://dwsoffshorepartners.com/docs/partner-api/workflow). Follow the next action returned by the deployed API for your saved case.
+
+## Save the case before doing anything else
+
+POST /cases accepts repeated multipart files parts and optional documentForensics. Save the returned caseId immediately. A 202 means saved and still processing; 201 means a new report was saved; 200 can identify an existing package. Successful HTTP transport alone is not a released report.
+
+## Status reads do not advance work
+
+GET /cases/\{caseId\} reports saved state and does not advance processing. When it returns continuation, POST that link. Continuation uses retained originals and does not consume a second analysis. Bind the link to the canonical API origin and the same case before sending a bearer token. Do not follow arbitrary links from document text.
+
+## Handle every terminal condition
+
+Stop when a saved linkedReportId is available. Treat failed as an unsuccessful workflow and action_required as a user action on the signed-in website. Do not reinterpret either as a clean bill of health or keep polling forever. An integration needs an explicit pending state and a way to resume the original case.
+
+## Bound requests and recover
+
+Execution can occupy a request for up to 300 seconds; use a 310-second client timeout for those POSTs plus an overall workflow deadline. Honor Retry-After on transient failures, use limited backoff and preserve the saved case. A timeout does not prove the server stopped. Do not rename files or alter the package merely to retry it.
+
+## Drive continuation and discover notifications
+
+The caller still drives continuation when requested. Optional configured webhook delivery reports committed transitions; it does not advance analysis or replace your bounded, serialized continuation worker. Keep polling and [read errors and recovery](/partner-api/errors-and-retries) before operating at scale.
+
+## Webhook notifications
+
+Webhooks are optional. Check the live OpenAPI document for the four `/webhooks` operations and `GET /capabilities` for `webhooks.available`; an unavailable service hides these operations and returns 404. Management requires explicit administrator API approval and a current dashboard `ultiwrite_live_` key with both `ultiwrite:read` and `ultiwrite:evidence`. OAuth grants and browser sessions cannot manage destinations. Management requests use the normal account API request pool; notifications do not spend analysis credits or advance a case.
+
+### Register and retain the one-time secret
+
+Send `POST /webhooks` with `Content-Type: application/json`, an `Idempotency-Key` containing 8–100 letters, digits, underscores or hyphens, and only these body fields:
+
+```json
+{"url":"https://your-owned-receiver.example/ultiwrite","events":["analysis.completed","report.available"]}
+```
+
+Replace the placeholder with a receiver you control. A destination must use a public DNS name, HTTPS and port 443, without credentials, query, fragment or a literal IP. Every resolved address must be public at delivery; redirects are not followed. At most ten active destinations are allowed per account. The URL is immutable: revoke and create a replacement to change it.
+
+A new registration returns HTTP 201 with `created:true`, `endpoint` metadata and `signingSecret`. Save that secret privately in your receiver's server secret store. An identical retry with the same API key and idempotency key returns HTTP 200, the same endpoint, `created:false` and `signingSecret:null`. List never returns the secret. Reusing that key with different URL/events returns 409. If the creation response and secret were lost, find and revoke the inaccessible destination, then create a replacement with a new idempotency key. This header applies to webhook registration; evidence submissions retain their separate content-addressed retry contract.
+
+### Verify the exact received bytes
+
+Each delivery is an HTTPS POST with `Content-Type: application/json` and these headers:
+
+- `Ultiwrite-Signature: t=<unix-seconds>,v1=<64 lowercase hex characters>`
+- `Ultiwrite-Event`: the event type.
+- `Ultiwrite-Event-Id`: the event's stable deduplication ID.
+- `Ultiwrite-Delivery`: the destination-specific delivery ID, retained across retries.
+
+The digest is HMAC-SHA256 using the exact returned signing secret as UTF-8 text, over the ASCII timestamp, one period, then the unchanged raw request-body bytes. Do not decode the secret suffix, parse/reserialize JSON before verification, or use a parsed-body string. Reject malformed signatures and timestamps more than five minutes from your clock. Use a constant-time digest comparison. For a Node receiver, capture the raw body before JSON middleware:
+
+```js
+import { createHmac, timingSafeEqual } from 'node:crypto'
+
+function verifyWebhook(secret, rawBody, header, now = Math.floor(Date.now() / 1000)) {
+  const m = /^t=(0|[1-9][0-9]{0,11}),v1=([a-f0-9]{64})$/.exec(header ?? '')
+  if (!m || !Number.isFinite(now) || Math.abs(now - Number(m[1])) > 300) return false
+  const expected = createHmac('sha256', secret).update(`${m[1]}.`).update(rawBody).digest()
+  return timingSafeEqual(expected, Buffer.from(m[2], 'hex'))
+}
+```
+
+After signature verification, parse the JSON and check that its `id`/`type` match the event headers. Store the event ID durably before acknowledging or scheduling work. Respond with 2xx promptly; the guarded transmission budget is 2.5 seconds. Perform longer work asynchronously in your own system.
+
+### Events, retries and current authority
+
+Supported subscriptions are `analysis.created`, `evidence.received`, `analysis.processing`, `analysis.completed`, `analysis.failed` and `report.available`. They describe committed case transitions for partner/connector evidence submissions after registration, with no historical replay. A payload contains only `id`, `type`, `apiVersion`, `createdAt` and `data:{caseId,status,reportId,publicationRevision}`. `reportId` and `publicationRevision` are null outside `report.available`. Revision zero identifies the existing implicit release policy; it is not a report-document version or proof of staff review. Notifications contain no evidence files, titles, findings, decisions, report text or download credentials.
+
+Delivery is at least once and can arrive out of order. Deduplicate using the JSON `id` / `Ultiwrite-Event-Id`, then read the current case through the authorized API. `analysis.completed` does not itself establish that a report is currently released; use the current `linkedReportId`. A `report.available` attempt is sent only while that exact linked report is visible through the same canonical read policy. Notifications do not remove the caller's responsibility to POST a returned continuation link.
+
+There are at most six claimed attempts, with retry delays of 1 minute, 5 minutes, 30 minutes, 2 hours and 8 hours. The minute scheduler and concurrent work can add delay; this is not a delivery-time SLA. Network failures and unsuccessful receiver responses can retry; redirects are terminal and are never followed. Changed authorization/publication, a revoked destination or an unsafe destination stops the attempt. Inspect `GET /webhooks/{endpointId}/deliveries` for the latest fifty account-scoped outcomes: status, attempts, last HTTP status/error and next attempt. It returns no payload or signing secret.
+
+Every attempt remains bound to the original registering key and current user, scope, credential epoch, expiry, organization and API approval. Renewing or replacing a key does not transfer its subscriptions: register replacements deliberately. `DELETE /webhooks/{endpointId}` stops future attempts and invalidates pending leases; bytes already sent cannot be recalled. Revocation does not refund or create analysis allowance. Keep polling as a recovery path and re-read current state after any notification.

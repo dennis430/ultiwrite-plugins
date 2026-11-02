@@ -1,0 +1,10 @@
+---
+title: "Revoke a webhook destination"
+sidebarTitle: "Revoke webhook"
+description: "Revoke an account webhook destination, stop future delivery attempts and invalidate pending leases while retaining the existing account history."
+openapi: "https://dwsoffshorepartners.com/.well-known/openapi.json DELETE /webhooks/{endpointId}"
+---
+
+Revoke an Ultiwrite webhook destination from your approved account using a current dashboard key with read and evidence permissions. The endpoint below uses the [canonical Ultiwrite OpenAPI contract](https://dwsoffshorepartners.com/.well-known/openapi.json). Pending attempts are invalidated and future sends stop; bytes already transmitted cannot be recalled.
+
+Revocation does not change API approval, refund an investigation or issue additional analysis allowance. Revoke and create a new destination to change its URL. [Review delivery and revocation semantics](/partner-api/workflow#webhook-notifications).

@@ -1,0 +1,10 @@
+---
+title: "Submit evidence"
+sidebarTitle: "Submit evidence"
+description: "Read the POST /cases request and response contract generated from the live Ultiwrite OpenAPI document."
+openapi: "https://dwsoffshorepartners.com/.well-known/openapi.json POST /cases"
+---
+
+Submit an authorized evidence package to start or recover one saved case. The endpoint below uses the [canonical Ultiwrite OpenAPI contract](https://dwsoffshorepartners.com/.well-known/openapi.json). Save the returned `caseId` immediately: a `202` response means processing is still pending. Preserve filenames, bytes and the forensic choice when retrying the same package.
+
+Use `POST` for a returned continuation; status reads alone do not advance work. [Choose the correct upload path](/partner-api/uploads), [follow the case workflow](/partner-api/workflow), and [check usage](/partner-api/usage) before submitting evidence.

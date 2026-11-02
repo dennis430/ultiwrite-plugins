@@ -1,0 +1,10 @@
+---
+title: "Read webhook delivery outcomes"
+sidebarTitle: "Delivery outcomes"
+description: "Inspect the latest fifty account-scoped webhook delivery outcomes, including status, attempts, last HTTP result and the next scheduled retry."
+openapi: "https://dwsoffshorepartners.com/.well-known/openapi.json GET /webhooks/{endpointId}/deliveries"
+---
+
+Read the latest fifty Ultiwrite delivery outcomes for your account's destination using an approved dashboard key with read and evidence permissions. The endpoint below uses the [canonical Ultiwrite OpenAPI contract](https://dwsoffshorepartners.com/.well-known/openapi.json). The response includes safe status and retry metadata, without payloads or signing secrets.
+
+Delivery is at least once and may arrive out of order. There are at most six claimed attempts with bounded backoff. Deduplicate event IDs and re-read the current case through the authorized API. [Read the complete receiver and retry contract](/partner-api/workflow#webhook-notifications).

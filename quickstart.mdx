@@ -1,0 +1,90 @@
+---
+title: "Get started with the Ultiwrite API"
+sidebarTitle: "Quickstart"
+description: "Create a key for an approved Ultiwrite account, make your first authenticated request, and prepare a resumable evidence-to-report integration."
+keywords:
+  - "Ultiwrite API quickstart"
+  - "API key"
+  - "account approval"
+  - "evidence analysis"
+---
+
+Use the Ultiwrite Partner API from your backend to submit evidence and read the same saved investigation results available to your account on the website. Start with an account check before sending documents.
+
+This portal and the [native Ultiwrite API documentation](https://dwsoffshorepartners.com/docs/api) describe the same deployed API. Endpoint reference pages use the [canonical OpenAPI contract](https://dwsoffshorepartners.com/.well-known/openapi.json).
+
+## Prerequisites
+
+- An active Ultiwrite account with explicit API approval.
+- A server environment that can keep the API secret out of browser code and logs.
+- Evidence you are authorized to submit when you move beyond the read-only account check.
+
+Request approval through [Enterprise & custom pricing](https://dwsoffshorepartners.com/dashboard#custom-pricing) in your signed-in dashboard. You can view [API access](https://dwsoffshorepartners.com/settings/api) before approval, but key creation and protected API operations remain locked.
+
+## Create a key and check your account
+
+<Steps>
+  <Step title="Create a named key">
+    Open [Dashboard → API access](https://dwsoffshorepartners.com/settings/api). Once your account is approved and key creation is available, name the key and choose its expiry.
+
+    Copy the full secret once into your server's secret store as `ULTIWRITE_API_KEY`. Dashboard keys start with `ultiwrite_live_`. The secret cannot be recovered later; revoke and replace a lost key.
+  </Step>
+  <Step title="Make a read-only request">
+    Run this from a server environment where `ULTIWRITE_API_KEY` is already set:
+
+    ```bash
+    curl --fail-with-body -sS https://dwsoffshorepartners.com/api/v1/me \
+      -H "Authorization: Bearer $ULTIWRITE_API_KEY"
+    ```
+
+    A successful response identifies the authorized account. A `401` means authorization must be corrected; a `403` can mean the account lacks API approval or the credential lacks the required scope. This admitted read counts as an API request and does not start an analysis.
+  </Step>
+  <Step title="Inspect capabilities and both usage balances">
+    ```bash
+    curl --fail-with-body -sS https://dwsoffshorepartners.com/api/v1/capabilities \
+      -H "Authorization: Bearer $ULTIWRITE_API_KEY"
+    
+    curl --fail-with-body -sS https://dwsoffshorepartners.com/api/v1/usage \
+      -H "Authorization: Bearer $ULTIWRITE_API_KEY"
+    ```
+
+    Use the returned capabilities, account policy, analysis allowance and API request allowance before accepting an evidence package. All account keys and Partner API OAuth grants share the same request pool.
+  </Step>
+</Steps>
+
+## Submit an evidence package
+
+Submitting new evidence can consume an analysis credit. For a small package, `POST /cases` accepts repeated multipart `files` parts. Let your HTTP client set the multipart boundary.
+
+```bash
+curl --fail-with-body -sS --max-time 310 https://dwsoffshorepartners.com/api/v1/cases \
+  -H "Authorization: Bearer $ULTIWRITE_API_KEY" \
+  -F "files=@evidence.csv"
+```
+
+Use a real local file you are authorized to analyze. This example omits `documentForensics`, allowing the engine to infer its relevance. Supported inputs and limits are documented in the [upload guide](https://dwsoffshorepartners.com/docs/partner-api/uploads).
+
+The production request body ceiling is approximately 4.5 MB, including multipart overhead. Use the [protected upload-link workflow](https://dwsoffshorepartners.com/docs/partner-api/uploads) for larger packages. Application file limits do not override the lower hosting limit.
+
+## Save the case and resume it
+
+Save the returned `caseId` immediately. An accepted submission can still be processing. `GET /cases/{caseId}` reads status and does not advance work. When the response returns a continuation, send the documented `POST` to that same case on the canonical API origin.
+
+Use the [maintained Node client and runner](https://dwsoffshorepartners.com/docs/downloads/partner-api/README.md) to build bounded submission and resume behavior. Replaying the same filenames, bytes and forensic choice can recover the existing package without another analysis credit. Do not rename files or create another package just because the original is still processing.
+
+Stop on `failed` or `action_required` and expose the stated next action. Preserve the case ID when a request times out; a timeout does not establish that the server stopped.
+
+## Read and deliver the saved result
+
+Once the case links a report, read its findings and Decision Brief. Follow the [results guide](https://dwsoffshorepartners.com/docs/partner-api/results) for the bound pagination cursors, snapshot, page token and long-field completeness rules. A first findings page is not automatically the complete report.
+
+`GET /reports/{reportId}/export` returns entitled delivery options. Binary report downloads require the user's signed-in browser session on the same account; the API key cannot download those bytes.
+
+## Continue building
+
+- [API key creation, rotation and revocation](https://dwsoffshorepartners.com/docs/developers/api-keys)
+- [Delegated OAuth and PKCE](https://dwsoffshorepartners.com/docs/partner-api/authentication)
+- [Asynchronous workflow and continuation](https://dwsoffshorepartners.com/docs/partner-api/workflow)
+- [Errors and bounded retries](https://dwsoffshorepartners.com/docs/partner-api/errors-and-retries)
+- [Canonical API reference](https://dwsoffshorepartners.com/docs/api)
+- [Live OpenAPI document](https://dwsoffshorepartners.com/.well-known/openapi.json)

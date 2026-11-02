@@ -1,0 +1,10 @@
+---
+title: "Continue a case"
+sidebarTitle: "Continue a case"
+description: "Read the POST /cases/{caseId}/continue request and response contract generated from the live Ultiwrite OpenAPI document."
+openapi: "https://dwsoffshorepartners.com/.well-known/openapi.json POST /cases/{caseId}/continue"
+---
+
+Advance retained processing only when the saved case supplies a continuation. The endpoint below uses the [canonical Ultiwrite OpenAPI contract](https://dwsoffshorepartners.com/.well-known/openapi.json). This operation uses `POST`, preserves the original case and evidence, and does not consume another analysis credit. Its admitted HTTP request still counts toward the account's request allowance.
+
+Use bounded retries and an overall workflow deadline. A timeout does not prove processing stopped; retain the case ID and resume the same case. [Follow the workflow](/partner-api/workflow) and [error recovery guide](/partner-api/errors-and-retries).

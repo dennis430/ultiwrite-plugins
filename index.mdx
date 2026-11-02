@@ -1,0 +1,54 @@
+---
+title: "Ultiwrite developer documentation"
+sidebarTitle: "Introduction"
+description: "Connect commercial workflows to Ultiwrite evidence analysis, saved findings and Decision Briefs using approved API keys, delegated OAuth or MCP."
+keywords:
+  - "Ultiwrite"
+  - "Partner API"
+  - "asymmetric diligence"
+  - "investigative intelligence"
+---
+
+Ultiwrite accepts an evidence package, investigates the documents and relevant evidence, reconciles findings, and releases a saved report. Use these docs to connect that workflow to your application or authorized assistant.
+
+This portal is a second presentation of the [existing Ultiwrite API documentation](https://dwsoffshorepartners.com/docs/api), not a separate API. Endpoint definitions come from the same canonical OpenAPI contract.
+
+<Columns cols={2}>
+  <Card title="Make your first API request" icon="rocket" href="/quickstart">
+    Get API approval, create a key, and check the account your server can access.
+  </Card>
+
+  <Card title="Read the API reference" icon="code" href="https://dwsoffshorepartners.com/docs/api">
+    Find the current operations and the canonical live OpenAPI contract.
+  </Card>
+</Columns>
+
+## Choose your connection
+
+| Connection | Use it for | Authorization |
+| --- | --- | --- |
+| Partner REST API | Submit evidence and retrieve saved results from your backend | Dashboard API key or Partner OAuth, with explicit account approval |
+| MCP | Let an authorized assistant submit evidence and read saved reports | MCP OAuth grant |
+| Website | Upload evidence and review results in your browser | Signed-in Ultiwrite account |
+
+These entry points use the same account, canonical analysis workflow and saved reports. Their credentials have separate authority. A Partner API key cannot authenticate MCP, and an MCP token cannot authenticate the Partner API.
+
+## Build a complete integration
+
+Authorize the account, inspect capabilities and usage, submit evidence, and save the returned case ID. Follow any requested continuation until the case links a report. Retrieve findings and the Decision Brief, preserve provenance and completeness, then present the account's entitled delivery options.
+
+The [complete Partner API guides](/partner-api/overview) cover authentication, evidence uploads, asynchronous processing, pagination, usage and recovery. The [downloadable example client](https://dwsoffshorepartners.com/docs/downloads/partner-api/README.md) provides bounded submission and resume helpers.
+
+## API access
+
+Your account needs explicit administrator approval before it can create keys or use Partner API OAuth. Public signup and analysis purchases do not grant API access. Request access or allowance changes through [Enterprise & custom pricing in your signed-in dashboard](https://dwsoffshorepartners.com/dashboard#custom-pricing).
+
+Analysis credits and API requests are separate balances. Every admitted API request counts toward your account's shared request allowance. Replaying the same evidence package, continuing its processing, or reading its status and results does not consume another analysis credit.
+
+## Contract and delivery
+
+The [live OpenAPI document](https://dwsoffshorepartners.com/.well-known/openapi.json) is the machine contract for the deployed API. The [native API reference](https://dwsoffshorepartners.com/docs/api) and [integration guides](https://dwsoffshorepartners.com/docs/partner-api/overview) remain the detailed reference for supported operations and boundaries.
+
+Report export returns entitled delivery options. PDF, Excel and ZIP download links require a signed-in browser session on the same Ultiwrite account. The API credential does not download those file bytes. Results are advisory and preserve the evidence's limitations; your application retains commercial decision authority.
+
+For assistant connections, follow the [MCP connection guide](https://dwsoffshorepartners.com/docs/integrations/mcp-overview).

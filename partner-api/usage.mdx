@@ -1,0 +1,31 @@
+---
+title: "Understand analysis usage and idempotent retries"
+sidebarTitle: "Usage and retries"
+description: "Connect the API to the same account allowance as the website without duplicating charges, creating new entitlements or assuming unimplemented tiers."
+keywords: ["usage","idempotency","credits","analysis allowance"]
+canonical: "https://dwsoffshorepartners.com/docs/partner-api/usage"
+---
+
+Connect the API to the same account allowance as the website without duplicating charges, creating new entitlements or assuming unimplemented tiers.
+
+This guide mirrors the [native usage guide](https://dwsoffshorepartners.com/docs/partner-api/usage). Your account's returned balances remain authoritative.
+
+## Use the canonical account allowance
+
+GET /usage reads the shared account ledger: allowance, used, in-progress reservations and remaining analyses. A new evidence package reserves an analysis; saving its report consumes it. A failed analysis releases the reservation. The API does not maintain a second payment system or a different allowance. The separate apiRequests object shows administrator-set monthly request usage and requests per minute. Defaults are 1,000 requests per UTC month and 60 per minute. All keys and Partner API OAuth grants share this account pool; additional keys do not increase it, and limit changes preserve usage.
+
+## Retry the same package
+
+Submission is content-addressed within the organization. Preserve filenames, bytes and the forensic choice when replaying an uncertain submission. Identical retries return the existing case without another analysis. No Idempotency-Key header is required or interpreted. Renaming or changing files can produce a different package and a new analysis.
+
+## Separate analysis credits from API requests
+
+Status, findings, brief and delivery-option reads do not consume a new analysis. Continuation advances the saved case without another analysis credit. Every admitted Partner API request still consumes one request from the shared monthly pool, including input/handler failures. Authentication, approval, rate, quota and concurrency refusals do not. A lower platform ceiling or concurrency guard may apply. Rate/quota responses contain Retry-After; admitted responses show X-Api-Requests-Limit, Remaining and Reset headers. Use dashboard usage when the API pool is exhausted.
+
+## Do not invent a commercial entitlement
+
+Purchases happen in the signed-in dashboard. The API cannot take payment, grant credits or choose P1/P2/P3 through undocumented fields. Use whatever the canonical billing and account path actually grants. Public integration docs do not establish new prices or promises of a particular model or analysis effort.
+
+## Handle exhaustion honestly
+
+An account without remaining allowance cannot start a new paid analysis simply because the transport accepted a connection. Preserve the saved package and present the documented account action. After the account’s allowance changes, resume or retry the original package according to its actual state; do not promise that this path passed live testing without a receipt.

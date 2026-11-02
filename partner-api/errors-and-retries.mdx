@@ -1,0 +1,31 @@
+---
+title: "Recover from API errors without losing the case"
+sidebarTitle: "Error recovery"
+description: "Differentiate authentication, input refusal, rate limits and processing deadlines; preserve the original case and expose actionable pending states."
+keywords: ["API errors","Retry-After","timeouts","troubleshooting"]
+canonical: "https://dwsoffshorepartners.com/docs/partner-api/errors-and-retries"
+---
+
+Differentiate authentication, input refusal, rate limits and processing deadlines; preserve the original case and expose actionable pending states.
+
+This guide mirrors the [native error recovery guide](https://dwsoffshorepartners.com/docs/partner-api/errors-and-retries).
+
+## Capture useful diagnostics, not secrets
+
+Record the operation, UTC time, HTTP status, X-Request-Id and Ultiwrite-Api-Version. Do not record tokens, complete upload URLs, document contents or full OAuth callbacks. Errors usually use an error object with code, message and requestId, while a failed analysis can return a workflow body.
+
+## Fix authorization before retrying
+
+A 401 can mean expiry, revocation or the wrong resource audience. A 403 can mean missing ultiwrite:evidence consent. Repeated retries do not repair either. A 404 can mean the API is disabled, the object is absent or the account cannot access it. Check live discovery and GET /me without trying other tenants’ identifiers. A 403 api_access_denied requires explicit administrator approval; a 429 api_quota_exceeded means the account monthly request pool is exhausted.
+
+## Distinguish input and capacity problems
+
+A 400 requires correcting the documented request. A 409 can mean a frozen forensic choice. A 413 needs a smaller direct payload or the upload-link path. A 415 or 422 requires reading the actual input/workflow requirement. None of these should be replaced by an empty successful analysis in your application.
+
+## Honor transient failure signals
+
+For 429 and 503, honor Retry-After and apply bounded backoff. A 504 or network timeout can occur after the case is saved; resume that case or replay the identical package. Never assume a timeout means nothing happened. The sample client caps retries and refuses a retry whose required wait would exceed the deadline.
+
+## Keep unresolved work visible
+
+When the integration reaches its step or time budget, save the caseId and show processing rather than failed diligence or a safe outcome. Stop on action_required and failed. Escalate with a request ID and operation, not with credentials. [Return to the workflow guide](/partner-api/workflow) for continuation and completion semantics.

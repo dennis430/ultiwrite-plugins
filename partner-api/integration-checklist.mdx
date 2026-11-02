@@ -1,0 +1,31 @@
+---
+title: "Verify an integration before sending customer evidence"
+sidebarTitle: "Integration checklist"
+description: "Test the complete authorized journey and distinguish a published schema from a functioning customer integration."
+keywords: ["integration checklist","API acceptance","tenant isolation","production readiness"]
+canonical: "https://dwsoffshorepartners.com/docs/partner-api/integration-checklist"
+---
+
+Test the complete authorized journey and distinguish a published schema from a functioning customer integration.
+
+This checklist mirrors the [native integration checklist](https://dwsoffshorepartners.com/docs/partner-api/integration-checklist).
+
+## Prove the consent and account boundary
+
+Use a legitimate account and registered callback. Verify PKCE, state, the exact partner resource, requested scopes and GET /me. An MCP token must not work as a partner token. A read-only grant must not submit evidence. Keep each organization’s credentials and saved case references isolated. Also test a dashboard-created key, one-time display, safe metadata after refresh, key expiry/revocation, unapproved denial and pooled key/OAuth usage. Signed upload links must fail after approval removal or issuing-credential revocation.
+
+## Prove a saved result
+
+Submit a small, clearly synthetic authorized package. Record the caseId immediately, follow continuation when returned, and wait for a linked report. Read findings, brief and delivery options. Demonstrate the report in the authenticated website rather than showing only an upload success or a health response.
+
+## Prove safe recovery
+
+Replay the identical package and confirm it maps to the existing case without another analysis. Resume after a client disconnect. Confirm action_required and failed are surfaced, Retry-After is honored and large packages use upload links. A mocked unit test helps isolate behavior but is not an authenticated production proof.
+
+## Prove results are not truncated or overclaimed
+
+Verify the complete offered cursor tuple, nested report.snapshot, top-level pageToken, unchanged-offset deduplication, completeness and any needed spans. Preserve confidence, limitations and counter-evidence in the consuming UI. Binary exports require the signed-in account. Do not label a first page or a delivery link as a complete downloaded report.
+
+## Keep launch evidence reproducible
+
+Retain the tested revision, deployment, UTC timestamp, sanitized request IDs, result state and usage before/after. Do not publish tokens, evidence or customer identifiers in release notes. Where webhooks are enabled, verify your controlled receiver signature, duplicate/out-of-order handling, delivery history and revocation separately. Published documentation does not prove hosted receiver acceptance. See the [webhook receiver contract](/partner-api/workflow#webhook-notifications). A HubSpot listing, paid tier selection and unattended binary downloads retain their own implementation and acceptance boundaries.

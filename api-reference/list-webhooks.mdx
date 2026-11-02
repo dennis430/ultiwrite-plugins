@@ -1,0 +1,10 @@
+---
+title: "List webhook destinations"
+sidebarTitle: "List webhooks"
+description: "Read configured webhook destinations for the approved account using a dashboard API key, without returning signing secrets or choosing another tenant."
+openapi: "https://dwsoffshorepartners.com/.well-known/openapi.json GET /webhooks"
+---
+
+List your account's configured Ultiwrite webhook destinations. The endpoint below uses the [canonical Ultiwrite OpenAPI contract](https://dwsoffshorepartners.com/.well-known/openapi.json). This operation requires explicit API approval and a current dashboard key with both read and evidence permissions; OAuth grants cannot manage persistent destinations.
+
+The response contains endpoint metadata and never a signing secret. The admitted request uses the normal API request pool. [Read the receiver contract](/partner-api/workflow#webhook-notifications) before registering or processing events.
