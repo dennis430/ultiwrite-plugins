@@ -1,8 +1,9 @@
 {
   "product": "Ultiwrite",
-  "legalEntity": "DWS Offshore Fund, Inc.",
+  "legalEntity": "DWS Offshore Fund",
+  "dba": "Ultiwrite",
   "category": "Asymmetric diligence and investigative intelligence",
-  "kitVersion": "1.0.0",
+  "kitVersion": "1.0.1",
   "sourceCommit": "63adef9ae6ae0bacf3cdc6a59c20a5513831a1ac",
   "website": "https://dwsoffshorepartners.com",
   "documentation": "https://dwsoffshorepartners.com/docs/mcp",

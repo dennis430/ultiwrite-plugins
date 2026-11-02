@@ -4,7 +4,7 @@
 
 **Title:** Ultiwrite — Asymmetric Diligence
 
-**Publisher:** DWS Offshore Fund, Inc.
+**Publisher:** DWS Offshore Fund
 
 **Tagline:** Ordinary documents open a much wider investigation.
 

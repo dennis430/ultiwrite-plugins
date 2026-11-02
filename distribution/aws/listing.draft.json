@@ -6,7 +6,7 @@
   "source_commit": "63adef9ae6ae0bacf3cdc6a59c20a5513831a1ac",
   "public_connector_baseline_version": "0.9.3",
   "prepared_workflow_contract_version": "0.9.2",
-  "publisher": "DWS Offshore Fund, Inc.",
+  "publisher": "DWS Offshore Fund",
   "product_title": "Ultiwrite — Asymmetric Diligence MCP",
   "short_description": "Expand ordinary commercial evidence into a wider investigation across businesses, people, assets and relationships, then review a cohesive assessment through your connected Ultiwrite account.",
   "long_description": "Ultiwrite is an asymmetric diligence and investigative intelligence engine. Documents and data establish the starting point for a wider investigation across financial, identity, document-integrity, operational and relevant external evidence. The engine connects claims and relationships, examines corroboration and contradictions, and brings the results into a cohesive assessment with supporting evidence, unresolved questions and next steps. This remote MCP connector gives compatible AI clients access to the existing Ultiwrite service through the user’s authorized account. Users can understand supported capabilities, confirm the connected account, hand off authorized evidence, track the actual analysis state, read saved findings and the Decision Brief, and retrieve entitled report links. Acquisitions, financing, counterparties, merchants, property and portfolios are applications of the shared engine. Available analyses and outputs depend on the evidence, supported capabilities and the account’s entitlement. Connection alone does not submit evidence or initiate a paid investigation.",

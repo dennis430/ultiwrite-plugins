@@ -6,7 +6,7 @@ The prepared workflow contract includes the canonical **0.9.2** exact upload-han
 
 ## Sign up and open the listing
 
-1. Start at [AWS Marketplace seller registration](https://aws.amazon.com/partners/marketplace/) and choose **Register Now**. Use the company AWS account intended to own Ultiwrite’s listings. Complete the business and identity checks, then the public seller profile for **DWS Offshore Fund, Inc.**
+1. Start at [AWS Marketplace seller registration](https://aws.amazon.com/partners/marketplace/) and choose **Register Now**. Use the company AWS account intended to own Ultiwrite’s listings. Complete the business and identity checks, then the public seller profile for **DWS Offshore Fund**.
 2. Open [AWS Partner Central](https://us-east-1.console.aws.amazon.com/partnercentral/home). Choose **Build → AI agents and tools → Create → API-based AI agents & tools**. Select **MCP Server** for the tool type.
 3. Use `listing.draft.json` as the field worksheet and `BUYER_SETUP.md` for usage instructions. The JSON is a local worksheet, **not an AWS import format**.
 4. Choose the Marketplace commercial offer before finishing the listing. Ultiwrite’s current authority is per investigation, not recurring billing. No prices or new entitlements have been selected here.

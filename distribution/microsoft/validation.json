@@ -1,7 +1,7 @@
 {
   "status": "PASS",
   "scope": "template-structure-only",
-  "version": "0.9.4",
+  "version": "0.9.5",
   "checks": [
     "three official JSON schemas",
     "cross-file references",

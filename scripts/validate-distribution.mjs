@@ -9,6 +9,13 @@ const root = fileURLToPath(new URL('..', import.meta.url))
 const distribution = join(root, 'distribution')
 const load = path => JSON.parse(readFileSync(join(root, path), 'utf8'))
 const profile = load('distribution/shared/profile.json')
+assert.equal(profile.legalEntity, 'DWS Offshore Fund', 'exact legal entity without DBA or suffix')
+assert.equal(profile.dba, 'Ultiwrite')
+assert.equal(profile.product, profile.dba)
+for (const file of ['cursor/listing-fields.json', 'google/console-fields.json', 'meta/connection-profile.json', 'salesforce/connection-profile.json', 'aws/listing.draft.json']) {
+  assert.equal(load(`distribution/${file}`).publisher, profile.legalEntity, `${file}: legal publisher`)
+}
+assert.equal(load('distribution/microsoft/appPackage/manifest.json').developer.name, profile.legalEntity)
 const channels = ['registry', 'cursor', 'google', 'meta', 'microsoft', 'salesforce', 'aws']
 assert.deepEqual([...profile.scope].sort(), [...channels].sort(), 'exactly the seven requested channels')
 assert.deepEqual(profile.excludedChannels, ['claude', 'grok', 'chatgpt'])

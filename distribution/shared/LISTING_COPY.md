@@ -2,7 +2,7 @@
 
 ## Identity
 
-Product: **Ultiwrite**. Legal publisher: **DWS Offshore Fund, Inc.** Public contact: **nick@ultiwrite.co**.
+Product / DBA: **Ultiwrite**. Legal publisher: **DWS Offshore Fund**. Public contact: **nick@ultiwrite.co**.
 
 Headline: **Ordinary evidence. A much wider investigation.**
 

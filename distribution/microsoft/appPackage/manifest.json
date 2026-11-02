@@ -1,10 +1,10 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/teams/v1.28/MicrosoftTeams.schema.json",
   "manifestVersion": "1.28",
-  "version": "0.9.4",
+  "version": "0.9.5",
   "id": "${{M365_APP_ID}}",
   "developer": {
-    "name": "DWS Offshore Fund, Inc.",
+    "name": "DWS Offshore Fund",
     "websiteUrl": "https://dwsoffshorepartners.com/contact",
     "privacyUrl": "https://dwsoffshorepartners.com/privacy",
     "termsOfUseUrl": "https://dwsoffshorepartners.com/terms"

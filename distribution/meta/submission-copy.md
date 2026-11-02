@@ -6,7 +6,7 @@ These are prepared answers for the signed-in submission form; field names and ch
 
 **Name:** Ultiwrite
 
-**Publisher:** DWS Offshore Fund, Inc.
+**Publisher:** DWS Offshore Fund
 
 **Website:** https://dwsoffshorepartners.com
 

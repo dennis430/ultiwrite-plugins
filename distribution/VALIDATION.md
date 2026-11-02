@@ -56,3 +56,9 @@ The dependency scan flagged the Microsoft helper's initial Pillow pin. Pillow wa
 | AWS | Seller enrollment, selected commercial model, buyer fulfillment/entitlement/billing integration or Marketplace review |
 
 AWS account signup alone does not finish its service integration. Salesforce's authenticated host compatibility must be established before calling its metadata project installable. Google requires a small channel-specific service rollout after console-issued values are known.
+
+## Legal identity correction — November 2, 2026
+
+Kit 1.0.1 records the confirmed legal entity as **DWS Offshore Fund** and the separate DBA as **Ultiwrite**. All 13 incorrect publisher references were corrected. Microsoft source is now 0.9.5; its three-schema template validation was regenerated. Cursor remains 0.9.4. The shared profile and generated handoff inventory keep legal entity and DBA in separate fields.
+
+Local public-source and seven-channel validation, current-archive checking, and all five packaging regressions passed. Every pre-existing release ZIP and excluded ChatGPT/Claude/Grok source file remains byte-identical to the prior PR head. The rebuilt handoff is checked against source bytes and its SHA-256 inventory. These checks do not assert a hosted CI pass or a provisioned Microsoft upload package.

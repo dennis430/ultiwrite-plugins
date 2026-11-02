@@ -4,7 +4,7 @@
 
 **Name:** Ultiwrite
 
-**Publisher:** DWS Offshore Fund, Inc.
+**Publisher:** DWS Offshore Fund
 
 **Short description:** Asymmetric diligence and investigative intelligence for commercial decisions.
 
