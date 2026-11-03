@@ -4,7 +4,7 @@
   "version": "0.9.4",
   "publisher": "DWS Offshore Fund",
   "source_repository": "dennis430/merchant-risk-app",
-  "source_base_commit": "cacb81d50989cd246ab38e26a1d4f61b3d0eca18",
+  "source_base_commit": "e5bd0909f1ba16aaef65d506000ce190f7e7576b",
   "public_source_base_commit": "d4d3a8594d452a4adc987589dd844ebf4792f08a",
   "package_status": "PREPARED",
   "host_evaluation_status": "NOT_RUN",
@@ -481,7 +481,7 @@
     },
     {
       "path": "release/PLUGIN_0.9.4_VERIFICATION.json",
-      "sha256": "7a78bbf19f63626639d26da65c577965fce0abfe91240c2b8b495dacd5aa7c6e"
+      "sha256": "83796f2173e07a8a0bb536fab523930b2ad767de7822230bfe59828b494be5d7"
     },
     {
       "path": "release/PLUGIN_CONTROLS_0.8.0_VERIFICATION.json",

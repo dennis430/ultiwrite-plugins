@@ -3,7 +3,7 @@
   "package": "Ultiwrite ChatGPT/Codex",
   "version": "0.9.4",
   "source_repository": "dennis430/merchant-risk-app",
-  "source_base_commit": "cacb81d50989cd246ab38e26a1d4f61b3d0eca18",
+  "source_base_commit": "e5bd0909f1ba16aaef65d506000ce190f7e7576b",
   "public_source_base_commit": "d4d3a8594d452a4adc987589dd844ebf4792f08a",
   "candidate_status": "PREPARED; merge, deployment, directory submission and installed-host acceptance are not claimed",
   "checks": {
