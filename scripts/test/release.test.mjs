@@ -29,9 +29,9 @@ before(async () => {
   // Fresh canonical exports have no historical ZIPs. Seed one inside the test
   // fixture so preservation is still exercised before a public-repo merge.
   await pack()
-  await cp(join(fixture, 'release/ultiwrite-chatgpt-plugin-0.9.3.zip'), join(fixture, 'release/ultiwrite-chatgpt-plugin-0.0.0.zip'))
+  await cp(join(fixture, 'release/ultiwrite-chatgpt-plugin-0.9.4.zip'), join(fixture, 'release/ultiwrite-chatgpt-plugin-0.0.0.zip'))
   frozen = new Map(await Promise.all((await readdir(join(fixture, 'release')))
-    .filter(name => name.endsWith('.zip') && !name.includes('0.9.3'))
+    .filter(name => name.endsWith('.zip') && !name.includes('0.9.4'))
     .map(async name => [name, await digest(join(fixture, 'release', name))])))
 })
 after(async () => { if (scratch) await rm(scratch, { recursive: true, force: true }) })
@@ -39,7 +39,7 @@ after(async () => { if (scratch) await rm(scratch, { recursive: true, force: tru
 test('combined release preserves ChatGPT identity, prompts, artwork and all three versions', async () => {
   const plugin = await readJson(join(root, 'chatgpt/plugin.json'))
   assert.equal(plugin.name, 'ultiwrite')
-  assert.equal(plugin.version, '0.9.3')
+  assert.equal(plugin.version, '0.9.4')
   const openai = plugin.extensions['com.openai']
   assert.equal(openai.interface.category, 'Business & Operations')
   assert.ok(openai.interface.shortDescription.length <= 30)
@@ -60,7 +60,7 @@ test('combined release preserves ChatGPT identity, prompts, artwork and all thre
   }
 })
 
-test('packing ignores generated files, retains extension metadata and preserves historical archives', async () => {
+test('packing records exact source, refuses stale metadata claims and preserves historical archives', async () => {
   for (const name of ['node_modules', 'dist', 'coverage', '.cache']) {
     await mkdir(join(fixture, name), { recursive: true })
     await writeFile(join(fixture, name, 'generated.txt'), 'not release source')
@@ -75,10 +75,10 @@ test('packing ignores generated files, retains extension metadata and preserves 
   const result = await pack()
   assert.match(result.stdout, /packed 3 current archives/)
   const rebuilt = await readJson(manifestPath)
-  assert.deepEqual(rebuilt.future_release_metadata, { retained: true })
-  assert.deepEqual(rebuilt.packages.cli, manifest.packages.cli)
-  assert.equal(rebuilt.packages.chatgpt.extra_provenance, 'retained')
-  assert.equal(rebuilt.packages.chatgpt.version, '0.9.3')
+  assert.equal(rebuilt.future_release_metadata, undefined)
+  assert.equal(rebuilt.packages.cli, undefined)
+  assert.equal(rebuilt.packages.chatgpt.extra_provenance, undefined)
+  assert.equal(rebuilt.packages.chatgpt.version, '0.9.4')
   assert.ok(!rebuilt.files.some(item => /^(node_modules|dist|coverage|\.cache)\//.test(item.path) || item.path.endsWith('.tgz')))
   assert.ok(frozen.size >= 1, 'historical archive preservation must be exercised')
   for (const [name, hash] of frozen) assert.equal(await digest(join(fixture, 'release', name)), hash, name)
@@ -96,11 +96,11 @@ test('source/archive verification rejects a changed workflow', async () => {
 
 test('a private configuration file is rejected before the archive changes', async () => {
   const path = join(fixture, '.env.local')
-  const archive = join(fixture, 'release/ultiwrite-chatgpt-plugin-0.9.3.zip')
+  const archive = join(fixture, 'release/ultiwrite-chatgpt-plugin-0.9.4.zip')
   const beforeHash = await digest(archive)
   try {
     await writeFile(path, 'PRIVATE_FIXTURE=true\n')
-    await assert.rejects(pack(), error => /forbidden release path/.test(error.stderr))
+    await assert.rejects(pack(), error => /forbidden.*path|Refusing a private package path/.test(error.stderr))
     assert.equal(await digest(archive), beforeHash)
   } finally { await rm(path, { force: true }) }
 })
@@ -111,6 +111,6 @@ test('a source symlink cannot escape the release tree', { skip: process.platform
   try {
     await writeFile(outside, 'fixture outside the source tree')
     await symlink(outside, link)
-    await assert.rejects(pack(), error => /must be a regular file or directory/.test(error.stderr))
+    await assert.rejects(pack(), error => /nonregular release path|nonregular package source|must be a regular file or directory/.test(error.stderr))
   } finally { await rm(link, { force: true }) }
 })

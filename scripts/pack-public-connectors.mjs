@@ -4,12 +4,14 @@
 // Does not publish, deploy, or submit a directory listing.
 import { createHash } from 'node:crypto'
 import { deflateRawSync, inflateRawSync } from 'node:zlib'
-import { existsSync, mkdirSync, readFileSync, readdirSync, lstatSync, writeFileSync } from 'node:fs'
+import { existsSync, lstatSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from 'node:fs'
 import { join, relative, sep } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { spawnSync } from 'node:child_process'
 
 const root = fileURLToPath(new URL('..', import.meta.url))
 const outDir = join(root, 'release')
+if (process.argv.slice(2).some(arg => arg !== '--check') || process.argv.slice(2).length > 1) throw new Error('Only --check is supported; this packer never publishes or submits')
 const checkOnly = process.argv.includes('--check')
 const VERSION = JSON.parse(readFileSync(join(root, 'chatgpt/plugin.json'), 'utf8')).version
 const CURSOR_VERSION = JSON.parse(readFileSync(join(root, 'cursor/.cursor-plugin/plugin.json'), 'utf8')).version
@@ -156,6 +158,9 @@ function assertTools(text, where) {
   if (missing.length) throw new Error(`${where} is missing tools: ${missing.join(', ')}`)
 }
 
+const validated = spawnSync(process.execPath, [join(root, 'scripts/validate-public-plugins.mjs'), root], { encoding: 'utf8' })
+if (validated.status !== 0) throw new Error(validated.stderr || validated.stdout || 'Public package validation failed')
+
 const skillText = ['chatgpt/skills/ultiwrite-read/SKILL.md', 'claude/skills/ultiwrite/SKILL.md', 'cursor/skills/ultiwrite/SKILL.md', 'grokbot/TOOLS.md']
   .map(path => readFileSync(join(root, path), 'utf8')).join('\n')
 assertTools(skillText, 'connector skills and Grok tool dossier')
@@ -165,7 +170,6 @@ const server = chatgptMcp.mcpServers.ultiwrite
 if (server.url !== CHATGPT_MCP_URL || server.type !== 'streamable-http') throw new Error('ChatGPT MCP URL drifted')
 if (JSON.stringify(Object.keys(server).sort()) !== JSON.stringify(['type', 'url'])) throw new Error('ChatGPT portable server must retain parser-safe transport and URL only; OAuth uses service discovery')
 
-// Validate the whole public tree before writing any archive or inventory.
 walk(root)
 if (!checkOnly) mkdirSync(outDir, { recursive: true })
 const inventory = []
@@ -275,23 +279,28 @@ writeArtifact(readmePath, readme.replace(downloadsPattern, `<!-- CURRENT_DOWNLOA
 const manifestPath = join(root, 'RELEASE_MANIFEST.json')
 const priorManifest = existsSync(manifestPath) ? JSON.parse(readFileSync(manifestPath, 'utf8')) : {}
 const releaseManifest = {
-  ...priorManifest,
   product: 'Ultiwrite',
-  distribution: priorManifest.distribution || 'plugin-only',
+  distribution: 'plugin-only',
   version: VERSION,
   publisher: 'DWS Offshore Fund',
   source_repository: 'dennis430/merchant-risk-app',
   source_base_commit: process.env.ULTIWRITE_SOURCE_SHA || priorManifest.source_base_commit || priorManifest.source_commit || null,
   public_source_base_commit: priorManifest.public_source_base_commit || null,
+  package_status: 'PREPARED',
+  host_evaluation_status: 'NOT_RUN',
+  directory_publication_status: 'NOT_VERIFIED_BY_THIS_EXPORT',
+  mcp_urls: Object.fromEntries([
+    ['chatgpt', 'chatgpt/mcp.json'], ['claude', 'claude/.mcp.json'],
+    ['cursor', 'cursor/mcp.json'], ['grokbot', 'grokbot/mcp.json'],
+  ].map(([host, file]) => [host, JSON.parse(readFileSync(join(root, file), 'utf8')).mcpServers.ultiwrite.url])),
   mcp_url: CHATGPT_MCP_URL,
   compatibility_mcp_url: COMPATIBILITY_MCP_URL,
   packages: {
-    ...priorManifest.packages,
-    chatgpt: { ...priorManifest.packages?.chatgpt, version: VERSION, zip: `release/ultiwrite-chatgpt-plugin-${VERSION}.zip`, mcp_url: CHATGPT_MCP_URL },
-    cursor: { ...priorManifest.packages?.cursor, version: CURSOR_VERSION, zip: `release/ultiwrite-cursor-plugin-${CURSOR_VERSION}.zip` },
-    claude: { ...priorManifest.packages?.claude, version: CLAUDE_VERSION, zip: `release/${CLAUDE_ZIP}`, mcp_url: CLAUDE_MCP_URL },
-    grokbot: { ...priorManifest.packages?.grokbot, version: JSON.parse(readFileSync(join(root, 'grokbot/FIELDS.json'), 'utf8')).version, status: 'submission dossier; host test not run' },
-    client: { ...priorManifest.packages?.client, version: JSON.parse(readFileSync(join(root, 'client/package.json'), 'utf8')).version, status: 'unchanged; npm publication not claimed' },
+    chatgpt: { version: VERSION, zip: `release/ultiwrite-chatgpt-plugin-${VERSION}.zip`, mcp_url: CHATGPT_MCP_URL },
+    cursor: { version: CURSOR_VERSION, zip: `release/ultiwrite-cursor-plugin-${CURSOR_VERSION}.zip` },
+    claude: { version: CLAUDE_VERSION, zip: `release/${CLAUDE_ZIP}`, mcp_url: CLAUDE_MCP_URL },
+    grokbot: { version: JSON.parse(readFileSync(join(root, 'grokbot/FIELDS.json'), 'utf8')).version, status: 'submission dossier; host test not run' },
+    client: { version: JSON.parse(readFileSync(join(root, 'client/package.json'), 'utf8')).version, status: 'unchanged; npm publication not claimed' },
   },
   note: 'SHA-256 of every file except this manifest. Historical archives are preserved. Built source does not establish directory upload, review, installed-host acceptance or server deployment.',
   files: walk(root).filter(path => path !== 'RELEASE_MANIFEST.json').sort().map(path => ({ path, sha256: createHash('sha256').update(readFileSync(join(root, path))).digest('hex') })),
@@ -302,13 +311,12 @@ process.stdout.write(`${checkOnly ? 'checked' : 'packed'} ${PACKAGES.length + 1}
 function walk(dir, out = []) {
   for (const name of readdirSync(dir)) {
     if (['.git', 'node_modules', 'dist', 'coverage', '.cache', '__MACOSX', '.DS_Store', 'Thumbs.db'].includes(name) || name.endsWith('.tgz')) continue
+    if (name.startsWith('.env') || ['.npmrc', '.netrc', '.ssh', '.aws', '.codex'].includes(name) || /\.(pem|key|p12)$/i.test(name)) throw new Error('Refusing a private package path')
     const path = join(dir, name)
-    const rel = relative(root, path).split(sep).join('/')
-    if (name.startsWith('.env') || ['.npmrc', '.netrc', '.ssh', '.aws', '.codex'].includes(name) || /\.(pem|key|p12)$/i.test(name)) throw new Error(`forbidden release path ${rel}`)
-    const entry = lstatSync(path)
-    if (entry.isSymbolicLink() || (!entry.isDirectory() && !entry.isFile())) throw new Error(`release path must be a regular file or directory: ${rel}`)
-    if (entry.isDirectory()) walk(path, out)
-    else out.push(rel)
+    const stat = lstatSync(path)
+    if (stat.isSymbolicLink() || !stat.isFile() && !stat.isDirectory()) throw new Error('Refusing a nonregular package source')
+    if (stat.isDirectory()) walk(path, out)
+    else out.push(relative(root, path).split(sep).join('/'))
   }
   return out
 }

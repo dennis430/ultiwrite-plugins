@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "ultiwrite",
-  "version": "0.9.3",
+  "version": "0.9.4",
   "description": "Asymmetric diligence across commercial domains. Investigate business claims, financial consistency, identities, document integrity and external context; retrieve reconciled findings and evidence from Ultiwrite.",
   "author": {
     "name": "DWS Offshore Fund",
@@ -73,13 +73,13 @@
               "description": "Track the new submission",
               "prompt": "What is the status of the Ultiwrite case you just stored?",
               "tools_triggered": "ultiwrite_case_status",
-              "expected_behavior": "Returns the saved case workflow status (processing, action_required, complete or failed) and the report reference when available. Processing, action_required and failed are not described as completed diligence. conclusion is null."
+              "expected_behavior": "Reads status only; never calls evidence submission, renews authority or reserves allowance. Distinguishes processing.state queued, active, retry, paused_awaiting_continuation, needs_action, failed and complete. processing.automatic establishes saved continuation, not current execution. A paused legacy case receives the specific original-owner resume action. Zero recorded durable slices does not establish no historical analysis. conclusion is null."
             },
             {
               "description": "Read the generated coherence record",
               "prompt": "For the Ultiwrite case I just submitted, separate the contradictions, unresolved claims, and evidence still required.",
               "tools_triggered": "ultiwrite_case_status, ultiwrite_coherence_get",
-              "expected_behavior": "Once the workflow is complete, returns the frozen Decision Brief for that report with matching version, digest and explicit completeness, preserving saved observations, synthesis, hypotheses, requested evidence and coverage. Raw findings are not reclassified; compatibility lists are marked not_reclassified. thisReadEndorsesDecision is false. If still processing, says so and does not invent findings. Uses exactly one non-null caseId or reportId; the other selector and unused required nullable fields are null."
+              "expected_behavior": "Once the workflow is complete, returns the frozen Decision Brief for that report with matching version, digest and explicit completeness, preserving saved observations, synthesis, hypotheses, requested evidence and coverage. Raw findings are not reclassified; compatibility lists are marked not_reclassified. thisReadEndorsesDecision is false. If still processing, says so and does not invent findings. Uses exactly one non-null caseId or reportId; the other selector and unused required nullable fields are null. For a paused case, explain that no processing is scheduled and provide the specific resume action without executing it or inventing findings. A request for contradictions is read-only."
             },
             {
               "description": "Saved report and export routes",
@@ -110,10 +110,10 @@
           ]
         },
         "commerce": false,
-        "commerce_description": "Investigations may use purchased account allowance and optional Document Forensics entitlement under the website’s current terms. This connection returns service-provided terms and account links; it does not process payments, start subscriptions, grant entitlements or authorize automatic charges."
+        "commerce_description": "Investigations may use purchased account allowance and optional Document Forensics entitlement under the website\u2019s current terms. This connection returns service-provided terms and account links; it does not process payments, start subscriptions, grant entitlements or authorize automatic charges."
       },
       "publication": {
-        "release_notes": "0.9.3: use the supplied canonical black-background gold Uw PNG for plugin and per-skill icons, including ChatGPT light/dark logo and composer assets. Preserve all 0.9.1 workflows, identities, prompts, permissions, OAuth endpoints and existing host/user controls. Source and archive updates do not establish installed-host refresh or directory approval."
+        "release_notes": "0.9.4: clarifies read-only status, original-owner saved-case recovery with exact returned continuation arguments, truthful queued/active/retry/action states, and retrieval of the same saved report. Preserves existing account, evidence-consent, entitlement and transport boundaries."
       }
     }
   }

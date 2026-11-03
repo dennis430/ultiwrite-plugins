@@ -8,7 +8,7 @@ This repository distributes thin public connectors and workflow instructions mai
 
 | Directory | Version | Contents |
 | --- | --- | --- |
-| `chatgpt/` | 0.9.3 | Portable ChatGPT/Codex plugin; OAuth, account-first onboarding and five skills |
+| `chatgpt/` | 0.9.4 | Portable ChatGPT/Codex plugin; OAuth, account-first onboarding and five skills |
 | `claude/` | 0.9.3 | Claude plugin; OAuth, connection recovery and five skills; enabled by default on a new installation |
 | `cursor/` | 0.9.3 | Cursor plugin; remote MCP, complete skill-directory discovery and five skills |
 | `grokbot/` | 0.8.0 | Grok Bot submission dossier with shared account and permission contracts |
@@ -33,10 +33,12 @@ The five workflows explain capabilities, connect/select accounts, submit evidenc
 
 Version 0.9.3 updates the plugin and per-skill icons to the exact supplied black-background gold Uw image while retaining the five 0.9.1 workflows. Its [build verification](release/PLUGIN_0.9.3_VERIFICATION.json) records archive parity and historical preservation. The production website remains on its previous deployment until the next authorized Vercel deployment; this package release does not trigger one. The prior 0.9.1 release remains recorded in [its live receipt](release/PLUGIN_0.9.1_LIVE_RECEIPT.json). Directory approval and installed-host refresh remain separate verification steps.
 
+ChatGPT 0.9.4 is a prepared saved-investigation recovery candidate. Status and report reads remain read-only. An explicit resume resolves the existing case and uses only its current returned continuation. Queued, active, retrying, paused and action-required states stay distinct. Claude and Cursor remain 0.9.3. This candidate has not been merged, deployed, submitted to a directory or accepted in an installed ChatGPT host.
+
 <!-- CURRENT_DOWNLOADS_START -->
 | Archive | SHA-256 |
 | --- | --- |
-| [`ultiwrite-chatgpt-plugin-0.9.3.zip`](https://github.com/dennis430/ultiwrite-plugins/raw/main/release/ultiwrite-chatgpt-plugin-0.9.3.zip) | `1ed9d74e928e5d075db86e6635ea13bb530776e2c96d2ac9682c389b96169abe` |
+| [`ultiwrite-chatgpt-plugin-0.9.4.zip`](https://github.com/dennis430/ultiwrite-plugins/raw/main/release/ultiwrite-chatgpt-plugin-0.9.4.zip) | `855cf612a34b55d46e5c757b80309bb21d4b7aac05b995a2d045ecb422cc3f61` |
 | [`ultiwrite-cursor-plugin-0.9.3.zip`](https://github.com/dennis430/ultiwrite-plugins/raw/main/release/ultiwrite-cursor-plugin-0.9.3.zip) | `6d8977daea01083dd3fb98cdec3826e29699274195d6e1dc16b6808447b4635e` |
 | [`Ultiwrite_Claude_Plugin_v0.9.3.zip`](https://github.com/dennis430/ultiwrite-plugins/raw/main/release/Ultiwrite_Claude_Plugin_v0.9.3.zip) | `f00050a4d629eec6705f79da1f6e6b0b5aca7c73d5952463c36a25b7a5d77261` |
 <!-- CURRENT_DOWNLOADS_END -->
