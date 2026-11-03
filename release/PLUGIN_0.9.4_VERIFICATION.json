@@ -3,7 +3,7 @@
   "package": "Ultiwrite ChatGPT/Codex",
   "version": "0.9.4",
   "source_repository": "dennis430/merchant-risk-app",
-  "source_base_commit": "bbb4502733a942740da8996da535b98ca7a12e39",
+  "source_base_commit": "cacb81d50989cd246ab38e26a1d4f61b3d0eca18",
   "public_source_base_commit": "d4d3a8594d452a4adc987589dd844ebf4792f08a",
   "candidate_status": "PREPARED; merge, deployment, directory submission and installed-host acceptance are not claimed",
   "checks": {
@@ -46,5 +46,6 @@
     "Ultiwrite_Claude_Plugin_v0.9.3.zip": "f00050a4d629eec6705f79da1f6e6b0b5aca7c73d5952463c36a25b7a5d77261",
     "ultiwrite-cursor-plugin-0.8.0.zip": "eb3403b7e52e5301a112864fb8cd50351e012cf63ff1c5af124fbbae5a5c0129"
   },
-  "runtime": "Node 22.23.4"
+  "runtime": "Node 22.23.4",
+  "primary_pull_request": "https://github.com/dennis430/merchant-risk-app/pull/789"
 }
