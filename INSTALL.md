@@ -4,7 +4,7 @@ Use the package for the target host. All hosts connect to the same Ultiwrite ser
 
 | Host | Source/package | Connection recovery |
 | --- | --- | --- |
-| ChatGPT/Codex | `chatgpt/`, `release/ultiwrite-chatgpt-plugin-0.9.3.zip` | Plugin settings > Ultiwrite > Connect/Reconnect; Connect another account where offered |
+| ChatGPT/Codex | `chatgpt/`, `release/ultiwrite-chatgpt-plugin-0.9.4.zip` | Plugin settings > Ultiwrite > Connect/Reconnect; Connect another account where offered |
 | Claude | `claude/`, `release/Ultiwrite_Claude_Plugin_v0.9.3.zip` | Plugins > Ultiwrite > Connectors > Connect; Claude Code `/mcp` > Authenticate |
 | Cursor | `cursor/`, `release/ultiwrite-cursor-plugin-0.9.3.zip` | Existing Ultiwrite MCP server's authentication control |
 | Grok Bot | `grokbot/` submission dossier | Host's supported MCP account controls |
