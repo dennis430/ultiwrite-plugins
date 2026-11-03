@@ -1,10 +1,10 @@
 interface:
+  icon_small: "../../assets/logo.png"
+  icon_large: "../../assets/logo.png"
   display_name: "Investigate evidence"
   short_description: "Submit authorized files and follow the investigation."
   default_prompt: "Use $submit-evidence to investigate these files with Ultiwrite."
   brand_color: "#d39891"
-  icon_small: "../../assets/logo.png"
-  icon_large: "../../assets/logo.png"
 
 policy:
   allow_implicit_invocation: true

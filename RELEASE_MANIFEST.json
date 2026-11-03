@@ -1,17 +1,26 @@
 {
   "product": "Ultiwrite",
   "distribution": "plugin-only",
-  "version": "0.9.3",
+  "version": "0.9.4",
   "publisher": "DWS Offshore Fund",
   "source_repository": "dennis430/merchant-risk-app",
-  "source_base_commit": "71bf158a4c0e6233fb495c3cfe7504ee40844356",
-  "public_source_base_commit": "4ba87f09c3a7607f8af54a9777af3e6df68b761a",
+  "source_base_commit": "bbb4502733a942740da8996da535b98ca7a12e39",
+  "public_source_base_commit": "d4d3a8594d452a4adc987589dd844ebf4792f08a",
+  "package_status": "PREPARED",
+  "host_evaluation_status": "NOT_RUN",
+  "directory_publication_status": "NOT_VERIFIED_BY_THIS_EXPORT",
+  "mcp_urls": {
+    "chatgpt": "https://mcp.dwsoffshorepartners.com/mcp",
+    "claude": "https://mcp.dwsoffshorepartners.com/mcp",
+    "cursor": "https://mcp.dwsoffshorepartners.com/mcp",
+    "grokbot": "https://mcp.dwsoffshorepartners.com/mcp"
+  },
   "mcp_url": "https://mcp.dwsoffshorepartners.com/mcp",
   "compatibility_mcp_url": "https://dwsoffshorepartners.com/api/integrations/ultiwrite/mcp",
   "packages": {
     "chatgpt": {
-      "version": "0.9.3",
-      "zip": "release/ultiwrite-chatgpt-plugin-0.9.3.zip",
+      "version": "0.9.4",
+      "zip": "release/ultiwrite-chatgpt-plugin-0.9.4.zip",
       "mcp_url": "https://mcp.dwsoffshorepartners.com/mcp"
     },
     "cursor": {
@@ -51,6 +60,10 @@
       "sha256": "5f70ee8df0ba474922bf182b542b64c5ec1d67f1c90085cbb97b786cb8f3c775"
     },
     {
+      "path": ".mintignore",
+      "sha256": "31877bbb11b446360b60a170dc42920cc7b9f50a85a53c4c6084ae7baef9e49c"
+    },
+    {
       "path": "AGENTS.md",
       "sha256": "9ac7a22e1915e550f152fa489197b6959ed93b30ef9a3427ee39c54e437b9012"
     },
@@ -72,7 +85,83 @@
     },
     {
       "path": "README.md",
-      "sha256": "c94f2f4783a65f268cf0c1fd499c16fd73fef485529370e820d9860ddb874c9d"
+      "sha256": "37834abe7718cf83d69d20216baaa74f91d0c4040f6aec2c5ca7c1c5dd2fbed3"
+    },
+    {
+      "path": "api-contract.mdx",
+      "sha256": "938d89691d16389a527bc06b547bd16bc052b67345f39df38bb8c960fecc2de4"
+    },
+    {
+      "path": "api-keys.mdx",
+      "sha256": "a9fe304037382c8ba71202bb5a49dfaf70a3c323fec0b559822a6a45ba9632ae"
+    },
+    {
+      "path": "api-reference/account.mdx",
+      "sha256": "c765d98ba907cb6c0c9d306296a9a3ba949f3e7cfba8bbe46d96d3b291905721"
+    },
+    {
+      "path": "api-reference/capabilities.mdx",
+      "sha256": "551a42a6f7b12a88737b52cd60957c67699026a52511a6dbeb601f3aa1a77e4d"
+    },
+    {
+      "path": "api-reference/case-brief.mdx",
+      "sha256": "acf8d3e1c6737bf8ec5a4e777426d7686c43baca3ee26a2146bce26349818d19"
+    },
+    {
+      "path": "api-reference/case-findings.mdx",
+      "sha256": "7053a34475512936f3cf201c1636f8ec20e3171bbee1016a0af97c0eab2b73d2"
+    },
+    {
+      "path": "api-reference/case-status.mdx",
+      "sha256": "4493056abdddd3d74ee93feb3a0f20479147515a5186028e2e3f74c4ed9d26f5"
+    },
+    {
+      "path": "api-reference/continue-case.mdx",
+      "sha256": "12ad418a64697ffe19414a2a28374316bcf0b02ce840e04c56a59c85b4dbf170"
+    },
+    {
+      "path": "api-reference/create-webhook.mdx",
+      "sha256": "57b8de2bc22e44ffc4c3b7b247d30483a5a101317665c32f81dceffbea6aac7a"
+    },
+    {
+      "path": "api-reference/list-cases.mdx",
+      "sha256": "3f3e87a6a14e3493023efe1218bb9494a396ba35e5b8e7650b31276f383bdce7"
+    },
+    {
+      "path": "api-reference/list-webhooks.mdx",
+      "sha256": "b110739859c0da61dd03bb442fec03b1ff7e47ee4d2a2e4176cef3822006cb2f"
+    },
+    {
+      "path": "api-reference/report-brief.mdx",
+      "sha256": "1345ab0ba06f443980739b3505fd148f44dd3238bbcd7564c498ee8d7bf6ae47"
+    },
+    {
+      "path": "api-reference/report-delivery.mdx",
+      "sha256": "1d6f3d02911d65f8f55fd25035a38168af77e10453e0e0a5ef5964e6641ed8b9"
+    },
+    {
+      "path": "api-reference/report-findings.mdx",
+      "sha256": "eacfa21e522ee3a333b06926b87a8854f311b5f1d362c81f7c4d001f447a00a1"
+    },
+    {
+      "path": "api-reference/revoke-webhook.mdx",
+      "sha256": "0b7ef3178a2ee87fac559d68b40b3089764951f629611d101b62b26ad668813b"
+    },
+    {
+      "path": "api-reference/submit-evidence.mdx",
+      "sha256": "1ad8f4cefc4817c19df478945e4837f24d87f459b8aaf79ace73010c854a8677"
+    },
+    {
+      "path": "api-reference/upload-link.mdx",
+      "sha256": "a250cea9905e225a8aea493abf2dd8d413f9ae8d1559f58b168ad2bc167726c8"
+    },
+    {
+      "path": "api-reference/usage.mdx",
+      "sha256": "09541148c0731ebf16215305a40ed82a6eda8eda2df32443160f7053da8a401d"
+    },
+    {
+      "path": "api-reference/webhook-deliveries.mdx",
+      "sha256": "7176a3f25fe924583044c760c0a88bfdd74f324bed269a647b7f27dcafc4d8a9"
     },
     {
       "path": "chatgpt/LICENSE",
@@ -80,7 +169,7 @@
     },
     {
       "path": "chatgpt/README.md",
-      "sha256": "297654c4986b42a8d1a386e49ee32b058a4fd4716f50fb6e12c6fde8e3752fd1"
+      "sha256": "d97a35c10befaaaa6472b8189a30755ca7db95e2016ccaac3141081363fb94ac"
     },
     {
       "path": "chatgpt/assets/logo.png",
@@ -92,7 +181,7 @@
     },
     {
       "path": "chatgpt/plugin.json",
-      "sha256": "809c1e4e33e9ce1b2d41cee4c21616e4e3b990906297b268881e56a534b15abf"
+      "sha256": "7effad248a5fe28a2edcecbdd536573530812f688b5f6fa0bc4ae867711fdda9"
     },
     {
       "path": "chatgpt/skills/connect-account/SKILL.md",
@@ -100,7 +189,7 @@
     },
     {
       "path": "chatgpt/skills/connect-account/agents/openai.yaml",
-      "sha256": "df34937d382ae79595b248a1ee3ea8fab7a96cc7d9a2ab525866a832cb4aa52a"
+      "sha256": "bcd474af0d5f88eda50caee37aaebdc73c2b1d8ba85e8a1f05b32aae28e8c708"
     },
     {
       "path": "chatgpt/skills/follow-up/SKILL.md",
@@ -108,31 +197,31 @@
     },
     {
       "path": "chatgpt/skills/follow-up/agents/openai.yaml",
-      "sha256": "c213986c9fa6504e37f598c92a39c38aa5b01630f7915995b172ee9e9f828329"
+      "sha256": "0c2bb0d628bb2593bb081d1d92c0d30fdb19653be4d3186a1b58f573555c4db6"
     },
     {
       "path": "chatgpt/skills/read-report/SKILL.md",
-      "sha256": "14f98f6e1ad419692acba2571c21577fcedcb7bdc63492f357b32b0d1b8eba01"
+      "sha256": "4af603a22c827aed546a011e391bb790594d1b5d858be768d2bf75df20c87e07"
     },
     {
       "path": "chatgpt/skills/read-report/agents/openai.yaml",
-      "sha256": "71c2e24c037ddb3a7d55712cf65479654cd8795cc6235a760afa97d91f22ef18"
+      "sha256": "9519eb5384df6699d7332e02c74857134bb54bb651d5ae70cbbc84322feca3a0"
     },
     {
       "path": "chatgpt/skills/submit-evidence/SKILL.md",
-      "sha256": "274d0e0031fc96e090daf0cea41489be473f42bb8531a74e1b2075fa884bf987"
+      "sha256": "9d6e6d708e85aeb45c686a00fe4a51b6a9a44183d905b1b859c98f13199b605e"
     },
     {
       "path": "chatgpt/skills/submit-evidence/agents/openai.yaml",
-      "sha256": "cb6fa12dfd157a240f76b8c33fd27cb3a7d832484d05caf71852f760b25ae3f6"
+      "sha256": "5b280fbc50840e499eca0d5f8ec84b9979c5bfba9e67f0e25858b598e6eae3ad"
     },
     {
       "path": "chatgpt/skills/ultiwrite-read/SKILL.md",
-      "sha256": "376ac85b970915a2748f28a6f1b1b3809131b5a28012e683744d2a69d7e7a669"
+      "sha256": "0e7a1f91f421d98f57d7d92b3136cc89978e845128f70c843481731084218eb7"
     },
     {
       "path": "chatgpt/skills/ultiwrite-read/agents/openai.yaml",
-      "sha256": "0e3cc169f3c454d373fad56287579cb820dc820843f4f19f9aebd56e14d13138"
+      "sha256": "c91401a5f952b021534baff62e64274822941abbf6d379c130a9e5634235895c"
     },
     {
       "path": "claude/.claude-plugin/plugin.json",
@@ -283,12 +372,16 @@
       "sha256": "6df156fae5e567c58a69ed02be600f61370b9c41445b748388edd13628e75840"
     },
     {
+      "path": "docs.json",
+      "sha256": "eaec0bfe40d641954a20ed3421513b1b01883a9c8cc8a06d2190ee2c087051d2"
+    },
+    {
       "path": "evals/README.md",
-      "sha256": "602a44543f3795e523c53a60a27fb623b59185af52bc4f2d53adcc12b957a7fd"
+      "sha256": "91348e5bf618f49c3e7f58ab53200d0bc2b116ecad8c6735df001dccaa8461e3"
     },
     {
       "path": "evals/discovery-prompts.json",
-      "sha256": "4365514c30a5024ee7a7cfd7d61c89903a68f3e868734240db2f648215a22b77"
+      "sha256": "17fe65d56c1b5939305e1d3828de10cda6cca8fb27a5db820d7c6bfdd3fb4735"
     },
     {
       "path": "grokbot/FIELDS.json",
@@ -327,12 +420,52 @@
       "sha256": "b58605b1536159e225e0c338a99fbadfb5395067191a651882b3e46791003dd1"
     },
     {
+      "path": "index.mdx",
+      "sha256": "d587b5221e9702aad1926836155506aabd92d8d30261143ac1b00654e484156b"
+    },
+    {
+      "path": "partner-api/authentication.mdx",
+      "sha256": "0913cc69f10d6253af76b5ee470106af381b9dd4c76cfef963c0d3faa283e759"
+    },
+    {
+      "path": "partner-api/errors-and-retries.mdx",
+      "sha256": "929f9ae4b76b6e3330e2d2afb2460164e8756adf66cc1b0824bbd2b79139966e"
+    },
+    {
+      "path": "partner-api/integration-checklist.mdx",
+      "sha256": "3aee3f293c8f21eb544c9e4252d28ee9b37a30d047bf50454537891bb7dc52aa"
+    },
+    {
+      "path": "partner-api/overview.mdx",
+      "sha256": "5169f30eada87411456634b4f961445b69f7b15877bcacde87cb799883a633af"
+    },
+    {
+      "path": "partner-api/results.mdx",
+      "sha256": "1f0d5783ab66020ab0864620229536538873e481a311d5918d667aea1f714bae"
+    },
+    {
+      "path": "partner-api/uploads.mdx",
+      "sha256": "63c04ef8f4d09c44c62830ce6703abcf1f60c232a45c3309095df36668b0554e"
+    },
+    {
+      "path": "partner-api/usage.mdx",
+      "sha256": "954aff3fcd4b1349ecba491926b31ba2779f7857e5d23cbc9f208cf34a1c09eb"
+    },
+    {
+      "path": "partner-api/workflow.mdx",
+      "sha256": "8b1a37556233cfa8e3d6ecdf835a4a223e484766fefc6c5a585c9558ef9caeb4"
+    },
+    {
+      "path": "quickstart.mdx",
+      "sha256": "bac3abdbd48e2f54977c0981079baad16d9601c518cd648228e0c7f47396ad42"
+    },
+    {
       "path": "release/CLAUDE_0.8.3_AUTH_VERIFICATION.json",
       "sha256": "b9003ebb3bea1ecafe81e6ec5246a04ab2bd966da68d092674e5a2de07484c30"
     },
     {
       "path": "release/INVENTORY.json",
-      "sha256": "a99f54cfbd0f5c7b6058c7a42e0a65dbf68c22df30ecaf6f45dafee7c62392b6"
+      "sha256": "1482c62ad2f6879a4ce24f821c35cdf454f63ed7a2e39d45fce6b34dd2c225e9"
     },
     {
       "path": "release/PLUGIN_0.9.1_LIVE_RECEIPT.json",
@@ -347,12 +480,16 @@
       "sha256": "6d54bb4209fe0fe052254518cb008448a6119b4ca32d36dcd556374ff4a12d36"
     },
     {
+      "path": "release/PLUGIN_0.9.4_VERIFICATION.json",
+      "sha256": "a41c44de09bdcfaad37ca866fa92b460bb2267bfbcd6f308d77c09baee1b094f"
+    },
+    {
       "path": "release/PLUGIN_CONTROLS_0.8.0_VERIFICATION.json",
       "sha256": "2541f8217c8ad33bccae7fc9eccc2175193e2c5dbaab9acc4695cb82f98a2e40"
     },
     {
       "path": "release/SHA256SUMS.txt",
-      "sha256": "2fef818cbe6b168fa8c272dcf60fd6b28e61f895943a6664272e969217a3cbd3"
+      "sha256": "6be58b89003edb1424bbc826587fe142d5c808a2825183aac91b710a2757db98"
     },
     {
       "path": "release/Ultiwrite_Claude_Plugin_v0.8.0.zip",
@@ -403,6 +540,10 @@
       "sha256": "1ed9d74e928e5d075db86e6635ea13bb530776e2c96d2ac9682c389b96169abe"
     },
     {
+      "path": "release/ultiwrite-chatgpt-plugin-0.9.4.zip",
+      "sha256": "855cf612a34b55d46e5c757b80309bb21d4b7aac05b995a2d045ecb422cc3f61"
+    },
+    {
       "path": "release/ultiwrite-claude-plugin-0.7.1.zip",
       "sha256": "7b53857bcd7450b68a869b90d29c1112e89fcb3f707fd87ccadcacc73f906bfe"
     },
@@ -428,41 +569,19 @@
     },
     {
       "path": "scripts/pack-public-connectors.mjs",
-      "sha256": "08d90fe1cc1bb1f4c7d0cf19ed9628dd45c41a316cb9417114549803c2d0bded"
+      "sha256": "2f3fb51d689363befb1a6b4982e138d747273b21ea2101b0dc578b5b3f3e7fe9"
     },
     {
       "path": "scripts/test/release.test.mjs",
-      "sha256": "0834fe3157e48fab0f6ee929d498d07e478bea7363ecc01b6a244faa337726e1"
+      "sha256": "d16fdff42f5b3af4d67c7c6e06890343c045bbc0d61040143a3a367dcf65b357"
     },
     {
       "path": "scripts/validate-public-plugins.mjs",
-      "sha256": "067a438b0ae8bfa5f432c4d00c907cd020d204de2a22bfe06ed3871e801f7e80"
+      "sha256": "bce670f01108ba22a1f5963063daf87947322dba002a21fd17fa85e6a00b88a6"
     },
     {
       "path": "server.draft.json",
       "sha256": "661f6d5ad4678dc3b32c83d1fbe05bde9cce24c2f11afd89fa01fe9aabcc7dcf"
     }
-  ],
-  "source_components": {
-    "workflow_controls": {
-      "pull_request": 16,
-      "commit": "540a0a17aba6efce2d2ad207f0ad80aab013c9f7"
-    },
-    "commercial_discovery": {
-      "pull_request": 11,
-      "commit": "83541bc88833f8706e0b6b6bfaaa074f4010c8f0"
-    },
-    "integration": "0.9.1 combines current workflow contracts and commercial metadata; canonical private package sources are synchronized separately."
-  },
-  "canonical_icon": {
-    "sha256": "cc0a3c229347e47a154a00c9e6dfa774c0e1f07ee9fc063935af5bc4897f4b18",
-    "mime_type": "image/png",
-    "dimensions": [
-      512,
-      512
-    ],
-    "bytes": 21052,
-    "source": "user-supplied Desktop/ultiwrite-uw-icon-512.png",
-    "application_deployment": "next Vercel deployment; no deploy triggered by this update"
-  }
+  ]
 }

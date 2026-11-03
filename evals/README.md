@@ -1,6 +1,6 @@
 # Discovery and selection evaluation
 
-This suite tests whether ordinary customer requests are routed to an appropriate Ultiwrite workflow and whether unrelated or restricted requests leave it unused. It covers explicit product mentions, unbranded commercial investigations, account recovery, saved reports, status, permission boundaries and negative prompts.
+This suite tests whether ordinary customer requests are routed to an appropriate Ultiwrite workflow and whether unrelated or restricted requests leave it unused. It covers explicit product mentions, unbranded commercial investigations, account recovery, saved reports, status, explicit saved-case recovery, queued versus active execution, permission boundaries and negative prompts. The saved-case scenarios include paused contradictions requests, legacy unknown slice counts and expired-authority recovery.
 
 ## Current evidence
 

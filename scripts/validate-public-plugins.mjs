@@ -23,6 +23,10 @@ const secretNeedles = [
   'AK' + 'IA',
   'gh' + 'p_',
   'github' + '_pat_',
+  'sk-' + 'proj-',
+  'sk-' + 'ant-',
+  'Bearer ' + 'ey',
+  'upload?t=' + 'v1_',
   'postgres' + '://',
   'postgresql' + '://',
   'mongodb' + '://',
@@ -34,6 +38,8 @@ const allowedTop = new Set([
   '.cursor-plugin', '.claude-plugin', 'README.md', 'LICENSE', 'NOTICE',
   'INSTALL.md', 'server.draft.json', '.gitignore', 'RELEASE_MANIFEST.json',
   'release', 'AGENTS.md', 'POSITIONING.md', 'evals',
+  // The public distribution also hosts the existing customer API documentation.
+  '.mintignore', 'docs.json', 'index.mdx', 'quickstart.mdx', 'api-contract.mdx', 'api-keys.mdx', 'api-reference', 'partner-api',
 ])
 
 function walk(dir, out = []) {
@@ -88,12 +94,17 @@ const files = walk(root)
 if (!files.length) fail('empty tree')
 for (const rel of files) {
   const top = rel.split('/')[0]
+  if (['api-reference', 'partner-api'].includes(top) && !/^(?:api-reference|partner-api)\/[a-z-]+\.mdx$/.test(rel)) fail(`unexpected documentation path ${rel}`)
   if (!allowedTop.has(top)) fail(`unexpected top-level path ${rel}`)
   const lower = rel.toLowerCase()
   if (/(^|\/)(migrations|prisma|ios|app|lib)\//.test(lower) && !rel.startsWith('client/lib/')) {
     fail(`forbidden tree ${rel}`)
   }
   if (/\.(pem|key|p12|env)$/.test(lower)) fail(`forbidden file ${rel}`)
+  if (/^(chatgpt|claude|cursor)\//.test(rel)
+    && !/^(?:chatgpt|claude|cursor)\/(?:README\.md|LICENSE|mcp\.json|\.mcp\.json|\.(?:claude|cursor)-plugin\/plugin\.json|plugin\.json|assets\/logo\.png|skills\/[a-z0-9-]+\/(?:SKILL\.md|agents\/openai\.yaml))$/.test(rel)) {
+    fail(`unexpected package source ${rel}`)
+  }
   if (rel.endsWith('.png') || rel.endsWith('.zip')) continue
   const text = readFileSync(join(root, rel), 'utf8')
   for (const needle of secretNeedles) {
@@ -176,7 +187,7 @@ const openaiInterface = chatgptListing?.extensions?.['com.openai']?.interface
 if (chatgptListing?.name !== 'ultiwrite' || chatgptListing?.$schema !== 'https://agent-plugins.org/schemas/1.0.0/plugin.schema.json') fail('ChatGPT portable identity or schema')
 if (chatgptListing?.apps || chatgptListing?.extensions?.['com.openai']?.apps || files.includes('chatgpt/.app.json')) fail('public ChatGPT package must not include private app bindings')
 if (openaiInterface?.logoDark !== './assets/logo.png' || openaiInterface?.composerIconDark !== './assets/logo.png') fail('ChatGPT dark icons must use the canonical asset')
-if (openaiInterface?.displayName !== 'Ultiwrite' || openaiInterface?.logo !== './assets/logo.png' || openaiInterface?.composerIcon !== './assets/logo.png' || chatgptListing?.version !== '0.9.3') fail('ChatGPT directory branding')
+if (openaiInterface?.displayName !== 'Ultiwrite' || openaiInterface?.logo !== './assets/logo.png' || openaiInterface?.composerIcon !== './assets/logo.png' || chatgptListing?.version !== '0.9.4') fail('ChatGPT directory branding')
 pngSquareOpaque('claude/assets/logo.png')
 // Anthropic directory rules the CLI validator does not check (claude.com/docs/plugins/pre-submission-checklist).
 const claudeFiles = files.filter(rel => rel.startsWith('claude/'))
@@ -241,10 +252,10 @@ if (chatgptServer?.type !== 'streamable-http' || chatgptServer?.url !== CHATGPT_
 if (JSON.stringify(Object.keys(chatgptServer ?? {}).sort()) !== JSON.stringify(['type', 'url'])) fail('ChatGPT uses the portable parser-safe transport and URL only; OAuth is discovered from the service')
 if (openaiInterface?.category !== 'Business & Operations') fail('ChatGPT must preserve the canonical listing category')
 if (chatgptListing?.extensions?.['com.openai']?.review?.test_cases?.positive?.length !== 5 || chatgptListing?.extensions?.['com.openai']?.review?.test_cases?.negative?.length !== 3) fail('ChatGPT must preserve five positive and three negative review cases')
-const canonicalLogoSha = 'cc0a3c229347e47a154a00c9e6dfa774c0e1f07ee9fc063935af5bc4897f4b18'
-for (const host of ['chatgpt', 'claude', 'cursor', 'grokbot']) {
-  const logo = readFileSync(join(root, host, 'assets/logo.png'))
-  if (createHash('sha256').update(logo).digest('hex') !== canonicalLogoSha) fail(`${host} logo differs from the supplied canonical Uw image`)
+const canonicalLogo = readFileSync(join(root, 'claude/assets/logo.png'))
+if (createHash('sha256').update(canonicalLogo).digest('hex') !== 'cc0a3c229347e47a154a00c9e6dfa774c0e1f07ee9fc063935af5bc4897f4b18') fail('canonical Uw icon bytes changed')
+for (const host of ['chatgpt', 'cursor', 'grokbot']) {
+  if (!readFileSync(join(root, host, 'assets/logo.png')).equals(canonicalLogo)) fail(`${host} logo differs from the approved Ultiwrite identity`)
 }
 pngSquareOpaque('chatgpt/assets/logo.png')
 const pkg = readJson('client/package.json')
