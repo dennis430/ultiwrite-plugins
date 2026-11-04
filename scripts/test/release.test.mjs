@@ -29,9 +29,9 @@ before(async () => {
   // Fresh canonical exports have no historical ZIPs. Seed one inside the test
   // fixture so preservation is still exercised before a public-repo merge.
   await pack()
-  await cp(join(fixture, 'release/ultiwrite-chatgpt-plugin-0.9.4.zip'), join(fixture, 'release/ultiwrite-chatgpt-plugin-0.0.0.zip'))
+  await cp(join(fixture, 'release/ultiwrite-chatgpt-plugin-0.9.5.zip'), join(fixture, 'release/ultiwrite-chatgpt-plugin-0.0.0.zip'))
   frozen = new Map(await Promise.all((await readdir(join(fixture, 'release')))
-    .filter(name => name.endsWith('.zip') && !name.includes('0.9.4'))
+    .filter(name => name.endsWith('.zip') && !name.includes('0.9.5'))
     .map(async name => [name, await digest(join(fixture, 'release', name))])))
 })
 after(async () => { if (scratch) await rm(scratch, { recursive: true, force: true }) })
@@ -39,7 +39,7 @@ after(async () => { if (scratch) await rm(scratch, { recursive: true, force: tru
 test('combined release preserves ChatGPT identity, prompts, artwork and all three versions', async () => {
   const plugin = await readJson(join(root, 'chatgpt/plugin.json'))
   assert.equal(plugin.name, 'ultiwrite')
-  assert.equal(plugin.version, '0.9.4')
+  assert.equal(plugin.version, '0.9.5')
   const openai = plugin.extensions['com.openai']
   assert.equal(openai.interface.category, 'Business & Operations')
   assert.ok(openai.interface.shortDescription.length <= 30)
@@ -78,7 +78,7 @@ test('packing records exact source, refuses stale metadata claims and preserves 
   assert.equal(rebuilt.future_release_metadata, undefined)
   assert.equal(rebuilt.packages.cli, undefined)
   assert.equal(rebuilt.packages.chatgpt.extra_provenance, undefined)
-  assert.equal(rebuilt.packages.chatgpt.version, '0.9.4')
+  assert.equal(rebuilt.packages.chatgpt.version, '0.9.5')
   assert.ok(!rebuilt.files.some(item => /^(node_modules|dist|coverage|\.cache)\//.test(item.path) || item.path.endsWith('.tgz')))
   assert.ok(frozen.size >= 1, 'historical archive preservation must be exercised')
   for (const [name, hash] of frozen) assert.equal(await digest(join(fixture, 'release', name)), hash, name)
@@ -96,7 +96,7 @@ test('source/archive verification rejects a changed workflow', async () => {
 
 test('a private configuration file is rejected before the archive changes', async () => {
   const path = join(fixture, '.env.local')
-  const archive = join(fixture, 'release/ultiwrite-chatgpt-plugin-0.9.4.zip')
+  const archive = join(fixture, 'release/ultiwrite-chatgpt-plugin-0.9.5.zip')
   const beforeHash = await digest(archive)
   try {
     await writeFile(path, 'PRIVATE_FIXTURE=true\n')

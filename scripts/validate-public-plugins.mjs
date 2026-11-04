@@ -187,7 +187,7 @@ const openaiInterface = chatgptListing?.extensions?.['com.openai']?.interface
 if (chatgptListing?.name !== 'ultiwrite' || chatgptListing?.$schema !== 'https://agent-plugins.org/schemas/1.0.0/plugin.schema.json') fail('ChatGPT portable identity or schema')
 if (chatgptListing?.apps || chatgptListing?.extensions?.['com.openai']?.apps || files.includes('chatgpt/.app.json')) fail('public ChatGPT package must not include private app bindings')
 if (openaiInterface?.logoDark !== './assets/logo.png' || openaiInterface?.composerIconDark !== './assets/logo.png') fail('ChatGPT dark icons must use the canonical asset')
-if (openaiInterface?.displayName !== 'Ultiwrite' || openaiInterface?.logo !== './assets/logo.png' || openaiInterface?.composerIcon !== './assets/logo.png' || chatgptListing?.version !== '0.9.4') fail('ChatGPT directory branding')
+if (openaiInterface?.displayName !== 'Ultiwrite' || openaiInterface?.logo !== './assets/logo.png' || openaiInterface?.composerIcon !== './assets/logo.png' || chatgptListing?.version !== '0.9.5') fail('ChatGPT directory branding')
 pngSquareOpaque('claude/assets/logo.png')
 // Anthropic directory rules the CLI validator does not check (claude.com/docs/plugins/pre-submission-checklist).
 const claudeFiles = files.filter(rel => rel.startsWith('claude/'))

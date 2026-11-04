@@ -1,9 +1,9 @@
 {
-  "version": "0.9.4",
+  "version": "0.9.5",
   "mcp_url": "https://mcp.dwsoffshorepartners.com/mcp",
   "compatibility_mcp_url": "https://dwsoffshorepartners.com/api/integrations/ultiwrite/mcp",
   "chatgpt": {
-    "version": "0.9.4",
+    "version": "0.9.5",
     "mcp_url": "https://mcp.dwsoffshorepartners.com/mcp"
   },
   "claude": {
@@ -40,10 +40,10 @@
   },
   "packages": [
     {
-      "file": "release/ultiwrite-chatgpt-plugin-0.9.4.zip",
-      "version": "0.9.4",
-      "sha256": "855cf612a34b55d46e5c757b80309bb21d4b7aac05b995a2d045ecb422cc3f61",
-      "bytes": 38272,
+      "file": "release/ultiwrite-chatgpt-plugin-0.9.5.zip",
+      "version": "0.9.5",
+      "sha256": "0e62e9a3b2df12e2852f40bddf11d904edd4d30acebfc71d7bc45973b13d2d38",
+      "bytes": 39108,
       "members": [
         {
           "name": "LICENSE",
@@ -52,8 +52,8 @@
         },
         {
           "name": "README.md",
-          "sha256": "d97a35c10befaaaa6472b8189a30755ca7db95e2016ccaac3141081363fb94ac",
-          "bytes": 6113
+          "sha256": "7f715a9a813ea930e1b3f07ff4aaad16df51d30129c003e120a30e3bdcce19e7",
+          "bytes": 6343
         },
         {
           "name": "assets/logo.png",
@@ -67,8 +67,8 @@
         },
         {
           "name": "plugin.json",
-          "sha256": "7effad248a5fe28a2edcecbdd536573530812f688b5f6fa0bc4ae867711fdda9",
-          "bytes": 10902
+          "sha256": "c3b2da0b9db9129e8dcf26f143415694f3d779d0b0608a4d11b4f2323ac57c2c",
+          "bytes": 11388
         },
         {
           "name": "skills/connect-account/SKILL.md",
@@ -92,8 +92,8 @@
         },
         {
           "name": "skills/read-report/SKILL.md",
-          "sha256": "4af603a22c827aed546a011e391bb790594d1b5d858be768d2bf75df20c87e07",
-          "bytes": 4402
+          "sha256": "f576ed77615411a9d78b7ba6f89bb11115c53e2c021943837e5b582978c8db00",
+          "bytes": 6019
         },
         {
           "name": "skills/read-report/agents/openai.yaml",
@@ -1005,6 +1005,90 @@
         {
           "name": "skills/ultiwrite-read/agents/openai.yaml",
           "sha256": "0e3cc169f3c454d373fad56287579cb820dc820843f4f19f9aebd56e14d13138",
+          "bytes": 372
+        }
+      ]
+    },
+    {
+      "file": "release/ultiwrite-chatgpt-plugin-0.9.4.zip",
+      "version": "0.9.4",
+      "status": "historical archive; kept so existing links keep working; not rebuilt",
+      "sha256": "855cf612a34b55d46e5c757b80309bb21d4b7aac05b995a2d045ecb422cc3f61",
+      "bytes": 38272,
+      "members": [
+        {
+          "name": "LICENSE",
+          "sha256": "0122d7b57a1ef1e40944c88e2e0261b334fcf5f779e9deb52d49463de20a977d",
+          "bytes": 1767
+        },
+        {
+          "name": "README.md",
+          "sha256": "d97a35c10befaaaa6472b8189a30755ca7db95e2016ccaac3141081363fb94ac",
+          "bytes": 6113
+        },
+        {
+          "name": "assets/logo.png",
+          "sha256": "cc0a3c229347e47a154a00c9e6dfa774c0e1f07ee9fc063935af5bc4897f4b18",
+          "bytes": 21052
+        },
+        {
+          "name": "mcp.json",
+          "sha256": "b58605b1536159e225e0c338a99fbadfb5395067191a651882b3e46791003dd1",
+          "bytes": 211
+        },
+        {
+          "name": "plugin.json",
+          "sha256": "7effad248a5fe28a2edcecbdd536573530812f688b5f6fa0bc4ae867711fdda9",
+          "bytes": 10902
+        },
+        {
+          "name": "skills/connect-account/SKILL.md",
+          "sha256": "444e347909c4a620a8f2b1d96f055111648a8c1431ff07c4c00deb2d79c9a30e",
+          "bytes": 3430
+        },
+        {
+          "name": "skills/connect-account/agents/openai.yaml",
+          "sha256": "bcd474af0d5f88eda50caee37aaebdc73c2b1d8ba85e8a1f05b32aae28e8c708",
+          "bytes": 364
+        },
+        {
+          "name": "skills/follow-up/SKILL.md",
+          "sha256": "c1561ab0ae0067f6476528a1cc3388c76f5ef5fd058ff2ed9b60f03e5292a09b",
+          "bytes": 1661
+        },
+        {
+          "name": "skills/follow-up/agents/openai.yaml",
+          "sha256": "0c2bb0d628bb2593bb081d1d92c0d30fdb19653be4d3186a1b58f573555c4db6",
+          "bytes": 357
+        },
+        {
+          "name": "skills/read-report/SKILL.md",
+          "sha256": "4af603a22c827aed546a011e391bb790594d1b5d858be768d2bf75df20c87e07",
+          "bytes": 4402
+        },
+        {
+          "name": "skills/read-report/agents/openai.yaml",
+          "sha256": "9519eb5384df6699d7332e02c74857134bb54bb651d5ae70cbbc84322feca3a0",
+          "bytes": 353
+        },
+        {
+          "name": "skills/submit-evidence/SKILL.md",
+          "sha256": "9d6e6d708e85aeb45c686a00fe4a51b6a9a44183d905b1b859c98f13199b605e",
+          "bytes": 5654
+        },
+        {
+          "name": "skills/submit-evidence/agents/openai.yaml",
+          "sha256": "5b280fbc50840e499eca0d5f8ec84b9979c5bfba9e67f0e25858b598e6eae3ad",
+          "bytes": 355
+        },
+        {
+          "name": "skills/ultiwrite-read/SKILL.md",
+          "sha256": "0e7a1f91f421d98f57d7d92b3136cc89978e845128f70c843481731084218eb7",
+          "bytes": 3853
+        },
+        {
+          "name": "skills/ultiwrite-read/agents/openai.yaml",
+          "sha256": "c91401a5f952b021534baff62e64274822941abbf6d379c130a9e5634235895c",
           "bytes": 372
         }
       ]

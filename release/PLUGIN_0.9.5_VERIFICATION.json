@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "package": "Ultiwrite ChatGPT/Codex",
+  "version": "0.9.5",
+  "source_repository": "dennis430/merchant-risk-app",
+  "source_base_commit": "0100040b5ea607e45cd5bedba9f4ef1c54ade3a2",
+  "public_source_base_commit": "2a67545780ca292f608c2d184ef71afa28293fc8",
+  "runtime": "Node 22.23.4",
+  "candidate_status": "PREPARED; draft review only, no merge, deployment, directory submission or installed-host acceptance claimed",
+  "primary_source_dependency": {
+    "branch": "fix/investigation-report-quality",
+    "commit": "0100040b5ea607e45cd5bedba9f4ef1c54ade3a2",
+    "commit_url": "https://github.com/dennis430/merchant-risk-app/commit/0100040b5ea607e45cd5bedba9f4ef1c54ade3a2",
+    "parent_pull_request": "https://github.com/dennis430/merchant-risk-app/pull/805",
+    "parent_state": "OPEN_UNMERGED; new release authorization remains required",
+    "pull_request": "https://github.com/dennis430/merchant-risk-app/pull/806",
+    "base_branch": "fix/backend-operator-authorization"
+  },
+  "checks": {
+    "canonical_export": "PASS",
+    "canonical_discovery_generation": "PASS: 5 skills; Node22 maintained generator --check",
+    "public_structural_validation": "PASS",
+    "public_source_archive_parity": "PASS: 15 ChatGPT package files match canonical source",
+    "release_regressions": "PASS: 5",
+    "canonical_export_safeguards": "PASS",
+    "legacy_builder_refusal": "PASS",
+    "historical_zip_preservation": {
+      "count": 19,
+      "all_unchanged": true
+    },
+    "archive_content_inspected": [
+      "plugin.json",
+      "skills/read-report/SKILL.md",
+      "README.md"
+    ]
+  },
+  "saved_section_retrieval_regression": {
+    "status": "PASS",
+    "environment": "Synthetic persisted customer document and mocked read store through actual local MCP protocol",
+    "evidence": "Section pagination plus three authenticated Unicode spans recovered five saved unresolved relationships and ten evidence citations; frozen report and digest unchanged",
+    "actual_chatgpt_connected_client": false
+  },
+  "actual_chatgpt_connected_client": "NOT_RUN",
+  "live_provider_execution_for_this_candidate": "NOT_RUN",
+  "MCP-004": "OPEN",
+  "package_sha256": "0e62e9a3b2df12e2852f40bddf11d904edd4d30acebfc71d7bc45973b13d2d38",
+  "historical_archive_sha256": {
+    "Ultiwrite_Claude_Plugin_v0.8.0.zip": "619656fae4e9b9db2d7a7e0c813713d859cde291062c21912bb38fc7297ca28e",
+    "Ultiwrite_Claude_Plugin_v0.8.1.zip": "11520ccd818dddd576a7b230e08b74142f3012fb0ea2d10f4b6f37c105e6e8b0",
+    "Ultiwrite_Claude_Plugin_v0.8.3.zip": "97e3cfd855c3b1344a9bbfbe6cc1b9d317403d7c869ac416d3bec23989803f00",
+    "Ultiwrite_Claude_Plugin_v0.8.4.zip": "e5a3ddcd2fd150ca73bef84ab51b8fd5040d9e4e214dda53af0e615d0ba98350",
+    "Ultiwrite_Claude_Plugin_v0.9.0.zip": "03651e6ba207224b895c384b07bb81c6d4be3a2493db594ca29efd511a933472",
+    "Ultiwrite_Claude_Plugin_v0.9.1.zip": "a509a59979d21f9a63fa1e74dcdc1a1057f8af64f8f0efc6fcf25af2f756f9d6",
+    "Ultiwrite_Claude_Plugin_v0.9.3.zip": "f00050a4d629eec6705f79da1f6e6b0b5aca7c73d5952463c36a25b7a5d77261",
+    "ultiwrite-chatgpt-plugin-0.7.1.zip": "457004b3d46b7aeaddabc1a5d065c181aac2b5a280369be7f9539de39d1339a4",
+    "ultiwrite-chatgpt-plugin-0.8.0.zip": "3570e327e17d7fd90f0d72b0a23b105635118579f8b69ba6aeb1e9d598c51111",
+    "ultiwrite-chatgpt-plugin-0.9.0.zip": "633906c6c8cc7d673518714fa9fde2fed7a54feace3aa5bf6607b8091cdec483",
+    "ultiwrite-chatgpt-plugin-0.9.1.zip": "4f3210b56f1a6ccdbaaeca72aaf9c87f767cbc55125a6ca6718122dfe74cec27",
+    "ultiwrite-chatgpt-plugin-0.9.3.zip": "1ed9d74e928e5d075db86e6635ea13bb530776e2c96d2ac9682c389b96169abe",
+    "ultiwrite-chatgpt-plugin-0.9.4.zip": "855cf612a34b55d46e5c757b80309bb21d4b7aac05b995a2d045ecb422cc3f61",
+    "ultiwrite-claude-plugin-0.7.1.zip": "7b53857bcd7450b68a869b90d29c1112e89fcb3f707fd87ccadcacc73f906bfe",
+    "ultiwrite-cursor-plugin-0.7.1.zip": "e34aa2e43d7062871de121c479ef5e8a7fe214f20b400464624605fc419e15f1",
+    "ultiwrite-cursor-plugin-0.8.0.zip": "eb3403b7e52e5301a112864fb8cd50351e012cf63ff1c5af124fbbae5a5c0129",
+    "ultiwrite-cursor-plugin-0.9.0.zip": "345d714ba6205a70dc38f43e1f45d82e83e01ab9499f1410197b44b5e7f440fd",
+    "ultiwrite-cursor-plugin-0.9.1.zip": "f41346af459431fd1f174111b5da3b361c54ee660575ca008a65d51bf1e556cc",
+    "ultiwrite-cursor-plugin-0.9.3.zip": "6d8977daea01083dd3fb98cdec3826e29699274195d6e1dc16b6808447b4635e"
+  },
+  "release_proposal": "release/PLUGIN_0.9.5_RELEASE_PROPOSAL.md"
+}

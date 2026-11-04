@@ -1,6 +1,6 @@
 # Ultiwrite for ChatGPT and Codex
 
-Version 0.9.4. Product: Ultiwrite. Publisher: DWS Offshore Fund. This is the source package for the existing Ultiwrite plugin identity.
+Version 0.9.5. Product: Ultiwrite. Publisher: DWS Offshore Fund. This is the source package for the existing Ultiwrite plugin identity.
 
 Ultiwrite turns ordinary documents into a wider commercial investigation. Connect financial, identity, document-integrity, operational and external-context evidence across acquisitions, financing, counterparties, property and portfolios, then read reconciled findings, confidence and open questions. Submit only authorized evidence and use the live service for current capabilities and terms.
 
@@ -34,7 +34,7 @@ The host permission modes determine when ChatGPT asks before using tools. They d
 
 Use only original file objects supported by the host and live tool schema. When the host cannot forward file contents, Ultiwrite returns an account-bound upload link. Follow the returned expiry and upload instructions; obtaining a link alone is not an analysis. The service returns current accepted inputs, limits and offers through `ultiwrite_capabilities_get`.
 
-Status and report reads do not restart work. A paused saved investigation needs one explicit resume request from its original upload account, following the current returned continuation without uploading files again. Accepted durable work then continues on the server. Distinguish queued, active, retrying, paused and required-action states; a saved automatic continuation alone does not prove a worker is active. Read the actual saved workflow state before describing results. Reports retain their saved findings, confidence, evidence and limitations. PDF, Excel or ZIP downloads open in the browser signed in to the same account; the plugin does not expose public report links or process payments.
+Status and report reads do not restart work. A paused saved investigation needs one explicit resume request from its original upload account, following the current returned continuation without uploading files again. Accepted durable work then continues on the server. Distinguish queued, active, retrying, paused and required-action states; a saved automatic continuation alone does not prove a worker is active. Read the actual saved workflow state before describing results. Reports retain their saved findings, confidence, evidence and limitations. Questions about unresolved claims and relationships use the saved section details and their evidence references, including paginated or omitted long text. Summary counts and empty compatibility lists do not replace those details. PDF, Excel or ZIP downloads open in the browser signed in to the same account; the plugin does not expose public report links or process payments.
 
 ## Portable client compatibility
 
@@ -42,7 +42,7 @@ The MCP server entry contains only `type` and the clean canonical `url`. OAuth c
 
 ## Build and publish
 
-Run `node scripts/validate-public-plugins.mjs` and `node scripts/pack-public-connectors.mjs` from the repository root. The current archive is `release/ultiwrite-chatgpt-plugin-0.9.4.zip`; `--check` verifies source/archive parity. Historical archives remain intact.
+Run `node scripts/validate-public-plugins.mjs` and `node scripts/pack-public-connectors.mjs` from the repository root. The current archive is `release/ultiwrite-chatgpt-plugin-0.9.5.zip`; `--check` verifies source/archive parity. Historical archives remain intact.
 
 Update the existing OpenAI listing; inspect its current portal state before uploading and preserve its identity. This source release does not prove directory upload, review, account labels in an installed host, or a completed customer journey. Its server contract and live host behavior require separate verification.
 

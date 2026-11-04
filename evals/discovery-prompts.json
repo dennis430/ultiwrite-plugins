@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "product": "Ultiwrite",
-  "package_version": "0.9.4",
+  "package_version": "0.9.5",
   "purpose": "Evaluate appropriate recognition and invocation across explicit, indirect, negative and action-boundary prompts.",
   "host_evaluation_status": "NOT_RUN",
   "metrics": null,
@@ -558,6 +558,23 @@
         "ultiwrite_evidence_submit"
       ],
       "expected_outcome": "Relay the precise safe account/original-owner action. Do not manufacture continuation arguments, substitute an administrator identity, resubmit files or reset allowance.",
+      "host_status": "NOT_RUN"
+    },
+    {
+      "id": "saved-relationship-details",
+      "kind": "report",
+      "prompt": "Which five relationships in my saved report remain unresolved, and what evidence would resolve each one?",
+      "prerequisites": "Authorized synthetic saved report has a count-only summary, five qualified unresolved relationships in the How records relate section after the first section page, and an observation field omitted for size.",
+      "expected_workflow": "read_saved_report",
+      "allowed_tools": [
+        "ultiwrite_findings_get",
+        "ultiwrite_coherence_get",
+        "ultiwrite_report_export"
+      ],
+      "forbidden_tools": [
+        "ultiwrite_evidence_submit"
+      ],
+      "expected_outcome": "Retrieve saved sections with all returned cursor positions, snapshot and pageToken; recover omitted section fields through the returned spans, or use the existing complete customer-document export. Explain each named saved relationship, its uncertainty and requested corroboration, citing section/finding and evidence ids. A count-only summary and empty not_reclassified compatibility lists do not answer the question or prove absence. Preserve the saved classification without rerunning or changing the report.",
       "host_status": "NOT_RUN"
     }
   ]
