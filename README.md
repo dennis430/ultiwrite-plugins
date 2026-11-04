@@ -8,7 +8,7 @@ This repository distributes thin public connectors and workflow instructions mai
 
 | Directory | Version | Contents |
 | --- | --- | --- |
-| `chatgpt/` | 0.9.4 | Portable ChatGPT/Codex plugin; OAuth, account-first onboarding and five skills |
+| `chatgpt/` | 0.9.5 | Portable ChatGPT/Codex plugin; OAuth, account-first onboarding and five skills |
 | `claude/` | 0.9.3 | Claude plugin; OAuth, connection recovery and five skills; enabled by default on a new installation |
 | `cursor/` | 0.9.3 | Cursor plugin; remote MCP, complete skill-directory discovery and five skills |
 | `grokbot/` | 0.8.0 | Grok Bot submission dossier with shared account and permission contracts |
@@ -38,7 +38,7 @@ ChatGPT 0.9.4 is a prepared saved-investigation recovery candidate. Status and r
 <!-- CURRENT_DOWNLOADS_START -->
 | Archive | SHA-256 |
 | --- | --- |
-| [`ultiwrite-chatgpt-plugin-0.9.4.zip`](https://github.com/dennis430/ultiwrite-plugins/raw/main/release/ultiwrite-chatgpt-plugin-0.9.4.zip) | `855cf612a34b55d46e5c757b80309bb21d4b7aac05b995a2d045ecb422cc3f61` |
+| [`ultiwrite-chatgpt-plugin-0.9.5.zip`](https://github.com/dennis430/ultiwrite-plugins/raw/main/release/ultiwrite-chatgpt-plugin-0.9.5.zip) | `0e62e9a3b2df12e2852f40bddf11d904edd4d30acebfc71d7bc45973b13d2d38` |
 | [`ultiwrite-cursor-plugin-0.9.3.zip`](https://github.com/dennis430/ultiwrite-plugins/raw/main/release/ultiwrite-cursor-plugin-0.9.3.zip) | `6d8977daea01083dd3fb98cdec3826e29699274195d6e1dc16b6808447b4635e` |
 | [`Ultiwrite_Claude_Plugin_v0.9.3.zip`](https://github.com/dennis430/ultiwrite-plugins/raw/main/release/Ultiwrite_Claude_Plugin_v0.9.3.zip) | `f00050a4d629eec6705f79da1f6e6b0b5aca7c73d5952463c36a25b7a5d77261` |
 <!-- CURRENT_DOWNLOADS_END -->

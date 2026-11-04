@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "ultiwrite",
-  "version": "0.9.4",
+  "version": "0.9.5",
   "description": "Asymmetric diligence across commercial domains. Investigate business claims, financial consistency, identities, document integrity and external context; retrieve reconciled findings and evidence from Ultiwrite.",
   "author": {
     "name": "DWS Offshore Fund",
@@ -78,8 +78,8 @@
             {
               "description": "Read the generated coherence record",
               "prompt": "For the Ultiwrite case I just submitted, separate the contradictions, unresolved claims, and evidence still required.",
-              "tools_triggered": "ultiwrite_case_status, ultiwrite_coherence_get",
-              "expected_behavior": "Once the workflow is complete, returns the frozen Decision Brief for that report with matching version, digest and explicit completeness, preserving saved observations, synthesis, hypotheses, requested evidence and coverage. Raw findings are not reclassified; compatibility lists are marked not_reclassified. thisReadEndorsesDecision is false. If still processing, says so and does not invent findings. Uses exactly one non-null caseId or reportId; the other selector and unused required nullable fields are null. For a paused case, explain that no processing is scheduled and provide the specific resume action without executing it or inventing findings. A request for contradictions is read-only."
+              "tools_triggered": "ultiwrite_case_status, ultiwrite_coherence_get, ultiwrite_findings_get",
+              "expected_behavior": "Once the workflow is complete, returns the frozen Decision Brief for that report with matching version, digest and explicit completeness, preserving saved observations, synthesis, hypotheses, requested evidence and coverage. Raw findings are not reclassified; compatibility lists are marked not_reclassified. thisReadEndorsesDecision is false. If still processing, says so and does not invent findings. Uses exactly one non-null caseId or reportId; the other selector and unused required nullable fields are null. For a paused case, explain that no processing is scheduled and provide the specific resume action without executing it or inventing findings. A request for contradictions is read-only. For a completed report, inspect saved section details, including How records relate, and retrieve omitted fields through the existing section spans. Name the saved unresolved claims and requested corroboration with section/finding and evidence ids rather than repeating summary counts. Empty not_reclassified compatibility lists do not establish absence. Preserve qualifications; do not call unresolved relationships proven contradictions."
             },
             {
               "description": "Saved report and export routes",
@@ -113,7 +113,7 @@
         "commerce_description": "Investigations may use purchased account allowance and optional Document Forensics entitlement under the website\u2019s current terms. This connection returns service-provided terms and account links; it does not process payments, start subscriptions, grant entitlements or authorize automatic charges."
       },
       "publication": {
-        "release_notes": "0.9.4: clarifies read-only status, original-owner saved-case recovery with exact returned continuation arguments, truthful queued/active/retry/action states, and retrieval of the same saved report. Preserves existing account, evidence-consent, entitlement and transport boundaries."
+        "release_notes": "0.9.5: retrieves and cites saved relationship details, unresolved claims and requested corroboration rather than summary counts alone. Uses existing section pagination, field spans and full-document recovery; preserves frozen reports, read-only status and the existing investigation recovery boundaries."
       }
     }
   }

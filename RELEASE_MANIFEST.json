@@ -1,11 +1,11 @@
 {
   "product": "Ultiwrite",
   "distribution": "plugin-only",
-  "version": "0.9.4",
+  "version": "0.9.5",
   "publisher": "DWS Offshore Fund",
   "source_repository": "dennis430/merchant-risk-app",
-  "source_base_commit": "4e04b4660509a04357729a259eac786106daab26",
-  "public_source_base_commit": "d4d3a8594d452a4adc987589dd844ebf4792f08a",
+  "source_base_commit": "0100040b5ea607e45cd5bedba9f4ef1c54ade3a2",
+  "public_source_base_commit": "2a67545780ca292f608c2d184ef71afa28293fc8",
   "package_status": "PREPARED",
   "host_evaluation_status": "NOT_RUN",
   "directory_publication_status": "NOT_VERIFIED_BY_THIS_EXPORT",
@@ -19,8 +19,8 @@
   "compatibility_mcp_url": "https://dwsoffshorepartners.com/api/integrations/ultiwrite/mcp",
   "packages": {
     "chatgpt": {
-      "version": "0.9.4",
-      "zip": "release/ultiwrite-chatgpt-plugin-0.9.4.zip",
+      "version": "0.9.5",
+      "zip": "release/ultiwrite-chatgpt-plugin-0.9.5.zip",
       "mcp_url": "https://mcp.dwsoffshorepartners.com/mcp"
     },
     "cursor": {
@@ -85,7 +85,7 @@
     },
     {
       "path": "README.md",
-      "sha256": "37834abe7718cf83d69d20216baaa74f91d0c4040f6aec2c5ca7c1c5dd2fbed3"
+      "sha256": "67946d28c81687b9cdacc768f8808371810ee3e364f3eddfe52954dd273d0fc6"
     },
     {
       "path": "api-contract.mdx",
@@ -169,7 +169,7 @@
     },
     {
       "path": "chatgpt/README.md",
-      "sha256": "d97a35c10befaaaa6472b8189a30755ca7db95e2016ccaac3141081363fb94ac"
+      "sha256": "7f715a9a813ea930e1b3f07ff4aaad16df51d30129c003e120a30e3bdcce19e7"
     },
     {
       "path": "chatgpt/assets/logo.png",
@@ -181,7 +181,7 @@
     },
     {
       "path": "chatgpt/plugin.json",
-      "sha256": "7effad248a5fe28a2edcecbdd536573530812f688b5f6fa0bc4ae867711fdda9"
+      "sha256": "c3b2da0b9db9129e8dcf26f143415694f3d779d0b0608a4d11b4f2323ac57c2c"
     },
     {
       "path": "chatgpt/skills/connect-account/SKILL.md",
@@ -201,7 +201,7 @@
     },
     {
       "path": "chatgpt/skills/read-report/SKILL.md",
-      "sha256": "4af603a22c827aed546a011e391bb790594d1b5d858be768d2bf75df20c87e07"
+      "sha256": "f576ed77615411a9d78b7ba6f89bb11115c53e2c021943837e5b582978c8db00"
     },
     {
       "path": "chatgpt/skills/read-report/agents/openai.yaml",
@@ -381,7 +381,7 @@
     },
     {
       "path": "evals/discovery-prompts.json",
-      "sha256": "17fe65d56c1b5939305e1d3828de10cda6cca8fb27a5db820d7c6bfdd3fb4735"
+      "sha256": "5ce58cd3b8c635070bda00e4e73cd0fa7249e13fd2a002fed1460f4f3ba85797"
     },
     {
       "path": "grokbot/FIELDS.json",
@@ -465,7 +465,7 @@
     },
     {
       "path": "release/INVENTORY.json",
-      "sha256": "1482c62ad2f6879a4ce24f821c35cdf454f63ed7a2e39d45fce6b34dd2c225e9"
+      "sha256": "e526bf29ae430ccc4239f6fe5ba60dd838c3822f4cdb29cf6068c30d16d93fbe"
     },
     {
       "path": "release/PLUGIN_0.9.1_LIVE_RECEIPT.json",
@@ -484,12 +484,20 @@
       "sha256": "54ca20a0c69276e68fb389a153b63220de329fb77611225c7ae4d54a01814521"
     },
     {
+      "path": "release/PLUGIN_0.9.5_RELEASE_PROPOSAL.md",
+      "sha256": "44bb11b30098b75e27e0ae2ddc1f7d49f62922ce5779302f410d565931a86b29"
+    },
+    {
+      "path": "release/PLUGIN_0.9.5_VERIFICATION.json",
+      "sha256": "fc3defe67fc0fd5a91424e60cfea366200d83d61518c95cb97a8fc8bbda4c420"
+    },
+    {
       "path": "release/PLUGIN_CONTROLS_0.8.0_VERIFICATION.json",
       "sha256": "2541f8217c8ad33bccae7fc9eccc2175193e2c5dbaab9acc4695cb82f98a2e40"
     },
     {
       "path": "release/SHA256SUMS.txt",
-      "sha256": "6be58b89003edb1424bbc826587fe142d5c808a2825183aac91b710a2757db98"
+      "sha256": "55756c71f77e256ce7134a5860ff39e59fb47a835aae642af7e36aec071443f1"
     },
     {
       "path": "release/Ultiwrite_Claude_Plugin_v0.8.0.zip",
@@ -544,6 +552,10 @@
       "sha256": "855cf612a34b55d46e5c757b80309bb21d4b7aac05b995a2d045ecb422cc3f61"
     },
     {
+      "path": "release/ultiwrite-chatgpt-plugin-0.9.5.zip",
+      "sha256": "0e62e9a3b2df12e2852f40bddf11d904edd4d30acebfc71d7bc45973b13d2d38"
+    },
+    {
       "path": "release/ultiwrite-claude-plugin-0.7.1.zip",
       "sha256": "7b53857bcd7450b68a869b90d29c1112e89fcb3f707fd87ccadcacc73f906bfe"
     },
@@ -573,11 +585,11 @@
     },
     {
       "path": "scripts/test/release.test.mjs",
-      "sha256": "d16fdff42f5b3af4d67c7c6e06890343c045bbc0d61040143a3a367dcf65b357"
+      "sha256": "26673bdcd928abcecc6009d1c382f1170f5cb43c34206c73dc8ab71638873723"
     },
     {
       "path": "scripts/validate-public-plugins.mjs",
-      "sha256": "bce670f01108ba22a1f5963063daf87947322dba002a21fd17fa85e6a00b88a6"
+      "sha256": "b9a28f099bddc596669ed1e3b69d56fef918f54be27b52767ddaa460784131c4"
     },
     {
       "path": "server.draft.json",
