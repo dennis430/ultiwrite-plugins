@@ -42,8 +42,8 @@
     {
       "file": "release/ultiwrite-chatgpt-plugin-0.9.5.zip",
       "version": "0.9.5",
-      "sha256": "0e62e9a3b2df12e2852f40bddf11d904edd4d30acebfc71d7bc45973b13d2d38",
-      "bytes": 39108,
+      "sha256": "29feb18136ccced2d5e6107d7001374117cf59dd587fdf9951d2a7aeace6462f",
+      "bytes": 39104,
       "members": [
         {
           "name": "LICENSE",
@@ -67,8 +67,8 @@
         },
         {
           "name": "plugin.json",
-          "sha256": "c3b2da0b9db9129e8dcf26f143415694f3d779d0b0608a4d11b4f2323ac57c2c",
-          "bytes": 11388
+          "sha256": "5920940083530555d79b647da32abbfc371cbc17fa201e8637126a6c1eeaa358",
+          "bytes": 11399
         },
         {
           "name": "skills/connect-account/SKILL.md",
@@ -125,13 +125,13 @@
     {
       "file": "release/ultiwrite-cursor-plugin-0.9.3.zip",
       "version": "0.9.3",
-      "sha256": "6d8977daea01083dd3fb98cdec3826e29699274195d6e1dc16b6808447b4635e",
-      "bytes": 32334,
+      "sha256": "446fdc7002b827a46b2360ad33263421ea91589f0536f72e39baf3e2cda44986",
+      "bytes": 32333,
       "members": [
         {
           "name": ".cursor-plugin/plugin.json",
-          "sha256": "111f7e2cd1f6c9461721a251d6b9eff73bcdf9087f93650cafd5e79f228dea64",
-          "bytes": 1062
+          "sha256": "450d623324fcb31347816ba7845d15642725c1129c8ec3c04ffcd016f5a5aa5a",
+          "bytes": 1073
         },
         {
           "name": "LICENSE",

@@ -45,11 +45,11 @@
   "files": [
     {
       "path": ".claude-plugin/marketplace.json",
-      "sha256": "72e1d0c899cc7f67c092e00a3de27b5398882f716e19dfba3cfd37f90434e5f5"
+      "sha256": "86219c67a337cb45df80cf11fb3aa608fa9cfc2deccf11da7daeb250e939e705"
     },
     {
       "path": ".cursor-plugin/marketplace.json",
-      "sha256": "9192b32e3c382ccbb4d49d11b528e72df0e3e86cfc7dcc6eb4fdf61ba70f6db8"
+      "sha256": "45bd6281dd810eb77f2437a18ca4e8e1b7ca8d3f6922921addbb13028b65b17d"
     },
     {
       "path": ".github/workflows/validate.yml",
@@ -85,7 +85,7 @@
     },
     {
       "path": "README.md",
-      "sha256": "67946d28c81687b9cdacc768f8808371810ee3e364f3eddfe52954dd273d0fc6"
+      "sha256": "3fc2c6ad13b82a7af08a1775a334c90fd2207639cfd604f9c550f88f7ae71739"
     },
     {
       "path": "api-contract.mdx",
@@ -181,7 +181,7 @@
     },
     {
       "path": "chatgpt/plugin.json",
-      "sha256": "c3b2da0b9db9129e8dcf26f143415694f3d779d0b0608a4d11b4f2323ac57c2c"
+      "sha256": "5920940083530555d79b647da32abbfc371cbc17fa201e8637126a6c1eeaa358"
     },
     {
       "path": "chatgpt/skills/connect-account/SKILL.md",
@@ -313,7 +313,7 @@
     },
     {
       "path": "cursor/.cursor-plugin/plugin.json",
-      "sha256": "111f7e2cd1f6c9461721a251d6b9eff73bcdf9087f93650cafd5e79f228dea64"
+      "sha256": "450d623324fcb31347816ba7845d15642725c1129c8ec3c04ffcd016f5a5aa5a"
     },
     {
       "path": "cursor/LICENSE",
@@ -465,7 +465,7 @@
     },
     {
       "path": "release/INVENTORY.json",
-      "sha256": "e526bf29ae430ccc4239f6fe5ba60dd838c3822f4cdb29cf6068c30d16d93fbe"
+      "sha256": "a16eec9cb0f3644790903346030bb4c5fde7449f0feb933a5d6a48098dd91184"
     },
     {
       "path": "release/PLUGIN_0.9.1_LIVE_RECEIPT.json",
@@ -497,7 +497,7 @@
     },
     {
       "path": "release/SHA256SUMS.txt",
-      "sha256": "55756c71f77e256ce7134a5860ff39e59fb47a835aae642af7e36aec071443f1"
+      "sha256": "da87d24a88940cd89b509ba7db07c1ca201b27f25739defd11ceb4f06537d9b8"
     },
     {
       "path": "release/Ultiwrite_Claude_Plugin_v0.8.0.zip",
@@ -553,7 +553,7 @@
     },
     {
       "path": "release/ultiwrite-chatgpt-plugin-0.9.5.zip",
-      "sha256": "0e62e9a3b2df12e2852f40bddf11d904edd4d30acebfc71d7bc45973b13d2d38"
+      "sha256": "29feb18136ccced2d5e6107d7001374117cf59dd587fdf9951d2a7aeace6462f"
     },
     {
       "path": "release/ultiwrite-claude-plugin-0.7.1.zip",
@@ -577,7 +577,7 @@
     },
     {
       "path": "release/ultiwrite-cursor-plugin-0.9.3.zip",
-      "sha256": "6d8977daea01083dd3fb98cdec3826e29699274195d6e1dc16b6808447b4635e"
+      "sha256": "446fdc7002b827a46b2360ad33263421ea91589f0536f72e39baf3e2cda44986"
     },
     {
       "path": "scripts/pack-public-connectors.mjs",
@@ -589,7 +589,7 @@
     },
     {
       "path": "scripts/validate-public-plugins.mjs",
-      "sha256": "b9a28f099bddc596669ed1e3b69d56fef918f54be27b52767ddaa460784131c4"
+      "sha256": "bc20b61040a447bba8a24a2244574f38326547920526f308b2d8973b7e975522"
     },
     {
       "path": "server.draft.json",

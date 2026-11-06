@@ -124,7 +124,7 @@ if (market) {
     if (!['name', 'owner', 'metadata', 'plugins'].includes(key)) fail(`marketplace.json has ${key}`)
   }
   if (market.name !== 'ultiwrite') fail('marketplace name')
-  if (market.owner?.name !== 'DWS Offshore Fund' || market.owner.email !== 'nick@ultiwrite.co') fail('marketplace owner')
+  if (market.owner?.name !== 'DWS Offshore Fund' || market.owner.email !== 'levi@dwsoffshorepartners.com') fail('marketplace owner')
   if (!Array.isArray(market.plugins) || market.plugins.length !== 1) fail('marketplace plugins')
   const entry = market.plugins?.[0]
   if (entry && (entry.name !== 'ultiwrite' || entry.source !== 'cursor')) fail('marketplace source must be cursor')
@@ -138,7 +138,7 @@ const pluginKeys = ['name', 'displayName', 'version', 'description', 'author', '
 if (plugin) {
   for (const key of Object.keys(plugin)) if (!pluginKeys.includes(key)) fail(`plugin.json has ${key}`)
   if (plugin.name !== 'ultiwrite' || plugin.version !== '0.9.3' || plugin.license !== 'MIT') fail('plugin identity')
-  if (plugin.author?.url || plugin.author?.name !== 'DWS Offshore Fund' || plugin.author?.email !== 'nick@ultiwrite.co') fail('plugin author')
+  if (plugin.author?.url || plugin.author?.name !== 'DWS Offshore Fund' || plugin.author?.email !== 'levi@dwsoffshorepartners.com') fail('plugin author')
   if (plugin.logo !== 'assets/logo.png') fail('plugin logo path')
   if ('skills' in plugin) fail('Cursor must discover every skills/ workflow; do not override discovery with a single path')
   if (plugin.repository !== 'https://github.com/dennis430/ultiwrite-plugins') fail('plugin repository')
