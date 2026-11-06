@@ -47,4 +47,3 @@ Customer sign-in uses Google. Connection does not grant usage. Check the returne
 Run `node scripts/validate-public-plugins.mjs`, rebuild with `node scripts/pack-public-connectors.mjs`, then verify with `node scripts/pack-public-connectors.mjs --check`. Historical archives remain intact. Test installation, account labels, switching, reconnect and declined permissions in the intended host before claiming the installed experience is verified.
 
 The local npm wrapper is prepared at 0.8.0 and is not published by this connector release. Do not advertise `npx ultiwrite-mcp` until the real package is published and a clean registry installation succeeds.
-
