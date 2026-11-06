@@ -25,3 +25,7 @@ Reading needs `ultiwrite:read`; evidence submission also needs `ultiwrite:eviden
 When a tool returns a missing-scope challenge, use the host's native reauthorization prompt for the user's requested operation. Verify the account afterward and retry that operation once. Account connection never authorizes evidence submission by itself.
 
 Skills are available automatically by default. Respect any host-disabled skill or account feature preference; do not silently re-enable one, bypass it through a different skill, or change a global permission setting. Report only controls the current host exposes.
+
+## Account usage and complimentary activation
+
+Customer signup and sign-in use Google; the host account is separate. For a requested new investigation, use `ultiwrite_capabilities_get` to check its returned `accountStatus`, scopes and usage limits. Connection never grants credits. If the server returns `payment_method_setup_required`, present its exact authenticated `setupUrl` and preserve the task for continuation after card verification and promotion eligibility. This requirement does not block existing paid entitlements, reconnecting or reading saved reports. Do not subscribe, charge or choose paid add-ons automatically.

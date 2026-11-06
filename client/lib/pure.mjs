@@ -2,18 +2,19 @@ import { createHash, randomBytes } from 'node:crypto'
 import { homedir } from 'node:os'
 import { join } from 'node:path'
 
-export const DEFAULT_ORIGIN = 'https://dwsoffshorepartners.com'
+export const DEFAULT_ORIGIN = 'https://mcp.dwsoffshorepartners.com'
 export const MCP_PATH = '/api/integrations/ultiwrite/mcp'
 export const REDIRECT_URI = 'http://127.0.0.1:6274/oauth/callback'
 export const IOS_REDIRECT_URI = 'ultiwrite://oauth/callback'
 
 export function mcpUrl(origin = DEFAULT_ORIGIN) {
-  return new URL(MCP_PATH, origin).href
+  return new URL(new URL(origin).origin === DEFAULT_ORIGIN ? '/mcp' : MCP_PATH, origin).href
 }
 
-export function credentialPath(env = process.env) {
+export function credentialPath(env = process.env, profile = 'default') {
+  if (!/^[A-Za-z0-9_-]{1,64}$/.test(profile)) throw new Error('Invalid account profile. Use letters, numbers, hyphens or underscores.')
   const home = env.ULTIWRITE_HOME || env.HOME || homedir()
-  return join(home, '.config', 'ultiwrite', 'credentials.json')
+  return join(home, '.config', 'ultiwrite', profile === 'default' ? 'credentials.json' : `credentials-${profile}.json`)
 }
 
 export function pkce() {
@@ -24,11 +25,9 @@ export function pkce() {
 
 export function redact(value) {
   if (!value || typeof value !== 'object') return value
-  const copy = { ...value }
-  for (const key of ['access_token', 'refresh_token', 'token', 'authorization']) {
-    if (copy[key]) copy[key] = '[redacted]'
-  }
-  return copy
+  if (Array.isArray(value)) return value.map(redact)
+  return Object.fromEntries(Object.entries(value).map(([key, item]) =>
+    [key, /^(access_token|refresh_token|token|authorization|client[_]secret|bindingToken)$/i.test(key) ? '[redacted]' : redact(item)]))
 }
 
 export function clientConfig(origin = DEFAULT_ORIGIN) {
@@ -48,6 +47,6 @@ export function expectedDoctor(origin = DEFAULT_ORIGIN) {
     issuer: origin,
     scopes: ['ultiwrite:read', 'ultiwrite:evidence'],
     redirectUri: REDIRECT_URI,
-    package: 'ultiwrite-mcp@0.7.1',
+    package: 'ultiwrite-mcp@0.8.0',
   }
 }

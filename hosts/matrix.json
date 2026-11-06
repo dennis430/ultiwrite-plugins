@@ -1,0 +1,498 @@
+{
+  "schemaVersion": 1,
+  "asOf": "2026-11-05",
+  "endpoint": "https://mcp.dwsoffshorepartners.com/mcp",
+  "hostTesting": "Skipped at user request. Documentation-backed configurations are not host acceptance.",
+  "surfaces": [
+    {
+      "surface": "ChatGPT web / custom MCP plugins",
+      "status": "Protocol-compatible, host test outstanding",
+      "source": "https://developers.openai.com/plugins/build/auth",
+      "mechanism": "Existing portable plugin; Google sign-in and public-client PKCE/DCR",
+      "limitation": "Existing identity and approved listing preserved. Workspace installation and provider review are independent of source preparation.",
+      "configuration": "../chatgpt/mcp.json",
+      "hostAcceptance": "SKIPPED_BY_USER",
+      "fileTransfer": "Use actual host-supplied HTTPS file objects when available; otherwise use the signed upload handoff. Never assume access to local attachment bytes."
+    },
+    {
+      "surface": "Codex CLI",
+      "status": "Protocol-compatible, host test outstanding",
+      "source": "https://developers.openai.com/codex/mcp",
+      "mechanism": "Streamable HTTP and native OAuth/DCR",
+      "limitation": "Project config requires a trusted project.",
+      "configuration": "configs/codex.toml",
+      "hostAcceptance": "SKIPPED_BY_USER",
+      "fileTransfer": "Use actual host-supplied HTTPS file objects when available; otherwise use the signed upload handoff. Never assume access to local attachment bytes."
+    },
+    {
+      "surface": "Codex IDE",
+      "status": "Protocol-compatible, host test outstanding",
+      "source": "https://developers.openai.com/codex/mcp",
+      "mechanism": "Streamable HTTP and native OAuth/DCR",
+      "limitation": "Project config requires a trusted project.",
+      "configuration": "configs/codex.toml",
+      "hostAcceptance": "SKIPPED_BY_USER",
+      "fileTransfer": "Use actual host-supplied HTTPS file objects when available; otherwise use the signed upload handoff. Never assume access to local attachment bytes."
+    },
+    {
+      "surface": "Codex desktop",
+      "status": "Protocol-compatible, host test outstanding",
+      "source": "https://developers.openai.com/codex/mcp",
+      "mechanism": "Streamable HTTP and native OAuth/DCR",
+      "limitation": "Project config requires a trusted project.",
+      "configuration": "configs/codex.toml",
+      "hostAcceptance": "SKIPPED_BY_USER",
+      "fileTransfer": "Use actual host-supplied HTTPS file objects when available; otherwise use the signed upload handoff. Never assume access to local attachment bytes."
+    },
+    {
+      "surface": "OpenAI Responses API",
+      "status": "Protocol-compatible, host test outstanding",
+      "source": "https://developers.openai.com/api/docs/guides/tools-connectors-mcp",
+      "mechanism": "Remote MCP with a scoped Ultiwrite OAuth access token",
+      "limitation": "The API caller obtains/refreshes the customer grant; the OpenAI API key is a different credential.",
+      "configuration": "examples/responses.mjs",
+      "hostAcceptance": "SKIPPED_BY_USER",
+      "fileTransfer": "Use actual host-supplied HTTPS file objects when available; otherwise use the signed upload handoff. Never assume access to local attachment bytes."
+    },
+    {
+      "surface": "Claude.ai",
+      "status": "Protocol-compatible, host test outstanding",
+      "source": "https://support.claude.com/en/articles/11175166-getting-started-with-custom-connectors-using-remote-mcp",
+      "mechanism": "Remote connector URL; Google and OAuth consent",
+      "limitation": "Availability depends on plan and organization policy. Do not install the stdio adapter if remote connectors are available.",
+      "configuration": "../claude/.mcp.json",
+      "hostAcceptance": "SKIPPED_BY_USER",
+      "fileTransfer": "Use actual host-supplied HTTPS file objects when available; otherwise use the signed upload handoff. Never assume access to local attachment bytes."
+    },
+    {
+      "surface": "Claude Desktop remote connectors",
+      "status": "Protocol-compatible, host test outstanding",
+      "source": "https://support.claude.com/en/articles/11175166-getting-started-with-custom-connectors-using-remote-mcp",
+      "mechanism": "Remote connector URL; Google and OAuth consent",
+      "limitation": "Availability depends on plan and organization policy. Do not install the stdio adapter if remote connectors are available.",
+      "configuration": "../claude/.mcp.json",
+      "hostAcceptance": "SKIPPED_BY_USER",
+      "fileTransfer": "Use actual host-supplied HTTPS file objects when available; otherwise use the signed upload handoff. Never assume access to local attachment bytes."
+    },
+    {
+      "surface": "Claude Code",
+      "status": "Protocol-compatible, host test outstanding",
+      "source": "https://code.claude.com/docs/en/mcp",
+      "mechanism": "claude mcp add --transport http ultiwrite https://mcp.dwsoffshorepartners.com/mcp",
+      "limitation": "Authenticate with /mcp. User/project scope is chosen on installation.",
+      "configuration": "configs/claude.json",
+      "hostAcceptance": "SKIPPED_BY_USER",
+      "fileTransfer": "Use actual host-supplied HTTPS file objects when available; otherwise use the signed upload handoff. Never assume access to local attachment bytes."
+    },
+    {
+      "surface": "Claude Desktop stdio-only installations",
+      "status": "Adapter required",
+      "source": "https://modelcontextprotocol.io/docs/develop/connect-local-servers",
+      "mechanism": "Local Node stdio adapter",
+      "limitation": "Use the locally packed client; npm publication is not claimed.",
+      "configuration": "configs/stdio.json",
+      "hostAcceptance": "SKIPPED_BY_USER",
+      "fileTransfer": "Use actual host-supplied HTTPS file objects when available; otherwise use the signed upload handoff. Never assume access to local attachment bytes."
+    },
+    {
+      "surface": "Cursor IDE",
+      "status": "Protocol-compatible, host test outstanding",
+      "source": "https://cursor.com/docs/mcp",
+      "mechanism": "Remote URL with OAuth/DCR",
+      "limitation": "Cursor has documented desktop and hosted callbacks. Preserve native approval settings.",
+      "configuration": "configs/cursor.json",
+      "hostAcceptance": "SKIPPED_BY_USER",
+      "fileTransfer": "Use actual host-supplied HTTPS file objects when available; otherwise use the signed upload handoff. Never assume access to local attachment bytes."
+    },
+    {
+      "surface": "Cursor Agent / CLI",
+      "status": "Protocol-compatible, host test outstanding",
+      "source": "https://cursor.com/docs/mcp",
+      "mechanism": "Remote URL with OAuth/DCR",
+      "limitation": "Cursor has documented desktop and hosted callbacks. Preserve native approval settings.",
+      "configuration": "configs/cursor.json",
+      "hostAcceptance": "SKIPPED_BY_USER",
+      "fileTransfer": "Use actual host-supplied HTTPS file objects when available; otherwise use the signed upload handoff. Never assume access to local attachment bytes."
+    },
+    {
+      "surface": "Cursor background / cloud agents",
+      "status": "Blocked by external credentials, approval, or provider limitations",
+      "source": "https://cursor.com/docs/mcp",
+      "mechanism": "Provider-managed remote MCP",
+      "limitation": "Cloud account integration and exact OAuth journey require provider access; desktop success does not establish cloud acceptance.",
+      "configuration": null,
+      "hostAcceptance": "SKIPPED_BY_USER",
+      "fileTransfer": "Use actual host-supplied HTTPS file objects when available; otherwise use the signed upload handoff. Never assume access to local attachment bytes."
+    },
+    {
+      "surface": "Grok web custom connectors",
+      "status": "Protocol-compatible, host test outstanding",
+      "source": "https://docs.x.ai/grok/connectors",
+      "mechanism": "grok.com/connectors \u2192 New Connector \u2192 Custom",
+      "limitation": "Only interfaces exposing custom connectors qualify; embedded Grok is a separate surface.",
+      "configuration": "configs/generic-remote.json",
+      "hostAcceptance": "SKIPPED_BY_USER",
+      "fileTransfer": "Use actual host-supplied HTTPS file objects when available; otherwise use the signed upload handoff. Never assume access to local attachment bytes."
+    },
+    {
+      "surface": "Grok Build / Grok Code CLI",
+      "status": "Protocol-compatible, host test outstanding",
+      "source": "https://docs.x.ai/build/features/mcp-servers",
+      "mechanism": "grok mcp add --transport http ultiwrite https://mcp.dwsoffshorepartners.com/mcp",
+      "limitation": "Official current CLI documentation calls the host Grok Build.",
+      "configuration": "configs/grok-build.toml",
+      "hostAcceptance": "SKIPPED_BY_USER",
+      "fileTransfer": "Use actual host-supplied HTTPS file objects when available; otherwise use the signed upload handoff. Never assume access to local attachment bytes."
+    },
+    {
+      "surface": "xAI native SDK / Responses API",
+      "status": "Protocol-compatible, host test outstanding",
+      "source": "https://docs.x.ai/developers/tools/remote-mcp",
+      "mechanism": "Remote MCP with customer OAuth bearer",
+      "limitation": "xAI does not support Responses require_approval or connector_id. The example defaults to reads and requires an explicit evidence opt-in.",
+      "configuration": "examples/responses.mjs",
+      "hostAcceptance": "SKIPPED_BY_USER",
+      "fileTransfer": "Use actual host-supplied HTTPS file objects when available; otherwise use the signed upload handoff. Never assume access to local attachment bytes."
+    },
+    {
+      "surface": "Grok Bot",
+      "status": "Blocked by external credentials, approval, or provider limitations",
+      "source": "https://docs.x.ai/grok-bot/computer-and-apps",
+      "mechanism": "Connected-app submission dossier",
+      "limitation": "The documented connector backend is separate from the Bot computer and Grok Build configuration. No evidence that editing ~/.grok/config.toml installs a Bot app.",
+      "configuration": "../grokbot/mcp.json",
+      "hostAcceptance": "SKIPPED_BY_USER",
+      "fileTransfer": "Use actual host-supplied HTTPS file objects when available; otherwise use the signed upload handoff. Never assume access to local attachment bytes."
+    },
+    {
+      "surface": "X.com posts, replies and embedded Grok",
+      "status": "Blocked by external credentials, approval, or provider limitations",
+      "source": "https://docs.x.ai/grok-bot/overview#tag-bot-on-x",
+      "mechanism": "Discovery / task handoff to an existing Bot",
+      "limitation": "@bot can dispatch tasks where available; it is not arbitrary MCP installation or proof of Ultiwrite tool execution from a post.",
+      "configuration": null,
+      "hostAcceptance": "SKIPPED_BY_USER",
+      "fileTransfer": "Use actual host-supplied HTTPS file objects when available; otherwise use the signed upload handoff. Never assume access to local attachment bytes."
+    },
+    {
+      "surface": "Antigravity IDE",
+      "status": "Protocol-compatible, host test outstanding",
+      "source": "https://antigravity.google/docs/mcp",
+      "mechanism": "mcp_config.json serverUrl and automatic OAuth/DCR",
+      "limitation": "Google ADC authenticates Google APIs, not an Ultiwrite customer. Use the Ultiwrite Google consent flow.",
+      "configuration": "configs/antigravity.json",
+      "hostAcceptance": "SKIPPED_BY_USER",
+      "fileTransfer": "Use actual host-supplied HTTPS file objects when available; otherwise use the signed upload handoff. Never assume access to local attachment bytes."
+    },
+    {
+      "surface": "Antigravity CLI",
+      "status": "Protocol-compatible, host test outstanding",
+      "source": "https://antigravity.google/docs/mcp",
+      "mechanism": "mcp_config.json serverUrl and automatic OAuth/DCR",
+      "limitation": "Google ADC authenticates Google APIs, not an Ultiwrite customer. Use the Ultiwrite Google consent flow.",
+      "configuration": "configs/antigravity.json",
+      "hostAcceptance": "SKIPPED_BY_USER",
+      "fileTransfer": "Use actual host-supplied HTTPS file objects when available; otherwise use the signed upload handoff. Never assume access to local attachment bytes."
+    },
+    {
+      "surface": "Antigravity App",
+      "status": "Protocol-compatible, host test outstanding",
+      "source": "https://antigravity.google/docs/mcp",
+      "mechanism": "mcp_config.json serverUrl and automatic OAuth/DCR",
+      "limitation": "Google ADC authenticates Google APIs, not an Ultiwrite customer. Use the Ultiwrite Google consent flow.",
+      "configuration": "configs/antigravity.json",
+      "hostAcceptance": "SKIPPED_BY_USER",
+      "fileTransfer": "Use actual host-supplied HTTPS file objects when available; otherwise use the signed upload handoff. Never assume access to local attachment bytes."
+    },
+    {
+      "surface": "Gemini CLI",
+      "status": "Protocol-compatible, host test outstanding",
+      "source": "https://geminicli.com/docs/tools/mcp-server/",
+      "mechanism": "settings.json httpUrl and OAuth",
+      "limitation": "Use the supplied exact native redirect. Default random localhost /oauth/callback is not assumed authorized.",
+      "configuration": "configs/gemini.json",
+      "hostAcceptance": "SKIPPED_BY_USER",
+      "fileTransfer": "Use actual host-supplied HTTPS file objects when available; otherwise use the signed upload handoff. Never assume access to local attachment bytes."
+    },
+    {
+      "surface": "Gemini API agent applications",
+      "status": "Blocked by external credentials, approval, or provider limitations",
+      "source": "https://ai.google.dev/gemini-api/docs/tools",
+      "mechanism": "A supported SDK/agent MCP client",
+      "limitation": "A model API alone is not the host. SDK/version-specific remote OAuth execution is not established by a tools overview.",
+      "configuration": null,
+      "hostAcceptance": "SKIPPED_BY_USER",
+      "fileTransfer": "Use actual host-supplied HTTPS file objects when available; otherwise use the signed upload handoff. Never assume access to local attachment bytes."
+    },
+    {
+      "surface": "Consumer Gemini chat",
+      "status": "Blocked by external credentials, approval, or provider limitations",
+      "source": "https://ai.google.dev/gemini-api/docs/tools",
+      "mechanism": "No custom connector installation established in this audit",
+      "limitation": "Use Gemini CLI or Antigravity where documented; no native consumer configuration is fabricated.",
+      "configuration": null,
+      "hostAcceptance": "SKIPPED_BY_USER",
+      "fileTransfer": "Use actual host-supplied HTTPS file objects when available; otherwise use the signed upload handoff. Never assume access to local attachment bytes."
+    },
+    {
+      "surface": "Microsoft Copilot Studio",
+      "status": "Blocked by external credentials, approval, or provider limitations",
+      "source": "https://learn.microsoft.com/en-us/microsoft-copilot-studio/mcp-add-existing-server-to-agent",
+      "mechanism": "MCP onboarding wizard \u2192 Streamable HTTP \u2192 OAuth",
+      "limitation": "Complete tenant onboarding with public-client PKCE or an approved registration mode. A secret-requiring confidential-client flow is not supplied by this public-client server.",
+      "configuration": "copilot-studio.md",
+      "hostAcceptance": "SKIPPED_BY_USER",
+      "fileTransfer": "Use actual host-supplied HTTPS file objects when available; otherwise use the signed upload handoff. Never assume access to local attachment bytes."
+    },
+    {
+      "surface": "Microsoft 365 Copilot agents",
+      "status": "Blocked by external credentials, approval, or provider limitations",
+      "source": "https://learn.microsoft.com/en-us/microsoft-365/copilot/extensibility/plugin-authentication-oauth",
+      "mechanism": "Agent/tool registration with exact approved callback",
+      "limitation": "The existing exact Microsoft 365 callback is retained. Tenant, agent review and authentication mode need separate acceptance.",
+      "configuration": "copilot-studio.md",
+      "hostAcceptance": "SKIPPED_BY_USER",
+      "fileTransfer": "Use actual host-supplied HTTPS file objects when available; otherwise use the signed upload handoff. Never assume access to local attachment bytes."
+    },
+    {
+      "surface": "Consumer Microsoft Copilot",
+      "status": "Blocked by external credentials, approval, or provider limitations",
+      "source": "https://learn.microsoft.com/en-us/microsoft-copilot-studio/agent-extend-action-mcp",
+      "mechanism": "Use a supported Copilot Studio agent",
+      "limitation": "Copilot Studio or Microsoft 365 support does not establish consumer chat installation.",
+      "configuration": null,
+      "hostAcceptance": "SKIPPED_BY_USER",
+      "fileTransfer": "Use actual host-supplied HTTPS file objects when available; otherwise use the signed upload handoff. Never assume access to local attachment bytes."
+    },
+    {
+      "surface": "Mistral Studio connectors",
+      "status": "Blocked by external credentials, approval, or provider limitations",
+      "source": "https://docs.mistral.ai/studio/connectors",
+      "mechanism": "Register an MCP connector and configure scoped OAuth authorization",
+      "limitation": "Studio is public preview. The debugger callback is approved; other hosted callbacks require exact registration.",
+      "configuration": "mistral.md",
+      "hostAcceptance": "SKIPPED_BY_USER",
+      "fileTransfer": "Use actual host-supplied HTTPS file objects when available; otherwise use the signed upload handoff. Never assume access to local attachment bytes."
+    },
+    {
+      "surface": "Mistral agent / conversation APIs",
+      "status": "Blocked by external credentials, approval, or provider limitations",
+      "source": "https://docs.mistral.ai/studio/connectors",
+      "mechanism": "Register an MCP connector and configure scoped OAuth authorization",
+      "limitation": "Studio is public preview. The debugger callback is approved; other hosted callbacks require exact registration.",
+      "configuration": "mistral.md",
+      "hostAcceptance": "SKIPPED_BY_USER",
+      "fileTransfer": "Use actual host-supplied HTTPS file objects when available; otherwise use the signed upload handoff. Never assume access to local attachment bytes."
+    },
+    {
+      "surface": "Mistral Vibe Work",
+      "status": "Blocked by external credentials, approval, or provider limitations",
+      "source": "https://docs.mistral.ai/vibe/work/connectors/mcp-connectors",
+      "mechanism": "Administrator adds Custom MCP Connector with OAuth 2.1/DCR",
+      "limitation": "The real Work OAuth callback must be verified/approved; debugger support does not establish Work support.",
+      "configuration": "mistral.md",
+      "hostAcceptance": "SKIPPED_BY_USER",
+      "fileTransfer": "Use actual host-supplied HTTPS file objects when available; otherwise use the signed upload handoff. Never assume access to local attachment bytes."
+    },
+    {
+      "surface": "Mistral Vibe Code CLI",
+      "status": "Protocol-compatible, host test outstanding",
+      "source": "https://docs.mistral.ai/vibe/code/cli/mcp-servers",
+      "mechanism": "HTTP server with auth.type=oauth and native /callback",
+      "limitation": "Default callback 127.0.0.1:47823/callback fits the existing native registration rule.",
+      "configuration": "configs/mistral-vibe.toml",
+      "hostAcceptance": "SKIPPED_BY_USER",
+      "fileTransfer": "Use actual host-supplied HTTPS file objects when available; otherwise use the signed upload handoff. Never assume access to local attachment bytes."
+    },
+    {
+      "surface": "Le Chat legacy",
+      "status": "Blocked by external credentials, approval, or provider limitations",
+      "source": "https://docs.mistral.ai/vibe/work/connectors/mcp-connectors",
+      "mechanism": "Use the current documented Vibe Work connector surface",
+      "limitation": "Current documentation describes Work; legacy chat support is not inferred.",
+      "configuration": null,
+      "hostAcceptance": "SKIPPED_BY_USER",
+      "fileTransfer": "Use actual host-supplied HTTPS file objects when available; otherwise use the signed upload handoff. Never assume access to local attachment bytes."
+    },
+    {
+      "surface": "Meta Muse connector platform",
+      "status": "Blocked by external credentials, approval, or provider limitations",
+      "source": "https://platform.muse.ai/docs",
+      "mechanism": "Prepare connector submission using the canonical endpoint and tool catalog",
+      "limitation": "Reviewer account, intake approval and exact provider credential requirements remain external.",
+      "configuration": "muse.md",
+      "hostAcceptance": "SKIPPED_BY_USER",
+      "fileTransfer": "Use actual host-supplied HTTPS file objects when available; otherwise use the signed upload handoff. Never assume access to local attachment bytes."
+    },
+    {
+      "surface": "Meta Muse Code",
+      "status": "Blocked by external credentials, approval, or provider limitations",
+      "source": "https://platform.muse.ai/docs",
+      "mechanism": "No official Code MCP configuration established",
+      "limitation": "Muse model availability and Muse platform guidelines do not establish a Muse Code CLI. No invented config.",
+      "configuration": null,
+      "hostAcceptance": "SKIPPED_BY_USER",
+      "fileTransfer": "Use actual host-supplied HTTPS file objects when available; otherwise use the signed upload handoff. Never assume access to local attachment bytes."
+    },
+    {
+      "surface": "Meta/Llama through an MCP-capable harness",
+      "status": "Protocol-compatible, host test outstanding",
+      "source": "https://modelcontextprotocol.io/docs/develop/build-client",
+      "mechanism": "Use a verified MCP host and select an eligible model",
+      "limitation": "The host owns MCP/OAuth; a standalone model is not an MCP client.",
+      "configuration": "configs/stdio.json",
+      "hostAcceptance": "SKIPPED_BY_USER",
+      "fileTransfer": "Use actual host-supplied HTTPS file objects when available; otherwise use the signed upload handoff. Never assume access to local attachment bytes."
+    },
+    {
+      "surface": "GitHub Copilot CLI",
+      "status": "Protocol-compatible, host test outstanding",
+      "source": "https://docs.github.com/en/copilot/how-tos/copilot-cli/customize-copilot/add-mcp-servers",
+      "mechanism": "copilot mcp add --transport http ultiwrite https://mcp.dwsoffshorepartners.com/mcp",
+      "limitation": "Complete the host OAuth prompt.",
+      "configuration": "configs/copilot.json",
+      "hostAcceptance": "SKIPPED_BY_USER",
+      "fileTransfer": "Use actual host-supplied HTTPS file objects when available; otherwise use the signed upload handoff. Never assume access to local attachment bytes."
+    },
+    {
+      "surface": "GitHub Copilot in VS Code",
+      "status": "Protocol-compatible, host test outstanding",
+      "source": "https://code.visualstudio.com/docs/agent-customization/mcp-servers",
+      "mechanism": "HTTP server and native OAuth",
+      "limitation": "Use servers in VS Code format versus mcpServers in portable format.",
+      "configuration": "configs/vscode.json",
+      "hostAcceptance": "SKIPPED_BY_USER",
+      "fileTransfer": "Use actual host-supplied HTTPS file objects when available; otherwise use the signed upload handoff. Never assume access to local attachment bytes."
+    },
+    {
+      "surface": "GitHub Copilot cloud agent / code review",
+      "status": "Unsupported by current host",
+      "source": "https://docs.github.com/en/copilot/how-tos/copilot-on-github/customize-copilot/configure-mcp-servers",
+      "mechanism": "Native remote OAuth is currently unsupported",
+      "limitation": "Use a local OAuth-capable host. Do not commit a shared customer token or replace customer OAuth with a service API key.",
+      "configuration": null,
+      "hostAcceptance": "SKIPPED_BY_USER",
+      "fileTransfer": "Use actual host-supplied HTTPS file objects when available; otherwise use the signed upload handoff. Never assume access to local attachment bytes."
+    },
+    {
+      "surface": "Windsurf",
+      "status": "Protocol-compatible, host test outstanding",
+      "source": "https://docs.windsurf.com/plugins/cascade/mcp",
+      "mechanism": "Remote HTTP MCP; use documented OAuth or the optional local adapter",
+      "limitation": "Native callback acceptance varies by host version. Use stdio.json if the actual native callback is refused; never widen redirect wildcards.",
+      "configuration": "configs/windsurf.json",
+      "hostAcceptance": "SKIPPED_BY_USER",
+      "fileTransfer": "Use actual host-supplied HTTPS file objects when available; otherwise use the signed upload handoff. Never assume access to local attachment bytes."
+    },
+    {
+      "surface": "OpenCode",
+      "status": "Protocol-compatible, host test outstanding",
+      "source": "https://opencode.ai/docs/mcp-servers/",
+      "mechanism": "Remote HTTP MCP; use documented OAuth or the optional local adapter",
+      "limitation": "Native callback acceptance varies by host version. Use stdio.json if the actual native callback is refused; never widen redirect wildcards.",
+      "configuration": "configs/opencode.json",
+      "hostAcceptance": "SKIPPED_BY_USER",
+      "fileTransfer": "Use actual host-supplied HTTPS file objects when available; otherwise use the signed upload handoff. Never assume access to local attachment bytes."
+    },
+    {
+      "surface": "Zed",
+      "status": "Protocol-compatible, host test outstanding",
+      "source": "https://zed.dev/docs/ai/mcp",
+      "mechanism": "Remote HTTP MCP; use documented OAuth or the optional local adapter",
+      "limitation": "Native callback acceptance varies by host version. Use stdio.json if the actual native callback is refused; never widen redirect wildcards.",
+      "configuration": "configs/zed.json",
+      "hostAcceptance": "SKIPPED_BY_USER",
+      "fileTransfer": "Use actual host-supplied HTTPS file objects when available; otherwise use the signed upload handoff. Never assume access to local attachment bytes."
+    },
+    {
+      "surface": "Kiro IDE / CLI",
+      "status": "Protocol-compatible, host test outstanding",
+      "source": "https://kiro.dev/docs/mcp/configuration/",
+      "mechanism": "Remote HTTP MCP; use documented OAuth or the optional local adapter",
+      "limitation": "Native callback acceptance varies by host version. Use stdio.json if the actual native callback is refused; never widen redirect wildcards.",
+      "configuration": "configs/kiro.json",
+      "hostAcceptance": "SKIPPED_BY_USER",
+      "fileTransfer": "Use actual host-supplied HTTPS file objects when available; otherwise use the signed upload handoff. Never assume access to local attachment bytes."
+    },
+    {
+      "surface": "JetBrains AI Assistant",
+      "status": "Adapter required",
+      "source": "https://www.jetbrains.com/help/ai-assistant/mcp.html",
+      "mechanism": "Local stdio adapter; native remote URL available",
+      "limitation": "Native OAuth behavior is not established by the retrieved page. The adapter owns customer OAuth.",
+      "configuration": "configs/stdio.json",
+      "hostAcceptance": "SKIPPED_BY_USER",
+      "fileTransfer": "Use actual host-supplied HTTPS file objects when available; otherwise use the signed upload handoff. Never assume access to local attachment bytes."
+    },
+    {
+      "surface": "JetBrains Junie IDE / CLI",
+      "status": "Adapter required",
+      "source": "https://junie.jetbrains.com/docs/junie-cli-mcp-configuration.html",
+      "mechanism": "Local stdio adapter in Junie MCP settings",
+      "limitation": "Remote transport exists; native OAuth callback compatibility is unverified.",
+      "configuration": "configs/stdio.json",
+      "hostAcceptance": "SKIPPED_BY_USER",
+      "fileTransfer": "Use actual host-supplied HTTPS file objects when available; otherwise use the signed upload handoff. Never assume access to local attachment bytes."
+    },
+    {
+      "surface": "Amazon Q Developer IDE",
+      "status": "Adapter required",
+      "source": "https://docs.aws.amazon.com/amazonq/latest/qdeveloper-ug/mcp-ide.html",
+      "mechanism": "Local stdio adapter in MCP configuration",
+      "limitation": "Keep Amazon Q IDE distinct from the successor Kiro CLI.",
+      "configuration": "configs/stdio.json",
+      "hostAcceptance": "SKIPPED_BY_USER",
+      "fileTransfer": "Use actual host-supplied HTTPS file objects when available; otherwise use the signed upload handoff. Never assume access to local attachment bytes."
+    },
+    {
+      "surface": "Replit Agent custom MCP",
+      "status": "Blocked by external credentials, approval, or provider limitations",
+      "source": "https://docs.replit.com/features/mcp/overview",
+      "mechanism": "Custom remote MCP connector",
+      "limitation": "Actual workspace plan, exact OAuth callback and end-user isolation require account/provider validation.",
+      "configuration": "configs/replit.json",
+      "hostAcceptance": "SKIPPED_BY_USER",
+      "fileTransfer": "Use actual host-supplied HTTPS file objects when available; otherwise use the signed upload handoff. Never assume access to local attachment bytes."
+    },
+    {
+      "surface": "Perplexity custom remote connectors",
+      "status": "Protocol-compatible, host test outstanding",
+      "source": "https://www.perplexity.ai/help-center/en/articles/13915507-adding-custom-remote-connectors",
+      "mechanism": "Custom HTTPS MCP connector with OAuth/DCR",
+      "limitation": "Use per-member grants. Do not connect an entire organization to one customer account silently.",
+      "configuration": "configs/generic-remote.json",
+      "hostAcceptance": "SKIPPED_BY_USER",
+      "fileTransfer": "Use actual host-supplied HTTPS file objects when available; otherwise use the signed upload handoff. Never assume access to local attachment bytes."
+    },
+    {
+      "surface": "Cohere-backed agent applications",
+      "status": "Adapter required",
+      "source": "https://docs.cohere.com/docs/tool-use-quickstart",
+      "mechanism": "An MCP-capable model host forwards the canonical tool definitions",
+      "limitation": "Cohere tool calling alone does not prove a native MCP client or North custom connector.",
+      "configuration": "configs/stdio.json",
+      "hostAcceptance": "SKIPPED_BY_USER",
+      "fileTransfer": "Use actual host-supplied HTTPS file objects when available; otherwise use the signed upload handoff. Never assume access to local attachment bytes."
+    },
+    {
+      "surface": "AI21 Maestro Studio / agents",
+      "status": "Blocked by external credentials, approval, or provider limitations",
+      "source": "https://docs.ai21.com/docs/mcp-studio-guide",
+      "mechanism": "Documented MCP tool integration",
+      "limitation": "Exact remote OAuth registration requirements require account access; no invented native registration format.",
+      "configuration": null,
+      "hostAcceptance": "SKIPPED_BY_USER",
+      "fileTransfer": "Use actual host-supplied HTTPS file objects when available; otherwise use the signed upload handoff. Never assume access to local attachment bytes."
+    },
+    {
+      "surface": "Other compatible non-Chinese agent harnesses",
+      "status": "Adapter required",
+      "source": "https://modelcontextprotocol.io/docs/develop/build-client",
+      "mechanism": "Standard remote MCP or the optional stdio adapter",
+      "limitation": "Validate the actual harness, provider, transport and OAuth flow independently.",
+      "configuration": "configs/stdio.json",
+      "hostAcceptance": "SKIPPED_BY_USER",
+      "fileTransfer": "Use actual host-supplied HTTPS file objects when available; otherwise use the signed upload handoff. Never assume access to local attachment bytes."
+    }
+  ]
+}

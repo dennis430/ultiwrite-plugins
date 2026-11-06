@@ -1,10 +1,13 @@
 #!/usr/bin/env node
-import { mkdir, readFile, rm, writeFile, chmod, stat } from 'node:fs/promises'
+import { mkdir, readFile, rm, writeFile, chmod, stat, rename } from 'node:fs/promises'
 import { createReadStream } from 'node:fs'
 import { createServer } from 'node:http'
 import { dirname, basename } from 'node:path'
 import { createInterface } from 'node:readline'
 import { credentialPath, clientConfig, expectedDoctor, mcpUrl, pkce, redact, REDIRECT_URI, DEFAULT_ORIGIN } from '../lib/pure.mjs'
+
+import { discover } from '../lib/oauth.mjs'
+import { readRpcResponse, requestHeaders } from '../lib/transport.mjs'
 
 const args = process.argv.slice(2)
 const command = args[0] ?? 'doctor'
@@ -20,14 +23,18 @@ function origin() {
 }
 
 async function readCredentials() {
-  try { return JSON.parse(await readFile(credentialPath(), 'utf8')) } catch { return null }
+  try { return JSON.parse(await readFile(credentialPath(process.env, option('--profile') || 'default'), 'utf8')) } catch { return null }
 }
 
 async function writeCredentials(value) {
-  const path = credentialPath()
+  const path = credentialPath(process.env, option('--profile') || 'default')
   await mkdir(dirname(path), { recursive: true, mode: 0o700 })
-  await writeFile(path, JSON.stringify(value), { mode: 0o600 })
-  await chmod(path, 0o600)
+  const temporary = `${path}.${pkce().verifier}.tmp`
+  try {
+    await writeFile(temporary, JSON.stringify(value), { mode: 0o600, flag: 'wx' })
+    await chmod(temporary, 0o600)
+    await rename(temporary, path)
+  } finally { await rm(temporary, { force: true }) }
 }
 
 async function doctor() {
@@ -35,14 +42,8 @@ async function doctor() {
     process.stdout.write(`${JSON.stringify(expectedDoctor(origin()), null, 2)}\n`)
     return
   }
-  const base = origin()
-  const resource = await fetch(`${base}/.well-known/oauth-protected-resource`)
-  const authorization = await fetch(`${base}/.well-known/oauth-authorization-server`)
-  const resourceBody = await resource.json()
-  const authorizationBody = await authorization.json()
-  const ok = resource.ok && authorization.ok && resourceBody.resource === mcpUrl(base) && authorizationBody.issuer === base
-  process.stdout.write(`${JSON.stringify({ ok, endpoint: resourceBody.resource, issuer: authorizationBody.issuer, scopes: resourceBody.scopes_supported, package: 'ultiwrite-mcp@0.7.1' }, null, 2)}\n`)
-  if (!ok) process.exitCode = 1
+  const metadata = await discover(origin())
+  process.stdout.write(`${JSON.stringify({ ok: true, endpoint: metadata.resource, issuer: metadata.issuer, scopes: metadata.scopes_supported, package: 'ultiwrite-mcp@0.8.0' }, null, 2)}\n`)
 }
 
 async function config() {
@@ -55,21 +56,26 @@ async function logout() {
   if (saved?.refresh_token || saved?.access_token) {
     revoked = true
     try {
-      await fetch(`${saved.issuer || origin()}/api/integrations/ultiwrite/oauth/revoke`, {
+      const metadata = await discover(saved.issuer || origin(), saved.resource || mcpUrl(saved.issuer || origin()))
+      if (!metadata.revocation_endpoint) throw new Error('Revocation unavailable')
+      await fetch(metadata.revocation_endpoint, {
         method: 'POST',
         headers: { 'content-type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams({ token: saved.refresh_token || saved.access_token }),
+        body: new URLSearchParams({ token: saved.refresh_token || saved.access_token, ...(saved.client_id ? { client_id: saved.client_id } : {}) }),
+        redirect: 'error', signal: AbortSignal.timeout(15000),
       })
     } catch { /* local removal still proceeds */ }
   }
-  await rm(credentialPath(), { force: true })
+  await rm(credentialPath(process.env, option('--profile') || 'default'), { force: true })
   process.stderr.write(`Local Ultiwrite credentials removed. Revocation ${revoked ? 'attempted' : 'not attempted'}.\n`)
 }
 
 async function login() {
   const base = origin()
+  const metadata = await discover(base)
   const { verifier, challenge } = pkce()
-  const registered = await fetch(`${base}/api/integrations/ultiwrite/oauth/register`, {
+  const registered = await fetch(metadata.registration_endpoint, {
+    redirect: 'error', signal: AbortSignal.timeout(15000),
     method: 'POST', headers: { 'content-type': 'application/json' },
     body: JSON.stringify({ application_type: 'native', redirect_uris: [REDIRECT_URI] }),
   })
@@ -80,7 +86,7 @@ async function login() {
     return
   }
   const state = pkce().verifier
-  const authorize = new URL(`${base}/api/integrations/ultiwrite/oauth/authorize`)
+  const authorize = new URL(metadata.authorization_endpoint)
   authorize.searchParams.set('response_type', 'code')
   authorize.searchParams.set('client_id', client.client_id)
   authorize.searchParams.set('redirect_uri', REDIRECT_URI)
@@ -105,7 +111,8 @@ async function login() {
     server.on('error', error => { clearTimeout(timeout); reject(error) })
     server.listen(6274, '127.0.0.1', () => process.stderr.write(`Open this URL and approve Ultiwrite:\n${authorize.href}\n`))
   })
-  const token = await fetch(`${base}/api/integrations/ultiwrite/oauth/token`, {
+  const token = await fetch(metadata.token_endpoint, {
+    redirect: 'error', signal: AbortSignal.timeout(15000),
     method: 'POST', headers: { 'content-type': 'application/x-www-form-urlencoded' },
     body: new URLSearchParams({ grant_type: 'authorization_code', code, redirect_uri: REDIRECT_URI, client_id: client.client_id, code_verifier: verifier, resource: mcpUrl(base) }),
   })
@@ -115,29 +122,31 @@ async function login() {
     process.exitCode = 1
     return
   }
-  await writeCredentials({ ...body, client_id: client.client_id, issuer: base })
-  process.stderr.write(`Signed in. Credentials stored at ${credentialPath()} (not printed).\n`)
+  if (!body.access_token || body.token_type?.toLowerCase() !== 'bearer') throw new Error('Ultiwrite returned an invalid token response. No credential was stored.')
+  await writeCredentials({ ...body, client_id: client.client_id, issuer: base, resource: metadata.resource })
+  process.stderr.write(`Signed in. Credentials stored at ${credentialPath(process.env, option('--profile') || 'default')} (not printed).\n`)
 }
 
-async function rpc(message) {
+let remoteSessionId, negotiatedVersion
+async function rpc(message, notify) {
   let saved = await readCredentials()
   if (!saved?.access_token) {
     throw new Error('Not signed in. Run ultiwrite-mcp login.')
   }
-  const version = message.params?._meta?.['io.modelcontextprotocol/protocolVersion']
-  const mirrored = version ? { 'mcp-protocol-version': version, 'mcp-method': message.method, ...(message.params?.name ? { 'mcp-name': message.params.name } : {}) } : {}
-  const send = () => fetch(mcpUrl(saved.issuer || origin()), {
+  const resource = saved.resource || mcpUrl(saved.issuer || origin())
+  const send = () => fetch(resource, {
     method: 'POST',
-    headers: { authorization: `Bearer ${saved.access_token}`, 'content-type': 'application/json', accept: 'application/json, text/event-stream', ...mirrored },
+    headers: { authorization: `Bearer ${saved.access_token}`, 'content-type': 'application/json', accept: 'application/json, text/event-stream', ...requestHeaders(message, { version: negotiatedVersion, sessionId: remoteSessionId }) },
     body: JSON.stringify(message),
-    redirect: 'error',
+    redirect: 'error', signal: AbortSignal.timeout(290000),
   })
   let response = await send()
   if (response.status === 401 && saved.refresh_token && saved.client_id) {
     await response.body?.cancel()
-    const refresh = await fetch(`${saved.issuer}/api/integrations/ultiwrite/oauth/token`, {
-      method: 'POST', headers: { 'content-type': 'application/x-www-form-urlencoded' }, redirect: 'error',
-      body: new URLSearchParams({ grant_type: 'refresh_token', refresh_token: saved.refresh_token, client_id: saved.client_id, resource: mcpUrl(saved.issuer) }),
+    const metadata = await discover(saved.issuer || origin(), resource)
+    const refresh = await fetch(metadata.token_endpoint, {
+      method: 'POST', headers: { 'content-type': 'application/x-www-form-urlencoded' }, redirect: 'error', signal: AbortSignal.timeout(15000),
+      body: new URLSearchParams({ grant_type: 'refresh_token', refresh_token: saved.refresh_token, client_id: saved.client_id, resource }),
     })
     const renewed = await refresh.json()
     if (!refresh.ok || !renewed.access_token) throw new Error('Sign-in expired. Run ultiwrite-mcp login again.')
@@ -145,15 +154,21 @@ async function rpc(message) {
     await writeCredentials(saved)
     response = await send()
   }
-  if (response.status === 202 || response.status === 204) { await response.body?.cancel(); return null }
-  if (!response.ok) { await response.body?.cancel(); throw new Error(`Ultiwrite refused the request (${response.status}). Check your sign-in and account access.`) }
-  const type = response.headers.get('content-type') ?? ''
-  if (type.includes('text/event-stream')) {
-    const text = await response.text()
-    const data = text.split('\n').filter(line => line.startsWith('data:')).map(line => line.slice(5).trim()).filter(Boolean).at(-1)
-    return data ? JSON.parse(data) : null
+  if (response.status === 202 || response.status === 204) {
+    await response.body?.cancel()
+    if (message.id !== undefined) throw new Error('Ultiwrite accepted a request without a response. Check the saved job before retrying a write.')
+    return null
   }
-  return response.json()
+  if (!response.ok && !(response.headers.get('content-type') || '').includes('application/json')) {
+    await response.body?.cancel()
+    throw new Error(`Ultiwrite refused the request (${response.status}). Check your sign-in and account access.`)
+  }
+  const result = await readRpcResponse(response, message.id, notify)
+  if (message.method === 'initialize' && result.result?.protocolVersion) {
+    negotiatedVersion = result.result.protocolVersion
+    remoteSessionId = response.headers.get('mcp-session-id') || undefined
+  }
+  return result
 }
 
 async function stdio() {
@@ -163,7 +178,7 @@ async function stdio() {
     let message
     try {
       message = JSON.parse(line)
-      const result = await rpc(message)
+      const result = await rpc(message, notification => process.stdout.write(`${JSON.stringify(notification)}\n`))
       if (result && message.id !== undefined) process.stdout.write(`${JSON.stringify(result)}\n`)
     } catch (error) {
       process.stderr.write(`${error.message}\n`)
@@ -173,7 +188,9 @@ async function stdio() {
 }
 
 async function upload() {
-  const files = rest.filter((item, index) => !item.startsWith('--') && rest[index - 1] !== '--issuer')
+  if (flag('--document-forensics') && flag('--no-document-forensics')) throw new Error('Choose one Document Forensics option.')
+  const documentForensics = flag('--document-forensics')
+  const files = rest.filter((item, index) => !item.startsWith('--') && !['--issuer', '--profile'].includes(rest[index - 1]))
   if (!files.length) {
     process.stderr.write('Usage: ultiwrite-mcp upload <file>...\n')
     process.exitCode = 2
@@ -184,11 +201,14 @@ async function upload() {
     if (!metadata.isFile() || !metadata.size) throw new Error('Select nonempty regular files.')
     return { path: file, name: basename(file), size: metadata.size, contentType: 'application/octet-stream' }
   }))
-  const opened = await rpc({ jsonrpc: '2.0', id: 1, method: 'tools/call', params: { name: 'ultiwrite_evidence_submit', arguments: {} } })
+  const opened = await rpc({ jsonrpc: '2.0', id: 1, method: 'tools/call', params: { name: 'ultiwrite_evidence_submit', arguments: { files: [], caseId: null, handoffId: null, documentForensics: documentForensics ? true : flag('--no-document-forensics') ? false : null } } })
   const result = JSON.parse(opened?.result?.content?.find(item => item.type === 'text')?.text || '{}')
   const saved = await readCredentials()
   const link = new URL(result.uploadLink || 'https://invalid.invalid')
-  if (link.origin !== new URL(saved.issuer).origin || !link.searchParams.get('t')) throw new Error('Ultiwrite did not return a valid account upload handoff.')
+  const issuer = new URL(saved.issuer || origin()).origin
+  const allowedOrigins = issuer === 'https://mcp.dwsoffshorepartners.com'
+    ? [issuer, 'https://dwsoffshorepartners.com'] : [issuer]
+  if (!allowedOrigins.includes(link.origin) || link.pathname !== '/api/integrations/ultiwrite/upload' || link.username || link.password || link.hash || !link.searchParams.get('t')) throw new Error('Ultiwrite did not return a valid account upload handoff.')
   const staging = step => new URL(`/api/integrations/ultiwrite/upload/staging/${step}${link.search}`, link)
   const post = async (url, body) => {
     const response = await fetch(url, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(body), redirect: 'error' })
@@ -228,7 +248,7 @@ async function upload() {
     receipts.push(receipt)
     process.stderr.write(`Uploaded file ${index + 1} of ${selected.length}.\n`)
   }
-  const committed = await post(new URL(`/api/integrations/ultiwrite/upload${link.search}`, link), { files: receipts, documentForensics: false })
+  const committed = await post(new URL(`/api/integrations/ultiwrite/upload${link.search}`, link), { files: receipts, documentForensics })
   process.stdout.write(`${JSON.stringify(redact(committed), null, 2)}\n`)
 }
 

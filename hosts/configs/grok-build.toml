@@ -1,0 +1,3 @@
+[mcp_servers.ultiwrite]
+url = "https://mcp.dwsoffshorepartners.com/mcp"
+tool_timeout_sec = 300

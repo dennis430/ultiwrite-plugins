@@ -1,6 +1,6 @@
 # Ultiwrite for ChatGPT and Codex
 
-Version 0.9.5. Product: Ultiwrite. Publisher: DWS Offshore Fund. This is the source package for the existing Ultiwrite plugin identity.
+Version 0.10.0. Product: Ultiwrite. Publisher: DWS Offshore Fund. This is the source package for the existing Ultiwrite plugin identity.
 
 Ultiwrite turns ordinary documents into a wider commercial investigation. Connect financial, identity, document-integrity, operational and external-context evidence across acquisitions, financing, counterparties, property and portfolios, then read reconciled findings, confidence and open questions. Submit only authorized evidence and use the live service for current capabilities and terms.
 
@@ -42,7 +42,7 @@ The MCP server entry contains only `type` and the clean canonical `url`. OAuth c
 
 ## Build and publish
 
-Run `node scripts/validate-public-plugins.mjs` and `node scripts/pack-public-connectors.mjs` from the repository root. The current archive is `release/ultiwrite-chatgpt-plugin-0.9.5.zip`; `--check` verifies source/archive parity. Historical archives remain intact.
+Run `node scripts/validate-public-plugins.mjs` and `node scripts/pack-public-connectors.mjs` from the repository root. The current archive is `release/ultiwrite-chatgpt-plugin-0.10.0.zip`; `--check` verifies source/archive parity. Historical archives remain intact.
 
 Update the existing OpenAI listing; inspect its current portal state before uploading and preserve its identity. This source release does not prove directory upload, review, account labels in an installed host, or a completed customer journey. Its server contract and live host behavior require separate verification.
 
@@ -53,3 +53,9 @@ MCP: https://mcp.dwsoffshorepartners.com/mcp
 Website: https://dwsoffshorepartners.com · Setup: https://dwsoffshorepartners.com/docs/mcp · Support: https://dwsoffshorepartners.com/contact · Privacy: https://dwsoffshorepartners.com/privacy · Terms: https://dwsoffshorepartners.com/terms
 
 OAuth credentials stay with the host. This package contains no credentials or telemetry. Authorized requests and submitted evidence are processed by the existing Ultiwrite service under its privacy policy and account controls. The MIT license covers this thin package only; the analytical service remains proprietary.
+
+## Universal MCP preparation
+
+Customer sign-in uses Google. Connection does not grant usage. Discover current account limits, paid credits and complimentary setup requirements with `ultiwrite_capabilities_get`; its `accountStatus` is informational and server admission rechecks eligibility. New complimentary usage requires Stripe card verification and promotion eligibility. Existing paid entitlements and reports remain available without card setup. No automatic subscription or charge is created.
+
+Host configurations, the canonical public tool catalog and per-surface limitations are prepared in the root `hosts/` directory. Live host acceptance was skipped at the owner’s request; package preparation is not publication or deployment.

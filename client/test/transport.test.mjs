@@ -16,6 +16,8 @@ const server = createServer(async (req, res) => {
   const bytes = Buffer.concat(chunks)
   const body = () => JSON.parse(bytes)
   const reply = value => { res.setHeader('content-type', 'application/json'); res.end(JSON.stringify(value)) }
+  if (req.url.startsWith('/.well-known/oauth-protected-resource')) return reply({ resource: `${origin}/api/integrations/ultiwrite/mcp`, authorization_servers: [origin] })
+  if (req.url === '/.well-known/oauth-authorization-server') return reply({ issuer: origin, code_challenge_methods_supported: ['S256'], authorization_endpoint: `${origin}/authorize`, token_endpoint: `${origin}/api/integrations/ultiwrite/oauth/token`, registration_endpoint: `${origin}/register` })
   if (req.url === '/api/integrations/ultiwrite/oauth/token') {
     assert.equal(new URLSearchParams(bytes.toString()).get('refresh_token'), 'old-refresh')
     refreshed++

@@ -1,10 +1,10 @@
 interface:
+  icon_small: "../../assets/logo.png"
+  icon_large: "../../assets/logo.png"
   display_name: "Connect and select accounts"
   short_description: "Connect, reconnect and choose your Ultiwrite account."
   default_prompt: "Use $connect-account to connect Ultiwrite and confirm my account."
   brand_color: "#d39891"
-  icon_small: "../../assets/logo.png"
-  icon_large: "../../assets/logo.png"
 
 policy:
   allow_implicit_invocation: true

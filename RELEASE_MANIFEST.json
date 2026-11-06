@@ -1,11 +1,11 @@
 {
   "product": "Ultiwrite",
   "distribution": "plugin-only",
-  "version": "0.9.5",
+  "version": "0.10.0",
   "publisher": "DWS Offshore Fund",
   "source_repository": "dennis430/merchant-risk-app",
-  "source_base_commit": "0100040b5ea607e45cd5bedba9f4ef1c54ade3a2",
-  "public_source_base_commit": "2a67545780ca292f608c2d184ef71afa28293fc8",
+  "source_base_commit": "4ada9c1d0711e64228358a527383f3dae5ed5693",
+  "public_source_base_commit": "073d9fa9b3dc6f0df6664421979f30e19d5188a6",
   "package_status": "PREPARED",
   "host_evaluation_status": "NOT_RUN",
   "directory_publication_status": "NOT_VERIFIED_BY_THIS_EXPORT",
@@ -18,27 +18,32 @@
   "mcp_url": "https://mcp.dwsoffshorepartners.com/mcp",
   "compatibility_mcp_url": "https://dwsoffshorepartners.com/api/integrations/ultiwrite/mcp",
   "packages": {
+    "hosts": {
+      "version": "0.10.0",
+      "zip": "release/ultiwrite-host-adapters-0.10.0.zip",
+      "status": "prepared; host acceptance skipped by owner"
+    },
     "chatgpt": {
-      "version": "0.9.5",
-      "zip": "release/ultiwrite-chatgpt-plugin-0.9.5.zip",
+      "version": "0.10.0",
+      "zip": "release/ultiwrite-chatgpt-plugin-0.10.0.zip",
       "mcp_url": "https://mcp.dwsoffshorepartners.com/mcp"
     },
     "cursor": {
-      "version": "0.9.3",
-      "zip": "release/ultiwrite-cursor-plugin-0.9.3.zip"
+      "version": "0.10.0",
+      "zip": "release/ultiwrite-cursor-plugin-0.10.0.zip"
     },
     "claude": {
-      "version": "0.9.3",
-      "zip": "release/Ultiwrite_Claude_Plugin_v0.9.3.zip",
+      "version": "0.10.0",
+      "zip": "release/Ultiwrite_Claude_Plugin_v0.10.0.zip",
       "mcp_url": "https://mcp.dwsoffshorepartners.com/mcp"
     },
     "grokbot": {
-      "version": "0.8.0",
+      "version": "0.9.0",
       "status": "submission dossier; host test not run"
     },
     "client": {
-      "version": "0.7.1",
-      "status": "unchanged; npm publication not claimed"
+      "version": "0.8.0",
+      "status": "prepared local adapter; npm publication not claimed"
     }
   },
   "note": "SHA-256 of every file except this manifest. Historical archives are preserved. Built source does not establish directory upload, review, installed-host acceptance or server deployment.",
@@ -57,7 +62,7 @@
     },
     {
       "path": ".gitignore",
-      "sha256": "5f70ee8df0ba474922bf182b542b64c5ec1d67f1c90085cbb97b786cb8f3c775"
+      "sha256": "15a13682fdb25d5ce510c4b037554459df6073e66daaab39cb5a9a192fd5900d"
     },
     {
       "path": ".mintignore",
@@ -85,7 +90,7 @@
     },
     {
       "path": "README.md",
-      "sha256": "67946d28c81687b9cdacc768f8808371810ee3e364f3eddfe52954dd273d0fc6"
+      "sha256": "b01a4ff3afce32d1d00dd458ad35482a1e7e5b435327ea9f0a4d9d376778bb43"
     },
     {
       "path": "api-contract.mdx",
@@ -169,7 +174,7 @@
     },
     {
       "path": "chatgpt/README.md",
-      "sha256": "7f715a9a813ea930e1b3f07ff4aaad16df51d30129c003e120a30e3bdcce19e7"
+      "sha256": "ba357cac2f02bb73ff78fa28b85209aeda98d0d9667fb9ec88f1eb9710c96b8d"
     },
     {
       "path": "chatgpt/assets/logo.png",
@@ -181,11 +186,11 @@
     },
     {
       "path": "chatgpt/plugin.json",
-      "sha256": "c3b2da0b9db9129e8dcf26f143415694f3d779d0b0608a4d11b4f2323ac57c2c"
+      "sha256": "ab180cc6d314f5c235151444f39468f4391bcdb4d7cf28a743c3bcc3c4e45dc9"
     },
     {
       "path": "chatgpt/skills/connect-account/SKILL.md",
-      "sha256": "444e347909c4a620a8f2b1d96f055111648a8c1431ff07c4c00deb2d79c9a30e"
+      "sha256": "436625dca608d4f02b15d84080f675968fa6a40b0d811ed67d94f66ac6e32cf9"
     },
     {
       "path": "chatgpt/skills/connect-account/agents/openai.yaml",
@@ -209,7 +214,7 @@
     },
     {
       "path": "chatgpt/skills/submit-evidence/SKILL.md",
-      "sha256": "9d6e6d708e85aeb45c686a00fe4a51b6a9a44183d905b1b859c98f13199b605e"
+      "sha256": "34642e65e63b0c3c850a13307bf15f29df54b69a26b4c70fe66daa55d1cbf194"
     },
     {
       "path": "chatgpt/skills/submit-evidence/agents/openai.yaml",
@@ -225,7 +230,7 @@
     },
     {
       "path": "claude/.claude-plugin/plugin.json",
-      "sha256": "6b45933f0510765d5d5815e4f917d0d2e04a26764258eb62e733527513876752"
+      "sha256": "7157b70f036d2accf308483aca7dde5e2b19b4525848ed035ce4bf2a2afb51ae"
     },
     {
       "path": "claude/.mcp.json",
@@ -237,7 +242,7 @@
     },
     {
       "path": "claude/README.md",
-      "sha256": "f9a6759c266ad2be684dbeeb5acab7397f6acdec2d1fcc58006ae9241c6b4f1a"
+      "sha256": "feb97c1e3cd2da8a21457e97a3b28d8f85809b1fe09d06d42d5be31fc98aed98"
     },
     {
       "path": "claude/assets/logo.png",
@@ -245,11 +250,11 @@
     },
     {
       "path": "claude/skills/connect-account/SKILL.md",
-      "sha256": "444e347909c4a620a8f2b1d96f055111648a8c1431ff07c4c00deb2d79c9a30e"
+      "sha256": "436625dca608d4f02b15d84080f675968fa6a40b0d811ed67d94f66ac6e32cf9"
     },
     {
       "path": "claude/skills/connect-account/agents/openai.yaml",
-      "sha256": "df34937d382ae79595b248a1ee3ea8fab7a96cc7d9a2ab525866a832cb4aa52a"
+      "sha256": "bcd474af0d5f88eda50caee37aaebdc73c2b1d8ba85e8a1f05b32aae28e8c708"
     },
     {
       "path": "claude/skills/follow-up/SKILL.md",
@@ -257,23 +262,23 @@
     },
     {
       "path": "claude/skills/follow-up/agents/openai.yaml",
-      "sha256": "c213986c9fa6504e37f598c92a39c38aa5b01630f7915995b172ee9e9f828329"
+      "sha256": "0c2bb0d628bb2593bb081d1d92c0d30fdb19653be4d3186a1b58f573555c4db6"
     },
     {
       "path": "claude/skills/read-report/SKILL.md",
-      "sha256": "14f98f6e1ad419692acba2571c21577fcedcb7bdc63492f357b32b0d1b8eba01"
+      "sha256": "e033479f88ee29b25479e24c102b17bda13d7ffdb33cef35f78bba8160a3b0aa"
     },
     {
       "path": "claude/skills/read-report/agents/openai.yaml",
-      "sha256": "71c2e24c037ddb3a7d55712cf65479654cd8795cc6235a760afa97d91f22ef18"
+      "sha256": "9519eb5384df6699d7332e02c74857134bb54bb651d5ae70cbbc84322feca3a0"
     },
     {
       "path": "claude/skills/submit-evidence/SKILL.md",
-      "sha256": "274d0e0031fc96e090daf0cea41489be473f42bb8531a74e1b2075fa884bf987"
+      "sha256": "2348ee5b91cdfce7bf41f280bc8a63cd2db3cadd1e5bb7e370a5614ad3f95524"
     },
     {
       "path": "claude/skills/submit-evidence/agents/openai.yaml",
-      "sha256": "cb6fa12dfd157a240f76b8c33fd27cb3a7d832484d05caf71852f760b25ae3f6"
+      "sha256": "5b280fbc50840e499eca0d5f8ec84b9979c5bfba9e67f0e25858b598e6eae3ad"
     },
     {
       "path": "claude/skills/ultiwrite/SKILL.md",
@@ -281,7 +286,7 @@
     },
     {
       "path": "claude/skills/ultiwrite/agents/openai.yaml",
-      "sha256": "6df156fae5e567c58a69ed02be600f61370b9c41445b748388edd13628e75840"
+      "sha256": "ba1903fed0f7f9ee49a2bec8cba2527803ba0b0a69b70d9d0a73e2c2df05099c"
     },
     {
       "path": "client/LICENSE",
@@ -289,31 +294,43 @@
     },
     {
       "path": "client/README.md",
-      "sha256": "cb2466f46420498e50796fdd9683e0145fa057fb6050f4f156ef99af9183a5ea"
+      "sha256": "ea2d9f61e5c74bb9fc7c1135fca33c1f7a25691adf1bffdc136314e4258106e6"
     },
     {
       "path": "client/bin/ultiwrite-mcp.js",
-      "sha256": "4a59661f75ea42f7beb1fad9951c2d92dd348555cdfa4d5e5b584f84a5f5275a"
+      "sha256": "6cbbdd8eb775eb7742ad806edf0064aded21d8e0a8d0a94e9b133d1be7557936"
+    },
+    {
+      "path": "client/lib/oauth.mjs",
+      "sha256": "639f9d841b77328092b187ebaf6b91cade2a39e8574736b2e7428e99cbe3153f"
     },
     {
       "path": "client/lib/pure.mjs",
-      "sha256": "80323f003ed983aa7d23c9c2df1131c775a17d74216b9ab2a7b2796fad9d3ff6"
+      "sha256": "f3b87805c2abf6896dac8a0a72f29f98685f9fc73903089147226bd97584172b"
+    },
+    {
+      "path": "client/lib/transport.mjs",
+      "sha256": "4e3ff136e4f871771a26eb3bc67a45e7b821ce367f3269bee7a061f4fe9cb7d1"
     },
     {
       "path": "client/package.json",
-      "sha256": "a01959fbca0f72562f9726f7541c49778113a126319239f40a9700adfbac4e63"
+      "sha256": "de3f45a869a8c4d75fd5a37b142cd56ffe2b9ccfc0a5b5916c1c11052d76cbf3"
     },
     {
       "path": "client/test/cli.test.mjs",
       "sha256": "2c12a916ce1a12f74408e8876386399da6e4c5052358cd10924addde243e6a3b"
     },
     {
+      "path": "client/test/interoperability.test.mjs",
+      "sha256": "9063dd65a1aaa45ae52cfb2dd143b1892416a5c3def36381bab7ba5fcdb5ae63"
+    },
+    {
       "path": "client/test/transport.test.mjs",
-      "sha256": "ec5d3531584c1ce33cc336e2dd24f0590fb37ed0ec8287ab546d6fdeb2ad2702"
+      "sha256": "8a3a3ad854d5268dd050e2b8c33ee908ab7b800c63b12d096e7288faf6104dd4"
     },
     {
       "path": "cursor/.cursor-plugin/plugin.json",
-      "sha256": "111f7e2cd1f6c9461721a251d6b9eff73bcdf9087f93650cafd5e79f228dea64"
+      "sha256": "737d0c4b3fb976f8fe5c0e7e1e254749847a85ba0ffe329bb985fffc9dbc3627"
     },
     {
       "path": "cursor/LICENSE",
@@ -321,7 +338,7 @@
     },
     {
       "path": "cursor/README.md",
-      "sha256": "c2d6fdc329fe1b761cdb6178c492b63a9e43bbe2e5a0fe7be818f9000af0383f"
+      "sha256": "646c894ba4936e80eeea2e22dc072ddde241144b82c2e576f775019d5d1b15af"
     },
     {
       "path": "cursor/assets/logo.png",
@@ -333,11 +350,11 @@
     },
     {
       "path": "cursor/skills/connect-account/SKILL.md",
-      "sha256": "444e347909c4a620a8f2b1d96f055111648a8c1431ff07c4c00deb2d79c9a30e"
+      "sha256": "436625dca608d4f02b15d84080f675968fa6a40b0d811ed67d94f66ac6e32cf9"
     },
     {
       "path": "cursor/skills/connect-account/agents/openai.yaml",
-      "sha256": "df34937d382ae79595b248a1ee3ea8fab7a96cc7d9a2ab525866a832cb4aa52a"
+      "sha256": "bcd474af0d5f88eda50caee37aaebdc73c2b1d8ba85e8a1f05b32aae28e8c708"
     },
     {
       "path": "cursor/skills/follow-up/SKILL.md",
@@ -345,23 +362,23 @@
     },
     {
       "path": "cursor/skills/follow-up/agents/openai.yaml",
-      "sha256": "c213986c9fa6504e37f598c92a39c38aa5b01630f7915995b172ee9e9f828329"
+      "sha256": "0c2bb0d628bb2593bb081d1d92c0d30fdb19653be4d3186a1b58f573555c4db6"
     },
     {
       "path": "cursor/skills/read-report/SKILL.md",
-      "sha256": "14f98f6e1ad419692acba2571c21577fcedcb7bdc63492f357b32b0d1b8eba01"
+      "sha256": "e033479f88ee29b25479e24c102b17bda13d7ffdb33cef35f78bba8160a3b0aa"
     },
     {
       "path": "cursor/skills/read-report/agents/openai.yaml",
-      "sha256": "71c2e24c037ddb3a7d55712cf65479654cd8795cc6235a760afa97d91f22ef18"
+      "sha256": "9519eb5384df6699d7332e02c74857134bb54bb651d5ae70cbbc84322feca3a0"
     },
     {
       "path": "cursor/skills/submit-evidence/SKILL.md",
-      "sha256": "274d0e0031fc96e090daf0cea41489be473f42bb8531a74e1b2075fa884bf987"
+      "sha256": "2348ee5b91cdfce7bf41f280bc8a63cd2db3cadd1e5bb7e370a5614ad3f95524"
     },
     {
       "path": "cursor/skills/submit-evidence/agents/openai.yaml",
-      "sha256": "cb6fa12dfd157a240f76b8c33fd27cb3a7d832484d05caf71852f760b25ae3f6"
+      "sha256": "5b280fbc50840e499eca0d5f8ec84b9979c5bfba9e67f0e25858b598e6eae3ad"
     },
     {
       "path": "cursor/skills/ultiwrite/SKILL.md",
@@ -369,7 +386,7 @@
     },
     {
       "path": "cursor/skills/ultiwrite/agents/openai.yaml",
-      "sha256": "6df156fae5e567c58a69ed02be600f61370b9c41445b748388edd13628e75840"
+      "sha256": "ba1903fed0f7f9ee49a2bec8cba2527803ba0b0a69b70d9d0a73e2c2df05099c"
     },
     {
       "path": "docs.json",
@@ -385,7 +402,7 @@
     },
     {
       "path": "grokbot/FIELDS.json",
-      "sha256": "93f08bd547812c25f8c008b8aee56b6740aa5e21e371159ce267c84f2be34eb5"
+      "sha256": "94257b540324d6d5a23d817737088ab96bc861b7ff2b93c96b5bdc6d0eff675f"
     },
     {
       "path": "grokbot/INSTALL.md",
@@ -401,7 +418,7 @@
     },
     {
       "path": "grokbot/README.md",
-      "sha256": "ca747763a277312b1bdda5e4b5113dac3f41ca7f9c43d5fd2ee83971bb7220e2"
+      "sha256": "ef21a2d032b18285e18fceb7818e25dce1ea8ee43853d50627b69de05574bc9e"
     },
     {
       "path": "grokbot/TESTING.md",
@@ -418,6 +435,98 @@
     {
       "path": "grokbot/mcp.json",
       "sha256": "b58605b1536159e225e0c338a99fbadfb5395067191a651882b3e46791003dd1"
+    },
+    {
+      "path": "hosts/README.md",
+      "sha256": "73eccd5adcce89a9ba2fda11c1283a714ccfc79a5f292d3f88a446a1737717eb"
+    },
+    {
+      "path": "hosts/catalog.json",
+      "sha256": "05849e618cf239717facae2c766003b01775ec3c7a69148d939d54e548321a69"
+    },
+    {
+      "path": "hosts/configs/antigravity.json",
+      "sha256": "fc6620c801698ba52b5ed9987515b334180f1e62ff3b9e26885d3800666383d7"
+    },
+    {
+      "path": "hosts/configs/claude.json",
+      "sha256": "402ec557cf938178c278cb98658f91a2acb1fae2c9ed29a5e51c5bc67725a486"
+    },
+    {
+      "path": "hosts/configs/codex.toml",
+      "sha256": "62fcbfdee4c591076bfd26037f08785e41d568511be9b62c70b485d0810e3648"
+    },
+    {
+      "path": "hosts/configs/copilot.json",
+      "sha256": "eefe7add54cfbfc7ee477270c6550fbb6b6ac5bb4cffe6ca5dae77cf92fbef47"
+    },
+    {
+      "path": "hosts/configs/cursor.json",
+      "sha256": "e37fa20377907668edc7a9747ea8029fb3a82425604835cd0477be8a0b8db675"
+    },
+    {
+      "path": "hosts/configs/gemini.json",
+      "sha256": "a2d0f9dab58ae3f77b40bc352e2c66b6118e1da8877b0af0799ff7bb41b9d559"
+    },
+    {
+      "path": "hosts/configs/generic-remote.json",
+      "sha256": "e37fa20377907668edc7a9747ea8029fb3a82425604835cd0477be8a0b8db675"
+    },
+    {
+      "path": "hosts/configs/grok-build.toml",
+      "sha256": "62fcbfdee4c591076bfd26037f08785e41d568511be9b62c70b485d0810e3648"
+    },
+    {
+      "path": "hosts/configs/kiro.json",
+      "sha256": "8088c3ff6def2ff5222da5904fecd413a5f639550539b7b0f48155f54d23f3cf"
+    },
+    {
+      "path": "hosts/configs/mistral-vibe.toml",
+      "sha256": "513c75f33057444bea0fa3603d315620c00f5e5dca733f073f042a579d96b272"
+    },
+    {
+      "path": "hosts/configs/opencode.json",
+      "sha256": "f0a1404d88d592b939a4d19bb4987d5208cd36e90d7feeddc8163c6c415769a4"
+    },
+    {
+      "path": "hosts/configs/replit.json",
+      "sha256": "aae59d756adf775bb9ea0dec9fbce852892b2836b3827db67adee7f5a8e28798"
+    },
+    {
+      "path": "hosts/configs/stdio.json",
+      "sha256": "3e282cb64267efb5fb8cd975ff72340637b2d15d841009498117851b29f18b39"
+    },
+    {
+      "path": "hosts/configs/vscode.json",
+      "sha256": "094325c97dc8cf407abc3ae57fb43f4960fb4affdd9cc4111137b24b2b7c0506"
+    },
+    {
+      "path": "hosts/configs/windsurf.json",
+      "sha256": "4382cbe1c2f936671fa281247caacd201b549d08d1d02d8f91cd5c57946b65d5"
+    },
+    {
+      "path": "hosts/configs/zed.json",
+      "sha256": "96014c6f8c3d998ecacda8dca8681ceac65029ead01a4f329b1294fba04faf1f"
+    },
+    {
+      "path": "hosts/copilot-studio.md",
+      "sha256": "f1faf51c304f6601eeff56db364759b5fb332623f32d9d71638f6a8a375f0e01"
+    },
+    {
+      "path": "hosts/examples/responses.mjs",
+      "sha256": "ee31b6fa2fe2a27c056d345130e85ca47fc9b85101fcbacb3f2835fd9d6624e3"
+    },
+    {
+      "path": "hosts/matrix.json",
+      "sha256": "ff7ef7a500162a1d301db360fb990ed5342542cc7366582454371e4788b36cbd"
+    },
+    {
+      "path": "hosts/mistral.md",
+      "sha256": "32ec93cfa294aa5806e9456cfda5acc138184cad833141130680fee9224c7cda"
+    },
+    {
+      "path": "hosts/muse.md",
+      "sha256": "a202b574363f7f3b703729880a8f3b3990f4545d0db19ca084de7a598095b3a8"
     },
     {
       "path": "index.mdx",
@@ -464,8 +573,12 @@
       "sha256": "b9003ebb3bea1ecafe81e6ec5246a04ab2bd966da68d092674e5a2de07484c30"
     },
     {
+      "path": "release/INTEROPERABILITY_0.10.0.json",
+      "sha256": "01ca26ac0d95008aca774f2500a5895342e63b54998ae9a72f1b64cae3a8b4da"
+    },
+    {
       "path": "release/INVENTORY.json",
-      "sha256": "e526bf29ae430ccc4239f6fe5ba60dd838c3822f4cdb29cf6068c30d16d93fbe"
+      "sha256": "81dd579f40ed176ae5bd710991806cad051a91b9cdf56a07cb8001a960de6643"
     },
     {
       "path": "release/PLUGIN_0.9.1_LIVE_RECEIPT.json",
@@ -497,7 +610,11 @@
     },
     {
       "path": "release/SHA256SUMS.txt",
-      "sha256": "55756c71f77e256ce7134a5860ff39e59fb47a835aae642af7e36aec071443f1"
+      "sha256": "bc0dfad89a99bd71499aa90fea982f2bb5db2d18f39c9a09853a9ec0c403914d"
+    },
+    {
+      "path": "release/Ultiwrite_Claude_Plugin_v0.10.0.zip",
+      "sha256": "628e198edba317f1cb212d4e62f8b2905b8843f489d8d7221b6179978856a40d"
     },
     {
       "path": "release/Ultiwrite_Claude_Plugin_v0.8.0.zip",
@@ -526,6 +643,10 @@
     {
       "path": "release/Ultiwrite_Claude_Plugin_v0.9.3.zip",
       "sha256": "f00050a4d629eec6705f79da1f6e6b0b5aca7c73d5952463c36a25b7a5d77261"
+    },
+    {
+      "path": "release/ultiwrite-chatgpt-plugin-0.10.0.zip",
+      "sha256": "ab80175263356e90e59ab66392db50df2f4c8916d93b182fc719a2dbc81388a2"
     },
     {
       "path": "release/ultiwrite-chatgpt-plugin-0.7.1.zip",
@@ -560,6 +681,10 @@
       "sha256": "7b53857bcd7450b68a869b90d29c1112e89fcb3f707fd87ccadcacc73f906bfe"
     },
     {
+      "path": "release/ultiwrite-cursor-plugin-0.10.0.zip",
+      "sha256": "364a2e5a3c98d13607637d709734052374ef2f1ef8259b18e8480bb35a8bfe8a"
+    },
+    {
       "path": "release/ultiwrite-cursor-plugin-0.7.1.zip",
       "sha256": "e34aa2e43d7062871de121c479ef5e8a7fe214f20b400464624605fc419e15f1"
     },
@@ -580,20 +705,24 @@
       "sha256": "6d8977daea01083dd3fb98cdec3826e29699274195d6e1dc16b6808447b4635e"
     },
     {
+      "path": "release/ultiwrite-host-adapters-0.10.0.zip",
+      "sha256": "770fae10bfbc74150181aa16a0daa29efd0740dc049cd4ce83b0aceaf6b1e26e"
+    },
+    {
       "path": "scripts/pack-public-connectors.mjs",
-      "sha256": "2f3fb51d689363befb1a6b4982e138d747273b21ea2101b0dc578b5b3f3e7fe9"
+      "sha256": "1d189311be35d15ff301916ba8c8a8b9e5f5bcc54f32da6c2473a66b3200b1f1"
     },
     {
       "path": "scripts/test/release.test.mjs",
-      "sha256": "26673bdcd928abcecc6009d1c382f1170f5cb43c34206c73dc8ab71638873723"
+      "sha256": "dfa151fb79ab4951897f586d4e19d14495b5f8d81f98dcda4cf9de63aeefb71e"
     },
     {
       "path": "scripts/validate-public-plugins.mjs",
-      "sha256": "b9a28f099bddc596669ed1e3b69d56fef918f54be27b52767ddaa460784131c4"
+      "sha256": "c525e69bb9f6db793d1aa237f57099e24561f38771452a36ebfa5a3af90eb931"
     },
     {
       "path": "server.draft.json",
-      "sha256": "661f6d5ad4678dc3b32c83d1fbe05bde9cce24c2f11afd89fa01fe9aabcc7dcf"
+      "sha256": "ac164971f540a4d443a44ed6ba6064fd8aa95dc1d96a71a4ca7f68b4a461b926"
     }
   ]
 }

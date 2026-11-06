@@ -1,0 +1,10 @@
+[[mcp_servers]]
+name = "ultiwrite"
+transport = "streamable-http"
+url = "https://mcp.dwsoffshorepartners.com/mcp"
+tool_timeout_sec = 300
+
+[mcp_servers.auth]
+type = "oauth"
+scopes = ["ultiwrite:read", "ultiwrite:evidence"]
+redirect_port = 47823
