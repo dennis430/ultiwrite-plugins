@@ -113,7 +113,7 @@
         "commerce_description": "Investigations may use purchased account allowance and optional Document Forensics entitlement under the website\u2019s current terms. This connection returns service-provided terms and account links; it does not process payments, start subscriptions, grant entitlements or authorize automatic charges."
       },
       "publication": {
-        "release_notes": "0.10.0: prepares universal host interoperability, Google-only account guidance, current account/entitlement discovery and card-verified complimentary activation while retaining saved-report and investigation recovery workflows."
+        "release_notes": "0.10.0: adds multi-host interoperability and current account/entitlement discovery while retaining saved-report and investigation recovery workflows."
       }
     }
   }

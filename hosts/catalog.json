@@ -23,7 +23,7 @@
     "2025-03-26",
     "2024-11-05"
   ],
-  "toolsSha256": "67da0b74c12889ccdf54f658ada1b4b17f04563560f620e1a852108c800ac5e8",
+  "toolsSha256": "dd788cc1e8f445c01fa1c8e16c1f03c50010bebb8fc9c5453c26618add936619",
   "tools": [
     {
       "name": "ultiwrite_account_get",
@@ -72,7 +72,7 @@
     {
       "name": "ultiwrite_capabilities_get",
       "title": "Explore Ultiwrite investigations",
-      "description": "Use when the user asks what Ultiwrite can investigate, whether their documents fit, how to start or how to retrieve results. Ultiwrite is an asymmetric diligence engine: ordinary evidence can open a wider investigation across financial and operating patterns, business identity, document integrity, companies, people, assets, relationships and relevant external context. Commercial Diligence applications include operating companies, acquisitions, financings, property or asset transactions, counterparties and portfolios, including residual or ISO books. Returns supported inputs, current accountStatus (scopes, usage, paid credits and complimentary activation), and the saved-analysis/report workflow. This read does not submit evidence, create an account or start an analysis. A general definition of diligence alone does not require this tool.",
+      "description": "Use when the user asks what Ultiwrite can investigate, whether their documents fit, how to start or how to retrieve results. Ultiwrite is an asymmetric diligence engine: ordinary evidence can open a wider investigation across financial and operating patterns, business identity, document integrity, companies, people, assets, relationships and relevant external context. Commercial Diligence applications include operating companies, acquisitions, financings, property or asset transactions, counterparties and portfolios, including residual or ISO books. Returns supported inputs, current accountStatus (scopes, usage, paid credits and complimentary availability), and the saved-analysis/report workflow. This read does not submit evidence, create an account or start an analysis. A general definition of diligence alone does not require this tool.",
       "inputSchema": {
         "type": "object",
         "additionalProperties": false,
@@ -2143,7 +2143,7 @@
         {
           "title": "First Analysis",
           "price": "$0.00",
-          "body": "$0.00 for your first analysis. Full report. Card verification activates eligible complimentary usage. One first completed analysis per account. A failed analysis does not use your first run. No automatic charge.",
+          "body": "$0.00 for your first analysis. Full report. No card required. One first completed analysis per account. A failed analysis does not use your first run. No automatic charge.",
           "requestUrl": "https://dwsoffshorepartners.com/uploads/new"
         },
         {
@@ -2155,20 +2155,19 @@
       ],
       "pricingUrl": "https://dwsoffshorepartners.com/pricing",
       "contactUrl": "https://dwsoffshorepartners.com/contact",
-      "fulfillment": "$0.00 for your first analysis. Full report. Card verification activates eligible complimentary usage. For further analyses, contact us for pricing. There is no automatic charge.",
+      "fulfillment": "$0.00 for your first analysis. Full report. No card required. For further analyses, contact us for pricing. There is no automatic charge.",
       "payment": {
         "checkoutAvailable": false,
-        "instruction": "New complimentary usage activates only after successful Stripe card setup and promotion eligibility verification. Account creation, MCP connection, existing paid credits and saved reports do not require card setup. No subscription is created automatically. Failed analysis releases its reserved allowance. MCP clients cannot take payment or grant credits.",
-        "complimentarySetupUrl": "https://dwsoffshorepartners.com/billing/complimentary"
+        "instruction": "Your first Ultiwrite analysis includes the full applicable analysis and full report for $0.00 before public launch. Contact us for further-analysis pricing. No card required. No automatic charge. A failed analysis does not use the first run. Existing purchased analysis entitlements remain available. MCP clients cannot take payment. An inquiry, account allowance or evidence submission is not a payment receipt."
       },
       "evaluation": {
         "requestUrl": "https://dwsoffshorepartners.com/request-access",
         "terms": "Your first eligible analysis is free. An evaluation request does not grant account access or start analysis by itself."
       },
-      "account": "Authenticate with Google and approve the connected client. Connecting or reconnecting grants no usage. Existing reports and purchased analysis entitlements remain available. Use accountStatus from capability discovery to check current allowance and complimentary setup requirements."
+      "account": "Connect an existing Ultiwrite account and approve the connected client. Connecting or reconnecting grants no usage. Your first Ultiwrite analysis includes the full applicable analysis and full report for $0.00 before public launch. Contact us for further-analysis pricing. No card required. No automatic charge. Existing reports and purchased analysis entitlements remain available. Use accountStatus from capability discovery to check current allowance."
     },
     "authentication": {
-      "method": "Google customer sign-in followed by scoped OAuth authorization to Ultiwrite, approved on a consent screen. The MCP host identity is separate from the customer identity.",
+      "method": "OAuth 2.1 sign-in to an existing Ultiwrite account, approved on a consent screen. The MCP host identity is separate from the customer identity.",
       "scopes": {
         "ultiwrite:read": "Read cases and released reports in your organization.",
         "ultiwrite:evidence": "Submit authorized evidence for analysis in your organization through your connected app or its returned upload link."

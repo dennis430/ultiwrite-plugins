@@ -1,37 +1,37 @@
 {
-  "status": "PREPARED_NOT_PUBLISHED",
+  "status": "SOURCE_RELEASE_AUTHORIZED_HOST_ACCEPTANCE_SKIPPED",
   "hostAcceptance": "SKIPPED_BY_USER",
-  "asOf": "2026-11-05",
+  "asOf": "2026-11-06",
   "publicSourceBase": "073d9fa9b3dc6f0df6664421979f30e19d5188a6",
   "surfaces": 49,
   "configurationExamples": 16,
   "artifacts": [
     {
       "path": "release/ultiwrite-chatgpt-plugin-0.10.0.zip",
-      "bytes": 39904,
-      "sha256": "ab80175263356e90e59ab66392db50df2f4c8916d93b182fc719a2dbc81388a2"
+      "bytes": 39808,
+      "sha256": "27b88e63bc9856def2914e1b9039bc2f32045dc2ad75b9fcf4791e8af28a1e75"
     },
     {
       "path": "release/Ultiwrite_Claude_Plugin_v0.10.0.zip",
-      "bytes": 35189,
-      "sha256": "628e198edba317f1cb212d4e62f8b2905b8843f489d8d7221b6179978856a40d"
+      "bytes": 35112,
+      "sha256": "17040986830ff4b421a688e4351790848058da53fdbc034caac6002891489985"
     },
     {
       "path": "release/ultiwrite-cursor-plugin-0.10.0.zip",
-      "bytes": 33177,
-      "sha256": "364a2e5a3c98d13607637d709734052374ef2f1ef8259b18e8480bb35a8bfe8a"
+      "bytes": 33107,
+      "sha256": "6eb3167fca57a43b6b267e767868abc7a248c0c286befa0b43f2b1b7a56a51e4"
     },
     {
       "path": "release/ultiwrite-host-adapters-0.10.0.zip",
-      "bytes": 28739,
-      "sha256": "770fae10bfbc74150181aa16a0daa29efd0740dc049cd4ce83b0aceaf6b1e26e"
+      "bytes": 28605,
+      "sha256": "fbd34f131f74d8972f23216bd086534576a132bb62794c79c6617a471b97686b"
     },
     {
       "path": "release/ultiwrite-mcp-0.8.0.tgz",
-      "bytes": 9472,
-      "sha256": "0e46b2df0647fb86b3e8c5c884e50fb0f7941ba6a2768c4a796fc3e905f719fb"
+      "bytes": 9496,
+      "sha256": "3126aa06621aa79b1842fc14d2df818e2a6ab1f993643094794fefa8b3f2b4d0"
     }
   ],
-  "note": "No merge, deployment, marketplace submission or npm publication. Hashes identify local prepared artifacts; source and archive checks do not establish authenticated operation.",
-  "canonicalSourceCandidate": "4ada9c1d0711e64228358a527383f3dae5ed5693"
+  "note": "Owner authorized merge and relevant production deployment. This release preserves existing sign-in and no-card complimentary usage. Authenticated host acceptance is skipped; no npm or marketplace publication is claimed.",
+  "canonicalSourceCandidate": "d38ae90aba478bbda9af6b6adb6da7dcdc96a15d"
 }

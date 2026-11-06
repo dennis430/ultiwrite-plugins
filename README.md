@@ -19,9 +19,9 @@ These candidates are prepared for review. They have not been merged, deployed, p
 
 Preferred endpoint: **https://mcp.dwsoffshorepartners.com/mcp**. The historical apex `/api/integrations/ultiwrite/mcp` route remains valid for existing connections and audiences.
 
-Authenticate with **Google**, then approve the specific host's scoped Ultiwrite grant. The host account and customer account are separate. Verify `ultiwrite_account_get` after connecting, reconnecting or switching accounts. Read `ultiwrite_capabilities_get` for current capabilities, account limits, paid credits and complimentary setup status. Evidence consent and server usage accounting still govern analysis.
+Sign in through Ultiwrite’s existing account flow, then approve the specific host’s scoped OAuth grant. The host account and customer account are separate. Verify `ultiwrite_account_get` after connecting, reconnecting or switching accounts. Read `ultiwrite_capabilities_get` for current capabilities, account limits, paid credits and complimentary availability. Evidence consent and server usage accounting still govern analysis.
 
-New complimentary usage requires Stripe card verification and promotion eligibility. Account creation, connection, existing reports and existing paid entitlements remain accessible without card setup. Card setup creates no charge or subscription.
+The first eligible completed investigation remains $0 once per account, with no card required. Canonical account eligibility and the existing server ledger govern complimentary and purchased usage.
 
 [Installation and host-specific configurations](hosts/README.md) · [Per-surface status](hosts/matrix.json) · [Canonical public tool catalog](hosts/catalog.json). Unknown host behavior and external approvals remain explicit; a model name alone is not an MCP host.
 
@@ -32,9 +32,9 @@ Use the local `release/` files now. The remote links below resolve only after au
 <!-- CURRENT_DOWNLOADS_START -->
 | Archive | SHA-256 |
 | --- | --- |
-| [`ultiwrite-chatgpt-plugin-0.10.0.zip`](https://github.com/dennis430/ultiwrite-plugins/raw/main/release/ultiwrite-chatgpt-plugin-0.10.0.zip) | `ab80175263356e90e59ab66392db50df2f4c8916d93b182fc719a2dbc81388a2` |
-| [`ultiwrite-cursor-plugin-0.10.0.zip`](https://github.com/dennis430/ultiwrite-plugins/raw/main/release/ultiwrite-cursor-plugin-0.10.0.zip) | `364a2e5a3c98d13607637d709734052374ef2f1ef8259b18e8480bb35a8bfe8a` |
-| [`Ultiwrite_Claude_Plugin_v0.10.0.zip`](https://github.com/dennis430/ultiwrite-plugins/raw/main/release/Ultiwrite_Claude_Plugin_v0.10.0.zip) | `628e198edba317f1cb212d4e62f8b2905b8843f489d8d7221b6179978856a40d` |
+| [`ultiwrite-chatgpt-plugin-0.10.0.zip`](https://github.com/dennis430/ultiwrite-plugins/raw/main/release/ultiwrite-chatgpt-plugin-0.10.0.zip) | `27b88e63bc9856def2914e1b9039bc2f32045dc2ad75b9fcf4791e8af28a1e75` |
+| [`ultiwrite-cursor-plugin-0.10.0.zip`](https://github.com/dennis430/ultiwrite-plugins/raw/main/release/ultiwrite-cursor-plugin-0.10.0.zip) | `6eb3167fca57a43b6b267e767868abc7a248c0c286befa0b43f2b1b7a56a51e4` |
+| [`Ultiwrite_Claude_Plugin_v0.10.0.zip`](https://github.com/dennis430/ultiwrite-plugins/raw/main/release/Ultiwrite_Claude_Plugin_v0.10.0.zip) | `17040986830ff4b421a688e4351790848058da53fdbc034caac6002891489985` |
 <!-- CURRENT_DOWNLOADS_END -->
 
 `release/INVENTORY.json`, `release/SHA256SUMS.txt` and `RELEASE_MANIFEST.json` record source/archive hashes and historical preservation. New packages do not replace old archives.

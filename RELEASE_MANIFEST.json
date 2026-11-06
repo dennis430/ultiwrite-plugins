@@ -4,7 +4,7 @@
   "version": "0.10.0",
   "publisher": "DWS Offshore Fund",
   "source_repository": "dennis430/merchant-risk-app",
-  "source_base_commit": "4ada9c1d0711e64228358a527383f3dae5ed5693",
+  "source_base_commit": "d38ae90aba478bbda9af6b6adb6da7dcdc96a15d",
   "public_source_base_commit": "073d9fa9b3dc6f0df6664421979f30e19d5188a6",
   "package_status": "PREPARED",
   "host_evaluation_status": "NOT_RUN",
@@ -74,7 +74,7 @@
     },
     {
       "path": "INSTALL.md",
-      "sha256": "0a5b5eb4e495498a50bd49f68d1246c55502b75151e5724ab9228b7e61766c3c"
+      "sha256": "288f123b2638879f9b8131c7e4d64be9f543aa48cccf09a335333659451cf334"
     },
     {
       "path": "LICENSE",
@@ -90,7 +90,7 @@
     },
     {
       "path": "README.md",
-      "sha256": "b01a4ff3afce32d1d00dd458ad35482a1e7e5b435327ea9f0a4d9d376778bb43"
+      "sha256": "5478bb0c82d7ca3639895408f3ef5efa65b8c8ab3ba89b1d21e207d8deb7bdd9"
     },
     {
       "path": "api-contract.mdx",
@@ -174,7 +174,7 @@
     },
     {
       "path": "chatgpt/README.md",
-      "sha256": "ba357cac2f02bb73ff78fa28b85209aeda98d0d9667fb9ec88f1eb9710c96b8d"
+      "sha256": "87fa61e6088a7045b69f76e223f49a8c16e718d9646da4484ddd8ccfb1c3ebcd"
     },
     {
       "path": "chatgpt/assets/logo.png",
@@ -186,11 +186,11 @@
     },
     {
       "path": "chatgpt/plugin.json",
-      "sha256": "ab180cc6d314f5c235151444f39468f4391bcdb4d7cf28a743c3bcc3c4e45dc9"
+      "sha256": "cacedd58bfc9a3c9133e28dfc65a6790492d04c1f998699c3b6136891f7c067c"
     },
     {
       "path": "chatgpt/skills/connect-account/SKILL.md",
-      "sha256": "436625dca608d4f02b15d84080f675968fa6a40b0d811ed67d94f66ac6e32cf9"
+      "sha256": "51de252f5c90f331546192775adc0d3da7ce0ef364a7ea5ea564b7cbc93a39c5"
     },
     {
       "path": "chatgpt/skills/connect-account/agents/openai.yaml",
@@ -214,7 +214,7 @@
     },
     {
       "path": "chatgpt/skills/submit-evidence/SKILL.md",
-      "sha256": "34642e65e63b0c3c850a13307bf15f29df54b69a26b4c70fe66daa55d1cbf194"
+      "sha256": "0f84b39e2b2d976d6bcf64a369617988cb243f93075f1bd86a994cb8212da642"
     },
     {
       "path": "chatgpt/skills/submit-evidence/agents/openai.yaml",
@@ -242,7 +242,7 @@
     },
     {
       "path": "claude/README.md",
-      "sha256": "feb97c1e3cd2da8a21457e97a3b28d8f85809b1fe09d06d42d5be31fc98aed98"
+      "sha256": "c0ffd6250f65277dd2f4de1f41a29bb02671b654612149eafa08206cb8eb036f"
     },
     {
       "path": "claude/assets/logo.png",
@@ -250,7 +250,7 @@
     },
     {
       "path": "claude/skills/connect-account/SKILL.md",
-      "sha256": "436625dca608d4f02b15d84080f675968fa6a40b0d811ed67d94f66ac6e32cf9"
+      "sha256": "51de252f5c90f331546192775adc0d3da7ce0ef364a7ea5ea564b7cbc93a39c5"
     },
     {
       "path": "claude/skills/connect-account/agents/openai.yaml",
@@ -274,7 +274,7 @@
     },
     {
       "path": "claude/skills/submit-evidence/SKILL.md",
-      "sha256": "2348ee5b91cdfce7bf41f280bc8a63cd2db3cadd1e5bb7e370a5614ad3f95524"
+      "sha256": "a74bee8ad418c2a51043caf8c7aedb54510f31e7af17b914ef3acc45e9482884"
     },
     {
       "path": "claude/skills/submit-evidence/agents/openai.yaml",
@@ -294,11 +294,11 @@
     },
     {
       "path": "client/README.md",
-      "sha256": "ea2d9f61e5c74bb9fc7c1135fca33c1f7a25691adf1bffdc136314e4258106e6"
+      "sha256": "c47dffbf59fb8433bf9d437a31660cc2584c307edcf26be67ac4ba5425c26ea0"
     },
     {
       "path": "client/bin/ultiwrite-mcp.js",
-      "sha256": "6cbbdd8eb775eb7742ad806edf0064aded21d8e0a8d0a94e9b133d1be7557936"
+      "sha256": "1fa4f9bf4b9bb3ac9b2e5c2c6458aee8d2515cea6711ea56fbbde620680b38b1"
     },
     {
       "path": "client/lib/oauth.mjs",
@@ -338,7 +338,7 @@
     },
     {
       "path": "cursor/README.md",
-      "sha256": "646c894ba4936e80eeea2e22dc072ddde241144b82c2e576f775019d5d1b15af"
+      "sha256": "92a02ca2f6dbaa4e3aec62a0889a2c8213c5a5df9151428545284fef30845139"
     },
     {
       "path": "cursor/assets/logo.png",
@@ -350,7 +350,7 @@
     },
     {
       "path": "cursor/skills/connect-account/SKILL.md",
-      "sha256": "436625dca608d4f02b15d84080f675968fa6a40b0d811ed67d94f66ac6e32cf9"
+      "sha256": "51de252f5c90f331546192775adc0d3da7ce0ef364a7ea5ea564b7cbc93a39c5"
     },
     {
       "path": "cursor/skills/connect-account/agents/openai.yaml",
@@ -374,7 +374,7 @@
     },
     {
       "path": "cursor/skills/submit-evidence/SKILL.md",
-      "sha256": "2348ee5b91cdfce7bf41f280bc8a63cd2db3cadd1e5bb7e370a5614ad3f95524"
+      "sha256": "a74bee8ad418c2a51043caf8c7aedb54510f31e7af17b914ef3acc45e9482884"
     },
     {
       "path": "cursor/skills/submit-evidence/agents/openai.yaml",
@@ -418,7 +418,7 @@
     },
     {
       "path": "grokbot/README.md",
-      "sha256": "ef21a2d032b18285e18fceb7818e25dce1ea8ee43853d50627b69de05574bc9e"
+      "sha256": "5b9cf8d02474188441b728879185d87418a09a5296a8fde888ea27ce3d3bda0d"
     },
     {
       "path": "grokbot/TESTING.md",
@@ -438,11 +438,11 @@
     },
     {
       "path": "hosts/README.md",
-      "sha256": "73eccd5adcce89a9ba2fda11c1283a714ccfc79a5f292d3f88a446a1737717eb"
+      "sha256": "61f8627dab18f8b62c6dffd8e20cb729b4d73ed376035825f1521d36a7d6fe9a"
     },
     {
       "path": "hosts/catalog.json",
-      "sha256": "05849e618cf239717facae2c766003b01775ec3c7a69148d939d54e548321a69"
+      "sha256": "10f32f361636a09d86556b3776f1c1d055af792cfe2951ffd576b161d1ba615b"
     },
     {
       "path": "hosts/configs/antigravity.json",
@@ -510,7 +510,7 @@
     },
     {
       "path": "hosts/copilot-studio.md",
-      "sha256": "f1faf51c304f6601eeff56db364759b5fb332623f32d9d71638f6a8a375f0e01"
+      "sha256": "e9dfd0fde3654abb731d6dab3a8b960aacfe4d06014094e389f260973cdcdd7c"
     },
     {
       "path": "hosts/examples/responses.mjs",
@@ -518,7 +518,7 @@
     },
     {
       "path": "hosts/matrix.json",
-      "sha256": "ff7ef7a500162a1d301db360fb990ed5342542cc7366582454371e4788b36cbd"
+      "sha256": "ec22bc7289a41331f879607b10cd78be7961d54d04c63fc148eea90aff8b5ac3"
     },
     {
       "path": "hosts/mistral.md",
@@ -526,7 +526,7 @@
     },
     {
       "path": "hosts/muse.md",
-      "sha256": "a202b574363f7f3b703729880a8f3b3990f4545d0db19ca084de7a598095b3a8"
+      "sha256": "524c3ccbf31a52aeb19563a9ebe9a5326e65bba30694ba2851eb9bf5dc57b365"
     },
     {
       "path": "index.mdx",
@@ -574,11 +574,11 @@
     },
     {
       "path": "release/INTEROPERABILITY_0.10.0.json",
-      "sha256": "01ca26ac0d95008aca774f2500a5895342e63b54998ae9a72f1b64cae3a8b4da"
+      "sha256": "fb35c9a374623f75ef9712baf02d1d103a4294e9f36ff068dae6d1293dcfe2a2"
     },
     {
       "path": "release/INVENTORY.json",
-      "sha256": "81dd579f40ed176ae5bd710991806cad051a91b9cdf56a07cb8001a960de6643"
+      "sha256": "fac9abc7eb1d525207f3053b849cd90e246e03edbd0cdb919145723379314b03"
     },
     {
       "path": "release/PLUGIN_0.9.1_LIVE_RECEIPT.json",
@@ -610,11 +610,11 @@
     },
     {
       "path": "release/SHA256SUMS.txt",
-      "sha256": "bc0dfad89a99bd71499aa90fea982f2bb5db2d18f39c9a09853a9ec0c403914d"
+      "sha256": "160127ee175c62aaa41bab0860401fea6bd5e29185445b4f7b857527eb9d86f0"
     },
     {
       "path": "release/Ultiwrite_Claude_Plugin_v0.10.0.zip",
-      "sha256": "628e198edba317f1cb212d4e62f8b2905b8843f489d8d7221b6179978856a40d"
+      "sha256": "17040986830ff4b421a688e4351790848058da53fdbc034caac6002891489985"
     },
     {
       "path": "release/Ultiwrite_Claude_Plugin_v0.8.0.zip",
@@ -646,7 +646,7 @@
     },
     {
       "path": "release/ultiwrite-chatgpt-plugin-0.10.0.zip",
-      "sha256": "ab80175263356e90e59ab66392db50df2f4c8916d93b182fc719a2dbc81388a2"
+      "sha256": "27b88e63bc9856def2914e1b9039bc2f32045dc2ad75b9fcf4791e8af28a1e75"
     },
     {
       "path": "release/ultiwrite-chatgpt-plugin-0.7.1.zip",
@@ -682,7 +682,7 @@
     },
     {
       "path": "release/ultiwrite-cursor-plugin-0.10.0.zip",
-      "sha256": "364a2e5a3c98d13607637d709734052374ef2f1ef8259b18e8480bb35a8bfe8a"
+      "sha256": "6eb3167fca57a43b6b267e767868abc7a248c0c286befa0b43f2b1b7a56a51e4"
     },
     {
       "path": "release/ultiwrite-cursor-plugin-0.7.1.zip",
@@ -706,7 +706,7 @@
     },
     {
       "path": "release/ultiwrite-host-adapters-0.10.0.zip",
-      "sha256": "770fae10bfbc74150181aa16a0daa29efd0740dc049cd4ce83b0aceaf6b1e26e"
+      "sha256": "fbd34f131f74d8972f23216bd086534576a132bb62794c79c6617a471b97686b"
     },
     {
       "path": "scripts/pack-public-connectors.mjs",

@@ -26,6 +26,6 @@ When a tool returns a missing-scope challenge, use the host's native reauthoriza
 
 Skills are available automatically by default. Respect any host-disabled skill or account feature preference; do not silently re-enable one, bypass it through a different skill, or change a global permission setting. Report only controls the current host exposes.
 
-## Account usage and complimentary activation
+## Account usage
 
-Customer signup and sign-in use Google; the host account is separate. For a requested new investigation, use `ultiwrite_capabilities_get` to check its returned `accountStatus`, scopes and usage limits. Connection never grants credits. If the server returns `payment_method_setup_required`, present its exact authenticated `setupUrl` and preserve the task for continuation after card verification and promotion eligibility. This requirement does not block existing paid entitlements, reconnecting or reading saved reports. Do not subscribe, charge or choose paid add-ons automatically.
+Use Ultiwrite’s existing sign-in flow and scoped OAuth consent; the host account is separate. For a requested new investigation, use `ultiwrite_capabilities_get` to check its returned `accountStatus`, scopes and usage limits. Connection never grants credits. The first eligible completed investigation remains $0 once per account, with no card required; server admission owns eligibility and usage accounting. Preserve existing paid entitlements and saved reports. Do not subscribe, charge or choose paid add-ons automatically.

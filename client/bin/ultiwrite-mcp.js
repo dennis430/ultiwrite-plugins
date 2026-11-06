@@ -4,7 +4,7 @@ import { createReadStream } from 'node:fs'
 import { createServer } from 'node:http'
 import { dirname, basename } from 'node:path'
 import { createInterface } from 'node:readline'
-import { credentialPath, clientConfig, expectedDoctor, mcpUrl, pkce, redact, REDIRECT_URI, DEFAULT_ORIGIN } from '../lib/pure.mjs'
+import { credentialPath, clientConfig, expectedDoctor, mcpUrl, pkce, redact, REDIRECT_URI, DEFAULT_ORIGIN, MCP_PATH } from '../lib/pure.mjs'
 
 import { discover } from '../lib/oauth.mjs'
 import { readRpcResponse, requestHeaders } from '../lib/transport.mjs'
@@ -24,6 +24,12 @@ function origin() {
 
 async function readCredentials() {
   try { return JSON.parse(await readFile(credentialPath(process.env, option('--profile') || 'default'), 'utf8')) } catch { return null }
+}
+
+function savedResource(saved) {
+  // Releases before 0.8.0 always issued the legacy audience, including on the MCP host.
+  // Only newly connected grants carry an explicit resource and use the clean default.
+  return saved.resource || new URL(MCP_PATH, saved.issuer || origin()).href
 }
 
 async function writeCredentials(value) {
@@ -56,7 +62,7 @@ async function logout() {
   if (saved?.refresh_token || saved?.access_token) {
     revoked = true
     try {
-      const metadata = await discover(saved.issuer || origin(), saved.resource || mcpUrl(saved.issuer || origin()))
+      const metadata = await discover(saved.issuer || origin(), savedResource(saved))
       if (!metadata.revocation_endpoint) throw new Error('Revocation unavailable')
       await fetch(metadata.revocation_endpoint, {
         method: 'POST',
@@ -133,7 +139,7 @@ async function rpc(message, notify) {
   if (!saved?.access_token) {
     throw new Error('Not signed in. Run ultiwrite-mcp login.')
   }
-  const resource = saved.resource || mcpUrl(saved.issuer || origin())
+  const resource = savedResource(saved)
   const send = () => fetch(resource, {
     method: 'POST',
     headers: { authorization: `Bearer ${saved.access_token}`, 'content-type': 'application/json', accept: 'application/json, text/event-stream', ...requestHeaders(message, { version: negotiatedVersion, sessionId: remoteSessionId }) },
