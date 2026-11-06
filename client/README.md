@@ -1,38 +1,28 @@
 # ultiwrite-mcp
 
-Thin client for the canonical Ultiwrite MCP service. It does not contain the diligence engine.
+Optional thin stdio/OAuth adapter for the canonical Ultiwrite MCP service. Version 0.8.0. The investigative engine is hosted separately. Prefer direct remote MCP at https://mcp.dwsoffshorepartners.com/mcp whenever the host supports it.
 
-Endpoint: `https://mcp.dwsoffshorepartners.com/mcp`
+This npm package is **not published**. Do not assume `npx ultiwrite-mcp` is available. Use the local Node entrypoint or review and install the prepared tarball. Node.js 20+ is required.
 
-This package is **not published**. `npx ultiwrite-mcp` will not work until an authorized npm account publishes it. License: MIT for this client wrapper only. The analytical service is not included.
-
-## Local proof
-
-```bash
-cd packaging/npx/ultiwrite-mcp
-npm pack --pack-destination ../../dist
-npx --package ../../dist/ultiwrite-mcp-0.7.1.tgz ultiwrite-mcp doctor --offline
+```sh
+# From this distribution's client directory:
+npm pack --pack-destination ../release
+node bin/ultiwrite-mcp.js doctor --offline
+node bin/ultiwrite-mcp.js login --profile default
+node bin/ultiwrite-mcp.js stdio --profile default
 ```
 
-## Commands
+Commands:
 
-- `ultiwrite-mcp doctor` checks the live protected-resource and authorization-server metadata. No token is printed.
-- `ultiwrite-mcp doctor --offline` prints the expected endpoint and scopes without a network call.
-- `ultiwrite-mcp login` registers a native client for `http://127.0.0.1:6274/oauth/callback`, prints the authorize URL, and stores the token at `~/.config/ultiwrite/credentials.json` mode `0600`. The token is not printed.
-- `ultiwrite-mcp logout` attempts revocation, then deletes the local file.
-- `ultiwrite-mcp config` prints Claude, Cursor, and generic MCP configuration. No secrets.
-- `ultiwrite-mcp stdio` maintains a newline-delimited MCP session, forwarding each request as it arrives. Protocol bytes go to stdout. Diagnostics go to stderr. Expired access tokens refresh through the original account grant when available.
-- `ultiwrite-mcp upload <file...>` streams only the selected local files to scoped storage, verifies completion and finalizes the canonical analysis. Large files use multipart transfer. The result contains the saved case id. Document forensics stays off. The account's allowance and limits apply.
+- `doctor`: validate live protected-resource and authorization-server discovery, issuer, resource and PKCE. `--offline` prints expected public coordinates only.
+- `login`: register a native client, complete Ultiwrite sign-in and OAuth in the browser and store the selected grant with mode 0600. No token is printed. Re-running it reconnects that profile.
+- `logout`: attempt discovered revocation and remove only that profile's local credentials.
+- `config`: print remote configurations for Claude, Cursor and generic hosts. Additional host-specific formats are in the root `hosts/configs` directory.
+- `stdio`: forward newline-delimited requests, retain negotiated legacy session/version headers, mirror modern request metadata, stream progress and return a matching response without waiting for SSE EOF. Protocol goes to stdout; diagnostics to stderr. Only an explicit 401 permits one token-refresh retry. Network failures do not replay evidence writes.
+- `upload <file>...`: stream only named local files into the server's signed upload session, validate storage completion, then finalize the canonical analysis. It may consume an authorized analysis allowance. Use `--document-forensics` only for an authorized forensic examination; `--no-document-forensics` explicitly declines it. The signed upload workflow keeps its existing default when no forensic examination is selected. Do not use it as a connection test.
 
-## Publish, when an npm account is authorized
+`--profile <name>` isolates account credentials. Names use letters, digits, underscores or hyphens. The default retains `~/.config/ultiwrite/credentials.json`; other profiles have separate files. Verify the connected identity with the account tool before private work. `--issuer` is an explicit alternate issuer override; historical saved grants retain their original issuer/resource and are not silently migrated to the clean audience.
 
-```bash
-cd packaging/npx/ultiwrite-mcp
-npm publish --access public
-```
+The first eligible investigation follows the canonical account allowance and requires no card. Connecting or reconnecting does not issue additional usage. Existing paid credits and report access retain their current rules. This adapter has no independent ledger, document store or investigative logic.
 
-`npm whoami` was unauthenticated in the Stage 1 environment, so publication was not performed.
-
-First completed analysis is $0.00. Contact us for further-analysis pricing. No card is required and there is no automatic charge. This client does not take payment.
-
-The local bridge retains its existing issuer and `/api/integrations/ultiwrite/mcp` transport defaults for saved-credential compatibility. Native remote clients should use the preferred clean URL above. Existing server registrations and already distributed 0.7.0 packages retain their current endpoints.
+Publication requires the owner's explicit authorization and an authorized npm account. Source preparation is not publication or authenticated host acceptance.

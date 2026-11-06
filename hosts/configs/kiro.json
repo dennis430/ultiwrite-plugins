@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "ultiwrite": {
+      "url": "https://mcp.dwsoffshorepartners.com/mcp",
+      "oauth": {
+        "redirectUri": "http://127.0.0.1:8080/callback",
+        "oauthScopes": [
+          "ultiwrite:read",
+          "ultiwrite:evidence"
+        ]
+      }
+    }
+  }
+}

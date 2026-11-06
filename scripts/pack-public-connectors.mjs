@@ -18,22 +18,16 @@ const CURSOR_VERSION = JSON.parse(readFileSync(join(root, 'cursor/.cursor-plugin
 const MCP_URL = 'https://mcp.dwsoffshorepartners.com/mcp'
 const COMPATIBILITY_MCP_URL = 'https://dwsoffshorepartners.com/api/integrations/ultiwrite/mcp'
 const CHATGPT_MCP_URL = 'https://mcp.dwsoffshorepartners.com/mcp'
-const TOOLS = [
-  'ultiwrite_account_get',
-  'ultiwrite_capabilities_get',
-  'ultiwrite_cases_list',
-  'ultiwrite_case_status',
-  'ultiwrite_coherence_get',
-  'ultiwrite_evidence_submit',
-  'ultiwrite_findings_get',
-  'ultiwrite_report_export',
-]
+const TOOLS = JSON.parse(readFileSync(join(root, 'hosts/catalog.json'), 'utf8')).tools.map(tool => tool.name)
+if (!TOOLS.length || new Set(TOOLS).size !== TOOLS.length) throw new Error('Canonical public tool catalog is invalid')
 const CLAUDE_VERSION = JSON.parse(readFileSync(join(root, 'claude/.claude-plugin/plugin.json'), 'utf8')).version
 const CLAUDE_MCP_URL = 'https://mcp.dwsoffshorepartners.com/mcp'
 const CLAUDE_ZIP = `Ultiwrite_Claude_Plugin_v${CLAUDE_VERSION}.zip`
-const CURRENT_ARCHIVES = new Set([`ultiwrite-chatgpt-plugin-${VERSION}.zip`, `ultiwrite-cursor-plugin-${CURSOR_VERSION}.zip`, CLAUDE_ZIP])
+const HOSTS_ZIP = `ultiwrite-host-adapters-${VERSION}.zip`
+const CURRENT_ARCHIVES = new Set([HOSTS_ZIP, `ultiwrite-chatgpt-plugin-${VERSION}.zip`, `ultiwrite-cursor-plugin-${CURSOR_VERSION}.zip`, CLAUDE_ZIP])
 const FROZEN_ARCHIVES = (existsSync(outDir) ? readdirSync(outDir) : []).filter(name => name.endsWith('.zip') && !CURRENT_ARCHIVES.has(name)).sort()
 const PACKAGES = [
+  { id: 'host-adapters', root: 'hosts', version: VERSION, filename: HOSTS_ZIP },
   {
     id: 'chatgpt',
     root: 'chatgpt',
@@ -180,7 +174,7 @@ for (const pack of PACKAGES) {
     return { name, bytes }
   })
   const archive = zip(entries)
-  const filename = `ultiwrite-${pack.id}-plugin-${pack.version}.zip`
+  const filename = pack.filename ?? `ultiwrite-${pack.id}-plugin-${pack.version}.zip`
   const members = readZip(archive)
   if (JSON.stringify(members.map(member => member.name)) !== JSON.stringify(sourceFiles)) throw new Error(`${filename} member list differs from source`)
   for (const member of members) {
@@ -267,7 +261,7 @@ writeArtifact(join(outDir, 'INVENTORY.json'), JSON.stringify({
   packages: inventory,
   not: ['installed integration', 'directory approval', 'npm publication', 'production deployment'],
 }, null, 2) + '\n')
-const downloadTable = ['| Archive | SHA-256 |', '| --- | --- |', ...inventory.slice(0, 3).map(item => {
+const downloadTable = ['| Archive | SHA-256 |', '| --- | --- |', ...inventory.filter(item => !item.file.endsWith(HOSTS_ZIP)).slice(0, 3).map(item => {
   const name = item.file.split('/').pop()
   return `| [\`${name}\`](https://github.com/dennis430/ultiwrite-plugins/raw/main/${item.file}) | \`${item.sha256}\` |`
 })].join('\n')
@@ -296,11 +290,12 @@ const releaseManifest = {
   mcp_url: CHATGPT_MCP_URL,
   compatibility_mcp_url: COMPATIBILITY_MCP_URL,
   packages: {
+    hosts: { version: VERSION, zip: `release/${HOSTS_ZIP}`, status: 'prepared; host acceptance skipped by owner' },
     chatgpt: { version: VERSION, zip: `release/ultiwrite-chatgpt-plugin-${VERSION}.zip`, mcp_url: CHATGPT_MCP_URL },
     cursor: { version: CURSOR_VERSION, zip: `release/ultiwrite-cursor-plugin-${CURSOR_VERSION}.zip` },
     claude: { version: CLAUDE_VERSION, zip: `release/${CLAUDE_ZIP}`, mcp_url: CLAUDE_MCP_URL },
     grokbot: { version: JSON.parse(readFileSync(join(root, 'grokbot/FIELDS.json'), 'utf8')).version, status: 'submission dossier; host test not run' },
-    client: { version: JSON.parse(readFileSync(join(root, 'client/package.json'), 'utf8')).version, status: 'unchanged; npm publication not claimed' },
+    client: { version: JSON.parse(readFileSync(join(root, 'client/package.json'), 'utf8')).version, status: 'prepared local adapter; npm publication not claimed' },
   },
   note: 'SHA-256 of every file except this manifest. Historical archives are preserved. Built source does not establish directory upload, review, installed-host acceptance or server deployment.',
   files: walk(root).filter(path => path !== 'RELEASE_MANIFEST.json').sort().map(path => ({ path, sha256: createHash('sha256').update(readFileSync(join(root, path))).digest('hex') })),

@@ -1,6 +1,6 @@
 # Grok Bot submission dossier
 
-Version 0.8.0. This folder prepares a Grok Bot connector submission. It is not a receipt. The form was not submitted in Sequence 1, and Grok Bot was not used to call Ultiwrite.
+Version 0.9.0. This folder prepares a Grok Bot connector submission. It is not a receipt. The form was not submitted in Sequence 1, and Grok Bot was not used to call Ultiwrite.
 
 | Field | Value |
 | --- | --- |
@@ -33,3 +33,9 @@ Repository status: the public thin source is https://github.com/dennis430/ultiwr
 The shared MCP service exposes a protected account check and action-specific permission metadata. Verify the actual account with `ultiwrite_account_get`. Use Grok Bot's native Connect/Reconnect and account selector where offered; otherwise reconnect this connection with **Use a different account** on Ultiwrite's consent screen.
 
 Native toggles, simultaneous accounts and approval modes depend on Grok Bot's supported interface. This dossier contains no unsupported switch or permission-mode fields, and does not claim those controls were observed in a host test. Shared OAuth scopes and account feature choices remain enforced by the server.
+
+## Universal MCP preparation
+
+Sign in through Ultiwrite’s existing account flow and approve the connected host’s scoped OAuth access. Connection does not grant usage. Discover current account limits, paid credits and complimentary availability with `ultiwrite_capabilities_get`; its `accountStatus` is informational and server admission rechecks eligibility. The first eligible complimentary investigation remains available once per account, with no card required. Existing paid entitlements and saved reports remain available under the same account controls.
+
+Host configurations, the canonical public tool catalog and per-surface limitations are prepared in the root `hosts/` directory. Live host acceptance was skipped at the owner’s request; package preparation is not publication or deployment.

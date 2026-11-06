@@ -1,10 +1,10 @@
 interface:
+  icon_small: "../../assets/logo.png"
+  icon_large: "../../assets/logo.png"
   display_name: "Ultiwrite investigative intelligence"
   short_description: "Explore asymmetric diligence and available workflows."
   default_prompt: "Use $ultiwrite to explain how I can start an investigation."
   brand_color: "#d39891"
-  icon_small: "../../assets/logo.png"
-  icon_large: "../../assets/logo.png"
 
 policy:
   allow_implicit_invocation: true

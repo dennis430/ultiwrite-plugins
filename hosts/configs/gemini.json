@@ -1,0 +1,16 @@
+{
+  "mcpServers": {
+    "ultiwrite": {
+      "httpUrl": "https://mcp.dwsoffshorepartners.com/mcp",
+      "timeout": 300000,
+      "oauth": {
+        "enabled": true,
+        "redirectUri": "http://127.0.0.1:6274/oauth/callback",
+        "scopes": [
+          "ultiwrite:read",
+          "ultiwrite:evidence"
+        ]
+      }
+    }
+  }
+}

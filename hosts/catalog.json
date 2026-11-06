@@ -1,0 +1,2293 @@
+{
+  "schemaVersion": 1,
+  "source": "canonical runtime public MCP tool definitions",
+  "server": {
+    "name": "dws-ultiwrite",
+    "title": "Ultiwrite",
+    "version": "ultiwrite-mcp-evidence@7",
+    "icons": [
+      {
+        "src": "https://mcp.dwsoffshorepartners.com/branding/ultiwrite-uw-512-cc0a3c229347.png",
+        "mimeType": "image/png",
+        "sizes": [
+          "512x512"
+        ]
+      }
+    ]
+  },
+  "endpoint": "https://mcp.dwsoffshorepartners.com/mcp",
+  "protocolVersions": [
+    "2026-07-28",
+    "2025-11-25",
+    "2025-06-18",
+    "2025-03-26",
+    "2024-11-05"
+  ],
+  "toolsSha256": "dd788cc1e8f445c01fa1c8e16c1f03c50010bebb8fc9c5453c26618add936619",
+  "tools": [
+    {
+      "name": "ultiwrite_account_get",
+      "title": "Connected Ultiwrite account",
+      "description": "Use to verify which Ultiwrite account is connected, including after sign-in, reconnection or account switching. Returns only the authorized account's opaque id and email address. It does not sign in, switch accounts, create accounts, select another user or read an investigation.",
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {},
+        "required": []
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": false
+      },
+      "outputSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          },
+          "email": {
+            "type": "string"
+          }
+        }
+      },
+      "_meta": {
+        "openai/profile": true
+      },
+      "securitySchemes": [
+        {
+          "type": "oauth2",
+          "scopes": [
+            "ultiwrite:read"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "ultiwrite_capabilities_get",
+      "title": "Explore Ultiwrite investigations",
+      "description": "Use when the user asks what Ultiwrite can investigate, whether their documents fit, how to start or how to retrieve results. Ultiwrite is an asymmetric diligence engine: ordinary evidence can open a wider investigation across financial and operating patterns, business identity, document integrity, companies, people, assets, relationships and relevant external context. Commercial Diligence applications include operating companies, acquisitions, financings, property or asset transactions, counterparties and portfolios, including residual or ISO books. Returns supported inputs, current accountStatus (scopes, usage, paid credits and complimentary availability), and the saved-analysis/report workflow. This read does not submit evidence, create an account or start an analysis. A general definition of diligence alone does not require this tool.",
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {},
+        "required": []
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": false
+      },
+      "outputSchema": {
+        "type": "object",
+        "additionalProperties": true,
+        "required": [
+          "contractVersion",
+          "mode",
+          "product",
+          "commercial",
+          "delivery",
+          "tools",
+          "deferred",
+          "completeness"
+        ],
+        "properties": {
+          "contractVersion": {
+            "type": "string"
+          },
+          "mode": {
+            "type": "string",
+            "const": "read_and_evidence"
+          },
+          "product": {
+            "type": "object"
+          },
+          "commercial": {
+            "type": "object"
+          },
+          "delivery": {
+            "type": "string"
+          },
+          "tools": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "name",
+                "description"
+              ],
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "deferred": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "name",
+                "state",
+                "alternative"
+              ],
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "state": {
+                  "type": "string"
+                },
+                "alternative": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "completeness": {
+            "type": "object"
+          }
+        }
+      },
+      "securitySchemes": [
+        {
+          "type": "oauth2",
+          "scopes": [
+            "ultiwrite:read"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "ultiwrite_cases_list",
+      "title": "Find saved investigations and reports",
+      "description": "Use to find existing Ultiwrite investigations and released reports, including analyses started on the website. List cases and released saved reports. Read both cases and reports arrays: website reports may have no case. Verified staff can discover released reports they manage across organizations. Follow nextCursor until null. Use reportId with report_export, or pass a saved report id as caseId to findings_get on an existing connection. Does not run analysis or create cases.",
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "cursor": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Copy nextCursor from the previous page unchanged. Pass null on the first page."
+          },
+          "limit": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 1,
+            "maximum": 20,
+            "description": "Page size from 1 through 20. Pass null for the default."
+          }
+        },
+        "required": [
+          "cursor",
+          "limit"
+        ]
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": false
+      },
+      "outputSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "cases",
+          "nextCursor",
+          "conclusion",
+          "completeness",
+          "meaning",
+          "instructionBoundary"
+        ],
+        "properties": {
+          "reports": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "reportId",
+                "organizationId",
+                "title",
+                "createdAt",
+                "publicationState",
+                "reportUrl",
+                "findings"
+              ],
+              "properties": {
+                "reportId": {
+                  "type": "string"
+                },
+                "organizationId": {
+                  "type": "string"
+                },
+                "title": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "createdAt": {
+                  "type": "string"
+                },
+                "publicationState": {
+                  "type": "string",
+                  "enum": [
+                    "published"
+                  ]
+                },
+                "reportUrl": {
+                  "type": "string"
+                },
+                "findings": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "tool",
+                    "caseId"
+                  ],
+                  "properties": {
+                    "tool": {
+                      "type": "string",
+                      "enum": [
+                        "ultiwrite_findings_get"
+                      ]
+                    },
+                    "caseId": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "cases": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "caseId",
+                "title",
+                "titleCompleteness",
+                "titleTotalLength",
+                "titleReturnedLength",
+                "titleOmittedLength",
+                "workflowStatus",
+                "reportLinked",
+                "linkedReportId",
+                "updatedAt",
+                "contentTrust"
+              ],
+              "properties": {
+                "caseId": {
+                  "type": "string"
+                },
+                "title": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "titleCompleteness": {
+                  "type": "string"
+                },
+                "titleTotalLength": {
+                  "type": "integer"
+                },
+                "titleReturnedLength": {
+                  "type": "integer"
+                },
+                "titleOmittedLength": {
+                  "type": "integer"
+                },
+                "workflowStatus": {
+                  "type": "string"
+                },
+                "reportLinked": {
+                  "type": "boolean"
+                },
+                "linkedReportId": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "updatedAt": {
+                  "type": "string"
+                },
+                "contentTrust": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "nextCursor": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "conclusion": {
+            "type": "null"
+          },
+          "completeness": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "status",
+              "scope",
+              "meaning"
+            ],
+            "properties": {
+              "status": {
+                "type": "string"
+              },
+              "scope": {
+                "type": "string"
+              },
+              "meaning": {
+                "type": "string"
+              }
+            }
+          },
+          "meaning": {
+            "type": "string"
+          },
+          "instructionBoundary": {
+            "type": "string"
+          }
+        }
+      },
+      "securitySchemes": [
+        {
+          "type": "oauth2",
+          "scopes": [
+            "ultiwrite:read"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "ultiwrite_case_status",
+      "title": "Investigation progress",
+      "description": "Use to check the progress of an existing investigation and any action needed before the report is available. Read one case record the authorized organization may see. processing distinguishes queued, active, scheduled retry, paused awaiting continuation and required action, with actual saved activity times. Only processing.automatic identifies a saved server continuation; never imply background execution from workflowStatus processing alone. Status reads do not advance processing. When a continuation is returned, pass its exact arguments to ultiwrite_evidence_submit without uploading the original files again. A status of complete is not a validated conclusion.",
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "caseId": {
+            "type": "string",
+            "description": "Authorized case id."
+          }
+        },
+        "required": [
+          "caseId"
+        ]
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": false
+      },
+      "outputSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "caseId",
+          "title",
+          "titleCompleteness",
+          "workflowStatus",
+          "linkedReportId",
+          "conclusion",
+          "completeness",
+          "contentTrust"
+        ],
+        "properties": {
+          "caseId": {
+            "type": "string"
+          },
+          "title": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "titleCompleteness": {
+            "type": "string"
+          },
+          "titleTotalLength": {
+            "type": "integer"
+          },
+          "titleReturnedLength": {
+            "type": "integer"
+          },
+          "titleOmittedLength": {
+            "type": "integer"
+          },
+          "titleLengthUnit": {
+            "type": "string"
+          },
+          "titleSpan": {
+            "type": "object"
+          },
+          "workflowStatus": {
+            "type": "string"
+          },
+          "processing": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "state",
+              "automatic",
+              "lastActivityAt",
+              "lastProgressAt",
+              "nextAttemptAt",
+              "attempts",
+              "completedSlices",
+              "reason"
+            ],
+            "properties": {
+              "state": {
+                "type": "string",
+                "enum": [
+                  "queued",
+                  "active",
+                  "retry",
+                  "paused_awaiting_continuation",
+                  "needs_action",
+                  "complete",
+                  "failed"
+                ]
+              },
+              "automatic": {
+                "type": "boolean",
+                "description": "A valid saved server continuation exists. This does not mean a worker is currently active."
+              },
+              "lastActivityAt": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "lastProgressAt": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "nextAttemptAt": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "attempts": {
+                "type": "integer",
+                "minimum": 0,
+                "description": "Durable receipt retry counter. A legacy case without a receipt defaults to zero; its historical attempts are unknown."
+              },
+              "completedSlices": {
+                "type": "integer",
+                "minimum": 0,
+                "description": "Progress recorded by the durable receipt. Legacy zero without a receipt is not proof that no historical analysis occurred."
+              },
+              "reason": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            }
+          },
+          "continuation": {
+            "type": [
+              "object",
+              "null"
+            ],
+            "additionalProperties": false,
+            "required": [
+              "tool",
+              "caseId"
+            ],
+            "properties": {
+              "tool": {
+                "type": "string",
+                "const": "ultiwrite_evidence_submit"
+              },
+              "caseId": {
+                "type": "string"
+              },
+              "arguments": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "files",
+                  "caseId",
+                  "handoffId",
+                  "documentForensics"
+                ],
+                "properties": {
+                  "files": {
+                    "type": "array",
+                    "maxItems": 0,
+                    "items": {
+                      "type": "object"
+                    }
+                  },
+                  "caseId": {
+                    "type": "string"
+                  },
+                  "handoffId": {
+                    "type": "null"
+                  },
+                  "documentForensics": {
+                    "type": "null"
+                  }
+                }
+              }
+            }
+          },
+          "nextAction": {
+            "type": "string"
+          },
+          "linkedReportId": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "link": {
+            "type": "string"
+          },
+          "updatedAt": {
+            "type": "string"
+          },
+          "conclusion": {
+            "type": "null"
+          },
+          "contentTrust": {
+            "type": "string"
+          },
+          "instructionBoundary": {
+            "type": "string"
+          },
+          "completeness": {
+            "type": "object"
+          },
+          "meaning": {
+            "type": "string"
+          }
+        }
+      },
+      "securitySchemes": [
+        {
+          "type": "oauth2",
+          "scopes": [
+            "ultiwrite:read"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "ultiwrite_coherence_get",
+      "title": "Read the saved evidence synthesis",
+      "description": "Use to understand the big picture of a saved assessment: how the evidence fits together, consequential contradictions, hypotheses, coverage gaps and questions to resolve. Read the authorized Decision Brief using one caseId or reportId, never both. A report staff withdrew is not returned. Preserves saved observations, joint synthesis, hypotheses, verification questions and coverage without reclassifying mutable native findings or report prose. The whole structured brief is included only when it fits the inline budget; otherwise it is omitted whole with exact byte counts. Follow decisionBriefSpan through findings_get to recover authorized JSON in bounded pages, including observations, synthesis, constraints and measurements. Exact frozen byte recovery is available only when commercial disclosure leaves the brief unchanged; otherwise the response labels the filtered commercial projection and its immutable parent receipt. Detailed document metadata remains withheld, and byte counts describe the returned representation. Older publications without this artifact explicitly return unavailable synthesis while their original findings remain available through findings_get. Saved material contradictions are copied only from explicit frozen finding links; unmarked older documents remain not_reclassified and empty lists do not prove absence. For specific unresolved claims or relationships, read the saved findings_get sections, including How records relate, and recover omitted section fields through the returned spans. Answer with the saved details and evidence ids, not summary counts alone. This call does not run the engine, independently verify evidence or endorse a decision.",
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "caseId": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "minLength": 1,
+            "maxLength": 80,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "description": "Authorized case id, or an exact saved report id for compatibility with existing connections. Pass null when reportId is set. Supply exactly one selector."
+          },
+          "reportId": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "minLength": 1,
+            "maxLength": 80,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "description": "Report id from this organization, including reports without a linked case. Pass null when caseId is set. Supply exactly one selector."
+          }
+        },
+        "required": [
+          "caseId",
+          "reportId"
+        ]
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": false
+      },
+      "outputSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "caseId",
+          "state",
+          "source",
+          "savedDecision",
+          "relianceStatus",
+          "thisCallRanEngine",
+          "thisReadEndorsesDecision",
+          "establishedObservations",
+          "materialContradictions",
+          "nonDecisionContradictions",
+          "unresolvedClaims",
+          "evidenceRequired",
+          "capabilityCoverage",
+          "counts",
+          "completeness",
+          "contentTrust",
+          "instructionBoundary",
+          "limits"
+        ],
+        "properties": {
+          "caseId": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "state": {
+            "type": "string",
+            "description": "recorded, unavailable, or not_ready. Unavailable synthesis is not agreement or a favorable assessment."
+          },
+          "source": {
+            "type": "string"
+          },
+          "reportId": {
+            "type": "string"
+          },
+          "link": {
+            "type": "string"
+          },
+          "documentVersion": {
+            "type": "string"
+          },
+          "digest": {
+            "type": "string"
+          },
+          "classificationScope": {
+            "type": "string"
+          },
+          "classification": {
+            "type": "string",
+            "const": "not_reclassified"
+          },
+          "decisionBriefStatus": {
+            "type": "string",
+            "enum": [
+              "AVAILABLE",
+              "UNAVAILABLE"
+            ]
+          },
+          "decisionBrief": {
+            "type": [
+              "object",
+              "null"
+            ],
+            "description": "Authorized Decision Brief JSON; never augmented on read. The representation and projection receipt distinguish exact frozen bytes from filtered commercial content. The parent digest does not hash projected bytes."
+          },
+          "decisionBriefRepresentation": {
+            "type": "string",
+            "enum": [
+              "frozen_customer_document",
+              "authorized_commercial_projection"
+            ]
+          },
+          "decisionBriefProjection": {
+            "type": [
+              "object",
+              "null"
+            ],
+            "additionalProperties": false,
+            "required": [
+              "projection",
+              "parent",
+              "omitted"
+            ],
+            "properties": {
+              "projection": {
+                "type": "string",
+                "const": "commercial-metadata@1"
+              },
+              "parent": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "reportId",
+                  "version",
+                  "digest"
+                ],
+                "properties": {
+                  "reportId": {
+                    "type": "string"
+                  },
+                  "version": {
+                    "type": "string"
+                  },
+                  "digest": {
+                    "type": "string"
+                  }
+                }
+              },
+              "omitted": {
+                "type": "string",
+                "const": "detailed_document_metadata"
+              }
+            }
+          },
+          "decisionBriefExactFrozenRecovery": {
+            "type": "boolean"
+          },
+          "decisionBriefCompleteness": {
+            "type": "string"
+          },
+          "decisionBriefTotalBytes": {
+            "type": "integer",
+            "description": "JSON bytes of the authorized representation. For a commercial projection this is the filtered byte count, not the frozen parent size."
+          },
+          "decisionBriefReturnedBytes": {
+            "type": "integer",
+            "description": "Authorized representation bytes included inline."
+          },
+          "decisionBriefOmittedBytes": {
+            "type": "integer",
+            "description": "Authorized representation bytes omitted from inline delivery. Withheld detailed metadata is identified separately by the projection receipt."
+          },
+          "decisionBriefRecovery": {
+            "type": "string"
+          },
+          "decisionBriefSpan": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "target",
+              "field",
+              "cursor",
+              "encoding",
+              "lengthUnit",
+              "limit",
+              "representation",
+              "exactFrozenRecovery"
+            ],
+            "properties": {
+              "target": {
+                "type": "string",
+                "const": "brief"
+              },
+              "field": {
+                "type": "string",
+                "const": "decisionBrief"
+              },
+              "cursor": {
+                "type": "string"
+              },
+              "encoding": {
+                "type": "string",
+                "const": "json"
+              },
+              "lengthUnit": {
+                "type": "string",
+                "const": "unicode_code_points"
+              },
+              "limit": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 2000
+              },
+              "representation": {
+                "type": "string",
+                "enum": [
+                  "frozen_customer_document",
+                  "authorized_commercial_projection"
+                ]
+              },
+              "exactFrozenRecovery": {
+                "type": "boolean"
+              }
+            }
+          },
+          "decisionBriefCounts": {
+            "type": "object"
+          },
+          "savedDecision": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "relianceStatus": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "thisCallRanEngine": {
+            "type": "boolean",
+            "const": false
+          },
+          "thisReadEndorsesDecision": {
+            "type": "boolean",
+            "const": false
+          },
+          "establishedObservations": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "findingId",
+                "kind",
+                "status",
+                "confidence",
+                "severity",
+                "reasonCode",
+                "decisionEligible",
+                "explanation",
+                "explanationCompleteness",
+                "explanationTotalLength",
+                "artifactIds"
+              ],
+              "properties": {
+                "findingId": {
+                  "type": "string"
+                },
+                "kind": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string"
+                },
+                "confidence": {
+                  "type": "string"
+                },
+                "severity": {
+                  "type": "string"
+                },
+                "reasonCode": {
+                  "type": "string"
+                },
+                "decisionEligible": {
+                  "type": "boolean"
+                },
+                "explanation": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "explanationCompleteness": {
+                  "type": "string"
+                },
+                "explanationTotalLength": {
+                  "type": "integer"
+                },
+                "artifactIds": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "recommendedAction": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "recommendedActionCompleteness": {
+                  "type": "string"
+                },
+                "recommendedActionTotalLength": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "materialContradictions": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "findingId",
+                "kind",
+                "status",
+                "confidence",
+                "severity",
+                "explanation",
+                "explanationCompleteness",
+                "explanationTotalLength",
+                "evidenceIds",
+                "constraintIds",
+                "synthesisIds"
+              ],
+              "properties": {
+                "findingId": {
+                  "type": "string"
+                },
+                "kind": {
+                  "type": "string",
+                  "const": "CONTRADICTION"
+                },
+                "status": {
+                  "type": "string",
+                  "const": "CONTRADICTORY"
+                },
+                "confidence": {
+                  "type": "string"
+                },
+                "severity": {
+                  "type": "string"
+                },
+                "explanation": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "explanationCompleteness": {
+                  "type": "string"
+                },
+                "explanationTotalLength": {
+                  "type": "integer"
+                },
+                "evidenceIds": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "constraintIds": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "synthesisIds": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "nonDecisionContradictions": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "findingId",
+                "kind",
+                "status",
+                "confidence",
+                "severity",
+                "reasonCode",
+                "decisionEligible",
+                "explanation",
+                "explanationCompleteness",
+                "explanationTotalLength",
+                "artifactIds"
+              ],
+              "properties": {
+                "findingId": {
+                  "type": "string"
+                },
+                "kind": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string"
+                },
+                "confidence": {
+                  "type": "string"
+                },
+                "severity": {
+                  "type": "string"
+                },
+                "reasonCode": {
+                  "type": "string"
+                },
+                "decisionEligible": {
+                  "type": "boolean"
+                },
+                "explanation": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "explanationCompleteness": {
+                  "type": "string"
+                },
+                "explanationTotalLength": {
+                  "type": "integer"
+                },
+                "artifactIds": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "recommendedAction": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "recommendedActionCompleteness": {
+                  "type": "string"
+                },
+                "recommendedActionTotalLength": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "unresolvedClaims": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "findingId",
+                "kind",
+                "status",
+                "confidence",
+                "severity",
+                "reasonCode",
+                "decisionEligible",
+                "explanation",
+                "explanationCompleteness",
+                "explanationTotalLength",
+                "artifactIds"
+              ],
+              "properties": {
+                "findingId": {
+                  "type": "string"
+                },
+                "kind": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string"
+                },
+                "confidence": {
+                  "type": "string"
+                },
+                "severity": {
+                  "type": "string"
+                },
+                "reasonCode": {
+                  "type": "string"
+                },
+                "decisionEligible": {
+                  "type": "boolean"
+                },
+                "explanation": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "explanationCompleteness": {
+                  "type": "string"
+                },
+                "explanationTotalLength": {
+                  "type": "integer"
+                },
+                "artifactIds": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "recommendedAction": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "recommendedActionCompleteness": {
+                  "type": "string"
+                },
+                "recommendedActionTotalLength": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "evidenceRequired": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "findingId",
+                "kind",
+                "status",
+                "confidence",
+                "severity",
+                "reasonCode",
+                "decisionEligible",
+                "explanation",
+                "explanationCompleteness",
+                "explanationTotalLength",
+                "artifactIds"
+              ],
+              "properties": {
+                "findingId": {
+                  "type": "string"
+                },
+                "kind": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string"
+                },
+                "confidence": {
+                  "type": "string"
+                },
+                "severity": {
+                  "type": "string"
+                },
+                "reasonCode": {
+                  "type": "string"
+                },
+                "decisionEligible": {
+                  "type": "boolean"
+                },
+                "explanation": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "explanationCompleteness": {
+                  "type": "string"
+                },
+                "explanationTotalLength": {
+                  "type": "integer"
+                },
+                "artifactIds": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "recommendedAction": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "recommendedActionCompleteness": {
+                  "type": "string"
+                },
+                "recommendedActionTotalLength": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "capabilityCoverage": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "status",
+              "pending",
+              "failed",
+              "unexecuted",
+              "notApplicable",
+              "meaning"
+            ],
+            "properties": {
+              "status": {
+                "type": "string"
+              },
+              "pending": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "failed": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "unexecuted": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "notApplicable": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "meaning": {
+                "type": "string"
+              }
+            }
+          },
+          "counts": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "storedFindings",
+              "notReportable",
+              "derivedMetricsNotCopied",
+              "establishedOmitted",
+              "materialOmitted",
+              "nonDecisionOmitted",
+              "unresolvedOmitted",
+              "evidenceOmitted"
+            ],
+            "properties": {
+              "storedFindings": {
+                "type": "integer"
+              },
+              "notReportable": {
+                "type": "integer"
+              },
+              "derivedMetricsNotCopied": {
+                "type": "integer"
+              },
+              "establishedOmitted": {
+                "type": "integer"
+              },
+              "materialOmitted": {
+                "type": "integer"
+              },
+              "nonDecisionOmitted": {
+                "type": "integer"
+              },
+              "unresolvedOmitted": {
+                "type": "integer"
+              },
+              "evidenceOmitted": {
+                "type": "integer"
+              }
+            }
+          },
+          "completeness": {
+            "type": "object"
+          },
+          "contentTrust": {
+            "type": "string"
+          },
+          "instructionBoundary": {
+            "type": "string"
+          },
+          "limits": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "securitySchemes": [
+        {
+          "type": "oauth2",
+          "scopes": [
+            "ultiwrite:read"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "ultiwrite_findings_get",
+      "title": "Read findings and supporting evidence",
+      "description": "Use to inspect the saved evidence behind a claim, financial or operating finding, risk, opportunity or follow-up question in an existing assessment. Read one page of a saved report using exactly one caseId or reportId. documentIntegrity is whether the saved representation matches its digest. It is not proof the conclusion is true. reliance.status not_evaluated means no grant was stored; it is not a withheld grant. A withheld or older grant does not change savedDecision. supportability.thisReadEndorsesDecision is always false. A decision grant does not confer identity, revenue, reserve, or score. completeness.status complete is the only full page. Metrics are a separate paged collection, not an eight-item ceiling. Long fields are omitted whole. Read them with spanTarget, spanField, and spanCursor as Unicode code-point offsets. For authorized structured Decision Brief JSON use spanTarget brief and spanField decisionBrief; concatenate span.text pages before parsing JSON. Check decisionBriefRepresentation and decisionBriefExactFrozenRecovery: commercial filtering is explicitly identified by a projection receipt, whose parent digest does not hash the projected bytes. A non-zero cursor requires the snapshot and page token for that target and position. case_title spans require caseId. For specific contradictions or unresolved relationships, inspect sections observation, interpretation, takeaway and evidenceIds, rather than stopping at summary counts or empty not_reclassified coherence lists. Page sections with sectionCursor and recover omitted fields with spanTarget section, the returned section id as spanId and the returned spanField. For collection continuation carry all returned non-null next cursors into their matching cursor arguments with snapshot and pageToken; retain current offsets for exhausted collections because the token binds the combined position. Stop when the matching next cursor is null. Does not run the engine. If no report is linked, the result is not_ready, which is not a negative finding.",
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "caseId": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "minLength": 1,
+            "maxLength": 80,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "description": "Authorized case id, or an exact saved report id for compatibility with existing connections. Pass null when reportId is set. Supply exactly one selector."
+          },
+          "reportId": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "minLength": 1,
+            "maxLength": 80,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "description": "Report id from this organization, including reports without a linked case. Pass null when caseId is set. Supply exactly one selector."
+          },
+          "cursor": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Findings offset into the saved document. Decimal digits, 0 through 100000000. A non-zero offset requires snapshot and pageToken. Pass null when unused."
+          },
+          "limit": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 1,
+            "maximum": 12,
+            "description": "Page size from 1 through 12. Pass null for the default."
+          },
+          "sectionCursor": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Section offset into the saved document. Decimal digits, 0 through 100000000. Required with snapshot and pageToken when not 0. Pass null when unused."
+          },
+          "evidenceCursor": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Evidence-reference offset into the saved document. Decimal digits, 0 through 100000000. Required with snapshot and pageToken when not 0. Pass null when unused."
+          },
+          "limitationCursor": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Limitation offset into the saved document. Decimal digits, 0 through 100000000. Required with snapshot and pageToken when not 0. Pass null when unused."
+          },
+          "chronologyCursor": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Chronology offset into the saved document. Decimal digits, 0 through 100000000. Required with snapshot and pageToken when not 0. Pass null when unused."
+          },
+          "actionCursor": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Action offset into the saved document. Decimal digits, 0 through 100000000. Required with snapshot and pageToken when not 0. Pass null when unused."
+          },
+          "metricCursor": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Metric offset into the saved document, in section order then metric order. Decimal digits, 0 through 100000000. Required with snapshot and pageToken when not 0. Pass null when unused."
+          },
+          "extensionCursor": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Ignored. Fields outside mcp-customer-projection@1 are withheld. This cursor does not return their values or paths. Pass null when unused."
+          },
+          "snapshot": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Read-view digest from the previous page. Required for any non-zero cursor or spanCursor. Not a file path and not a bearer token. Pass null when unused."
+          },
+          "pageToken": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Continuation mac for this user, organization, grant family, selected case or report, snapshot, and position. Not a bearer token. Required for a non-zero cursor. Absent when no signing key is configured; continuation then fails closed. Pass null when unused."
+          },
+          "spanTarget": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "enum": [
+              "finding",
+              "section",
+              "evidence",
+              "brief",
+              "limitation",
+              "case_title",
+              "chronology",
+              "action",
+              "metric",
+              null
+            ],
+            "description": "case_title is available only with caseId. brief with spanField decisionBrief retrieves authorized structured brief JSON text pages. Check its representation and projection receipt before claiming exact frozen bytes. Pass null when unused."
+          },
+          "spanId": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Saved finding, section, or evidence id. Not a file path. Pass null when unused."
+          },
+          "spanField": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Saved field name. brief targets accept brief for the report summary or decisionBrief for authorized structured brief JSON. Concatenate JSON text pages before parsing; commercial filtering remains explicit. Pass null when unused."
+          },
+          "spanIndex": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0,
+            "maximum": 100000000,
+            "description": "Pass null when the selected span does not use an index."
+          },
+          "spanCursor": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Unicode code-point offset into one authorized field. Decimal digits, 0 through 100000000. Pass null when unused."
+          },
+          "spanLimit": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 1,
+            "maximum": 2000,
+            "description": "Pass null for the default span length."
+          }
+        },
+        "required": [
+          "caseId",
+          "reportId",
+          "cursor",
+          "limit",
+          "sectionCursor",
+          "evidenceCursor",
+          "limitationCursor",
+          "chronologyCursor",
+          "actionCursor",
+          "metricCursor",
+          "extensionCursor",
+          "snapshot",
+          "pageToken",
+          "spanTarget",
+          "spanId",
+          "spanField",
+          "spanIndex",
+          "spanCursor",
+          "spanLimit"
+        ]
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": false
+      },
+      "outputSchema": {
+        "type": "object",
+        "additionalProperties": true,
+        "required": [
+          "caseId"
+        ],
+        "properties": {
+          "caseId": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "reportId": {
+            "type": "string"
+          },
+          "state": {
+            "type": "string",
+            "description": "saved_report, not_ready, stale_snapshot, unbound_page, or continuation_unavailable. not_ready is not a negative finding."
+          },
+          "report": {
+            "type": [
+              "object",
+              "null"
+            ],
+            "description": "Authorized customer document when a report page was returned. savedDecision is the published label, not a stored favorable sentence. Null when the report was not returned."
+          },
+          "completeness": {
+            "type": "object",
+            "description": "Present on not_ready and page-denial results. A saved_report page carries completeness inside report."
+          },
+          "link": {
+            "type": "string"
+          },
+          "snapshot": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "contentTrust": {
+            "type": "string"
+          }
+        }
+      },
+      "securitySchemes": [
+        {
+          "type": "oauth2",
+          "scopes": [
+            "ultiwrite:read"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "ultiwrite_report_export",
+      "title": "Report delivery and downloads",
+      "description": "Use representation customer_document to retrieve the complete authorized saved website document in authenticated JSON frames. Follow continuation.arguments until nextCursor is null, then verify serializationDigest before parsing JSON. Use when the user wants to open or download an existing Ultiwrite assessment and its available report files. Get delivery options for a saved Commercial Diligence report using its reportId from case status or findings. Returns the saved customer document, entitled CSV text, and absolute links to the existing account report, sign-in and entitled PDF, CSV, Excel or ZIP downloads. Open website links in a browser and sign in to the same Ultiwrite account; the MCP bearer cannot download website files. Files are not fetched by this tool and no public or presigned report link is created.",
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "reportId": {
+            "type": "string",
+            "description": "Saved report id."
+          },
+          "representation": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "enum": [
+              "customer_document",
+              null
+            ],
+            "description": "Retrieve the complete saved website customer document as authenticated JSON frames, including comprehensive analysis and evidence. Pass null for delivery options."
+          },
+          "documentCursor": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "UTF-8 byte position from continuation.arguments. Pass null for the first frame."
+          },
+          "snapshot": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Copy continuation.arguments.snapshot unchanged. Pass null for the first frame."
+          },
+          "pageToken": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Copy continuation.arguments.pageToken unchanged. Bound to the account, grant, report, revision and exact byte position. Pass null for the first frame."
+          }
+        },
+        "required": [
+          "reportId",
+          "representation",
+          "documentCursor",
+          "snapshot",
+          "pageToken"
+        ]
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": false
+      },
+      "outputSchema": {
+        "type": "object",
+        "additionalProperties": true,
+        "required": [
+          "reportId",
+          "bytes",
+          "presignedUrl",
+          "chatgptFileFetch",
+          "completeness"
+        ],
+        "properties": {
+          "reportId": {
+            "type": "string"
+          },
+          "bytes": {
+            "type": "null"
+          },
+          "presignedUrl": {
+            "type": "null"
+          },
+          "chatgptFileFetch": {
+            "type": "boolean",
+            "const": false
+          },
+          "website": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "reportUrl",
+              "signInUrl",
+              "authentication",
+              "instruction"
+            ],
+            "properties": {
+              "reportUrl": {
+                "type": "string"
+              },
+              "signInUrl": {
+                "type": "string"
+              },
+              "authentication": {
+                "type": "string",
+                "const": "existing_account_session_required"
+              },
+              "instruction": {
+                "type": "string"
+              }
+            }
+          },
+          "completeness": {
+            "type": "object"
+          }
+        }
+      },
+      "securitySchemes": [
+        {
+          "type": "oauth2",
+          "scopes": [
+            "ultiwrite:read"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "ultiwrite_evidence_submit",
+      "title": "Submit evidence for investigation",
+      "description": "Use when the user asks to investigate authorized commercial evidence: test claims and economics, connect identities and relationships, examine document integrity, or pursue relevant external context beyond the supplied narrative. Submit 1 to 6 authorized file attachments for Commercial Diligence across operating companies, acquisitions, financings, property or asset transactions, counterparties, operating relationships or portfolios, including residual or ISO books, or continue saved processing with only its returned caseId. Accepts supported documents, spreadsheets, images and ZIP evidence packages through the same saved upload and report workflow as the Ultiwrite website. Uses one of the connected account's analyses for a new package. Supply exactly one of nonempty files, caseId or handoffId. Strict action clients send files: [] for continuation or upload-link fallback, caseId: null and handoffId: null when unused, and documentForensics: null when the user has not made a choice. Legacy callers may omit unused fields. documentForensics is optional: omit it when the user has not made a choice so the engine infers relevance from supported file contents, including PDF members of ZIP packages. Pass true or false only for an explicit user choice. A saved case keeps its original effective choice. Pass actual file objects supplied by your connected app unchanged as files; never invent a download URL or substitute a local path. If your client cannot forward the original file contents, send files: [], caseId: null, handoffId: null and documentForensics: null (or an explicit true or false choice), then give the user the exact uploadLink returned. Retain the returned handoffId in the originating conversation; after upload send that handoffId with files: [], caseId: null and documentForensics: null to resume that exact case without asking the user to copy identifiers. Legacy {} requests remain supported. Input fields and qualification requirements: https://dwsoffshorepartners.com/docs/mcp#accepted-inputs. The returned case id and workflow status guide processing, required review and report retrieval. Repeating the same package also resumes its saved workflow instead of creating a duplicate. Processing is not completed diligence or a payment receipt. No finding text or final decision is returned by submission. Do not start a new analysis for a request limited to an explanation, connection check or existing report.",
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "files": {
+            "type": "array",
+            "minItems": 0,
+            "maxItems": 6,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "download_url": {
+                  "type": "string"
+                },
+                "file_id": {
+                  "type": "string"
+                },
+                "mime_type": {
+                  "type": "string"
+                },
+                "file_name": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "download_url",
+                "file_id"
+              ]
+            },
+            "description": "Actual downloadable file objects supplied by your connected app for the user's authorized documents, spreadsheets, images or ZIP packages. Pass [] when continuing with caseId or handoffId, or when the client cannot forward file contents and must use the returned uploadLink. An empty array never starts an empty analysis. Never invent a URL or pass a local path."
+          },
+          "documentForensics": {
+            "type": [
+              "boolean",
+              "null"
+            ],
+            "description": "Optional explicit document-forensics choice. Pass null when no choice was made: the engine infers relevance from supported file contents. An explicit false disables forensics. For a saved caseId, the original effective choice is frozen and cannot be changed."
+          },
+          "caseId": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "A caseId returned earlier. Send it with files: [] to continue that saved analysis without re-sending attachments. Pass null when new files are supplied, handoffId is used, or an upload link is needed."
+          },
+          "handoffId": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "maxLength": 16384,
+            "description": "The exact opaque selector returned with uploadLink. Retain it in the originating conversation. After upload, send this handoffId with files: [], caseId: null and documentForensics: null to resolve and continue that exact saved case; the user need not copy identifiers. Pass null otherwise. Cannot be combined with nonempty files, caseId or an explicit documentForensics choice."
+          }
+        },
+        "required": [
+          "files",
+          "documentForensics",
+          "caseId",
+          "handoffId"
+        ]
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "openWorldHint": true,
+        "idempotentHint": true
+      },
+      "outputSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "state",
+          "caseId",
+          "uploadId",
+          "reportId",
+          "analysisRunId",
+          "status",
+          "reportStatus",
+          "delivery",
+          "workflow",
+          "continuation",
+          "conclusion",
+          "thisSubmissionEndorsesDecision",
+          "assessmentClass",
+          "comprehensiveExecution",
+          "relianceGrantProduced",
+          "retrieval",
+          "artifactCount",
+          "recordCount",
+          "coverage",
+          "instructionBoundary"
+        ],
+        "properties": {
+          "state": {
+            "type": "string",
+            "enum": [
+              "persisted",
+              "already_persisted"
+            ]
+          },
+          "handoffId": {
+            "type": "string",
+            "description": "Opaque conversation continuation for this signed upload. It never authorizes another upload."
+          },
+          "caseId": {
+            "type": "string"
+          },
+          "uploadId": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "reportId": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "analysisRunId": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "processing",
+              "action_required",
+              "complete",
+              "failed"
+            ]
+          },
+          "processing": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "state",
+              "automatic",
+              "lastActivityAt",
+              "lastProgressAt",
+              "nextAttemptAt",
+              "attempts",
+              "completedSlices",
+              "reason"
+            ],
+            "properties": {
+              "state": {
+                "type": "string",
+                "enum": [
+                  "queued",
+                  "active",
+                  "retry",
+                  "paused_awaiting_continuation",
+                  "needs_action",
+                  "complete",
+                  "failed"
+                ]
+              },
+              "automatic": {
+                "type": "boolean",
+                "description": "A valid saved server continuation exists. This does not mean a worker is currently active."
+              },
+              "lastActivityAt": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "lastProgressAt": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "nextAttemptAt": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "attempts": {
+                "type": "integer",
+                "minimum": 0,
+                "description": "Durable receipt retry counter. A legacy case without a receipt defaults to zero; its historical attempts are unknown."
+              },
+              "completedSlices": {
+                "type": "integer",
+                "minimum": 0,
+                "description": "Progress recorded by the durable receipt. Legacy zero without a receipt is not proof that no historical analysis occurred."
+              },
+              "reason": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            }
+          },
+          "reportStatus": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "delivery": {
+            "type": "string",
+            "enum": [
+              "not_ready",
+              "publication_check_required"
+            ]
+          },
+          "workflow": {
+            "type": "object",
+            "properties": {
+              "uploadUrl": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "reportUrl": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "signInUrl": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "authentication": {
+                "type": "string"
+              },
+              "nextAction": {
+                "type": "string"
+              }
+            }
+          },
+          "continuation": {
+            "type": [
+              "object",
+              "null"
+            ],
+            "properties": {
+              "tool": {
+                "type": "string"
+              },
+              "repeatSameFiles": {
+                "type": "boolean"
+              },
+              "caseId": {
+                "type": "string"
+              },
+              "handoffId": {
+                "type": "string"
+              },
+              "arguments": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "files",
+                  "caseId",
+                  "handoffId",
+                  "documentForensics"
+                ],
+                "properties": {
+                  "files": {
+                    "type": "array",
+                    "maxItems": 0,
+                    "items": {
+                      "type": "object"
+                    }
+                  },
+                  "caseId": {
+                    "type": "string"
+                  },
+                  "handoffId": {
+                    "type": "null"
+                  },
+                  "documentForensics": {
+                    "type": "null"
+                  }
+                }
+              }
+            }
+          },
+          "conclusion": {
+            "type": "null"
+          },
+          "thisSubmissionEndorsesDecision": {
+            "type": "boolean"
+          },
+          "assessmentClass": {
+            "type": "string",
+            "const": "commercial_diligence"
+          },
+          "comprehensiveExecution": {
+            "type": "boolean"
+          },
+          "relianceGrantProduced": {
+            "type": "boolean",
+            "const": false
+          },
+          "retrieval": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "tool",
+              "caseId"
+            ],
+            "properties": {
+              "tool": {
+                "type": "string"
+              },
+              "caseId": {
+                "type": "string"
+              }
+            }
+          },
+          "artifactCount": {
+            "type": "integer"
+          },
+          "recordCount": {
+            "type": "integer"
+          },
+          "usage": {
+            "type": [
+              "object",
+              "null"
+            ],
+            "additionalProperties": false,
+            "required": [
+              "allowance",
+              "used",
+              "inProgress",
+              "remaining",
+              "chargedFor"
+            ],
+            "properties": {
+              "allowance": {
+                "type": [
+                  "integer",
+                  "null"
+                ]
+              },
+              "used": {
+                "type": "integer"
+              },
+              "inProgress": {
+                "type": "integer"
+              },
+              "remaining": {
+                "type": [
+                  "integer",
+                  "null"
+                ]
+              },
+              "chargedFor": {
+                "type": "string"
+              }
+            }
+          },
+          "coverage": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "pending",
+              "failed",
+              "unavailable",
+              "policySkipped",
+              "meaning"
+            ],
+            "properties": {
+              "unavailable": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "policySkipped": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "pending": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "failed": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "meaning": {
+                "type": "string"
+              }
+            }
+          },
+          "instructionBoundary": {
+            "type": "string"
+          }
+        }
+      },
+      "_meta": {
+        "openai/fileParams": [
+          "files"
+        ]
+      },
+      "securitySchemes": [
+        {
+          "type": "oauth2",
+          "scopes": [
+            "ultiwrite:read",
+            "ultiwrite:evidence"
+          ]
+        }
+      ]
+    }
+  ],
+  "capabilities": {
+    "contractVersion": "ultiwrite-mcp-evidence@7",
+    "mode": "read_and_evidence",
+    "product": {
+      "name": "Ultiwrite",
+      "descriptor": "Asymmetric Diligence Engine",
+      "category": "Commercial Diligence",
+      "purpose": "Turn ordinary commercial documents into a wider investigation across businesses, people, assets and relationships. Connect financial and operating evidence, company records, document integrity, digital footprints and relevant external context to expose risk, reconstruct economics, identify opportunities and pursue consequential questions beyond the supplied narrative. Bring the findings into one coherent assessment with supporting evidence, confidence, contradictions and unresolved questions. Applications include acquisitions, financings, counterparties, property or asset transactions, operating relationships and portfolios; the evidence and decision determine what applies."
+    },
+    "commercial": {
+      "offers": [
+        {
+          "title": "First Analysis",
+          "price": "$0.00",
+          "body": "$0.00 for your first analysis. Full report. No card required. One first completed analysis per account. A failed analysis does not use your first run. No automatic charge.",
+          "requestUrl": "https://dwsoffshorepartners.com/uploads/new"
+        },
+        {
+          "title": "Additional Analysis",
+          "price": "Contact us for pricing",
+          "body": "For further analyses, contact us for pricing. Your existing reports and purchased analysis entitlements remain available.",
+          "requestUrl": "https://dwsoffshorepartners.com/contact?brief=Additional%20Analysis#request"
+        }
+      ],
+      "pricingUrl": "https://dwsoffshorepartners.com/pricing",
+      "contactUrl": "https://dwsoffshorepartners.com/contact",
+      "fulfillment": "$0.00 for your first analysis. Full report. No card required. For further analyses, contact us for pricing. There is no automatic charge.",
+      "payment": {
+        "checkoutAvailable": false,
+        "instruction": "Your first Ultiwrite analysis includes the full applicable analysis and full report for $0.00 before public launch. Contact us for further-analysis pricing. No card required. No automatic charge. A failed analysis does not use the first run. Existing purchased analysis entitlements remain available. MCP clients cannot take payment. An inquiry, account allowance or evidence submission is not a payment receipt."
+      },
+      "evaluation": {
+        "requestUrl": "https://dwsoffshorepartners.com/request-access",
+        "terms": "Your first eligible analysis is free. An evaluation request does not grant account access or start analysis by itself."
+      },
+      "account": "Connect an existing Ultiwrite account and approve the connected client. Connecting or reconnecting grants no usage. Your first Ultiwrite analysis includes the full applicable analysis and full report for $0.00 before public launch. Contact us for further-analysis pricing. No card required. No automatic charge. Existing reports and purchased analysis entitlements remain available. Use accountStatus from capability discovery to check current allowance."
+    },
+    "authentication": {
+      "method": "OAuth 2.1 sign-in to an existing Ultiwrite account, approved on a consent screen. The MCP host identity is separate from the customer identity.",
+      "scopes": {
+        "ultiwrite:read": "Read cases and released reports in your organization.",
+        "ultiwrite:evidence": "Submit authorized evidence for analysis in your organization through your connected app or its returned upload link."
+      }
+    },
+    "tools": [
+      {
+        "name": "ultiwrite_account_get",
+        "description": "Shows which Ultiwrite account is connected, including after sign-in, reconnection or account switching."
+      },
+      {
+        "name": "ultiwrite_capabilities_get",
+        "description": "Explains Ultiwrite's asymmetric diligence approach, supported investigative applications and evidence inputs, account requirements, and the path from an authorized package to a saved assessment."
+      },
+      {
+        "name": "ultiwrite_cases_list",
+        "description": "Finds your existing investigations and released website reports. Verified staff can also discover reports they manage across organizations."
+      },
+      {
+        "name": "ultiwrite_case_status",
+        "description": "Shows an existing investigation's progress and any saved-processing continuation needed to reach its report."
+      },
+      {
+        "name": "ultiwrite_coherence_get",
+        "description": "Reads the saved Decision Brief: connected observations, synthesis, contradictions, hypotheses, questions and coverage. Commercial filtering is labeled; older publications may lack structured synthesis."
+      },
+      {
+        "name": "ultiwrite_findings_get",
+        "description": "Reads a released assessment's findings, supporting evidence, economics, risks, opportunities and unresolved questions page by page, without rerunning the investigation."
+      },
+      {
+        "name": "ultiwrite_report_export",
+        "description": "Returns authenticated report and download links, plus entitled CSV text when available. Website downloads require the same account's sign-in."
+      },
+      {
+        "name": "ultiwrite_evidence_submit",
+        "description": "Starts an authorized asymmetric investigation through the shared Commercial Diligence workflow using one to six supported attachments or ZIP packages, or continues saved processing. Clients unable to forward original files use the returned uploadLink. Requires evidence consent."
+      }
+    ],
+    "deferred": [
+      {
+        "name": "ultiwrite_case_create",
+        "state": "not_available",
+        "alternative": "Cases are created by submitting evidence or through the Ultiwrite website."
+      },
+      {
+        "name": "ultiwrite_evidence_add",
+        "state": "not_available",
+        "alternative": "Submit a new evidence package through ultiwrite_evidence_submit or the Ultiwrite website. Separate submissions do not silently merge into an existing case; discuss later evidence with the team."
+      },
+      {
+        "name": "ultiwrite_case_process",
+        "state": "not_available",
+        "alternative": "Submit evidence through ultiwrite_evidence_submit, then follow its saved processing state and any returned continuation."
+      },
+      {
+        "name": "ultiwrite_report_reevaluate",
+        "state": "not_available",
+        "alternative": "Re-evaluation of a released report is handled by Ultiwrite staff."
+      }
+    ],
+    "inputs": {
+      "accepted": [
+        "case ids and report ids from your organization",
+        "one to six downloadable file objects supplied by your connected app, each at most 8 MiB and 12 MiB together",
+        "the exact signed Ultiwrite upload link returned when the client cannot forward original file contents",
+        "a previously returned caseId to continue retained evidence without resupplying attachments"
+      ],
+      "contract": "https://dwsoffshorepartners.com/docs/mcp#accepted-inputs",
+      "notAccepted": [
+        "arbitrary web addresses",
+        "unsafe or unsupported archive entries",
+        "another organization's records",
+        "local filesystem paths"
+      ],
+      "formats": {
+        "implemented": [
+          "PDF",
+          "CSV",
+          "XLS/XLSX",
+          "DOCX",
+          "TXT",
+          "RTF",
+          "JSON",
+          "PNG",
+          "JPEG",
+          "ZIP"
+        ],
+        "backendDependencies": [
+          "Legacy binary DOC has no verified parser in this source.",
+          "RAR and 7z extraction are not implemented by the canonical ZIP ingestion path."
+        ],
+        "meaning": "A registered format does not guarantee readable contents. Account limits, validation, archive safety, extraction outcomes and coverage remain explicit. Do not relabel an archive or claim an unexecuted examination."
+      }
+    },
+    "transfers": {
+      "chatgptAttachment": {
+        "files": 6,
+        "maxFile": "8 MiB",
+        "maxTotal": "12 MiB",
+        "hosts": "Public HTTPS file URLs supplied by the connected app, including oaiusercontent.com and its valid subdomains. Local and private addresses are refused.",
+        "note": "This is the direct attachment transport. It is not the account upload ceiling. Clients without downloadable file objects use the signed upload handoff; do not construct a file URL."
+      },
+      "signedUpload": {
+        "when": "The client does not provide downloadable file contents. Call ultiwrite_evidence_submit with {} and present the exact uploadLink returned. Retain handoffId in the originating conversation; after upload call the same tool with only handoffId to resolve and continue the exact saved case without asking the user to copy identifiers.",
+        "stagedRoute": "/api/integrations/ultiwrite/upload/staging",
+        "finalizeRoute": "/api/integrations/ultiwrite/upload",
+        "accountLimit": "The stored account policy, otherwise the portal source ceiling of 100 files and 5 GB.",
+        "basicForm": "6 files, 3.9 MiB of files combined, 4 MiB encoded request body"
+      }
+    },
+    "release": "Saved customer reports publish automatically through the canonical workflow. Reads use the same release decision as the web app and respect explicit revocation and current account and grant access.",
+    "delivery": "After submission, follow processing.state, workflow.nextAction and continuation. A valid saved server continuation is identified by processing.automatic; queued or retrying work is not active execution. A paused investigation needs the returned continuation.arguments with files: [] and the same caseId, without uploading its original files again. ultiwrite_case_status only reads saved progress and never advances processing. Do not describe unscheduled legacy work as continuing in the background. Processing, action_required and failed states are not completed assessments. Read a released report with ultiwrite_findings_get, then use its reportId with ultiwrite_report_export. The export provides authenticated website report and sign-in links plus entitled download links. Sign in to the same account to download PDF, Excel or ZIP; the MCP bearer cannot fetch those files.",
+    "decisions": "Ultiwrite does not approve, decline, or board a merchant through this connection, and a read never changes a saved decision.",
+    "meaning": "Only state findings that a tool returned. Absence of a finding is not negative evidence. Read completeness.status on each result.",
+    "completeness": {
+      "status": "complete",
+      "scope": "tool_list",
+      "meaning": "This lists the tools on this connection. It does not read a case."
+    }
+  },
+  "operationalStatus": "Source metadata only. Provider readiness, entitlements and per-investigation coverage remain runtime decisions."
+}

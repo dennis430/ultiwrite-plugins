@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "ultiwrite": {
+      "command": "node",
+      "args": [
+        "/ABSOLUTE/PATH/TO/client/bin/ultiwrite-mcp.js",
+        "stdio",
+        "--profile",
+        "default"
+      ]
+    }
+  }
+}

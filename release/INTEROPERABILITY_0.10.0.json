@@ -1,0 +1,51 @@
+{
+  "status": "SOURCE_RELEASED_HOST_ACCEPTANCE_SKIPPED",
+  "hostAcceptance": "SKIPPED_BY_USER",
+  "asOf": "2026-11-06",
+  "publicSourceBase": "073d9fa9b3dc6f0df6664421979f30e19d5188a6",
+  "surfaces": 49,
+  "configurationExamples": 16,
+  "artifacts": [
+    {
+      "path": "release/ultiwrite-chatgpt-plugin-0.10.0.zip",
+      "bytes": 39813,
+      "sha256": "aa928684cdbb4383aea0e4cb09fe2bfd67c90181ff4b120237889826312b14b5"
+    },
+    {
+      "path": "release/Ultiwrite_Claude_Plugin_v0.10.0.zip",
+      "bytes": 35118,
+      "sha256": "bcedcbec17239d1dc99ed3aecbf0a47af18fd265d33074c28b16184445e82b20"
+    },
+    {
+      "path": "release/ultiwrite-cursor-plugin-0.10.0.zip",
+      "bytes": 33115,
+      "sha256": "52e7b6b11346b07a05b8ccbe71467e9055a1db3274d15b770df99500f34f1dee"
+    },
+    {
+      "path": "release/ultiwrite-host-adapters-0.10.0.zip",
+      "bytes": 28610,
+      "sha256": "2d0b8352d1e381bf24df398de2f2328d905b740dc820077e27b5e4909b01046d"
+    },
+    {
+      "path": "release/ultiwrite-mcp-0.8.0.tgz",
+      "bytes": 9544,
+      "sha256": "042e987ed8098cb631efe7c7ada7e00b1319d2ffdaac71ca50ca771de9b6829a"
+    }
+  ],
+  "note": "Owner authorized merge and relevant production deployment. This release preserves existing sign-in and no-card complimentary usage. Authenticated host acceptance is skipped; no npm or marketplace publication is claimed.",
+  "canonicalSourceCandidate": "8047ef8bb8423aa4e7711eac34b0a8f0d999df38",
+  "canonicalEnginePullRequest": "https://github.com/dennis430/merchant-risk-app/pull/823",
+  "canonicalReleaseFixes": [
+    "https://github.com/dennis430/merchant-risk-app/pull/824",
+    "https://github.com/dennis430/merchant-risk-app/pull/825"
+  ],
+  "canonicalProduction": {
+    "status": "READY",
+    "sourceCommit": "8047ef8bb8423aa4e7711eac34b0a8f0d999df38",
+    "deploymentId": "dpl_CcZCA4JMvxWeFSLV5fpScA7bXMN5",
+    "url": "https://merchant-risk-gjabneyij-ultiwrite.vercel.app",
+    "endpoint": "https://mcp.dwsoffshorepartners.com/mcp",
+    "readyAt": "2026-11-06T04:02:41.731000+00:00",
+    "evidence": "Vercel deployment state and canonical alias assignment; normal production release gates passed."
+  }
+}

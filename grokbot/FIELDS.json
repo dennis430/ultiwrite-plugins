@@ -2,7 +2,7 @@
   "product": "Ultiwrite",
   "publisher": "DWS Offshore Fund",
   "category": "Commercial Diligence",
-  "version": "0.8.0",
+  "version": "0.9.0",
   "mcpUrl": "https://mcp.dwsoffshorepartners.com/mcp",
   "auth": "OAuth 2.1 authorization code with PKCE S256 and dynamic client registration",
   "scopes": [
