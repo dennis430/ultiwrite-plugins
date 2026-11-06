@@ -1,5 +1,5 @@
 {
-  "status": "SOURCE_RELEASE_AUTHORIZED_HOST_ACCEPTANCE_SKIPPED",
+  "status": "SOURCE_RELEASED_HOST_ACCEPTANCE_SKIPPED",
   "hostAcceptance": "SKIPPED_BY_USER",
   "asOf": "2026-11-06",
   "publicSourceBase": "073d9fa9b3dc6f0df6664421979f30e19d5188a6",
@@ -38,5 +38,14 @@
   "canonicalReleaseFixes": [
     "https://github.com/dennis430/merchant-risk-app/pull/824",
     "https://github.com/dennis430/merchant-risk-app/pull/825"
-  ]
+  ],
+  "canonicalProduction": {
+    "status": "READY",
+    "sourceCommit": "8047ef8bb8423aa4e7711eac34b0a8f0d999df38",
+    "deploymentId": "dpl_CcZCA4JMvxWeFSLV5fpScA7bXMN5",
+    "url": "https://merchant-risk-gjabneyij-ultiwrite.vercel.app",
+    "endpoint": "https://mcp.dwsoffshorepartners.com/mcp",
+    "readyAt": "2026-11-06T04:02:41.731000+00:00",
+    "evidence": "Vercel deployment state and canonical alias assignment; normal production release gates passed."
+  }
 }
