@@ -38,8 +38,8 @@ ChatGPT 0.9.4 is a prepared saved-investigation recovery candidate. Status and r
 <!-- CURRENT_DOWNLOADS_START -->
 | Archive | SHA-256 |
 | --- | --- |
-| [`ultiwrite-chatgpt-plugin-0.9.5.zip`](https://github.com/dennis430/ultiwrite-plugins/raw/main/release/ultiwrite-chatgpt-plugin-0.9.5.zip) | `0e62e9a3b2df12e2852f40bddf11d904edd4d30acebfc71d7bc45973b13d2d38` |
-| [`ultiwrite-cursor-plugin-0.9.3.zip`](https://github.com/dennis430/ultiwrite-plugins/raw/main/release/ultiwrite-cursor-plugin-0.9.3.zip) | `6d8977daea01083dd3fb98cdec3826e29699274195d6e1dc16b6808447b4635e` |
+| [`ultiwrite-chatgpt-plugin-0.9.5.zip`](https://github.com/dennis430/ultiwrite-plugins/raw/main/release/ultiwrite-chatgpt-plugin-0.9.5.zip) | `29feb18136ccced2d5e6107d7001374117cf59dd587fdf9951d2a7aeace6462f` |
+| [`ultiwrite-cursor-plugin-0.9.3.zip`](https://github.com/dennis430/ultiwrite-plugins/raw/main/release/ultiwrite-cursor-plugin-0.9.3.zip) | `446fdc7002b827a46b2360ad33263421ea91589f0536f72e39baf3e2cda44986` |
 | [`Ultiwrite_Claude_Plugin_v0.9.3.zip`](https://github.com/dennis430/ultiwrite-plugins/raw/main/release/Ultiwrite_Claude_Plugin_v0.9.3.zip) | `f00050a4d629eec6705f79da1f6e6b0b5aca7c73d5952463c36a25b7a5d77261` |
 <!-- CURRENT_DOWNLOADS_END -->
 
