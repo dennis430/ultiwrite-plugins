@@ -578,7 +578,7 @@
     },
     {
       "path": "release/HOSTED_CLIENTS_0.10.1.json",
-      "sha256": "52ea161da8285b89cf63a91ae42b243e04412d658006d5ea47e8f317a7fec917"
+      "sha256": "fabb9265ddb45987eae96654429ef9f63c8b1b9a21a5876106f19f40b3180ee1"
     },
     {
       "path": "release/INTEROPERABILITY_0.10.0.json",

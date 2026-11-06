@@ -1,5 +1,5 @@
 {
-  "status": "PREPARED_RELEASE_AUTHORIZED",
+  "status": "SOURCE_RELEASED_HOST_ACCEPTANCE_SKIPPED",
   "hostBundleVersion": "0.10.1",
   "pluginVersionsUnchanged": "0.10.0",
   "clientVersionUnchanged": "0.8.0",
@@ -25,5 +25,14 @@
   },
   "historicalArchiveCountPreserved": 24,
   "note": "Existing caller-scoped OAuth, PKCE, tenant access and consent remain authoritative. Source-backed callback/origin coverage does not establish authenticated host acceptance.",
-  "canonicalEnginePullRequest": "https://github.com/dennis430/merchant-risk-app/pull/827"
+  "canonicalEnginePullRequest": "https://github.com/dennis430/merchant-risk-app/pull/827",
+  "canonicalProduction": {
+    "status": "READY",
+    "sourceCommit": "112609eccd8cc071d17cb07babc51aab49114756",
+    "deploymentId": "dpl_3KSa9CoSDcnSVnqZhkg5WbxFvnsD",
+    "url": "https://merchant-risk-hhaimqqo6-ultiwrite.vercel.app",
+    "endpoint": "https://mcp.dwsoffshorepartners.com/mcp",
+    "readyAt": "2026-11-06T05:19:12.301000+00:00",
+    "releaseGates": "All198 automatic regression files, typecheck/lint/build and runtime packaging passed."
+  }
 }
