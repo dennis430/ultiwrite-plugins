@@ -1,0 +1,29 @@
+{
+  "status": "PREPARED_RELEASE_AUTHORIZED",
+  "hostBundleVersion": "0.10.1",
+  "pluginVersionsUnchanged": "0.10.0",
+  "clientVersionUnchanged": "0.8.0",
+  "hostAcceptance": "SKIPPED_BY_USER",
+  "asOf": "2026-11-06",
+  "surfaces": 54,
+  "configurationExamples": 16,
+  "canonicalSource": "112609eccd8cc071d17cb07babc51aab49114756",
+  "guide": "hosts/hosted-clients.md",
+  "addedClientCoverage": [
+    "MCPJam SaaS",
+    "Cloudflare AI Playground",
+    "Postman hosted MCP Client"
+  ],
+  "documentedLimits": [
+    "Cloudflare MCP Portals require account/server-specific exact callbacks",
+    "Stripe documented MCP offering is a server; no arbitrary hosted client established"
+  ],
+  "artifact": {
+    "path": "release/ultiwrite-host-adapters-0.10.1.zip",
+    "sha256": "b89733750567de78228a5a4d13b2cdf7bfc9000fea88acb1c40cae5f65c13fc5",
+    "bytes": 32863
+  },
+  "historicalArchiveCountPreserved": 24,
+  "note": "Existing caller-scoped OAuth, PKCE, tenant access and consent remain authoritative. Source-backed callback/origin coverage does not establish authenticated host acceptance.",
+  "canonicalEnginePullRequest": "https://github.com/dennis430/merchant-risk-app/pull/827"
+}

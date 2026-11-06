@@ -15,6 +15,8 @@ if (process.argv.slice(2).some(arg => arg !== '--check') || process.argv.slice(2
 const checkOnly = process.argv.includes('--check')
 const VERSION = JSON.parse(readFileSync(join(root, 'chatgpt/plugin.json'), 'utf8')).version
 const CURSOR_VERSION = JSON.parse(readFileSync(join(root, 'cursor/.cursor-plugin/plugin.json'), 'utf8')).version
+const HOSTS_VERSION = JSON.parse(readFileSync(join(root, 'hosts/matrix.json'), 'utf8')).packageVersion ?? VERSION
+if (typeof HOSTS_VERSION !== 'string' || !/^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)$/.test(HOSTS_VERSION)) throw new Error('Invalid host bundle version')
 const MCP_URL = 'https://mcp.dwsoffshorepartners.com/mcp'
 const COMPATIBILITY_MCP_URL = 'https://dwsoffshorepartners.com/api/integrations/ultiwrite/mcp'
 const CHATGPT_MCP_URL = 'https://mcp.dwsoffshorepartners.com/mcp'
@@ -23,11 +25,11 @@ if (!TOOLS.length || new Set(TOOLS).size !== TOOLS.length) throw new Error('Cano
 const CLAUDE_VERSION = JSON.parse(readFileSync(join(root, 'claude/.claude-plugin/plugin.json'), 'utf8')).version
 const CLAUDE_MCP_URL = 'https://mcp.dwsoffshorepartners.com/mcp'
 const CLAUDE_ZIP = `Ultiwrite_Claude_Plugin_v${CLAUDE_VERSION}.zip`
-const HOSTS_ZIP = `ultiwrite-host-adapters-${VERSION}.zip`
+const HOSTS_ZIP = `ultiwrite-host-adapters-${HOSTS_VERSION}.zip`
 const CURRENT_ARCHIVES = new Set([HOSTS_ZIP, `ultiwrite-chatgpt-plugin-${VERSION}.zip`, `ultiwrite-cursor-plugin-${CURSOR_VERSION}.zip`, CLAUDE_ZIP])
 const FROZEN_ARCHIVES = (existsSync(outDir) ? readdirSync(outDir) : []).filter(name => name.endsWith('.zip') && !CURRENT_ARCHIVES.has(name)).sort()
 const PACKAGES = [
-  { id: 'host-adapters', root: 'hosts', version: VERSION, filename: HOSTS_ZIP },
+  { id: 'host-adapters', root: 'hosts', version: HOSTS_VERSION, filename: HOSTS_ZIP },
   {
     id: 'chatgpt',
     root: 'chatgpt',
@@ -290,7 +292,7 @@ const releaseManifest = {
   mcp_url: CHATGPT_MCP_URL,
   compatibility_mcp_url: COMPATIBILITY_MCP_URL,
   packages: {
-    hosts: { version: VERSION, zip: `release/${HOSTS_ZIP}`, status: 'prepared; host acceptance skipped by owner' },
+    hosts: { version: HOSTS_VERSION, zip: `release/${HOSTS_ZIP}`, status: 'prepared; host acceptance skipped by owner' },
     chatgpt: { version: VERSION, zip: `release/ultiwrite-chatgpt-plugin-${VERSION}.zip`, mcp_url: CHATGPT_MCP_URL },
     cursor: { version: CURSOR_VERSION, zip: `release/ultiwrite-cursor-plugin-${CURSOR_VERSION}.zip` },
     claude: { version: CLAUDE_VERSION, zip: `release/${CLAUDE_ZIP}`, mcp_url: CLAUDE_MCP_URL },

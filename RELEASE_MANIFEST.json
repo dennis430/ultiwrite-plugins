@@ -4,7 +4,7 @@
   "version": "0.10.0",
   "publisher": "DWS Offshore Fund",
   "source_repository": "dennis430/merchant-risk-app",
-  "source_base_commit": "8047ef8bb8423aa4e7711eac34b0a8f0d999df38",
+  "source_base_commit": "112609eccd8cc071d17cb07babc51aab49114756",
   "public_source_base_commit": "073d9fa9b3dc6f0df6664421979f30e19d5188a6",
   "package_status": "PREPARED",
   "host_evaluation_status": "NOT_RUN",
@@ -19,8 +19,8 @@
   "compatibility_mcp_url": "https://dwsoffshorepartners.com/api/integrations/ultiwrite/mcp",
   "packages": {
     "hosts": {
-      "version": "0.10.0",
-      "zip": "release/ultiwrite-host-adapters-0.10.0.zip",
+      "version": "0.10.1",
+      "zip": "release/ultiwrite-host-adapters-0.10.1.zip",
       "status": "prepared; host acceptance skipped by owner"
     },
     "chatgpt": {
@@ -90,7 +90,7 @@
     },
     {
       "path": "README.md",
-      "sha256": "cecb7e801fd500d82383c0fe3f3d6fe4ca556ba01de7635c96fec1d84d65042b"
+      "sha256": "53a848399a5551a278ffd11a4f90704d24640c0da2f4fb372e456cc750286d97"
     },
     {
       "path": "api-contract.mdx",
@@ -438,7 +438,7 @@
     },
     {
       "path": "hosts/README.md",
-      "sha256": "dc49d82f81c93dea9ed92ffa1f591033a2dad264f3a3c2e8d6b1e1fc04bb5a4f"
+      "sha256": "6298a957c8dee5456185febd34edb3eca8ae2dcf9f164f8848451bfea6ded957"
     },
     {
       "path": "hosts/catalog.json",
@@ -517,8 +517,12 @@
       "sha256": "ee31b6fa2fe2a27c056d345130e85ca47fc9b85101fcbacb3f2835fd9d6624e3"
     },
     {
+      "path": "hosts/hosted-clients.md",
+      "sha256": "95afcad088b2c38929241b53dd474a6035ac2efe37132662d5e2174aba7b6020"
+    },
+    {
       "path": "hosts/matrix.json",
-      "sha256": "ec22bc7289a41331f879607b10cd78be7961d54d04c63fc148eea90aff8b5ac3"
+      "sha256": "bb3553636ebf358849edf0d48eef5a23d847060a4ee80ba4d09e49a0c15967d7"
     },
     {
       "path": "hosts/mistral.md",
@@ -573,12 +577,16 @@
       "sha256": "b9003ebb3bea1ecafe81e6ec5246a04ab2bd966da68d092674e5a2de07484c30"
     },
     {
+      "path": "release/HOSTED_CLIENTS_0.10.1.json",
+      "sha256": "52ea161da8285b89cf63a91ae42b243e04412d658006d5ea47e8f317a7fec917"
+    },
+    {
       "path": "release/INTEROPERABILITY_0.10.0.json",
       "sha256": "2b55695fb6c172efe95da8b83d044053a78937a9034a86410403f2a819ee47f5"
     },
     {
       "path": "release/INVENTORY.json",
-      "sha256": "7e79931c7705c9965420704c60debfc7e259ce5e032319fc5fcff7f77e94ea67"
+      "sha256": "52dedb08b39c437e4c6bc99f481315a4a32f8361f0ad25505298d2b5879aaac0"
     },
     {
       "path": "release/PLUGIN_0.9.1_LIVE_RECEIPT.json",
@@ -610,7 +618,7 @@
     },
     {
       "path": "release/SHA256SUMS.txt",
-      "sha256": "e067daed3a2686bdc68d473db7b795301d277066f3a361409a1ff27d9a8a0736"
+      "sha256": "9705befe43a91180d11463b5e8fad96d79e43a7a167a6d431b7e56a641136b79"
     },
     {
       "path": "release/Ultiwrite_Claude_Plugin_v0.10.0.zip",
@@ -709,12 +717,16 @@
       "sha256": "2d0b8352d1e381bf24df398de2f2328d905b740dc820077e27b5e4909b01046d"
     },
     {
+      "path": "release/ultiwrite-host-adapters-0.10.1.zip",
+      "sha256": "b89733750567de78228a5a4d13b2cdf7bfc9000fea88acb1c40cae5f65c13fc5"
+    },
+    {
       "path": "scripts/pack-public-connectors.mjs",
-      "sha256": "1d189311be35d15ff301916ba8c8a8b9e5f5bcc54f32da6c2473a66b3200b1f1"
+      "sha256": "4fa6cf85f434bc78709fcb01e5dd683b83c056c9cffe4c261545b499c8ee3217"
     },
     {
       "path": "scripts/test/release.test.mjs",
-      "sha256": "dfa151fb79ab4951897f586d4e19d14495b5f8d81f98dcda4cf9de63aeefb71e"
+      "sha256": "59c4d7ebf8dfb8fbeff38767a4b3a31e903c40689eeca428bce87e386d592298"
     },
     {
       "path": "scripts/validate-public-plugins.mjs",
