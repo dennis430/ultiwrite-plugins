@@ -3,7 +3,9 @@ import { homedir } from 'node:os'
 import { join } from 'node:path'
 
 export const DEFAULT_ORIGIN = 'https://mcp.dwsoffshorepartners.com'
-export const MCP_PATH = '/api/integrations/ultiwrite/mcp'
+// Retain the original public resource for saved grants and alternate issuers.
+export const LEGACY_MCP_URL = 'https://dwsoffshorepartners.com/api/integrations/ultiwrite/mcp'
+export const MCP_PATH = new URL(LEGACY_MCP_URL).pathname
 export const REDIRECT_URI = 'http://127.0.0.1:6274/oauth/callback'
 export const IOS_REDIRECT_URI = 'ultiwrite://oauth/callback'
 

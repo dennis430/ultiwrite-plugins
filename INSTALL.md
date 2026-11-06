@@ -38,9 +38,9 @@ The five packaged workflows permit automatic invocation by default. Claude also 
 
 ## Release status
 
-ChatGPT, Claude and Cursor 0.10.0 are local review candidates. The Grok Bot dossier is 0.9.0; the optional adapter is 0.8.0. They are not merged, deployed, submitted or published. Historical approved identities and archive bytes remain intact. The current host matrix, configuration examples and documented limitations are in [hosts/README.md](hosts/README.md).
+This distribution provides ChatGPT, Claude and Cursor 0.10.0 source and archives. The Grok Bot dossier is 0.9.0; the optional adapter is 0.8.0. These packages do not establish marketplace approval or authenticated host acceptance; npm publication remains separate. Historical approved identities and archive bytes remain intact. The current host matrix, configuration examples and documented limitations are in [hosts/README.md](hosts/README.md).
 
-Sign in through Ultiwrite’s existing account flow and approve scoped OAuth access. Connection does not grant usage. Check the returned accountStatus with `ultiwrite_capabilities_get` before a requested investigation. The first eligible completed investigation remains $0 once per account, with no card required. Existing paid entitlements, report access and canonical usage accounting remain unchanged.
+Sign in through Ultiwrite’s existing account flow and approve scoped OAuth access. Connection does not grant usage. Check the returned accountStatus with `ultiwrite_capabilities_get` before a requested investigation. The first eligible complimentary investigation remains available once per account, with no card required. Existing paid entitlements, report access and canonical usage accounting remain unchanged.
 
 ## Source validation
 

@@ -36,6 +36,6 @@ Native toggles, simultaneous accounts and approval modes depend on Grok Bot's su
 
 ## Universal MCP preparation
 
-Sign in through Ultiwrite’s existing account flow and approve the connected host’s scoped OAuth access. Connection does not grant usage. Discover current account limits, paid credits and complimentary availability with `ultiwrite_capabilities_get`; its `accountStatus` is informational and server admission rechecks eligibility. The first eligible completed investigation remains $0 once per account, with no card required. Existing paid entitlements and saved reports remain available under the same account controls.
+Sign in through Ultiwrite’s existing account flow and approve the connected host’s scoped OAuth access. Connection does not grant usage. Discover current account limits, paid credits and complimentary availability with `ultiwrite_capabilities_get`; its `accountStatus` is informational and server admission rechecks eligibility. The first eligible complimentary investigation remains available once per account, with no card required. Existing paid entitlements and saved reports remain available under the same account controls.
 
 Host configurations, the canonical public tool catalog and per-surface limitations are prepared in the root `hosts/` directory. Live host acceptance was skipped at the owner’s request; package preparation is not publication or deployment.

@@ -28,4 +28,4 @@ Skills are available automatically by default. Respect any host-disabled skill o
 
 ## Account usage
 
-Use Ultiwrite’s existing sign-in flow and scoped OAuth consent; the host account is separate. For a requested new investigation, use `ultiwrite_capabilities_get` to check its returned `accountStatus`, scopes and usage limits. Connection never grants credits. The first eligible completed investigation remains $0 once per account, with no card required; server admission owns eligibility and usage accounting. Preserve existing paid entitlements and saved reports. Do not subscribe, charge or choose paid add-ons automatically.
+Use Ultiwrite’s existing sign-in flow and scoped OAuth consent; the host account is separate. For a requested new investigation, use `ultiwrite_capabilities_get` to check its returned `accountStatus`, scopes and usage limits. Connection never grants credits. The first eligible complimentary investigation remains available once per account, with no card required; server admission owns eligibility and usage accounting. Preserve existing paid entitlements and saved reports. Do not subscribe, charge or choose paid add-ons automatically.
