@@ -40,15 +40,15 @@
   },
   "packages": [
     {
-      "file": "release/ultiwrite-host-adapters-0.10.0.zip",
-      "version": "0.10.0",
-      "sha256": "2d0b8352d1e381bf24df398de2f2328d905b740dc820077e27b5e4909b01046d",
-      "bytes": 28610,
+      "file": "release/ultiwrite-host-adapters-0.10.1.zip",
+      "version": "0.10.1",
+      "sha256": "b89733750567de78228a5a4d13b2cdf7bfc9000fea88acb1c40cae5f65c13fc5",
+      "bytes": 32863,
       "members": [
         {
           "name": "README.md",
-          "sha256": "dc49d82f81c93dea9ed92ffa1f591033a2dad264f3a3c2e8d6b1e1fc04bb5a4f",
-          "bytes": 7345
+          "sha256": "6298a957c8dee5456185febd34edb3eca8ae2dcf9f164f8848451bfea6ded957",
+          "bytes": 8129
         },
         {
           "name": "catalog.json",
@@ -146,9 +146,14 @@
           "bytes": 2354
         },
         {
+          "name": "hosted-clients.md",
+          "sha256": "95afcad088b2c38929241b53dd474a6035ac2efe37132662d5e2174aba7b6020",
+          "bytes": 7816
+        },
+        {
           "name": "matrix.json",
-          "sha256": "ec22bc7289a41331f879607b10cd78be7961d54d04c63fc148eea90aff8b5ac3",
-          "bytes": 32000
+          "sha256": "bb3553636ebf358849edf0d48eef5a23d847060a4ee80ba4d09e49a0c15967d7",
+          "bytes": 36007
         },
         {
           "name": "mistral.md",
@@ -1755,6 +1760,130 @@
           "name": "skills/ultiwrite/agents/openai.yaml",
           "sha256": "6df156fae5e567c58a69ed02be600f61370b9c41445b748388edd13628e75840",
           "bytes": 367
+        }
+      ]
+    },
+    {
+      "file": "release/ultiwrite-host-adapters-0.10.0.zip",
+      "version": "0.10.0",
+      "status": "historical archive; kept so existing links keep working; not rebuilt",
+      "sha256": "2d0b8352d1e381bf24df398de2f2328d905b740dc820077e27b5e4909b01046d",
+      "bytes": 28610,
+      "members": [
+        {
+          "name": "README.md",
+          "sha256": "dc49d82f81c93dea9ed92ffa1f591033a2dad264f3a3c2e8d6b1e1fc04bb5a4f",
+          "bytes": 7345
+        },
+        {
+          "name": "catalog.json",
+          "sha256": "10f32f361636a09d86556b3776f1c1d055af792cfe2951ffd576b161d1ba615b",
+          "bytes": 81025
+        },
+        {
+          "name": "configs/antigravity.json",
+          "sha256": "fc6620c801698ba52b5ed9987515b334180f1e62ff3b9e26885d3800666383d7",
+          "bytes": 141
+        },
+        {
+          "name": "configs/claude.json",
+          "sha256": "402ec557cf938178c278cb98658f91a2acb1fae2c9ed29a5e51c5bc67725a486",
+          "bytes": 128
+        },
+        {
+          "name": "configs/codex.toml",
+          "sha256": "62fcbfdee4c591076bfd26037f08785e41d568511be9b62c70b485d0810e3648",
+          "bytes": 95
+        },
+        {
+          "name": "configs/copilot.json",
+          "sha256": "eefe7add54cfbfc7ee477270c6550fbb6b6ac5bb4cffe6ca5dae77cf92fbef47",
+          "bytes": 166
+        },
+        {
+          "name": "configs/cursor.json",
+          "sha256": "e37fa20377907668edc7a9747ea8029fb3a82425604835cd0477be8a0b8db675",
+          "bytes": 106
+        },
+        {
+          "name": "configs/gemini.json",
+          "sha256": "a2d0f9dab58ae3f77b40bc352e2c66b6118e1da8877b0af0799ff7bb41b9d559",
+          "bytes": 338
+        },
+        {
+          "name": "configs/generic-remote.json",
+          "sha256": "e37fa20377907668edc7a9747ea8029fb3a82425604835cd0477be8a0b8db675",
+          "bytes": 106
+        },
+        {
+          "name": "configs/grok-build.toml",
+          "sha256": "62fcbfdee4c591076bfd26037f08785e41d568511be9b62c70b485d0810e3648",
+          "bytes": 95
+        },
+        {
+          "name": "configs/kiro.json",
+          "sha256": "8088c3ff6def2ff5222da5904fecd413a5f639550539b7b0f48155f54d23f3cf",
+          "bytes": 283
+        },
+        {
+          "name": "configs/mistral-vibe.toml",
+          "sha256": "513c75f33057444bea0fa3603d315620c00f5e5dca733f073f042a579d96b272",
+          "bytes": 243
+        },
+        {
+          "name": "configs/opencode.json",
+          "sha256": "f0a1404d88d592b939a4d19bb4987d5208cd36e90d7feeddc8163c6c415769a4",
+          "bytes": 219
+        },
+        {
+          "name": "configs/replit.json",
+          "sha256": "aae59d756adf775bb9ea0dec9fbce852892b2836b3827db67adee7f5a8e28798",
+          "bytes": 106
+        },
+        {
+          "name": "configs/stdio.json",
+          "sha256": "3e282cb64267efb5fb8cd975ff72340637b2d15d841009498117851b29f18b39",
+          "bytes": 213
+        },
+        {
+          "name": "configs/vscode.json",
+          "sha256": "094325c97dc8cf407abc3ae57fb43f4960fb4affdd9cc4111137b24b2b7c0506",
+          "bytes": 125
+        },
+        {
+          "name": "configs/windsurf.json",
+          "sha256": "4382cbe1c2f936671fa281247caacd201b549d08d1d02d8f91cd5c57946b65d5",
+          "bytes": 112
+        },
+        {
+          "name": "configs/zed.json",
+          "sha256": "96014c6f8c3d998ecacda8dca8681ceac65029ead01a4f329b1294fba04faf1f",
+          "bytes": 111
+        },
+        {
+          "name": "copilot-studio.md",
+          "sha256": "e9dfd0fde3654abb731d6dab3a8b960aacfe4d06014094e389f260973cdcdd7c",
+          "bytes": 1770
+        },
+        {
+          "name": "examples/responses.mjs",
+          "sha256": "ee31b6fa2fe2a27c056d345130e85ca47fc9b85101fcbacb3f2835fd9d6624e3",
+          "bytes": 2354
+        },
+        {
+          "name": "matrix.json",
+          "sha256": "ec22bc7289a41331f879607b10cd78be7961d54d04c63fc148eea90aff8b5ac3",
+          "bytes": 32000
+        },
+        {
+          "name": "mistral.md",
+          "sha256": "32ec93cfa294aa5806e9456cfda5acc138184cad833141130680fee9224c7cda",
+          "bytes": 1480
+        },
+        {
+          "name": "muse.md",
+          "sha256": "524c3ccbf31a52aeb19563a9ebe9a5326e65bba30694ba2851eb9bf5dc57b365",
+          "bytes": 1536
         }
       ]
     }

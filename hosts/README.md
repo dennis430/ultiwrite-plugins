@@ -1,10 +1,10 @@
 # Ultiwrite across MCP hosts
 
-Prepared November 5, 2026. These are configuration and submission candidates. Live host testing was skipped at the owner's request. No new listing, npm package or server deployment is claimed.
+Updated November 6, 2026. Host bundle 0.10.1 contains source-backed setup guidance and configuration candidates. Live host testing was skipped at the owner's request. Provider approval and authenticated host acceptance remain separate.
 
 All hosts use **https://mcp.dwsoffshorepartners.com/mcp**. The historical apex integration route remains valid for existing grants. Sign in through Ultiwrite’s existing account flow, then approve scoped OAuth access. A host's own Microsoft, Claude, xAI or other account is not the Ultiwrite customer's identity.
 
-Use [matrix.json](matrix.json) for the status and official source of each of the 49 surfaces. A source-backed configuration is not a successful installation or authenticated investigation. [catalog.json](catalog.json) is generated from the canonical runtime's public definitions; do not maintain another tool list here.
+Use [matrix.json](matrix.json) for the status and official source of each of the 54 surfaces. A source-backed configuration is not a successful installation or authenticated investigation. [catalog.json](catalog.json) is generated from the canonical runtime's public definitions; do not maintain another tool list here.
 
 ## Install a direct remote connection
 
@@ -29,8 +29,11 @@ Merge the supplied entry into your existing configuration; do not replace unrela
 | Kiro | Merge [kiro.json](configs/kiro.json) into `.kiro/settings/mcp.json` or the user equivalent. The exact configured loopback callback is already supported by Ultiwrite. |
 | Perplexity | Add a custom remote connector with OAuth; use per-member customer grants. The documented normal/Enterprise callbacks are retained. |
 | Replit | [Install-link metadata](configs/replit.json) is prepared; workspace access and callback acceptance remain unverified. |
+| MCPJam SaaS | Open `app.mcpjam.com` → Add server → enter the HTTPS MCP URL → Auto/OAuth. The exact existing hosted callback is retained. [Hosted guide](hosted-clients.md). |
+| Cloudflare AI Playground | Add the URL and authenticate in the official Playground. Its dated callback evidence and current acceptance limits are in the [hosted guide](hosted-clients.md). |
+| Postman online MCP Client | Add the URL in the official hosted client; configure the documented browser OAuth callback. Cloud Agent handling and callback limits are in the [hosted guide](hosted-clients.md). |
 
-For Microsoft, Mistral Studio/Work and Meta, read the separate dossiers. For AI21 Studio, add a tool in Playground → MCP, use the canonical URL and a scoped customer access token through the documented secure credential field. Never substitute a shared service API key. Native token refresh and callback acceptance remain unverified.
+Read [Hosted clients](hosted-clients.md) for MCPJam, Cloudflare Playground and account-specific Portals, Postman, and Stripe’s separate server-only role. For Microsoft, Mistral Studio/Work and Meta, read the separate dossiers. For AI21 Studio, add a tool in Playground → MCP, use the canonical URL and a scoped customer access token through the documented secure credential field. Never substitute a shared service API key. Native token refresh and callback acceptance remain unverified.
 
 ## Optional stdio adapter
 

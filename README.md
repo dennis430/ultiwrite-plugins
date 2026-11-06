@@ -11,7 +11,7 @@ Ultiwrite is an asymmetric diligence engine: ordinary commercial documents open 
 | `cursor/` | 0.10.0 | Existing Cursor identity and five discoverable workflows |
 | `grokbot/` | 0.9.0 | Separate Grok Bot submission dossier; distinct from Grok Build |
 | `client/` | 0.8.0 | Optional local OAuth/stdio adapter; npm publication outstanding |
-| `hosts/` | 0.10.0 | 49-surface compatibility matrix, 16 config examples, API example and generated public tool catalog |
+| `hosts/` | 0.10.1 | 54-surface compatibility matrix, 16 config examples, hosted-client guide, API example and generated public tool catalog |
 
 This release supplies source and versioned artifacts for the existing canonical MCP service. The owner requested that live host testing be skipped; host acceptance remains unverified. npm publication and marketplace submissions are separate. Historical approved package identities and archive bytes are preserved.
 
@@ -23,11 +23,11 @@ Sign in through Ultiwrite’s existing account flow, then approve the specific h
 
 The first eligible complimentary investigation remains available once per account, with no card required. Canonical account eligibility and the existing server ledger govern complimentary and purchased usage.
 
-[Installation and host-specific configurations](hosts/README.md) · [Per-surface status](hosts/matrix.json) · [Canonical public tool catalog](hosts/catalog.json). Unknown host behavior and external approvals remain explicit; a model name alone is not an MCP host.
+[Installation and host-specific configurations](hosts/README.md) · [Hosted SaaS clients](hosts/hosted-clients.md) · [Per-surface status](hosts/matrix.json) · [Canonical public tool catalog](hosts/catalog.json). Unknown host behavior and external approvals remain explicit; a model name alone is not an MCP host.
 
 ## Downloads
 
-Download the versioned `release/` files below or use them from a distribution checkout. The host adapter bundle is `release/ultiwrite-host-adapters-0.10.0.zip`; the optional client tarball is `release/ultiwrite-mcp-0.8.0.tgz`.
+Download the versioned `release/` files below or use them from a distribution checkout. The host adapter bundle is `release/ultiwrite-host-adapters-0.10.1.zip`; the optional client tarball is `release/ultiwrite-mcp-0.8.0.tgz`.
 
 <!-- CURRENT_DOWNLOADS_START -->
 | Archive | SHA-256 |

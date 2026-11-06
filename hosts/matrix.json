@@ -1,6 +1,7 @@
 {
   "schemaVersion": 1,
-  "asOf": "2026-11-05",
+  "packageVersion": "0.10.1",
+  "asOf": "2026-11-06",
   "endpoint": "https://mcp.dwsoffshorepartners.com/mcp",
   "hostTesting": "Skipped at user request. Documentation-backed configurations are not host acceptance.",
   "surfaces": [
@@ -493,6 +494,56 @@
       "configuration": "configs/stdio.json",
       "hostAcceptance": "SKIPPED_BY_USER",
       "fileTransfer": "Use actual host-supplied HTTPS file objects when available; otherwise use the signed upload handoff. Never assume access to local attachment bytes."
+    },
+    {
+      "surface": "MCPJam SaaS Inspector",
+      "status": "Protocol-compatible, host test outstanding",
+      "source": "https://docs.mcpjam.com/hosted/overview",
+      "mechanism": "HTTPS remote MCP; Auto escalates to OAuth with public-client DCR/PKCE. Exact existing callback https://app.mcpjam.com/oauth/callback.",
+      "limitation": "Hosted transport and OAuth use MCPJam servers/proxies; local Inspector is a separate surface. Vendor docs describe hosted Vault token custody. No authenticated host acceptance.",
+      "configuration": "hosted-clients.md",
+      "hostAcceptance": "SKIPPED_BY_USER",
+      "fileTransfer": "Use actual host-supplied HTTPS file objects when available; otherwise use the signed Ultiwrite upload handoff. Never assume the host can read local attachment bytes."
+    },
+    {
+      "surface": "Cloudflare AI Playground",
+      "status": "Source-backed configuration, host test outstanding",
+      "source": "https://developers.cloudflare.com/agents/model-context-protocol/guides/test-remote-mcp-server/",
+      "mechanism": "Official remote MCP client at https://playground.ai.cloudflare.com. Callback https://playground.ai.cloudflare.com/oauth/callback is evidenced by Cloudflare PR45 dated 2025-03-25.",
+      "limitation": "Current deployed callback and authenticated Ultiwrite connection were not tested. No blanket Cloudflare domain trust.",
+      "configuration": "hosted-clients.md",
+      "hostAcceptance": "SKIPPED_BY_USER",
+      "fileTransfer": "Use actual host-supplied HTTPS file objects when available; otherwise use the signed Ultiwrite upload handoff. Never assume the host can read local attachment bytes."
+    },
+    {
+      "surface": "Cloudflare MCP Portals",
+      "status": "Account-specific exact configuration required",
+      "source": "https://developers.cloudflare.com/cloudflare-one/access-controls/ai-controls/mcp-portals/#upstream-oauth-callback-urls",
+      "mechanism": "Hosted MCP gateway with distinct administrator DCR and per-user upstream OAuth callbacks.",
+      "limitation": "Account/server-specific or selected portal callbacks require separate exact registration. Keep Require user auth enabled. No wildcard portal access or completed installation is claimed.",
+      "configuration": "hosted-clients.md",
+      "hostAcceptance": "SKIPPED_BY_USER",
+      "fileTransfer": "Use actual host-supplied HTTPS file objects when available; otherwise use the signed Ultiwrite upload handoff. Never assume the host can read local attachment bytes."
+    },
+    {
+      "surface": "Postman hosted MCP Client",
+      "status": "Source-backed configuration, host test outstanding",
+      "source": "https://www.postman.com/tools/mcp-client",
+      "mechanism": "Online remote MCP client with OAuth/DCR/PKCE S256; documented configurable browser callback https://oauth.pstmn.io/v1/browser-callback.",
+      "limitation": "The online client sends server URL, headers, authorization data and MCP messages through Postman Cloud Agent. Callback auto-selection and authenticated connection were not tested.",
+      "configuration": "hosted-clients.md",
+      "hostAcceptance": "SKIPPED_BY_USER",
+      "fileTransfer": "Use actual host-supplied HTTPS file objects when available; otherwise use the signed Ultiwrite upload handoff. Never assume the host can read local attachment bytes."
+    },
+    {
+      "surface": "Stripe MCP server (not a hosted client)",
+      "status": "Server-only; no third-party client capability established",
+      "source": "https://docs.stripe.com/mcp",
+      "mechanism": "Stripe exposes its own MCP server at https://mcp.stripe.com to external agents.",
+      "limitation": "No official arbitrary third-party MCP client role or Ultiwrite callback established. Existing Stripe billing integration is unchanged.",
+      "configuration": null,
+      "hostAcceptance": "SKIPPED_BY_USER",
+      "fileTransfer": "Not applicable: this surface is an MCP server, not an Ultiwrite host."
     }
   ]
 }

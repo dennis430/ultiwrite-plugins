@@ -30,8 +30,11 @@ before(async () => {
   // fixture so preservation is still exercised before a public-repo merge.
   await pack()
   await cp(join(fixture, 'release/ultiwrite-chatgpt-plugin-0.10.0.zip'), join(fixture, 'release/ultiwrite-chatgpt-plugin-0.0.0.zip'))
+  const hostVersion = (await readJson(join(fixture, 'hosts/matrix.json'))).packageVersion
+  const currentArchives = new Set([`ultiwrite-host-adapters-${hostVersion}.zip`,
+    'ultiwrite-chatgpt-plugin-0.10.0.zip', 'ultiwrite-cursor-plugin-0.10.0.zip', 'Ultiwrite_Claude_Plugin_v0.10.0.zip'])
   frozen = new Map(await Promise.all((await readdir(join(fixture, 'release')))
-    .filter(name => name.endsWith('.zip') && !name.includes('0.10.0'))
+    .filter(name => name.endsWith('.zip') && !currentArchives.has(name))
     .map(async name => [name, await digest(join(fixture, 'release', name))])))
 })
 after(async () => { if (scratch) await rm(scratch, { recursive: true, force: true }) })
@@ -79,6 +82,8 @@ test('packing records exact source, refuses stale metadata claims and preserves 
   assert.equal(rebuilt.packages.cli, undefined)
   assert.equal(rebuilt.packages.chatgpt.extra_provenance, undefined)
   assert.equal(rebuilt.packages.chatgpt.version, '0.10.0')
+  assert.equal(rebuilt.packages.hosts.version, '0.10.1', 'the host bundle versions independently of released plugins')
+  assert.equal(rebuilt.packages.hosts.zip, 'release/ultiwrite-host-adapters-0.10.1.zip')
   assert.ok(!rebuilt.files.some(item => /^(node_modules|dist|coverage|\.cache)\//.test(item.path) || item.path.endsWith('.tgz')))
   assert.ok(frozen.size >= 1, 'historical archive preservation must be exercised')
   for (const [name, hash] of frozen) assert.equal(await digest(join(fixture, 'release', name)), hash, name)
