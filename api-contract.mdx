@@ -24,6 +24,9 @@ All paths below are relative to `/api/v1`.
 | GET | `/me` | Confirm the authorized account |
 | GET | `/capabilities` | Inspect inputs, limits and workflow |
 | GET | `/usage` | Read analysis allowance and API request usage |
+| GET | `/billing/offers` | Read current offers for the authorized account |
+| POST | `/billing/checkouts` | Create a Stripe checkout link with explicit OAuth consent |
+| GET | `/billing/checkouts/{sessionId}` | Recover checkout and fulfillment status |
 | GET | `/cases` | List cases and saved reports |
 | POST | `/cases` | Submit evidence and start an investigation |
 | GET | `/cases/{caseId}` | Read saved workflow status |
@@ -43,7 +46,13 @@ All paths below are relative to `/api/v1`.
 
 Approved accounts can use a dashboard-issued `ultiwrite_live_` key or delegated OAuth with PKCE S256. Both use the same account request allowance. The credential determines the account; a request cannot select another organization.
 
-Partner OAuth uses resource `https://dwsoffshorepartners.com/api/v1` and scopes `ultiwrite:read` and `ultiwrite:evidence`. An MCP token and a legacy `uw_live_` key cannot replace Partner API credentials. See [authentication](/partner-api/authentication) and [API keys](/api-keys).
+Partner OAuth uses resource `https://dwsoffshorepartners.com/api/v1`, with `ultiwrite:read` for reads and `ultiwrite:evidence` for evidence submission and continuation. Checkout creation and status additionally require the separately consented optional `ultiwrite:checkout` scope. An MCP token and a legacy `uw_live_` key cannot replace Partner API credentials. See [authentication](/partner-api/authentication) and [API keys](/api-keys).
+
+## Checkout and fulfillment
+
+Read [the current offer catalog](/api-reference/billing-offers) for the authorized account. [Create checkout](/api-reference/create-checkout) and [recover checkout status](/api-reference/checkout-status) require Partner OAuth with both `ultiwrite:read` and the separately consented optional `ultiwrite:checkout` scope. Dashboard keys and ordinary read/evidence grants cannot create or recover checkout.
+
+Checkout returns a private Stripe URL for the intended user to review and pay. Creating the link does not charge a payment method, grant credit or change API approval. Only `credited` confirms fulfillment; preserve pending and unresolved states before inviting another payment. A `document_forensics` purchase requires an owned, unstarted P1/P2 portal Upload draft, not a Partner API case. See [checkout permission and recovery](/partner-api/usage#request-existing-stripe-checkout-with-permission).
 
 ## Saved-case lifecycle
 
@@ -61,6 +70,6 @@ Export returns entitled delivery options. Binary PDF, Excel and ZIP downloads re
 
 Optional workflow webhooks are available only where live OpenAPI includes their operations and GET /capabilities reports webhooks.available. Management requires an approved dashboard API key with read and evidence scopes; OAuth cannot manage destinations. Notifications do not advance continuation and contain minimal metadata. Read the [receiver signature, deduplication, retry and revocation contract](/partner-api/workflow#webhook-notifications).
 
-The current contract does not offer client-credentials authentication, append-evidence or rerun endpoints, selectable investigation tiers in requests, or unattended binary downloads. A report is advisory evidence for your workflow; it does not render an autonomous approve or decline.
+The current contract does not offer client-credentials authentication, append-evidence or rerun endpoints, selectable investigation tiers in evidence-submission requests, or unattended binary downloads. A report is advisory evidence for your workflow; it does not render an autonomous approve or decline.
 
 Use the [complete developer guide](https://dwsoffshorepartners.com/docs/downloads/partner-api/GUIDE.md), [downloadable README and Node examples](https://dwsoffshorepartners.com/docs/downloads/partner-api/README.md), and [integration checklist](/partner-api/integration-checklist) before sending customer evidence.

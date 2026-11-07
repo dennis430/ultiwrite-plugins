@@ -1,0 +1,17 @@
+---
+title: "Create an investigation checkout"
+sidebarTitle: "Create checkout"
+description: "Create a private Stripe checkout link with explicit Partner OAuth checkout consent, a supported offer and a stable idempotency key for recovery."
+keywords: ["Ultiwrite", "Stripe", "checkout", "OAuth", "idempotency"]
+openapi: "https://dwsoffshorepartners.com/.well-known/openapi.json POST /billing/checkouts"
+---
+
+Create an Ultiwrite checkout link for the intended user to review and pay on Stripe. This operation requires Partner API OAuth with `ultiwrite:read` and the separately consented optional `ultiwrite:checkout` scope. Dashboard API keys, MCP grants and ordinary read/evidence grants cannot create checkout.
+
+Read [the current offer catalog](/api-reference/billing-offers) first. Send strict JSON with `offer` set to `P1`, `P2`, `P3` or `document_forensics`. Include `investigationId` only for `document_forensics`: it must identify an owned, unstarted P1/P2 portal Upload draft, not a Partner API case.
+
+Send a stable `Idempotency-Key` of 16 to 128 letters, digits, underscores or hyphens. If creation has an uncertain outcome, retry with the identical key and selection. Changing the key can create a separate checkout.
+
+The response returns a private Stripe URL with `requiresUserAction: true` and state `open`. Link creation does not charge a payment method, grant credit, use the complimentary analysis or change API approval. Keep checkout URLs out of logs and analytics.
+
+Use [checkout status](/api-reference/checkout-status) to recover fulfillment. Only `credited` confirms fulfillment. See [checkout permission and recovery](/partner-api/usage#request-existing-stripe-checkout-with-permission) and the [complete request examples](https://dwsoffshorepartners.com/docs/downloads/partner-api/README.md#agent-checkout-through-stripe). The generated reference below comes from the canonical OpenAPI contract.

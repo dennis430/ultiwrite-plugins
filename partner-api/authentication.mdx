@@ -26,6 +26,8 @@ Generate a fresh random verifier and state for each authorization attempt. Store
 
 Send resource=https://dwsoffshorepartners.com/api/v1 on authorization, token exchange and refresh. Request ultiwrite:read for reads and ultiwrite:evidence for submission and continuation; evidence permission requires read permission. A token issued for MCP is a different audience and is refused by this API. A legacy uw_live_ key is not a partner OAuth token.
 
+Stripe checkout creation and status recovery require the separate optional ultiwrite:checkout scope plus read. Request it explicitly for the exact Partner API resource and re-authorize existing connections; the user must select its unchecked consent switch. Omitted-scope defaults and ordinary read/evidence grants stay unchanged. Dashboard API keys do not receive checkout permission, and MCP grants cannot use it.
+
 ## Refresh without races
 
 Access tokens last 10 minutes, refresh tokens last 14 days and rotate, and authorization codes last 60 seconds. Serialize refresh within each grant and atomically store the new pair. Reusing a rotating refresh token or blindly retrying an exchange after an uncertain network response is unsafe. Re-consent when the grant is no longer recoverable. Revocation invalidates the grant family.
