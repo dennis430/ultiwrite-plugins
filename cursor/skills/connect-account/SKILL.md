@@ -20,7 +20,7 @@ description: Connect or reconnect Ultiwrite, recover a dismissed sign-in window,
 
 ## Permissions and features
 
-Reading needs `ultiwrite:read`; evidence submission also needs `ultiwrite:evidence`. Explain the requested actions and let the user select access on Ultiwrite's consent screen. A host permission setting governs when the host asks before tool use; it does not grant OAuth scopes or extra analysis allowance.
+Reading needs `ultiwrite:read`; evidence submission and audited case dispositions also need `ultiwrite:evidence`. Explain the requested actions and let the user select access on Ultiwrite's consent screen. A host permission setting governs when the host asks before tool use; it does not grant OAuth scopes or extra analysis allowance.
 
 When a tool returns a missing-scope challenge, use the host's native reauthorization prompt for the user's requested operation. Verify the account afterward and retry that operation once. Account connection never authorizes evidence submission by itself.
 

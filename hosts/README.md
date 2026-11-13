@@ -1,6 +1,6 @@
 # Ultiwrite across MCP hosts
 
-Updated November 13, 2026. Host bundle 0.12.0 contains source-backed setup guidance, enterprise adoption runbooks and directory review packets. Current native host acceptance is NOT_RUN; historical evidence remains dated. Provider approval and authenticated host acceptance remain separate.
+Updated November 13, 2026. Host bundle 0.13.0 contains source-backed setup guidance, enterprise adoption runbooks and directory review packets. Current native host acceptance is NOT_RUN; historical evidence remains dated. Provider approval and authenticated host acceptance remain separate.
 
 All hosts use **https://mcp.dwsoffshorepartners.com/mcp**. The historical apex integration route remains valid for existing grants. Sign in through Ultiwrite’s existing account flow, then approve scoped OAuth access. A host's own Microsoft, Claude, xAI or other account is not the Ultiwrite customer's identity.
 
@@ -56,10 +56,11 @@ Use different `--profile` names for different accounts, authenticate each separa
 
 1. Verify identity with `ultiwrite_account_get`; discover supported work and the current `accountStatus` with `ultiwrite_capabilities_get`.
 2. Obtain authorization for the actual documents and any new analysis. A connection alone authorizes neither.
-3. Call the established `ultiwrite_evidence_submit`. Pass the host's real file objects when available; otherwise request the signed upload handoff and retain `handoffId` in the originating conversation. The optional local `upload` command transfers only named local files.
+3. Call the established `ultiwrite_evidence_submit`. Pass the host's real file objects when available. Use `role: "customer_requirement_set"` only for user-identified customer criteria, contracts, mandates or evidence standards; it preserves supplied standing without making the text binding authority or independently verified fact. Otherwise request the signed upload handoff and retain `handoffId` in the originating conversation. That fallback and the optional local `upload` command are evidence-only.
 4. Follow the returned durable case, saved processing state and exact continuation arguments. A status read does not start or resume work. Retry the same evidence only to recover its saved submission; do not invent a new package after an ambiguous transport error.
 5. Poll `ultiwrite_case_status`. Read released findings and synthesis through `ultiwrite_findings_get` and `ultiwrite_coherence_get`; respect pagination, snapshots and completeness.
 6. Use `ultiwrite_report_export` for the complete deliverable. Download through the returned authenticated or scoped delivery route, using the same account. Do not invent a signed link or assume every website download accepts the MCP bearer.
+7. If the user explicitly chooses a case disposition, call `ultiwrite_case_disposition_set` once with a retained stable request key. Preserve the receipt's assessment identity. A disposition is supplied workflow state; it does not rewrite the assessment, close the workflow, complete a task, establish a condition change or manufacture an outcome.
 
 The first eligible complimentary investigation remains available once per account, with no card required. Existing account eligibility, purchased entitlements, reservations, consumption and failure restoration stay in the canonical server ledger.
 

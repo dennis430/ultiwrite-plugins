@@ -6,14 +6,14 @@ Ultiwrite is an asymmetric diligence engine: ordinary commercial documents open 
 
 | Directory | Version | Contents |
 | --- | --- | --- |
-| `chatgpt/` | 0.10.0 | Existing ChatGPT/Codex identity and five workflows, with current account/usage guidance |
-| `claude/` | 0.10.0 | Existing Claude identity, connection recovery and five workflows |
-| `cursor/` | 0.10.0 | Existing Cursor identity and five discoverable workflows |
+| `chatgpt/` | 0.11.0 candidate | Existing ChatGPT/Codex identity and six workflows, including typed case disposition |
+| `claude/` | 0.11.0 candidate | Existing Claude identity, connection recovery and six workflows |
+| `cursor/` | 0.11.0 candidate | Existing Cursor identity and six discoverable workflows |
 | `grokbot/` | 0.9.0 | Separate Grok Bot submission dossier; distinct from Grok Build |
 | `client/` | 0.8.0 | Optional local OAuth/stdio adapter; npm publication outstanding |
-| `hosts/` | 0.12.0 | 55-surface compatibility matrix, 16 config examples, enterprise adoption/operations guides, directory review packets, hosted-client guide, API example and generated public tool catalog |
+| `hosts/` | 0.13.0 | 55-surface compatibility matrix, 16 config examples, enterprise adoption/operations guides, directory review packets, hosted-client guide, API example and generated public tool catalog |
 
-This release supplies source and versioned artifacts for the existing canonical MCP service. Native host acceptance for this release remains NOT_RUN; prior release evidence is preserved with its original date. npm publication and marketplace submissions are separate. Historical approved package identities and archive bytes are preserved.
+This tree is an unpublished 0.11.0 source candidate for the existing canonical MCP service. It adds the current ninth public tool, explicit case disposition, customer requirement-set intake guidance and saved requirement-applicability interpretation. Native host acceptance is NOT_RUN; provider import, directory review, deployment and publication are separate. The public repository and authenticated website remain on their distinct 0.10.0 archive families until an authorized release. Historical approved package identities and archive bytes are preserved.
 
 ## Connect
 
@@ -29,17 +29,17 @@ The first eligible complimentary investigation remains available once per accoun
 
 ## Downloads
 
-Download the versioned `release/` files below or use them from a distribution checkout. The host adapter bundle is `release/ultiwrite-host-adapters-0.12.0.zip`; the optional client tarball is `release/ultiwrite-mcp-0.8.0.tgz`.
+Before export, the table below intentionally records the currently published public-repository 0.10.0 family. The controlled exporter rewrites only this marked table in its separate candidate tree with newly built 0.11.0 archives. Treat the table as belonging to the tree in which it appears: its hashes must not be applied to website downloads or another archive family. The changed host catalog is prepared separately as `release/ultiwrite-host-adapters-0.13.0.zip`; historical 0.12.0 bytes remain frozen. The optional client tarball remains unpublished at `release/ultiwrite-mcp-0.8.0.tgz`.
 
 <!-- CURRENT_DOWNLOADS_START -->
 | Archive | SHA-256 |
 | --- | --- |
-| [`ultiwrite-chatgpt-plugin-0.10.0.zip`](https://github.com/dennis430/ultiwrite-plugins/raw/main/release/ultiwrite-chatgpt-plugin-0.10.0.zip) | `aa928684cdbb4383aea0e4cb09fe2bfd67c90181ff4b120237889826312b14b5` |
-| [`ultiwrite-cursor-plugin-0.10.0.zip`](https://github.com/dennis430/ultiwrite-plugins/raw/main/release/ultiwrite-cursor-plugin-0.10.0.zip) | `52e7b6b11346b07a05b8ccbe71467e9055a1db3274d15b770df99500f34f1dee` |
-| [`Ultiwrite_Claude_Plugin_v0.10.0.zip`](https://github.com/dennis430/ultiwrite-plugins/raw/main/release/Ultiwrite_Claude_Plugin_v0.10.0.zip) | `bcedcbec17239d1dc99ed3aecbf0a47af18fd265d33074c28b16184445e82b20` |
+| [`ultiwrite-chatgpt-plugin-0.11.0.zip`](https://github.com/dennis430/ultiwrite-plugins/raw/main/release/ultiwrite-chatgpt-plugin-0.11.0.zip) | `e2d3855ed90df86f0cec176b5bb06c7911dd5316193b3a3228bd543b9a062357` |
+| [`ultiwrite-cursor-plugin-0.11.0.zip`](https://github.com/dennis430/ultiwrite-plugins/raw/main/release/ultiwrite-cursor-plugin-0.11.0.zip) | `848f5442eee125d15a0b38af24c3a9416531b061edd4e97e8d8d53db78f21941` |
+| [`Ultiwrite_Claude_Plugin_v0.11.0.zip`](https://github.com/dennis430/ultiwrite-plugins/raw/main/release/Ultiwrite_Claude_Plugin_v0.11.0.zip) | `b1c925933e896a3f783fd91b76f3c768c76d27cb16b13f4ddd546446b510ed66` |
 <!-- CURRENT_DOWNLOADS_END -->
 
-`release/INVENTORY.json`, `release/SHA256SUMS.txt` and `RELEASE_MANIFEST.json` record source/archive hashes and historical preservation. New packages do not replace old archives.
+In an exported candidate, `release/INVENTORY.json`, `release/SHA256SUMS.txt` and `RELEASE_MANIFEST.json` record candidate source/archive hashes and historical preservation. New packages do not replace old archives. The authenticated website's 0.10.0 hashes remain in its own `ultiwrite-current-plugins.json`; those ZIP containers differ from this public-repository family and are not interchangeable despite matching source version labels.
 
 ## Preparation
 

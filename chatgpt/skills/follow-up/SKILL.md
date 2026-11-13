@@ -10,5 +10,6 @@ description: Turn a saved Ultiwrite report's unresolved questions, contradiction
 3. Produce a focused evidence request list. For each item state what to obtain, from whom if the report identifies a source, the finding/evidence id it addresses, and why it matters according to the report.
 4. Label any general suggestion of your own separately from the saved findings. Preserve the report's qualifications; do not promise that more evidence will change its decision or confidence.
 5. Additional evidence follows only the continuation the server actually offers. If none is offered, explain the returned next step or use a separately authorized submission through `submit-evidence` when enabled. Do not silently merge evidence into a completed case or claim a re-evaluation tool exists.
+6. If the user explicitly chooses a supported disposition after considering the saved report or returned evidence, route to `case-disposition`. Do not equate receiving evidence, accepting an explanation, closing a task or reaching a deadline with resolution; the user chooses the disposition and its basis.
 
 Do not contact counterparties or send evidence requests unless the user separately authorizes that communication. A follow-up plan does not start, buy or rerun an analysis.

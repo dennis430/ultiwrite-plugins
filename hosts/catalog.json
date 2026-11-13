@@ -23,7 +23,7 @@
     "2025-03-26",
     "2024-11-05"
   ],
-  "toolsSha256": "dd788cc1e8f445c01fa1c8e16c1f03c50010bebb8fc9c5453c26618add936619",
+  "toolsSha256": "8d67699c9411700a64b18033325f00ef5f92f499a4e257b865f93ef5b7db4c20",
   "tools": [
     {
       "name": "ultiwrite_account_get",
@@ -291,6 +291,7 @@
                 "titleReturnedLength",
                 "titleOmittedLength",
                 "workflowStatus",
+                "storedWorkflowStatus",
                 "reportLinked",
                 "linkedReportId",
                 "updatedAt",
@@ -319,7 +320,12 @@
                   "type": "integer"
                 },
                 "workflowStatus": {
-                  "type": "string"
+                  "type": "string",
+                  "description": "Customer workflow state. complete only when an accessible report is linked."
+                },
+                "storedWorkflowStatus": {
+                  "type": "string",
+                  "description": "Raw stored case column. Internal record, not a deliverable and not proof a report exists."
                 },
                 "reportLinked": {
                   "type": "boolean"
@@ -388,7 +394,7 @@
     {
       "name": "ultiwrite_case_status",
       "title": "Investigation progress",
-      "description": "Use to check the progress of an existing investigation and any action needed before the report is available. Read one case record the authorized organization may see. processing distinguishes queued, active, scheduled retry, paused awaiting continuation and required action, with actual saved activity times. Only processing.automatic identifies a saved server continuation; never imply background execution from workflowStatus processing alone. Status reads do not advance processing. When a continuation is returned, pass its exact arguments to ultiwrite_evidence_submit without uploading the original files again. A status of complete is not a validated conclusion.",
+      "description": "Use to check the progress, current saved disposition, and any action needed for an existing investigation. Read one case record the authorized organization may see. processing distinguishes queued, active, scheduled retry, paused awaiting continuation and required action, with actual saved activity times. Only processing.automatic identifies a saved server continuation; never imply background execution from workflowStatus processing alone. Status reads do not advance processing. When a continuation is returned, pass its exact arguments to ultiwrite_evidence_submit without uploading the original files again. A status of complete or recorded disposition is not a validated conclusion or observed outcome.",
       "inputSchema": {
         "type": "object",
         "additionalProperties": false,
@@ -415,7 +421,12 @@
           "title",
           "titleCompleteness",
           "workflowStatus",
+          "storedWorkflowStatus",
           "linkedReportId",
+          "currentDisposition",
+          "dispositionStanding",
+          "currentDispositionAssessment",
+          "dispositionMeaning",
           "conclusion",
           "completeness",
           "contentTrust"
@@ -449,7 +460,12 @@
             "type": "object"
           },
           "workflowStatus": {
-            "type": "string"
+            "type": "string",
+            "description": "Customer workflow state. complete only when an accessible report is linked."
+          },
+          "storedWorkflowStatus": {
+            "type": "string",
+            "description": "Raw stored case column. Internal record, not a deliverable and not proof a report exists."
           },
           "processing": {
             "type": "object",
@@ -577,6 +593,76 @@
           "link": {
             "type": "string"
           },
+          "currentDisposition": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Current saved Case.disposition. Customer/workflow state, not an assessment rewrite or verified outcome."
+          },
+          "dispositionStanding": {
+            "type": "string",
+            "enum": [
+              "recorded_case_state",
+              "not_recorded"
+            ]
+          },
+          "currentDispositionAssessment": {
+            "type": [
+              "object",
+              "null"
+            ],
+            "additionalProperties": false,
+            "required": [
+              "reportId",
+              "documentVersion",
+              "documentDigest",
+              "publicationRevision",
+              "identitySource"
+            ],
+            "properties": {
+              "reportId": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "documentVersion": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "documentDigest": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "pattern": "^[a-f0-9]{64}$"
+              },
+              "publicationRevision": {
+                "type": [
+                  "integer",
+                  "null"
+                ],
+                "minimum": 0
+              },
+              "identitySource": {
+                "type": "string",
+                "enum": [
+                  "not_linked",
+                  "frozen_customer_document",
+                  "report_publication",
+                  "report_link_only",
+                  "legacy_receipt_unbound"
+                ]
+              }
+            },
+            "description": "Exact saved assessment identity captured by the latest matching typed disposition receipt. Null when no bound typed receipt was recovered."
+          },
+          "dispositionMeaning": {
+            "type": "string"
+          },
           "updatedAt": {
             "type": "string"
           },
@@ -602,6 +688,339 @@
           "type": "oauth2",
           "scopes": [
             "ultiwrite:read"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "ultiwrite_case_disposition_set",
+      "title": "Record an audited case disposition",
+      "description": "Use after the user chooses how to dispose of an existing case concern. Records one of the supported typed dispositions with its concise basis, relevant evidence references, and a meaningful date or event when deferred. Requires evidence/investigator permission and a stable requestKey for safe retry. Retain the receipt and requestKey; an exact retry recovers the receipt, while case_status exposes the current saved display value rather than the typed audit history. The receipt is an audited customer judgment: it does not rewrite the saved assessment, close the workflow, acknowledge notification, complete a task, establish a changed condition, or manufacture an observed outcome.",
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "caseId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 80,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "description": "Authorized case id."
+          },
+          "requestKey": {
+            "type": "string",
+            "minLength": 16,
+            "maxLength": 128,
+            "pattern": "^[A-Za-z0-9_-]{16,128}$",
+            "description": "Stable key for this exact disposition. Reuse after an uncertain response; never reuse for different content."
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "resolved_by_new_evidence",
+              "explanation_accepted",
+              "uncertainty_accepted",
+              "deferred",
+              "duplicate_or_superseded",
+              "disputed",
+              "no_further_action"
+            ],
+            "description": "The practical customer disposition."
+          },
+          "basis": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 2000,
+            "description": "Concise basis for the customer judgment. This remains supplied context, not a new report observation."
+          },
+          "evidenceReferences": {
+            "type": "array",
+            "minItems": 0,
+            "maxItems": 20,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 240
+            },
+            "description": "Existing evidence or response references. resolved_by_new_evidence requires at least one. Pass [] when none applies."
+          },
+          "deferUntil": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "maxLength": 80,
+            "description": "For deferred only: ISO 8601 date or date-time with explicit time zone. Pass null otherwise."
+          },
+          "deferUntilEvent": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "minLength": 1,
+            "maxLength": 500,
+            "description": "For deferred only: meaningful event that should trigger reconsideration. Pass null otherwise."
+          }
+        },
+        "required": [
+          "caseId",
+          "requestKey",
+          "kind",
+          "basis",
+          "evidenceReferences",
+          "deferUntil",
+          "deferUntilEvent"
+        ]
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "openWorldHint": false,
+        "idempotentHint": true
+      },
+      "outputSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "version",
+          "caseId",
+          "disposition",
+          "recordedCaseDisposition",
+          "storedCaseStatusAtRecord",
+          "audit",
+          "assessment",
+          "separation",
+          "replayed",
+          "contentTrust",
+          "instructionBoundary",
+          "meaning"
+        ],
+        "properties": {
+          "version": {
+            "type": "string",
+            "const": "case-disposition@1"
+          },
+          "caseId": {
+            "type": "string"
+          },
+          "disposition": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "kind",
+              "basis",
+              "evidenceReferences",
+              "deferUntil",
+              "deferUntilEvent"
+            ],
+            "properties": {
+              "kind": {
+                "type": "string",
+                "enum": [
+                  "resolved_by_new_evidence",
+                  "explanation_accepted",
+                  "uncertainty_accepted",
+                  "deferred",
+                  "duplicate_or_superseded",
+                  "disputed",
+                  "no_further_action"
+                ]
+              },
+              "basis": {
+                "type": "string"
+              },
+              "evidenceReferences": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "deferUntil": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "deferUntilEvent": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            }
+          },
+          "recordedCaseDisposition": {
+            "type": "string"
+          },
+          "storedCaseStatusAtRecord": {
+            "type": "string",
+            "description": "The existing Case.status at record time. This operation never changes it."
+          },
+          "audit": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "eventId",
+              "action",
+              "storageAction",
+              "recordedAt",
+              "immutable"
+            ],
+            "properties": {
+              "eventId": {
+                "type": "string"
+              },
+              "action": {
+                "type": "string",
+                "const": "case.disposition.recorded"
+              },
+              "storageAction": {
+                "type": "string",
+                "pattern": "^case\\.disposition:[A-Za-z0-9_-]{16,128}$",
+                "description": "Exact immutable CaseAuditEvent action used for idempotent receipt recovery."
+              },
+              "recordedAt": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "immutable": {
+                "type": "boolean",
+                "const": true
+              }
+            }
+          },
+          "assessment": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "reportId",
+              "documentVersion",
+              "documentDigest",
+              "publicationRevision",
+              "identitySource",
+              "reportWasLinked",
+              "changed",
+              "meaning"
+            ],
+            "properties": {
+              "reportId": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "documentVersion": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "documentDigest": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "pattern": "^[a-f0-9]{64}$"
+              },
+              "publicationRevision": {
+                "type": [
+                  "integer",
+                  "null"
+                ],
+                "minimum": 0
+              },
+              "identitySource": {
+                "type": "string",
+                "enum": [
+                  "not_linked",
+                  "frozen_customer_document",
+                  "report_publication",
+                  "report_link_only",
+                  "legacy_receipt_unbound"
+                ]
+              },
+              "reportWasLinked": {
+                "type": "boolean"
+              },
+              "changed": {
+                "type": "boolean",
+                "const": false
+              },
+              "meaning": {
+                "type": "string"
+              }
+            }
+          },
+          "separation": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "analysisCompletion",
+              "notificationDelivery",
+              "recipientAcknowledgement",
+              "ownershipAcceptance",
+              "taskCompletion",
+              "workflowClosure",
+              "underlyingConditionChange",
+              "observedOutcome"
+            ],
+            "properties": {
+              "analysisCompletion": {
+                "type": "string",
+                "const": "unchanged"
+              },
+              "notificationDelivery": {
+                "type": "string",
+                "const": "not_recorded"
+              },
+              "recipientAcknowledgement": {
+                "type": "string",
+                "const": "not_recorded"
+              },
+              "ownershipAcceptance": {
+                "type": "string",
+                "const": "not_recorded"
+              },
+              "taskCompletion": {
+                "type": "string",
+                "const": "not_recorded"
+              },
+              "workflowClosure": {
+                "type": "string",
+                "const": "not_recorded"
+              },
+              "underlyingConditionChange": {
+                "type": "string",
+                "const": "not_inferred"
+              },
+              "observedOutcome": {
+                "type": "string",
+                "const": "not_recorded"
+              }
+            }
+          },
+          "replayed": {
+            "type": "boolean"
+          },
+          "contentTrust": {
+            "type": "string",
+            "const": "untrusted_customer_record"
+          },
+          "instructionBoundary": {
+            "type": "string"
+          },
+          "meaning": {
+            "type": "string"
+          }
+        }
+      },
+      "securitySchemes": [
+        {
+          "type": "oauth2",
+          "scopes": [
+            "ultiwrite:read",
+            "ultiwrite:evidence"
           ]
         }
       ]
@@ -1547,7 +1966,383 @@
               "object",
               "null"
             ],
-            "description": "Authorized customer document when a report page was returned. savedDecision is the published label, not a stored favorable sentence. Null when the report was not returned."
+            "description": "Authorized customer document when a report page was returned. savedDecision is the published label, not a stored favorable sentence. Null when the report was not returned.",
+            "additionalProperties": true,
+            "properties": {
+              "findings": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "properties": {
+                    "requirementAssessment": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "required": [
+                        "version",
+                        "requirementId",
+                        "authority",
+                        "authorityVersion",
+                        "scope",
+                        "subject",
+                        "applicability",
+                        "baseApplicability",
+                        "exceptionApplicability",
+                        "effectiveApplicability",
+                        "satisfaction",
+                        "test",
+                        "qualifiers",
+                        "observationCompleteness",
+                        "exception",
+                        "source",
+                        "evidence",
+                        "evidenceTotal",
+                        "evidenceOmitted",
+                        "sourceDependence"
+                      ],
+                      "properties": {
+                        "version": {
+                          "type": "string",
+                          "const": "customer-requirement-applicability@1"
+                        },
+                        "requirementId": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "authority": {
+                          "type": "string",
+                          "enum": [
+                            "customer_policy",
+                            "contract",
+                            "portfolio_mandate",
+                            "evidence_standard"
+                          ]
+                        },
+                        "authorityVersion": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "scope": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "subject": {
+                          "type": [
+                            "object",
+                            "null"
+                          ],
+                          "additionalProperties": false,
+                          "required": [
+                            "namespace",
+                            "id"
+                          ],
+                          "properties": {
+                            "namespace": {
+                              "type": "string",
+                              "enum": [
+                                "entityId",
+                                "merchantId",
+                                "economicActivityId"
+                              ]
+                            },
+                            "id": {
+                              "type": "string",
+                              "minLength": 1
+                            }
+                          }
+                        },
+                        "applicability": {
+                          "type": "string",
+                          "enum": [
+                            "applies",
+                            "not_applicable",
+                            "unknown"
+                          ],
+                          "description": "Compatibility alias for effectiveApplicability."
+                        },
+                        "baseApplicability": {
+                          "type": "string",
+                          "enum": [
+                            "applies",
+                            "not_applicable",
+                            "unknown"
+                          ]
+                        },
+                        "exceptionApplicability": {
+                          "type": "string",
+                          "enum": [
+                            "applies",
+                            "not_applicable",
+                            "unknown",
+                            "not_stated"
+                          ]
+                        },
+                        "effectiveApplicability": {
+                          "type": "string",
+                          "enum": [
+                            "applies",
+                            "not_applicable",
+                            "unknown"
+                          ]
+                        },
+                        "satisfaction": {
+                          "type": "string",
+                          "enum": [
+                            "satisfied",
+                            "not_satisfied",
+                            "ambiguous",
+                            "unknown",
+                            "not_assessed"
+                          ]
+                        },
+                        "test": {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "field",
+                            "operator",
+                            "expected"
+                          ],
+                          "properties": {
+                            "field": {
+                              "type": "string",
+                              "minLength": 1
+                            },
+                            "operator": {
+                              "type": "string",
+                              "enum": [
+                                "equals",
+                                "not_equals",
+                                "contains",
+                                "gte",
+                                "lte",
+                                "present",
+                                "absent",
+                                "one_of"
+                              ]
+                            },
+                            "expected": {
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            }
+                          }
+                        },
+                        "qualifiers": {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "currency",
+                            "measurementUnit",
+                            "periodStart",
+                            "periodEnd",
+                            "populationId",
+                            "accountingDefinition"
+                          ],
+                          "properties": {
+                            "currency": {
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            },
+                            "measurementUnit": {
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            },
+                            "periodStart": {
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            },
+                            "periodEnd": {
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            },
+                            "populationId": {
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            },
+                            "accountingDefinition": {
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            }
+                          }
+                        },
+                        "observationCompleteness": {
+                          "type": "string",
+                          "enum": [
+                            "complete",
+                            "partial",
+                            "unknown"
+                          ]
+                        },
+                        "exception": {
+                          "type": [
+                            "object",
+                            "null"
+                          ],
+                          "additionalProperties": false,
+                          "required": [
+                            "state",
+                            "explanation"
+                          ],
+                          "properties": {
+                            "state": {
+                              "type": "string",
+                              "enum": [
+                                "applies",
+                                "not_applicable",
+                                "unknown"
+                              ]
+                            },
+                            "explanation": {
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            }
+                          }
+                        },
+                        "source": {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "referenceId",
+                            "artifactId",
+                            "sha256",
+                            "sheetName",
+                            "rowNumber"
+                          ],
+                          "properties": {
+                            "referenceId": {
+                              "type": "string",
+                              "pattern": "^requirement-source:[a-f0-9]{24}$"
+                            },
+                            "artifactId": {
+                              "type": "string",
+                              "minLength": 1
+                            },
+                            "sha256": {
+                              "type": "string",
+                              "pattern": "^[a-f0-9]{64}$"
+                            },
+                            "sheetName": {
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            },
+                            "rowNumber": {
+                              "type": [
+                                "integer",
+                                "null"
+                              ],
+                              "minimum": 1
+                            }
+                          }
+                        },
+                        "evidence": {
+                          "type": "array",
+                          "maxItems": 200,
+                          "items": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "required": [
+                              "referenceId",
+                              "artifactId",
+                              "field",
+                              "sheetName",
+                              "rowNumber",
+                              "standing"
+                            ],
+                            "properties": {
+                              "referenceId": {
+                                "type": "string",
+                                "pattern": "^requirement-evidence:[a-f0-9]{24}$"
+                              },
+                              "artifactId": {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              "field": {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              "sheetName": {
+                                "type": [
+                                  "string",
+                                  "null"
+                                ]
+                              },
+                              "rowNumber": {
+                                "type": [
+                                  "integer",
+                                  "null"
+                                ],
+                                "minimum": 1
+                              },
+                              "standing": {
+                                "type": "string",
+                                "enum": [
+                                  "parsed_record",
+                                  "ocr_derived",
+                                  "filename",
+                                  "declared",
+                                  "forensic_observation",
+                                  "operator_override"
+                                ]
+                              }
+                            }
+                          }
+                        },
+                        "evidenceTotal": {
+                          "type": "integer",
+                          "minimum": 0
+                        },
+                        "evidenceOmitted": {
+                          "type": "integer",
+                          "minimum": 0
+                        },
+                        "sourceDependence": {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "artifactCount",
+                            "recordCount",
+                            "note"
+                          ],
+                          "properties": {
+                            "artifactCount": {
+                              "type": "integer",
+                              "minimum": 0
+                            },
+                            "recordCount": {
+                              "type": "integer",
+                              "minimum": 0
+                            },
+                            "note": {
+                              "type": "string",
+                              "minLength": 1
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
           },
           "completeness": {
             "type": "object",
@@ -1595,9 +2390,10 @@
             ],
             "enum": [
               "customer_document",
+              "document_forensics",
               null
             ],
-            "description": "Retrieve the complete saved website customer document as authenticated JSON frames, including comprehensive analysis and evidence. Pass null for delivery options."
+            "description": "Retrieve the complete saved commercial customer document, or the structured forensic companion when its committed investigation entitlement authorizes it. Both use authenticated JSON frames. Pass null for delivery options."
           },
           "documentCursor": {
             "type": [
@@ -1647,6 +2443,171 @@
         "properties": {
           "reportId": {
             "type": "string"
+          },
+          "documentVersion": {
+            "type": "string",
+            "description": "Version of the frozen parent customer document."
+          },
+          "digest": {
+            "type": "string",
+            "description": "Digest of the frozen parent. Verify serializationDigest for the returned representation bytes."
+          },
+          "representation": {
+            "type": "string",
+            "enum": [
+              "customer_document",
+              "document_forensics"
+            ]
+          },
+          "representationKind": {
+            "type": "string",
+            "enum": [
+              "canonical_customer_document",
+              "commercial_metadata_projection",
+              "entitled_document_forensics"
+            ]
+          },
+          "snapshot": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "state": {
+            "type": "string",
+            "description": "Present when no content is returned, including stale_snapshot, unbound_page, continuation_unavailable or publication_withheld. Restart stale publications at byte zero."
+          },
+          "serializationDigest": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$",
+            "description": "SHA-256 over all concatenated documentJson UTF-8 bytes."
+          },
+          "serializationDigestAlgorithm": {
+            "type": "string",
+            "const": "sha256"
+          },
+          "encoding": {
+            "type": "string",
+            "const": "utf-8"
+          },
+          "cursorUnit": {
+            "type": "string",
+            "const": "utf8_bytes"
+          },
+          "offset": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "returnedBytes": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "totalBytes": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "documentJson": {
+            "type": "string",
+            "description": "One bounded UTF-8 frame. Concatenate in offset order; parse only after nextCursor is null and serializationDigest verifies."
+          },
+          "nextCursor": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "pageToken": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "continuation": {
+            "type": [
+              "object",
+              "null"
+            ],
+            "additionalProperties": false,
+            "required": [
+              "tool",
+              "arguments"
+            ],
+            "properties": {
+              "tool": {
+                "type": "string",
+                "const": "ultiwrite_report_export"
+              },
+              "arguments": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "reportId",
+                  "representation",
+                  "documentCursor",
+                  "snapshot",
+                  "pageToken"
+                ],
+                "properties": {
+                  "reportId": {
+                    "type": "string"
+                  },
+                  "representation": {
+                    "type": "string",
+                    "enum": [
+                      "customer_document",
+                      "document_forensics"
+                    ]
+                  },
+                  "documentCursor": {
+                    "type": "string"
+                  },
+                  "snapshot": {
+                    "type": "string"
+                  },
+                  "pageToken": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "customerDocumentRecovery": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "tool",
+              "arguments",
+              "meaning"
+            ],
+            "properties": {
+              "tool": {
+                "type": "string",
+                "const": "ultiwrite_report_export"
+              },
+              "arguments": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "reportId",
+                  "representation"
+                ],
+                "properties": {
+                  "reportId": {
+                    "type": "string"
+                  },
+                  "representation": {
+                    "type": "string",
+                    "enum": [
+                      "customer_document",
+                      "document_forensics"
+                    ]
+                  }
+                }
+              },
+              "meaning": {
+                "type": "string"
+              }
+            }
           },
           "bytes": {
             "type": "null"
@@ -1700,7 +2661,7 @@
     {
       "name": "ultiwrite_evidence_submit",
       "title": "Submit evidence for investigation",
-      "description": "Use when the user asks to investigate authorized commercial evidence: test claims and economics, connect identities and relationships, examine document integrity, or pursue relevant external context beyond the supplied narrative. Submit 1 to 6 authorized file attachments for Commercial Diligence across operating companies, acquisitions, financings, property or asset transactions, counterparties, operating relationships or portfolios, including residual or ISO books, or continue saved processing with only its returned caseId. Accepts supported documents, spreadsheets, images and ZIP evidence packages through the same saved upload and report workflow as the Ultiwrite website. Uses one of the connected account's analyses for a new package. Supply exactly one of nonempty files, caseId or handoffId. Strict action clients send files: [] for continuation or upload-link fallback, caseId: null and handoffId: null when unused, and documentForensics: null when the user has not made a choice. Legacy callers may omit unused fields. documentForensics is optional: omit it when the user has not made a choice so the engine infers relevance from supported file contents, including PDF members of ZIP packages. Pass true or false only for an explicit user choice. A saved case keeps its original effective choice. Pass actual file objects supplied by your connected app unchanged as files; never invent a download URL or substitute a local path. If your client cannot forward the original file contents, send files: [], caseId: null, handoffId: null and documentForensics: null (or an explicit true or false choice), then give the user the exact uploadLink returned. Retain the returned handoffId in the originating conversation; after upload send that handoffId with files: [], caseId: null and documentForensics: null to resume that exact case without asking the user to copy identifiers. Legacy {} requests remain supported. Input fields and qualification requirements: https://dwsoffshorepartners.com/docs/mcp#accepted-inputs. The returned case id and workflow status guide processing, required review and report retrieval. Repeating the same package also resumes its saved workflow instead of creating a duplicate. Processing is not completed diligence or a payment receipt. No finding text or final decision is returned by submission. Do not start a new analysis for a request limited to an explanation, connection check or existing report.",
+      "description": "Use when the user asks to investigate authorized commercial evidence: test claims and economics, connect identities and relationships, examine document integrity, or pursue relevant external context beyond the supplied narrative. Submit 1 to 6 authorized file attachments for Commercial Diligence across operating companies, acquisitions, financings, property or asset transactions, counterparties, operating relationships or portfolios, including residual or ISO books, or continue saved processing with only its returned caseId. Accepts supported documents, spreadsheets, images and ZIP evidence packages through the same saved upload and report workflow as the Ultiwrite website. Each file's optional role defaults to evidence; use customer_requirement_set only for customer-supplied requirement sets, policy criteria, contracts, or evidence standards. That role preserves supplied standing and does not independently establish legal or factual authority. Uses one of the connected account's analyses for a new package. Supply exactly one of nonempty files, caseId or handoffId. Strict action clients send files: [] for continuation or upload-link fallback, caseId: null and handoffId: null when unused, and documentForensics: null when the user has not made a choice. Legacy callers may omit unused fields. documentForensics is optional: omit it when the user has not made a choice so the engine infers relevance from supported file contents, including PDF members of ZIP packages. Pass true or false only for an explicit user choice. A saved case keeps its original effective choice. Pass actual file objects supplied by your connected app unchanged as files; never invent a download URL or substitute a local path. If your client cannot forward the original file contents, send files: [], caseId: null, handoffId: null and documentForensics: null (or an explicit true or false choice), then give the user the exact uploadLink returned. The upload-link fallback is evidence-only and does not carry a specialized file role. Retain the returned handoffId in the originating conversation; after upload send that handoffId with files: [], caseId: null and documentForensics: null to resume that exact case without asking the user to copy identifiers. Legacy {} requests remain supported. Input fields and qualification requirements: https://dwsoffshorepartners.com/docs/mcp#accepted-inputs. The returned case id and workflow status guide processing, required review and report retrieval. Repeating the same package also resumes its saved workflow instead of creating a duplicate. Processing is not completed diligence or a payment receipt. No finding text or final decision is returned by submission. Do not start a new analysis for a request limited to an explanation, connection check or existing report.",
       "inputSchema": {
         "type": "object",
         "additionalProperties": false,
@@ -1724,6 +2685,14 @@
                 },
                 "file_name": {
                   "type": "string"
+                },
+                "role": {
+                  "type": "string",
+                  "enum": [
+                    "evidence",
+                    "customer_requirement_set"
+                  ],
+                  "description": "Optional intake role. Omit or use evidence for ordinary source material. Use customer_requirement_set only for customer-supplied requirements, policy criteria, contracts, or evidence standards; this preserves supplied standing and does not independently establish legal or factual authority."
                 }
               },
               "required": [
@@ -1731,7 +2700,7 @@
                 "file_id"
               ]
             },
-            "description": "Actual downloadable file objects supplied by your connected app for the user's authorized documents, spreadsheets, images or ZIP packages. Pass [] when continuing with caseId or handoffId, or when the client cannot forward file contents and must use the returned uploadLink. An empty array never starts an empty analysis. Never invent a URL or pass a local path."
+            "description": "Actual downloadable file objects supplied by your connected app for the user's authorized documents, spreadsheets, images or ZIP packages. Optional role defaults to evidence; customer_requirement_set identifies customer-supplied requirements without making their contents independently verified or binding. Pass [] when continuing with caseId or handoffId, or when the client cannot forward file contents and must use the returned uploadLink. The upload-link fallback is evidence-only and cannot preserve a specialized file role. An empty array never starts an empty analysis. Never invent a URL or pass a local path."
           },
           "documentForensics": {
             "type": [
@@ -2170,7 +3139,7 @@
       "method": "OAuth 2.1 sign-in to an existing Ultiwrite account, approved on a consent screen. The MCP host identity is separate from the customer identity.",
       "scopes": {
         "ultiwrite:read": "Read cases and released reports in your organization.",
-        "ultiwrite:evidence": "Submit authorized evidence for analysis in your organization through your connected app or its returned upload link."
+        "ultiwrite:evidence": "Submit authorized evidence for analysis and record audited case dispositions in your organization."
       }
     },
     "tools": [
@@ -2188,7 +3157,11 @@
       },
       {
         "name": "ultiwrite_case_status",
-        "description": "Shows an existing investigation's progress and any saved-processing continuation needed to reach its report."
+        "description": "Shows an existing investigation's progress, current saved disposition, and any saved-processing continuation needed to reach its report."
+      },
+      {
+        "name": "ultiwrite_case_disposition_set",
+        "description": "Records a typed customer disposition and immutable audit receipt without rewriting the saved assessment or implying workflow closure, acknowledgement, task completion, condition change, or an observed outcome. Requires investigator permission."
       },
       {
         "name": "ultiwrite_coherence_get",
@@ -2204,7 +3177,7 @@
       },
       {
         "name": "ultiwrite_evidence_submit",
-        "description": "Starts an authorized asymmetric investigation through the shared Commercial Diligence workflow using one to six supported attachments or ZIP packages, or continues saved processing. Clients unable to forward original files use the returned uploadLink. Requires evidence consent."
+        "description": "Starts an authorized asymmetric investigation through the shared Commercial Diligence workflow using one to six supported attachments or ZIP packages, or continues saved processing. An optional per-file role identifies a customer-supplied requirement set while preserving supplied standing; omitted role remains ordinary evidence. Clients unable to forward original files use the evidence-only uploadLink fallback. Requires evidence consent."
       }
     ],
     "deferred": [
@@ -2232,8 +3205,8 @@
     "inputs": {
       "accepted": [
         "case ids and report ids from your organization",
-        "one to six downloadable file objects supplied by your connected app, each at most 8 MiB and 12 MiB together",
-        "the exact signed Ultiwrite upload link returned when the client cannot forward original file contents",
+        "one to six downloadable file objects supplied by your connected app, each at most 8 MiB and 12 MiB together; optional role is evidence or customer_requirement_set",
+        "the exact signed Ultiwrite upload link returned when the client cannot forward original file contents (evidence-only; specialized roles require direct attachment transfer)",
         "a previously returned caseId to continue retained evidence without resupplying attachments"
       ],
       "contract": "https://dwsoffshorepartners.com/docs/mcp#accepted-inputs",

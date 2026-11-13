@@ -1,11 +1,11 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "ultiwrite",
-  "version": "0.10.0",
+  "version": "0.11.0",
   "description": "Asymmetric diligence across commercial domains. Investigate business claims, financial consistency, identities, document integrity and external context; retrieve reconciled findings and evidence from Ultiwrite.",
   "author": {
     "name": "DWS Offshore Fund",
-    "email": "nick@ultiwrite.co",
+    "email": "levi@dwsoffshorepartners.com",
     "url": "https://dwsoffshorepartners.com"
   },
   "homepage": "https://dwsoffshorepartners.com",
@@ -28,7 +28,7 @@
       "interface": {
         "displayName": "Ultiwrite",
         "shortDescription": "Asymmetric Diligence Engine",
-        "longDescription": "Ultiwrite is an asymmetric diligence engine that turns ordinary documents into a much wider investigation.\n\nStart with business applications, bank and processing statements, financials, property materials, portfolio schedules or mixed evidence packages. Ultiwrite investigates businesses, people, assets and relationships, connecting submitted evidence with company records, digital footprints and relevant external context. It follows financial, identity, document-integrity and operational signals to expose risk, reconstruct economics and identify opportunities. Cross-domain contradictions and unexpected implications contribute to a cohesive assessment with supporting evidence, confidence, unresolved questions and next steps.\n\nIts Commercial Diligence applications span business acquisitions, merchant and financing review, residual or ISO books, portfolios, property and counterparties. The engine determines which supported analyses apply to the evidence. Current capabilities, input limits and commercial terms come from the live service.\n\nConnect or reconnect your Ultiwrite account with OAuth and verify the selected identity. Reading requires read access; evidence submission also requires evidence permission and existing account allowance. Use another account where the host supports account selection.\n\nFive workflows cover capabilities, account connection, evidence submission, saved reports and follow-up evidence requests. Automatic workflow selection is enabled by default; your host policies and disabled skills remain authoritative. Enabling a workflow does not submit evidence, choose a paid add-on or authorize a charge.\n\nSubmit evidence you are authorized to share through supported original file objects or the exact secure upload link returned by Ultiwrite. Follow actual processing and required-action states. A saved upload is not a completed investigation. Document Forensics preserves your explicit choice or follows the service decision when no choice was made.\n\nRead saved cases and reports, including website reports without a case, with their evidence, confidence, uncertainty and disclosed coverage. Downloads open in a browser signed in to the same account. Submitting or reading evidence does not approve a transaction, process payments or grant entitlements.",
+        "longDescription": "Ultiwrite is an asymmetric diligence engine that turns ordinary documents into a much wider investigation.\n\nStart with business applications, bank and processing statements, financials, property materials, portfolio schedules or mixed evidence packages. Ultiwrite investigates businesses, people, assets and relationships, connecting submitted evidence with company records, digital footprints and relevant external context. It follows financial, identity, document-integrity and operational signals to expose risk, reconstruct economics and identify opportunities. Cross-domain contradictions and unexpected implications contribute to a cohesive assessment with supporting evidence, confidence, unresolved questions and next steps.\n\nIts Commercial Diligence applications span business acquisitions, merchant and financing review, residual or ISO books, portfolios, property and counterparties. The engine determines which supported analyses apply to the evidence. Current capabilities, input limits and commercial terms come from the live service.\n\nConnect or reconnect your Ultiwrite account with OAuth and verify the selected identity. Reading requires read access; evidence submission and audited case dispositions also require evidence permission. Use another account where the host supports account selection.\n\nSix workflows cover capabilities, account connection, evidence submission, saved reports, follow-up evidence requests and explicit case dispositions. Automatic workflow selection is enabled by default; your host policies and disabled skills remain authoritative. Enabling a workflow does not submit evidence, choose a paid add-on, record a disposition or authorize a charge.\n\nSubmit evidence you are authorized to share through supported original file objects or the exact secure upload link returned by Ultiwrite. Follow actual processing and required-action states. A saved upload is not a completed investigation. Document Forensics preserves your explicit choice or follows the service decision when no choice was made. Customer requirement-set roles preserve supplied policy standing; they do not make file text binding authority.\n\nRead saved cases and reports, including website reports without a case, with their evidence, confidence, uncertainty and disclosed coverage. Record a typed disposition only after the user chooses it; the resulting audit receipt does not rewrite the frozen assessment, close the workflow or establish an observed outcome. Downloads open in a browser signed in to the same account. Submitting or reading evidence does not approve a transaction, process payments or grant entitlements.",
         "developerName": "DWS Offshore Fund",
         "category": "Business & Operations",
         "capabilities": [
@@ -86,6 +86,12 @@
               "prompt": "Show the saved Ultiwrite findings for that case and which download routes my organization has.",
               "tools_triggered": "ultiwrite_findings_get, ultiwrite_report_export",
               "expected_behavior": "Returns the saved customer document, then uses its reportId to get absolute account report, sign-in and entitled download links. Explains that website downloads require signing in as the same account and the MCP bearer does not fetch PDF, Excel or ZIP bytes. Reliance not_evaluated is neither denial nor approval. No public or presigned link is created."
+            },
+            {
+              "description": "Record an explicit audited case disposition",
+              "prompt": "Record that I accept the remaining uncertainty in this Ultiwrite case because the decision deadline has arrived.",
+              "tools_triggered": "ultiwrite_case_status, ultiwrite_case_disposition_set",
+              "expected_behavior": "Verifies the selected account and existing case, confirms the user's explicit typed disposition and concise basis, generates and retains one stable request key, then records uncertainty_accepted under evidence permission. Returns the immutable receipt and its exact assessment identity. Explains that this is a supplied customer judgment, not an assessment rewrite, task completion, workflow closure, condition change or observed outcome; an exact retry recovers the same receipt without consuming another analysis."
             }
           ],
           "negative": [
@@ -113,7 +119,7 @@
         "commerce_description": "Investigations may use purchased account allowance and optional Document Forensics entitlement under the website\u2019s current terms. This connection returns service-provided terms and account links; it does not process payments, start subscriptions, grant entitlements or authorize automatic charges."
       },
       "publication": {
-        "release_notes": "0.10.0: adds multi-host interoperability and current account/entitlement discovery while retaining saved-report and investigation recovery workflows."
+        "release_notes": "0.11.0: source candidate adds typed case dispositions, customer requirement-set intake guidance and saved requirement-applicability interpretation. It is prepared for review and is not deployed, listed or published by this source change."
       }
     }
   }

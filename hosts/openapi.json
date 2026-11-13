@@ -3646,7 +3646,7 @@
           "Cases"
         ],
         "summary": "Submit an evidence package and start analysis",
-        "description": "Creates one case from one evidence package (1 to 6 files) and runs the canonical analysis workflow inside this request’s execution budget. The response reports the saved workflow state; it is complete only when a report was saved. Otherwise poll the case and follow its continue link. Uses one analysis from the account allowance when the report is saved; a failed analysis is not charged.\n\nIdempotency: Content-addressed. The same files (by SHA-256 and name) with the same documentForensics choice always map to the same case in the organization; retries return it with state already_persisted and use no additional analysis credit. Each admitted HTTP request still counts toward the API request allowance. No Idempotency-Key header is needed.",
+        "description": "Creates one case from one evidence package (1 to 6 files) and runs the canonical analysis workflow inside this request’s execution budget. Ordinary evidence uses files; customer-supplied requirement sets use optional requirementFiles so their supplied policy standing is authenticated at intake. The response reports the saved workflow state; it is complete only when a report was saved. Otherwise poll the case and follow its continue link. Uses one analysis from the account allowance when the report is saved; a failed analysis is not charged.\n\nIdempotency: Content-addressed. The same files (by SHA-256, name, and effective intake role) with the same documentForensics choice always map to the same case in the organization; retries return it with state already_persisted and use no additional analysis credit. Legacy and explicit all-evidence calls retain their existing identity. Changing an artifact between files and requirementFiles creates a distinct package. Each admitted HTTP request still counts toward the API request allowance. No Idempotency-Key header is needed.",
         "security": [
           {
             "UltiwriteApiKey": []
@@ -3664,7 +3664,7 @@
         ],
         "requestBody": {
           "required": true,
-          "description": "One or more \"files\" parts and an optional documentForensics field.",
+          "description": "One or more \"files\" parts, optional \"requirementFiles\" parts, and an optional documentForensics field. The combined file count is 1 to 6.",
           "content": {
             "multipart/form-data": {
               "schema": {
@@ -4247,7 +4247,7 @@
             }
           }
         },
-        "x-idempotency": "Content-addressed. The same files (by SHA-256 and name) with the same documentForensics choice always map to the same case in the organization; retries return it with state already_persisted and use no additional analysis credit. Each admitted HTTP request still counts toward the API request allowance. No Idempotency-Key header is needed.",
+        "x-idempotency": "Content-addressed. The same files (by SHA-256, name, and effective intake role) with the same documentForensics choice always map to the same case in the organization; retries return it with state already_persisted and use no additional analysis credit. Legacy and explicit all-evidence calls retain their existing identity. Changing an artifact between files and requirementFiles creates a distinct package. Each admitted HTTP request still counts toward the API request allowance. No Idempotency-Key header is needed.",
         "x-codeSamples": [
           {
             "lang": "bash",
@@ -4663,6 +4663,517 @@
             "lang": "ruby",
             "label": "Ruby",
             "source": "# Single request; no automatic mutation replay. Set TOKEN, CASE_ID in the process environment. Save/resume returned IDs; use the downloadable workflow client for polling, staged uploads and recovery.\nrequire 'net/http'; require 'uri'; require 'securerandom'; require 'tmpdir'\ndef env(name); ENV.fetch(name) { raise 'Set '+name }; end\nuri=URI(\"https://dwsoffshorepartners.com/api/v1/cases/\" + URI.encode_www_form_component(env('CASE_ID')).gsub('+','%20') + \"\")\nrequest=Net::HTTPGenericRequest.new('GET',false,true,uri.request_uri)\nrequest['Authorization']='Bearer '+env('TOKEN')\nrequest['Accept']='application/json, application/octet-stream'\nrequest['Accept-Encoding']='identity'\n\nhttp=Net::HTTP.new(uri.host,uri.port);http.use_ssl=true;http.open_timeout=15;http.read_timeout=120;http.write_timeout=120;http.max_retries=0\nbegin\n  http.request(request) do |response|\n    raise 'HTTP '+response.code unless response.is_a?(Net::HTTPSuccess)\n    directory=Dir.mktmpdir('ultiwrite-response-','.')\n    expected=response['Content-Length'];count=0\n    raise 'Invalid response length' if expected && !expected.match?(/\\A[0-9]+\\z/)\n    begin\n      File.open(directory+'/response.bin',File::WRONLY|File::CREAT|File::EXCL,0600) do |output|\n        response.read_body { |chunk| output.write(chunk);count+=chunk.bytesize }\n      end\n      raise 'Incomplete response' if expected && count!=expected.to_i\n    rescue Exception\n      File.unlink(directory+'/response.bin') if File.exist?(directory+'/response.bin')\n      raise\n    end\n    puts 'Saved response in '+directory+'/response.bin'\n  end\nensure\n  # No automatic redirects or mutation retries.\nend\n"
+          }
+        ]
+      }
+    },
+    "/cases/{caseId}/disposition": {
+      "post": {
+        "operationId": "setCaseDisposition",
+        "tags": [
+          "Cases"
+        ],
+        "summary": "Record an audited case disposition",
+        "description": "Records one typed customer disposition and immutable audit receipt on the existing case. It does not rewrite the frozen assessment, close the workflow, acknowledge a notification, complete a task, assert that the underlying condition changed, or manufacture an observed outcome. Current account, tenant, key/grant, user and investigator permission are rechecked inside the mutation transaction.\n\nIdempotency: The key is scoped to the authorized organization and case under the case transaction lock. An exact retry returns the original receipt; reuse with different content returns conflict. Retries never append duplicate audit events.",
+        "security": [
+          {
+            "UltiwriteApiKey": []
+          },
+          {
+            "UltiwriteOAuth": [
+              "ultiwrite:read",
+              "ultiwrite:evidence"
+            ]
+          }
+        ],
+        "x-required-scopes": [
+          "ultiwrite:read",
+          "ultiwrite:evidence"
+        ],
+        "parameters": [
+          {
+            "name": "caseId",
+            "in": "path",
+            "required": true,
+            "description": "Case id returned by this API.",
+            "schema": {
+              "$ref": "#/components/schemas/ResourceId"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "description": "Stable 16–128 character key for this disposition. Retry the same case and exact disposition with the same key after an uncertain response.",
+            "schema": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_-]{16,128}$"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "description": "Disposition kind, concise basis, permitted evidence references, and a meaningful date or event when deferred.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CaseDispositionRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The new immutable receipt, or the same receipt for an exact retry.",
+            "headers": {
+              "X-Request-Id": {
+                "description": "Request correlation id.",
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "X-Api-Requests-Limit": {
+                "description": "Monthly account API request limit. Present after successful admission.",
+                "schema": {
+                  "type": "integer",
+                  "minimum": 0
+                }
+              },
+              "X-Api-Requests-Remaining": {
+                "description": "Monthly requests remaining immediately after this request was admitted; other concurrent requests may reduce it.",
+                "schema": {
+                  "type": "integer",
+                  "minimum": 0
+                }
+              },
+              "X-Api-Requests-Reset": {
+                "description": "Next UTC calendar-month reset as an ISO 8601 timestamp. Present after successful admission.",
+                "schema": {
+                  "type": "string",
+                  "format": "date-time"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CaseDispositionReceipt"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input. No new evidence package was accepted. If authenticated and admitted, the request counts toward the API request allowance.",
+            "headers": {
+              "X-Request-Id": {
+                "description": "Request correlation id.",
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "X-Api-Requests-Limit": {
+                "description": "Monthly account API request limit. Present after successful admission.",
+                "schema": {
+                  "type": "integer",
+                  "minimum": 0
+                }
+              },
+              "X-Api-Requests-Remaining": {
+                "description": "Monthly requests remaining immediately after this request was admitted; other concurrent requests may reduce it.",
+                "schema": {
+                  "type": "integer",
+                  "minimum": 0
+                }
+              },
+              "X-Api-Requests-Reset": {
+                "description": "Next UTC calendar-month reset as an ISO 8601 timestamp. Present after successful admission.",
+                "schema": {
+                  "type": "string",
+                  "format": "date-time"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing, invalid, expired or revoked token, or a token issued for another resource. See WWW-Authenticate.",
+            "headers": {
+              "X-Request-Id": {
+                "description": "Request correlation id.",
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "X-Api-Requests-Limit": {
+                "description": "Monthly account API request limit. Present after successful admission.",
+                "schema": {
+                  "type": "integer",
+                  "minimum": 0
+                }
+              },
+              "X-Api-Requests-Remaining": {
+                "description": "Monthly requests remaining immediately after this request was admitted; other concurrent requests may reduce it.",
+                "schema": {
+                  "type": "integer",
+                  "minimum": 0
+                }
+              },
+              "X-Api-Requests-Reset": {
+                "description": "Next UTC calendar-month reset as an ISO 8601 timestamp. Present after successful admission.",
+                "schema": {
+                  "type": "string",
+                  "format": "date-time"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Explicit account API approval is missing or the credential lacks a required scope.",
+            "headers": {
+              "X-Request-Id": {
+                "description": "Request correlation id.",
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "X-Api-Requests-Limit": {
+                "description": "Monthly account API request limit. Present after successful admission.",
+                "schema": {
+                  "type": "integer",
+                  "minimum": 0
+                }
+              },
+              "X-Api-Requests-Remaining": {
+                "description": "Monthly requests remaining immediately after this request was admitted; other concurrent requests may reduce it.",
+                "schema": {
+                  "type": "integer",
+                  "minimum": 0
+                }
+              },
+              "X-Api-Requests-Reset": {
+                "description": "Next UTC calendar-month reset as an ISO 8601 timestamp. Present after successful admission.",
+                "schema": {
+                  "type": "string",
+                  "format": "date-time"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found in the authorized organization, or the API is not enabled. Another organization’s records are indistinguishable from absent ones.",
+            "headers": {
+              "X-Request-Id": {
+                "description": "Request correlation id.",
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "X-Api-Requests-Limit": {
+                "description": "Monthly account API request limit. Present after successful admission.",
+                "schema": {
+                  "type": "integer",
+                  "minimum": 0
+                }
+              },
+              "X-Api-Requests-Remaining": {
+                "description": "Monthly requests remaining immediately after this request was admitted; other concurrent requests may reduce it.",
+                "schema": {
+                  "type": "integer",
+                  "minimum": 0
+                }
+              },
+              "X-Api-Requests-Reset": {
+                "description": "Next UTC calendar-month reset as an ISO 8601 timestamp. Present after successful admission.",
+                "schema": {
+                  "type": "string",
+                  "format": "date-time"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict with the saved case (for example a frozen document-forensics choice).",
+            "headers": {
+              "X-Request-Id": {
+                "description": "Request correlation id.",
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "X-Api-Requests-Limit": {
+                "description": "Monthly account API request limit. Present after successful admission.",
+                "schema": {
+                  "type": "integer",
+                  "minimum": 0
+                }
+              },
+              "X-Api-Requests-Remaining": {
+                "description": "Monthly requests remaining immediately after this request was admitted; other concurrent requests may reduce it.",
+                "schema": {
+                  "type": "integer",
+                  "minimum": 0
+                }
+              },
+              "X-Api-Requests-Reset": {
+                "description": "Next UTC calendar-month reset as an ISO 8601 timestamp. Present after successful admission.",
+                "schema": {
+                  "type": "string",
+                  "format": "date-time"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Package too large for a direct upload, or a report artifact requires ordered volumes. Use an upload link for evidence or a report ZIP for split artifact delivery.",
+            "headers": {
+              "X-Request-Id": {
+                "description": "Request correlation id.",
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "X-Api-Requests-Limit": {
+                "description": "Monthly account API request limit. Present after successful admission.",
+                "schema": {
+                  "type": "integer",
+                  "minimum": 0
+                }
+              },
+              "X-Api-Requests-Remaining": {
+                "description": "Monthly requests remaining immediately after this request was admitted; other concurrent requests may reduce it.",
+                "schema": {
+                  "type": "integer",
+                  "minimum": 0
+                }
+              },
+              "X-Api-Requests-Reset": {
+                "description": "Next UTC calendar-month reset as an ISO 8601 timestamp. Present after successful admission.",
+                "schema": {
+                  "type": "string",
+                  "format": "date-time"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Unsupported request media type.",
+            "headers": {
+              "X-Request-Id": {
+                "description": "Request correlation id.",
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "X-Api-Requests-Limit": {
+                "description": "Monthly account API request limit. Present after successful admission.",
+                "schema": {
+                  "type": "integer",
+                  "minimum": 0
+                }
+              },
+              "X-Api-Requests-Remaining": {
+                "description": "Monthly requests remaining immediately after this request was admitted; other concurrent requests may reduce it.",
+                "schema": {
+                  "type": "integer",
+                  "minimum": 0
+                }
+              },
+              "X-Api-Requests-Reset": {
+                "description": "Next UTC calendar-month reset as an ISO 8601 timestamp. Present after successful admission.",
+                "schema": {
+                  "type": "string",
+                  "format": "date-time"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Account or key monthly request allowance, per-minute rate limit or concurrency budget exceeded. See Retry-After.",
+            "headers": {
+              "X-Request-Id": {
+                "description": "Request correlation id.",
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "X-Api-Requests-Limit": {
+                "description": "Monthly account API request limit. Present after successful admission.",
+                "schema": {
+                  "type": "integer",
+                  "minimum": 0
+                }
+              },
+              "X-Api-Requests-Remaining": {
+                "description": "Monthly requests remaining immediately after this request was admitted; other concurrent requests may reduce it.",
+                "schema": {
+                  "type": "integer",
+                  "minimum": 0
+                }
+              },
+              "X-Api-Requests-Reset": {
+                "description": "Next UTC calendar-month reset as an ISO 8601 timestamp. Present after successful admission.",
+                "schema": {
+                  "type": "string",
+                  "format": "date-time"
+                }
+              },
+              "Retry-After": {
+                "description": "Suggested delay in seconds before retrying; present for rate/quota denials and transient failures with a known retry window.",
+                "schema": {
+                  "type": "integer",
+                  "minimum": 1
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Temporarily unavailable. See Retry-After. No completion is claimed.",
+            "headers": {
+              "X-Request-Id": {
+                "description": "Request correlation id.",
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "X-Api-Requests-Limit": {
+                "description": "Monthly account API request limit. Present after successful admission.",
+                "schema": {
+                  "type": "integer",
+                  "minimum": 0
+                }
+              },
+              "X-Api-Requests-Remaining": {
+                "description": "Monthly requests remaining immediately after this request was admitted; other concurrent requests may reduce it.",
+                "schema": {
+                  "type": "integer",
+                  "minimum": 0
+                }
+              },
+              "X-Api-Requests-Reset": {
+                "description": "Next UTC calendar-month reset as an ISO 8601 timestamp. Present after successful admission.",
+                "schema": {
+                  "type": "string",
+                  "format": "date-time"
+                }
+              },
+              "Retry-After": {
+                "description": "Suggested delay in seconds before retrying; present for rate/quota denials and transient failures with a known retry window.",
+                "schema": {
+                  "type": "integer",
+                  "minimum": 1
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "x-idempotency": "The key is scoped to the authorized organization and case under the case transaction lock. An exact retry returns the original receipt; reuse with different content returns conflict. Retries never append duplicate audit events.",
+        "x-codeSamples": [
+          {
+            "lang": "bash",
+            "label": "cURL",
+            "source": "#!/usr/bin/env bash\nset -euo pipefail\numask 077\n# Single request; no automatic mutation replay. Set TOKEN, CASE_ID, REQUEST_KEY in the process environment. Prepare request.json from the request schema with your real values. Save/resume returned IDs; use the downloadable workflow client for polling, staged uploads and recovery.\n: \"${TOKEN:?Set TOKEN}\"\n: \"${CASE_ID:?Set CASE_ID}\"\n: \"${REQUEST_KEY:?Set REQUEST_KEY}\"\n# A new output directory prevents overwriting an earlier response.\nout=$(mktemp -d ./ultiwrite-response.XXXXXX)\nsuccess=0\ntrap 'if [[ \"$success\" != 1 ]]; then rm -f \"$out/response.bin\"; fi' EXIT\nstatus=$(curl --silent --show-error --fail --proto '=https' --max-redirs 0 \\\n  --connect-timeout 15 --max-time 120 --request POST \\\n  --header \"Authorization: Bearer $TOKEN\" \\\n  --header 'Accept: application/json, application/octet-stream' \\\n  --header \"Idempotency-Key: $REQUEST_KEY\" \\\n  --header 'Content-Type: application/json' --data-binary @request.json \\\n  --output \"$out/response.bin\" --write-out '%{http_code}' \"https://dwsoffshorepartners.com/api/v1/cases/$(jq -rn --arg v \"$CASE_ID\" '$v|@uri')/disposition\")\n[[ \"$status\" == 2?? ]] || { echo \"HTTP $status\" >&2; exit 1; }\nsuccess=1\nprintf 'Saved response in %s/response.bin\\n' \"$out\"\n"
+          },
+          {
+            "lang": "javascript",
+            "label": "JavaScript",
+            "source": "// Single request; no automatic mutation replay. Set TOKEN, CASE_ID, REQUEST_KEY in the process environment. Prepare request.json from the request schema with your real values. Save/resume returned IDs; use the downloadable workflow client for polling, staged uploads and recovery.\nimport { readFile, mkdtemp, writeFile } from 'node:fs/promises';\nimport { basename, join } from 'node:path';\nfunction env(name) { const v = process.env[name]; if (!v) throw new Error('Set '+name); return v; }\nconst url = \"https://dwsoffshorepartners.com/api/v1/cases/\" + encodeURIComponent(env('CASE_ID')) + \"/disposition\";\nconst headers = { Authorization: 'Bearer '+env('TOKEN'), Accept: 'application/json, application/octet-stream', 'Idempotency-Key': env('REQUEST_KEY'), 'Content-Type': 'application/json' };\nconst body = await readFile('request.json','utf8');\nconst response = await fetch(url, { method: 'POST', headers, redirect: 'error', signal: AbortSignal.timeout(120000), body });\nif (!response.ok) throw new Error('HTTP '+response.status);\nconst output = await mkdtemp('./ultiwrite-response-');\nawait writeFile(join(output,'response.bin'),new Uint8Array(await response.arrayBuffer()),{flag:'wx',mode:0o600});\nconsole.log('Saved response in '+output+'/response.bin');\n"
+          },
+          {
+            "lang": "typescript",
+            "label": "TypeScript",
+            "source": "// Save as request.mts and compile with TypeScript5+ and Node20 declarations. Single request; no automatic mutation replay. Set TOKEN, CASE_ID, REQUEST_KEY in the process environment. Prepare request.json from the request schema with your real values. Save/resume returned IDs; use the downloadable workflow client for polling, staged uploads and recovery.\nimport { readFile, mkdtemp, writeFile } from 'node:fs/promises';\nimport { basename, join } from 'node:path';\nfunction env(name: string): string { const v = process.env[name]; if (!v) throw new Error('Set '+name); return v; }\nconst url = \"https://dwsoffshorepartners.com/api/v1/cases/\" + encodeURIComponent(env('CASE_ID')) + \"/disposition\";\nconst headers = { Authorization: 'Bearer '+env('TOKEN'), Accept: 'application/json, application/octet-stream', 'Idempotency-Key': env('REQUEST_KEY'), 'Content-Type': 'application/json' };\nconst body = await readFile('request.json','utf8');\nconst response = await fetch(url, { method: 'POST', headers, redirect: 'error', signal: AbortSignal.timeout(120000), body });\nif (!response.ok) throw new Error('HTTP '+response.status);\nconst output = await mkdtemp('./ultiwrite-response-');\nawait writeFile(join(output,'response.bin'),new Uint8Array(await response.arrayBuffer()),{flag:'wx',mode:0o600});\nconsole.log('Saved response in '+output+'/response.bin');\n"
+          },
+          {
+            "lang": "python",
+            "label": "Python",
+            "source": "# Single request; no automatic mutation replay. Set TOKEN, CASE_ID, REQUEST_KEY in the process environment. Prepare request.json from the request schema with your real values. Save/resume returned IDs; use the downloadable workflow client for polling, staged uploads and recovery.\nimport os, json, pathlib, tempfile, urllib.request, urllib.parse, uuid\ndef env(name):\n    value = os.environ.get(name)\n    if not value: raise ValueError('Set '+name)\n    return value\nclass NoRedirect(urllib.request.HTTPRedirectHandler):\n    def redirect_request(self, *args, **kwargs): return None\nurl = \"https://dwsoffshorepartners.com/api/v1/cases/\" + urllib.parse.quote(env('CASE_ID'), safe='') + \"/disposition\"\nheaders = {'Authorization': 'Bearer '+env('TOKEN'), 'Accept': 'application/json, application/octet-stream', 'Accept-Encoding': 'identity', 'Idempotency-Key': env('REQUEST_KEY')}\ndata = pathlib.Path('request.json').read_bytes()\nheaders['Content-Type'] = 'application/json'\nrequest = urllib.request.Request(url, data=data, headers=headers, method='POST')\ntry:\n    with urllib.request.build_opener(NoRedirect).open(request, timeout=120) as response:\n        output = pathlib.Path(tempfile.mkdtemp(prefix='ultiwrite-response-', dir='.'))/'response.bin'\n        expected = response.headers.get('Content-Length')\n        if expected is not None and not expected.isdigit(): raise OSError('Invalid response length')\n        count = 0\n        try:\n            with output.open('xb') as target:\n                os.chmod(output, 0o600)\n                while chunk := response.read(65536):\n                    target.write(chunk)\n                    count += len(chunk)\n            if expected is not None and count != int(expected): raise OSError('Incomplete response')\n        except BaseException:\n            output.unlink(missing_ok=True)\n            raise\n        print('Saved response in '+str(output))\nexcept urllib.error.HTTPError as error:\n    raise SystemExit('HTTP '+str(error.code)) from None\n"
+          },
+          {
+            "lang": "java",
+            "label": "Java",
+            "source": "// Single request; no automatic mutation replay. Set TOKEN, CASE_ID, REQUEST_KEY in the process environment. Prepare request.json from the request schema with your real values. Save/resume returned IDs; use the downloadable workflow client for polling, staged uploads and recovery.\n// Java17+, no third-party dependencies for this single request.\nimport java.net.*;\nimport java.net.http.*;\nimport java.nio.file.*;\nimport java.nio.charset.StandardCharsets;\nimport java.time.Duration;\nimport java.io.*;\npublic class RequestExample {\n  static String env(String name) { String v=System.getenv(name); if(v==null||v.isEmpty()) throw new IllegalArgumentException(\"Set \"+name); return v; }\n  static String segment(String value) { return URLEncoder.encode(value,StandardCharsets.UTF_8).replace(\"+\",\"%20\"); }\n  public static void main(String[] args) throws Exception {\n    String url = \"https://dwsoffshorepartners.com/api/v1/cases/\" + segment(env(\"CASE_ID\")) + \"/disposition\";\n    var request = HttpRequest.newBuilder(URI.create(url)).timeout(Duration.ofSeconds(120))\n      .header(\"Authorization\",\"Bearer \"+env(\"TOKEN\")).header(\"Accept\",\"application/json, application/octet-stream\")\n      .header(\"Idempotency-Key\",env(\"REQUEST_KEY\"));\n    request.header(\"Content-Type\",\"application/json\").method(\"POST\",HttpRequest.BodyPublishers.ofFile(Path.of(\"request.json\")));\n    var client=HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(15)).followRedirects(HttpClient.Redirect.NEVER).build();\n    var response=client.send(request.build(),HttpResponse.BodyHandlers.ofInputStream());\n    try(var body=response.body()) {\n      if(response.statusCode()<200||response.statusCode()>=300) throw new IOException(\"HTTP \"+response.statusCode());\n      var directory=Files.createTempDirectory(Path.of(\".\"),\"ultiwrite-response-\");\n      var output=directory.resolve(\"response.bin\");\n      try { Files.copy(body,output); } catch(Exception error) { Files.deleteIfExists(output); throw error; }\n      System.out.println(\"Saved response in \"+output);\n    }\n  }\n}\n"
+          },
+          {
+            "lang": "csharp",
+            "label": "C#/.NET",
+            "source": "// Single request; no automatic mutation replay. Set TOKEN, CASE_ID, REQUEST_KEY in the process environment. Prepare request.json from the request schema with your real values. Save/resume returned IDs; use the downloadable workflow client for polling, staged uploads and recovery.\n// .NET8+ top-level Program.cs\nusing System.Net.Http.Headers;\nstatic string Env(string name) => Environment.GetEnvironmentVariable(name) is { Length: > 0 } value ? value : throw new Exception(\"Set \"+name);\nusing var handler = new HttpClientHandler { AllowAutoRedirect = false };\nusing var client = new HttpClient(handler) { Timeout = TimeSpan.FromSeconds(120) };\nusing var request = new HttpRequestMessage(new HttpMethod(\"POST\"), \"https://dwsoffshorepartners.com/api/v1/cases/\" + Uri.EscapeDataString(Env(\"CASE_ID\")) + \"/disposition\");\nrequest.Headers.Authorization = new AuthenticationHeaderValue(\"Bearer\", Env(\"TOKEN\"));\nrequest.Headers.Accept.ParseAdd(\"application/json, application/octet-stream\");\nrequest.Headers.Add(\"Idempotency-Key\",Env(\"REQUEST_KEY\"));\nrequest.Content = new ByteArrayContent(await File.ReadAllBytesAsync(\"request.json\"));\nrequest.Content.Headers.ContentType = new MediaTypeHeaderValue(\"application/json\");\nusing var response = await client.SendAsync(request,HttpCompletionOption.ResponseHeadersRead);\nif (!response.IsSuccessStatusCode) throw new Exception(\"HTTP \"+(int)response.StatusCode);\nvar directory=Directory.CreateTempSubdirectory(\"ultiwrite-response-\");\nvar output=Path.Combine(directory.FullName,\"response.bin\");\ntry {\n  using var target=new FileStream(output,FileMode.CreateNew,FileAccess.Write,FileShare.None);\n  await response.Content.CopyToAsync(target);\n} catch { File.Delete(output); throw; }\nConsole.WriteLine(\"Saved response in \"+output);\n"
+          },
+          {
+            "lang": "go",
+            "label": "Go",
+            "source": "// Single request; no automatic mutation replay. Set TOKEN, CASE_ID, REQUEST_KEY in the process environment. Prepare request.json from the request schema with your real values. Save/resume returned IDs; use the downloadable workflow client for polling, staged uploads and recovery.\npackage main\nimport (\"fmt\"; \"io\"; \"net/http\"; \"net/url\"; \"os\"; \"strings\"; \"time\")\nvar _ = url.PathEscape\nvar _ = strings.NewReader\nfunc env(name string) string { v:=os.Getenv(name); if v==\"\" { panic(\"Set \"+name) }; return v }\nfunc run() error {\n  endpoint := \"https://dwsoffshorepartners.com/api/v1/cases/\" + url.PathEscape(env(\"CASE_ID\")) + \"/disposition\"\n  var body io.Reader\n  contentType := \"\"\n  data,err:=os.ReadFile(\"request.json\"); if err!=nil{return err}; body=strings.NewReader(string(data)); contentType=\"application/json\"\n  request,err:=http.NewRequest(\"POST\",endpoint,body); if err!=nil{return err}\n  request.GetBody=nil\n  if request.Method!=\"GET\" && request.Method!=\"HEAD\" && (request.Body==nil || request.Body==http.NoBody) {request.Body=io.NopCloser(strings.NewReader(\"\"));request.ContentLength=-1}\n  request.Header.Set(\"Authorization\",\"Bearer \"+env(\"TOKEN\")); request.Header.Set(\"Accept\",\"application/json, application/octet-stream\")\n  request.Header.Set(\"Idempotency-Key\",env(\"REQUEST_KEY\"))\n  if contentType!=\"\" { request.Header.Set(\"Content-Type\",contentType) }\n  client:=&http.Client{Timeout:120*time.Second,CheckRedirect:func(_ *http.Request,_ []*http.Request)error{return http.ErrUseLastResponse}}\n  response,err:=client.Do(request); if err!=nil{return err}; defer response.Body.Close()\n  if response.StatusCode<200||response.StatusCode>=300{return fmt.Errorf(\"HTTP %d\",response.StatusCode)}\n  dir,err:=os.MkdirTemp(\".\",\"ultiwrite-response-\");if err!=nil{return err}\n  target,err:=os.OpenFile(dir+\"/response.bin\",os.O_CREATE|os.O_EXCL|os.O_WRONLY,0600);if err!=nil{return err};defer target.Close()\n  if _,err=io.Copy(target,response.Body);err!=nil{target.Close();os.Remove(dir+\"/response.bin\");return err};fmt.Println(\"Saved response in \"+dir+\"/response.bin\");return nil\n}\nfunc main(){if err:=run();err!=nil{message:=\"Request failed; inspect status and request ID privately\";if strings.HasPrefix(err.Error(),\"HTTP \"){message=err.Error()};fmt.Fprintln(os.Stderr,message);os.Exit(1)}}\n"
+          },
+          {
+            "lang": "php",
+            "label": "PHP",
+            "source": "<?php\n// Single request; no automatic mutation replay. Set TOKEN, CASE_ID, REQUEST_KEY in the process environment. Prepare request.json from the request schema with your real values. Save/resume returned IDs; use the downloadable workflow client for polling, staged uploads and recovery.\nfunction envValue(string $name): string { $v=getenv($name); if($v===false||$v==='') throw new RuntimeException('Set '.$name); return $v; }\n$url = \"https://dwsoffshorepartners.com/api/v1/cases/\" . rawurlencode(envValue('CASE_ID')) . \"/disposition\";\n$headers = ['Authorization: Bearer '.envValue('TOKEN'),'Accept: application/json, application/octet-stream','Idempotency-Key: '.envValue('REQUEST_KEY'),'Content-Type: application/json'];\n$directory='./ultiwrite-response-'.bin2hex(random_bytes(12));\nif(!mkdir($directory,0700)) throw new RuntimeException('Cannot create output directory');\n$output=fopen($directory.'/response.bin','xb');\nif($output===false) throw new RuntimeException('Cannot create output');\nchmod($directory.'/response.bin',0600);\n$curl=curl_init($url);\ncurl_setopt_array($curl,[CURLOPT_CUSTOMREQUEST=>'POST',CURLOPT_HTTPHEADER=>$headers,CURLOPT_FOLLOWLOCATION=>false,CURLOPT_CONNECTTIMEOUT=>15,CURLOPT_TIMEOUT=>120,CURLOPT_FILE=>$output,CURLOPT_PROTOCOLS=>CURLPROTO_HTTPS,CURLOPT_POSTFIELDS=>file_get_contents('request.json')]);\n$ok=curl_exec($curl);$status=curl_getinfo($curl,CURLINFO_HTTP_CODE);\ncurl_close($curl);fclose($output);\nif($ok===false||$status<200||$status>=300){unlink($directory.'/response.bin');throw new RuntimeException('HTTP '.$status);}\necho 'Saved response in '.$directory.'/response.bin'.PHP_EOL;\n"
+          },
+          {
+            "lang": "ruby",
+            "label": "Ruby",
+            "source": "# Single request; no automatic mutation replay. Set TOKEN, CASE_ID, REQUEST_KEY in the process environment. Prepare request.json from the request schema with your real values. Save/resume returned IDs; use the downloadable workflow client for polling, staged uploads and recovery.\nrequire 'net/http'; require 'uri'; require 'securerandom'; require 'tmpdir'\ndef env(name); ENV.fetch(name) { raise 'Set '+name }; end\nuri=URI(\"https://dwsoffshorepartners.com/api/v1/cases/\" + URI.encode_www_form_component(env('CASE_ID')).gsub('+','%20') + \"/disposition\")\nrequest=Net::HTTPGenericRequest.new('POST',true,true,uri.request_uri)\nrequest['Authorization']='Bearer '+env('TOKEN')\nrequest['Accept']='application/json, application/octet-stream'\nrequest['Accept-Encoding']='identity'\nrequest['Idempotency-Key']=env('REQUEST_KEY')\nrequest['Content-Type']='application/json'\nrequest.body=File.binread('request.json')\nhttp=Net::HTTP.new(uri.host,uri.port);http.use_ssl=true;http.open_timeout=15;http.read_timeout=120;http.write_timeout=120;http.max_retries=0\nbegin\n  http.request(request) do |response|\n    raise 'HTTP '+response.code unless response.is_a?(Net::HTTPSuccess)\n    directory=Dir.mktmpdir('ultiwrite-response-','.')\n    expected=response['Content-Length'];count=0\n    raise 'Invalid response length' if expected && !expected.match?(/\\A[0-9]+\\z/)\n    begin\n      File.open(directory+'/response.bin',File::WRONLY|File::CREAT|File::EXCL,0600) do |output|\n        response.read_body { |chunk| output.write(chunk);count+=chunk.bytesize }\n      end\n      raise 'Incomplete response' if expected && count!=expected.to_i\n    rescue Exception\n      File.unlink(directory+'/response.bin') if File.exist?(directory+'/response.bin')\n      raise\n    end\n    puts 'Saved response in '+directory+'/response.bin'\n  end\nensure\n  # No automatic redirects or mutation retries.\nend\n"
           }
         ]
       }
@@ -7046,8 +7557,8 @@
         "tags": [
           "Reports"
         ],
-        "summary": "Report delivery options",
-        "description": "Entitled delivery options for a released report: website report/sign-in/download links, inline CSV when available, and apiDownloads links for Partner API bearer JSON/PDF/CSV/Excel/ZIP artifacts. Website download links retain same-account browser-session authentication. Use apiDownloads with the same Partner API bearer and read scope for automation. Organization export permissions and current publication checks apply; no public or presigned link is created.",
+        "summary": "Report delivery options and complete structured export",
+        "description": "Entitled delivery options for a released report, including Partner bearer apiDownloads for authorized JSON/PDF/CSV/Excel/ZIP artifacts, or the full authorized customer-document JSON with representation=customer_document. Concatenate documentJson in byte-offset order until nextCursor is null, verify serializationDigest over the concatenated UTF-8 bytes, then parse. Follow continuation.href without changing its query. A changed publication returns stale_snapshot; an invalid continuation returns unbound_page without content. Detailed metadata follows the same commercial disclosure as the website. Website links still require the signed-in same-account browser session; apiDownloads require the same Partner bearer and read scope. No public or presigned link is created.",
         "security": [
           {
             "UltiwriteApiKey": []
@@ -7069,6 +7580,49 @@
             "description": "Saved report id (linkedReportId on a case, or reportId in the cases list).",
             "schema": {
               "$ref": "#/components/schemas/ResourceId"
+            }
+          },
+          {
+            "name": "representation",
+            "in": "query",
+            "required": false,
+            "description": "Use customer_document for the complete authorized commercial document, or document_forensics for the source-bound structured companion authorized by the committed investigation entitlement. Both return UTF-8 frames. Without it, returns delivery options.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "customer_document",
+                "document_forensics"
+              ]
+            }
+          },
+          {
+            "name": "documentCursor",
+            "in": "query",
+            "required": false,
+            "description": "UTF-8 byte offset from the previous frame. Start at zero or omit. Follow continuation.href exactly.",
+            "schema": {
+              "type": "string",
+              "pattern": "^[0-9]{1,16}$"
+            }
+          },
+          {
+            "name": "snapshot",
+            "in": "query",
+            "required": false,
+            "description": "Publication snapshot returned by the previous frame. Required after offset zero.",
+            "schema": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            }
+          },
+          {
+            "name": "pageToken",
+            "in": "query",
+            "required": false,
+            "description": "Opaque token returned by the previous frame, bound to the account, credential family, report, snapshot and byte position. Required after offset zero.",
+            "schema": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_-]{8,2000}\\.[A-Za-z0-9_-]{20,200}$"
             }
           }
         ],
@@ -9004,7 +9558,7 @@
             "refreshUrl": "https://dwsoffshorepartners.com/api/integrations/ultiwrite/oauth/token",
             "scopes": {
               "ultiwrite:read": "Read cases, status, released reports, Decision Briefs and delivery options in the authorized organization.",
-              "ultiwrite:evidence": "Submit authorized evidence for analysis in the authorized organization.",
+              "ultiwrite:evidence": "Submit authorized evidence for analysis and record audited case dispositions in the authorized organization.",
               "ultiwrite:checkout": "Optional, explicitly approved permission to create account-bound Stripe Checkout links and verify their status. The user reviews and approves each payment in Stripe; ordinary dashboard API keys do not have this permission."
             }
           }
@@ -9342,8 +9896,9 @@
         "properties": {
           "url": {
             "type": "string",
-            "maxLength": 500,
-            "format": "uri"
+            "maxLength": 2048,
+            "format": "uri",
+            "description": "Standard destinations must be query-free and at most 500 characters. power_platform accepts a callback SAS query only under the explicit profile; the query is encrypted at rest and never returned by list/create views."
           },
           "events": {
             "type": "array",
@@ -9361,6 +9916,15 @@
                 "report.available"
               ]
             }
+          },
+          "profile": {
+            "type": "string",
+            "enum": [
+              "standard",
+              "power_platform"
+            ],
+            "default": "standard",
+            "description": "standard preserves the query-free generic webhook boundary. power_platform admits the supplied callback query as an encrypted destination credential. This caller assertion does not attest that Microsoft issued the URL; use it only with the callback injected by the managed trigger."
           }
         }
       },
@@ -9380,7 +9944,8 @@
             "type": "string"
           },
           "url": {
-            "type": "string"
+            "type": "string",
+            "description": "Query-free destination view. A Power Platform callback SAS query is encrypted and never returned."
           },
           "events": {
             "type": "array",
@@ -10001,6 +10566,10 @@
           "workflowStatus",
           "storedWorkflowStatus",
           "linkedReportId",
+          "currentDisposition",
+          "dispositionStanding",
+          "currentDispositionAssessment",
+          "dispositionMeaning",
           "conclusion",
           "completeness",
           "contentTrust"
@@ -10129,6 +10698,76 @@
           "link": {
             "type": "string"
           },
+          "currentDisposition": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Current saved Case.disposition. Customer/workflow state, not an assessment rewrite or verified outcome."
+          },
+          "dispositionStanding": {
+            "type": "string",
+            "enum": [
+              "recorded_case_state",
+              "not_recorded"
+            ]
+          },
+          "currentDispositionAssessment": {
+            "type": [
+              "object",
+              "null"
+            ],
+            "additionalProperties": false,
+            "required": [
+              "reportId",
+              "documentVersion",
+              "documentDigest",
+              "publicationRevision",
+              "identitySource"
+            ],
+            "properties": {
+              "reportId": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "documentVersion": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "documentDigest": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "pattern": "^[a-f0-9]{64}$"
+              },
+              "publicationRevision": {
+                "type": [
+                  "integer",
+                  "null"
+                ],
+                "minimum": 0
+              },
+              "identitySource": {
+                "type": "string",
+                "enum": [
+                  "not_linked",
+                  "frozen_customer_document",
+                  "report_publication",
+                  "report_link_only",
+                  "legacy_receipt_unbound"
+                ]
+              }
+            },
+            "description": "Exact saved assessment identity captured by the latest matching typed disposition receipt. Null when no bound typed receipt was recovered."
+          },
+          "dispositionMeaning": {
+            "type": "string"
+          },
           "updatedAt": {
             "type": "string"
           },
@@ -10143,6 +10782,372 @@
           },
           "completeness": {
             "type": "object"
+          },
+          "meaning": {
+            "type": "string"
+          }
+        }
+      },
+      "CaseDispositionRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "kind",
+          "basis"
+        ],
+        "properties": {
+          "kind": {
+            "type": "string",
+            "enum": [
+              "resolved_by_new_evidence",
+              "explanation_accepted",
+              "uncertainty_accepted",
+              "deferred",
+              "duplicate_or_superseded",
+              "disputed",
+              "no_further_action"
+            ]
+          },
+          "basis": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 2000,
+            "description": "Concise customer basis for the disposition. It remains a supplied judgment, not a rewritten report observation."
+          },
+          "evidenceReferences": {
+            "type": "array",
+            "maxItems": 20,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 240
+            },
+            "default": []
+          },
+          "deferUntil": {
+            "type": "string",
+            "maxLength": 80,
+            "description": "For deferred only: ISO 8601 date or date-time with explicit time zone."
+          },
+          "deferUntilEvent": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500,
+            "description": "For deferred only: a meaningful event that should trigger reconsideration."
+          }
+        },
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "kind": {
+                  "const": "resolved_by_new_evidence"
+                }
+              },
+              "required": [
+                "kind"
+              ]
+            },
+            "then": {
+              "properties": {
+                "evidenceReferences": {
+                  "minItems": 1
+                }
+              },
+              "required": [
+                "evidenceReferences"
+              ]
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "kind": {
+                  "const": "deferred"
+                }
+              },
+              "required": [
+                "kind"
+              ]
+            },
+            "then": {
+              "anyOf": [
+                {
+                  "required": [
+                    "deferUntil"
+                  ]
+                },
+                {
+                  "required": [
+                    "deferUntilEvent"
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "if": {
+              "not": {
+                "properties": {
+                  "kind": {
+                    "const": "deferred"
+                  }
+                },
+                "required": [
+                  "kind"
+                ]
+              }
+            },
+            "then": {
+              "not": {
+                "anyOf": [
+                  {
+                    "required": [
+                      "deferUntil"
+                    ]
+                  },
+                  {
+                    "required": [
+                      "deferUntilEvent"
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      },
+      "CaseDispositionReceipt": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "version",
+          "caseId",
+          "disposition",
+          "recordedCaseDisposition",
+          "storedCaseStatusAtRecord",
+          "audit",
+          "assessment",
+          "separation",
+          "replayed",
+          "contentTrust",
+          "instructionBoundary",
+          "meaning"
+        ],
+        "properties": {
+          "version": {
+            "type": "string",
+            "const": "case-disposition@1"
+          },
+          "caseId": {
+            "type": "string"
+          },
+          "disposition": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "kind",
+              "basis",
+              "evidenceReferences",
+              "deferUntil",
+              "deferUntilEvent"
+            ],
+            "properties": {
+              "kind": {
+                "type": "string",
+                "enum": [
+                  "resolved_by_new_evidence",
+                  "explanation_accepted",
+                  "uncertainty_accepted",
+                  "deferred",
+                  "duplicate_or_superseded",
+                  "disputed",
+                  "no_further_action"
+                ]
+              },
+              "basis": {
+                "type": "string"
+              },
+              "evidenceReferences": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "deferUntil": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "deferUntilEvent": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            }
+          },
+          "recordedCaseDisposition": {
+            "type": "string"
+          },
+          "storedCaseStatusAtRecord": {
+            "type": "string",
+            "description": "The existing Case.status at record time. This operation never changes it."
+          },
+          "audit": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "eventId",
+              "action",
+              "storageAction",
+              "recordedAt",
+              "immutable"
+            ],
+            "properties": {
+              "eventId": {
+                "type": "string"
+              },
+              "action": {
+                "type": "string",
+                "const": "case.disposition.recorded"
+              },
+              "storageAction": {
+                "type": "string",
+                "pattern": "^case\\.disposition:[A-Za-z0-9_-]{16,128}$",
+                "description": "Exact immutable CaseAuditEvent action used for idempotent receipt recovery."
+              },
+              "recordedAt": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "immutable": {
+                "type": "boolean",
+                "const": true
+              }
+            }
+          },
+          "assessment": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "reportId",
+              "documentVersion",
+              "documentDigest",
+              "publicationRevision",
+              "identitySource",
+              "reportWasLinked",
+              "changed",
+              "meaning"
+            ],
+            "properties": {
+              "reportId": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "documentVersion": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "documentDigest": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "pattern": "^[a-f0-9]{64}$"
+              },
+              "publicationRevision": {
+                "type": [
+                  "integer",
+                  "null"
+                ],
+                "minimum": 0
+              },
+              "identitySource": {
+                "type": "string",
+                "enum": [
+                  "not_linked",
+                  "frozen_customer_document",
+                  "report_publication",
+                  "report_link_only",
+                  "legacy_receipt_unbound"
+                ]
+              },
+              "reportWasLinked": {
+                "type": "boolean"
+              },
+              "changed": {
+                "type": "boolean",
+                "const": false
+              },
+              "meaning": {
+                "type": "string"
+              }
+            }
+          },
+          "separation": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "analysisCompletion",
+              "notificationDelivery",
+              "recipientAcknowledgement",
+              "ownershipAcceptance",
+              "taskCompletion",
+              "workflowClosure",
+              "underlyingConditionChange",
+              "observedOutcome"
+            ],
+            "properties": {
+              "analysisCompletion": {
+                "type": "string",
+                "const": "unchanged"
+              },
+              "notificationDelivery": {
+                "type": "string",
+                "const": "not_recorded"
+              },
+              "recipientAcknowledgement": {
+                "type": "string",
+                "const": "not_recorded"
+              },
+              "ownershipAcceptance": {
+                "type": "string",
+                "const": "not_recorded"
+              },
+              "taskCompletion": {
+                "type": "string",
+                "const": "not_recorded"
+              },
+              "workflowClosure": {
+                "type": "string",
+                "const": "not_recorded"
+              },
+              "underlyingConditionChange": {
+                "type": "string",
+                "const": "not_inferred"
+              },
+              "observedOutcome": {
+                "type": "string",
+                "const": "not_recorded"
+              }
+            }
+          },
+          "replayed": {
+            "type": "boolean"
+          },
+          "contentTrust": {
+            "type": "string",
+            "const": "untrusted_customer_record"
+          },
+          "instructionBoundary": {
+            "type": "string"
           },
           "meaning": {
             "type": "string"
@@ -10439,7 +11444,383 @@
               "object",
               "null"
             ],
-            "description": "Authorized customer document when a report page was returned. savedDecision is the published label, not a stored favorable sentence. Null when the report was not returned."
+            "description": "Authorized customer document when a report page was returned. savedDecision is the published label, not a stored favorable sentence. Null when the report was not returned.",
+            "additionalProperties": true,
+            "properties": {
+              "findings": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "properties": {
+                    "requirementAssessment": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "required": [
+                        "version",
+                        "requirementId",
+                        "authority",
+                        "authorityVersion",
+                        "scope",
+                        "subject",
+                        "applicability",
+                        "baseApplicability",
+                        "exceptionApplicability",
+                        "effectiveApplicability",
+                        "satisfaction",
+                        "test",
+                        "qualifiers",
+                        "observationCompleteness",
+                        "exception",
+                        "source",
+                        "evidence",
+                        "evidenceTotal",
+                        "evidenceOmitted",
+                        "sourceDependence"
+                      ],
+                      "properties": {
+                        "version": {
+                          "type": "string",
+                          "const": "customer-requirement-applicability@1"
+                        },
+                        "requirementId": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "authority": {
+                          "type": "string",
+                          "enum": [
+                            "customer_policy",
+                            "contract",
+                            "portfolio_mandate",
+                            "evidence_standard"
+                          ]
+                        },
+                        "authorityVersion": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "scope": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "subject": {
+                          "type": [
+                            "object",
+                            "null"
+                          ],
+                          "additionalProperties": false,
+                          "required": [
+                            "namespace",
+                            "id"
+                          ],
+                          "properties": {
+                            "namespace": {
+                              "type": "string",
+                              "enum": [
+                                "entityId",
+                                "merchantId",
+                                "economicActivityId"
+                              ]
+                            },
+                            "id": {
+                              "type": "string",
+                              "minLength": 1
+                            }
+                          }
+                        },
+                        "applicability": {
+                          "type": "string",
+                          "enum": [
+                            "applies",
+                            "not_applicable",
+                            "unknown"
+                          ],
+                          "description": "Compatibility alias for effectiveApplicability."
+                        },
+                        "baseApplicability": {
+                          "type": "string",
+                          "enum": [
+                            "applies",
+                            "not_applicable",
+                            "unknown"
+                          ]
+                        },
+                        "exceptionApplicability": {
+                          "type": "string",
+                          "enum": [
+                            "applies",
+                            "not_applicable",
+                            "unknown",
+                            "not_stated"
+                          ]
+                        },
+                        "effectiveApplicability": {
+                          "type": "string",
+                          "enum": [
+                            "applies",
+                            "not_applicable",
+                            "unknown"
+                          ]
+                        },
+                        "satisfaction": {
+                          "type": "string",
+                          "enum": [
+                            "satisfied",
+                            "not_satisfied",
+                            "ambiguous",
+                            "unknown",
+                            "not_assessed"
+                          ]
+                        },
+                        "test": {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "field",
+                            "operator",
+                            "expected"
+                          ],
+                          "properties": {
+                            "field": {
+                              "type": "string",
+                              "minLength": 1
+                            },
+                            "operator": {
+                              "type": "string",
+                              "enum": [
+                                "equals",
+                                "not_equals",
+                                "contains",
+                                "gte",
+                                "lte",
+                                "present",
+                                "absent",
+                                "one_of"
+                              ]
+                            },
+                            "expected": {
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            }
+                          }
+                        },
+                        "qualifiers": {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "currency",
+                            "measurementUnit",
+                            "periodStart",
+                            "periodEnd",
+                            "populationId",
+                            "accountingDefinition"
+                          ],
+                          "properties": {
+                            "currency": {
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            },
+                            "measurementUnit": {
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            },
+                            "periodStart": {
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            },
+                            "periodEnd": {
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            },
+                            "populationId": {
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            },
+                            "accountingDefinition": {
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            }
+                          }
+                        },
+                        "observationCompleteness": {
+                          "type": "string",
+                          "enum": [
+                            "complete",
+                            "partial",
+                            "unknown"
+                          ]
+                        },
+                        "exception": {
+                          "type": [
+                            "object",
+                            "null"
+                          ],
+                          "additionalProperties": false,
+                          "required": [
+                            "state",
+                            "explanation"
+                          ],
+                          "properties": {
+                            "state": {
+                              "type": "string",
+                              "enum": [
+                                "applies",
+                                "not_applicable",
+                                "unknown"
+                              ]
+                            },
+                            "explanation": {
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            }
+                          }
+                        },
+                        "source": {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "referenceId",
+                            "artifactId",
+                            "sha256",
+                            "sheetName",
+                            "rowNumber"
+                          ],
+                          "properties": {
+                            "referenceId": {
+                              "type": "string",
+                              "pattern": "^requirement-source:[a-f0-9]{24}$"
+                            },
+                            "artifactId": {
+                              "type": "string",
+                              "minLength": 1
+                            },
+                            "sha256": {
+                              "type": "string",
+                              "pattern": "^[a-f0-9]{64}$"
+                            },
+                            "sheetName": {
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            },
+                            "rowNumber": {
+                              "type": [
+                                "integer",
+                                "null"
+                              ],
+                              "minimum": 1
+                            }
+                          }
+                        },
+                        "evidence": {
+                          "type": "array",
+                          "maxItems": 200,
+                          "items": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "required": [
+                              "referenceId",
+                              "artifactId",
+                              "field",
+                              "sheetName",
+                              "rowNumber",
+                              "standing"
+                            ],
+                            "properties": {
+                              "referenceId": {
+                                "type": "string",
+                                "pattern": "^requirement-evidence:[a-f0-9]{24}$"
+                              },
+                              "artifactId": {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              "field": {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              "sheetName": {
+                                "type": [
+                                  "string",
+                                  "null"
+                                ]
+                              },
+                              "rowNumber": {
+                                "type": [
+                                  "integer",
+                                  "null"
+                                ],
+                                "minimum": 1
+                              },
+                              "standing": {
+                                "type": "string",
+                                "enum": [
+                                  "parsed_record",
+                                  "ocr_derived",
+                                  "filename",
+                                  "declared",
+                                  "forensic_observation",
+                                  "operator_override"
+                                ]
+                              }
+                            }
+                          }
+                        },
+                        "evidenceTotal": {
+                          "type": "integer",
+                          "minimum": 0
+                        },
+                        "evidenceOmitted": {
+                          "type": "integer",
+                          "minimum": 0
+                        },
+                        "sourceDependence": {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "artifactCount",
+                            "recordCount",
+                            "note"
+                          ],
+                          "properties": {
+                            "artifactCount": {
+                              "type": "integer",
+                              "minimum": 0
+                            },
+                            "recordCount": {
+                              "type": "integer",
+                              "minimum": 0
+                            },
+                            "note": {
+                              "type": "string",
+                              "minLength": 1
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
           },
           "completeness": {
             "type": "object",
@@ -11148,6 +12529,97 @@
           "reportId": {
             "type": "string"
           },
+          "documentVersion": {
+            "type": "string",
+            "description": "Version of the frozen parent customer document."
+          },
+          "digest": {
+            "type": "string",
+            "description": "Digest of the frozen parent. Verify serializationDigest for the returned representation bytes."
+          },
+          "representation": {
+            "type": "string",
+            "enum": [
+              "customer_document",
+              "document_forensics"
+            ]
+          },
+          "representationKind": {
+            "type": "string",
+            "enum": [
+              "canonical_customer_document",
+              "commercial_metadata_projection",
+              "entitled_document_forensics"
+            ]
+          },
+          "snapshot": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "state": {
+            "type": "string",
+            "description": "Present when no content is returned, including stale_snapshot, unbound_page, continuation_unavailable or publication_withheld. Restart stale publications at byte zero."
+          },
+          "serializationDigest": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$",
+            "description": "SHA-256 over all concatenated documentJson UTF-8 bytes."
+          },
+          "serializationDigestAlgorithm": {
+            "type": "string",
+            "const": "sha256"
+          },
+          "encoding": {
+            "type": "string",
+            "const": "utf-8"
+          },
+          "cursorUnit": {
+            "type": "string",
+            "const": "utf8_bytes"
+          },
+          "offset": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "returnedBytes": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "totalBytes": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "documentJson": {
+            "type": "string",
+            "description": "One bounded UTF-8 frame. Concatenate in offset order; parse only after nextCursor is null and serializationDigest verifies."
+          },
+          "nextCursor": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "pageToken": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "continuation": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/GetLink"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "customerDocumentRecovery": {
+            "$ref": "#/components/schemas/GetLink"
+          },
           "bytes": {
             "type": "null"
           },
@@ -11201,6 +12673,7 @@
       },
       "CreateCaseForm": {
         "type": "object",
+        "additionalProperties": false,
         "required": [
           "files"
         ],
@@ -11213,7 +12686,17 @@
               "type": "string",
               "contentMediaType": "application/octet-stream"
             },
-            "description": "1 to 6 files, each at most 8388608 bytes and 12582912 bytes together. Accepted formats are PDF, DOCX, XLSX/XLS/XLSM, CSV/TSV, JSON, TXT/MD, PNG/JPG/JPEG/TIF/TIFF/WEBP/GIF and ZIP evidence packages; HTML/XML markup, gzip, tar, 7z and RAR are refused. The engine classifies every file."
+            "description": "Ordinary evidence files. Send 1 to 6 files total across files and requirementFiles, each at most 8388608 bytes and 12582912 bytes together. Accepted formats are PDF, DOCX, XLSX/XLS/XLSM, CSV/TSV, JSON, TXT/MD, PNG/JPG/JPEG/TIF/TIFF/WEBP/GIF and ZIP evidence packages; HTML/XML markup, gzip, tar, 7z and RAR are refused. The engine classifies every file."
+          },
+          "requirementFiles": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 6,
+            "items": {
+              "type": "string",
+              "contentMediaType": "application/octet-stream"
+            },
+            "description": "Optional customer-supplied requirement sets, policy criteria, contracts, or evidence standards. This role preserves supplied standing and does not make file text binding law or independently verified fact. The combined files and requirementFiles count is at most 6."
           },
           "documentForensics": {
             "type": "string",
