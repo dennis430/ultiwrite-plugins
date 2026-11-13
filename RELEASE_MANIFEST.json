@@ -4,8 +4,8 @@
   "version": "0.10.0",
   "publisher": "DWS Offshore Fund",
   "source_repository": "dennis430/merchant-risk-app",
-  "source_base_commit": "112609eccd8cc071d17cb07babc51aab49114756",
-  "public_source_base_commit": "073d9fa9b3dc6f0df6664421979f30e19d5188a6",
+  "source_base_commit": "847449659c507180e46b7333bb33b6a139cc4a79",
+  "public_source_base_commit": null,
   "package_status": "PREPARED",
   "host_evaluation_status": "NOT_RUN",
   "directory_publication_status": "NOT_VERIFIED_BY_THIS_EXPORT",
@@ -19,9 +19,9 @@
   "compatibility_mcp_url": "https://dwsoffshorepartners.com/api/integrations/ultiwrite/mcp",
   "packages": {
     "hosts": {
-      "version": "0.10.1",
-      "zip": "release/ultiwrite-host-adapters-0.10.1.zip",
-      "status": "prepared; host acceptance skipped by owner"
+      "version": "0.11.0",
+      "zip": "release/ultiwrite-host-adapters-0.11.0.zip",
+      "status": "prepared; native host acceptance not run"
     },
     "chatgpt": {
       "version": "0.10.0",
@@ -50,11 +50,11 @@
   "files": [
     {
       "path": ".claude-plugin/marketplace.json",
-      "sha256": "72e1d0c899cc7f67c092e00a3de27b5398882f716e19dfba3cfd37f90434e5f5"
+      "sha256": "479ce79dfec82c54f5307db5d3ad938ce330e6f4c93c4724f51be5290aace9c4"
     },
     {
       "path": ".cursor-plugin/marketplace.json",
-      "sha256": "9192b32e3c382ccbb4d49d11b528e72df0e3e86cfc7dcc6eb4fdf61ba70f6db8"
+      "sha256": "4a6079758f9b7bb4bb4e097124cd93548a985a66ca8fbdcd2516f179d3c84f12"
     },
     {
       "path": ".github/workflows/validate.yml",
@@ -62,7 +62,7 @@
     },
     {
       "path": ".gitignore",
-      "sha256": "15a13682fdb25d5ce510c4b037554459df6073e66daaab39cb5a9a192fd5900d"
+      "sha256": "5f70ee8df0ba474922bf182b542b64c5ec1d67f1c90085cbb97b786cb8f3c775"
     },
     {
       "path": ".mintignore",
@@ -90,15 +90,15 @@
     },
     {
       "path": "README.md",
-      "sha256": "53a848399a5551a278ffd11a4f90704d24640c0da2f4fb372e456cc750286d97"
+      "sha256": "b840dcb14b8acb9e85306fb0fcd760af77d105308cebb22e111e4da38fd16c67"
     },
     {
       "path": "api-contract.mdx",
-      "sha256": "938d89691d16389a527bc06b547bd16bc052b67345f39df38bb8c960fecc2de4"
+      "sha256": "d378ed3e018cf450619f63f1f4ed8a6e477f9d8affcad7c7bb86d1694be9bb84"
     },
     {
       "path": "api-keys.mdx",
-      "sha256": "a9fe304037382c8ba71202bb5a49dfaf70a3c323fec0b559822a6a45ba9632ae"
+      "sha256": "093dcbe8bd4a2ebf683aa0964afbfa39d4b7a16fa28b406555c5fda211ab20e4"
     },
     {
       "path": "api-reference/account.mdx",
@@ -438,7 +438,7 @@
     },
     {
       "path": "hosts/README.md",
-      "sha256": "6298a957c8dee5456185febd34edb3eca8ae2dcf9f164f8848451bfea6ded957"
+      "sha256": "cc4ef98e1696fc98065e990f3bc9e674b4278acca95f6c1c8bc12fdcbc31469b"
     },
     {
       "path": "hosts/catalog.json",
@@ -513,6 +513,26 @@
       "sha256": "e9dfd0fde3654abb731d6dab3a8b960aacfe4d06014094e389f260973cdcdd7c"
     },
     {
+      "path": "hosts/emdash.md",
+      "sha256": "e6863cb6bbc2a61ea3ebf004bca4b4e6707b1120252bab507185360cb972c8d8"
+    },
+    {
+      "path": "hosts/enterprise/README.md",
+      "sha256": "8deecd188c3a2446e92de44b911965705ab4f0339302c699b2d6f90bb26464d0"
+    },
+    {
+      "path": "hosts/enterprise/acceptance.md",
+      "sha256": "d907f0367473fb021ab096ba8aebba093bf2c6950f23af2bf6d0cd2a0967314f"
+    },
+    {
+      "path": "hosts/enterprise/operations.md",
+      "sha256": "7cb82c6bf4345abf3a0d5a34dc9c3f6137d7a125436e3dc35321134e25026f27"
+    },
+    {
+      "path": "hosts/enterprise/security.md",
+      "sha256": "7c4535f3af364038defb2deea8a97f3a6e1b92090379e5f177f714107e96f495"
+    },
+    {
       "path": "hosts/examples/responses.mjs",
       "sha256": "ee31b6fa2fe2a27c056d345130e85ca47fc9b85101fcbacb3f2835fd9d6624e3"
     },
@@ -522,7 +542,7 @@
     },
     {
       "path": "hosts/matrix.json",
-      "sha256": "bb3553636ebf358849edf0d48eef5a23d847060a4ee80ba4d09e49a0c15967d7"
+      "sha256": "b724490089da77d71a458d15a2935e6b8d8987ad061f688cddf21966be2b1386"
     },
     {
       "path": "hosts/mistral.md",
@@ -530,11 +550,23 @@
     },
     {
       "path": "hosts/muse.md",
-      "sha256": "524c3ccbf31a52aeb19563a9ebe9a5326e65bba30694ba2851eb9bf5dc57b365"
+      "sha256": "e2b69c8aafb63f0b6cea39b0211bccf82299ff2b4609936adada1ad59c639a2c"
+    },
+    {
+      "path": "hosts/submissions/README.md",
+      "sha256": "7d4ddf803601744bf25ea68141e0c82d191c0efebe75a2b9b8cfa7181c7e28eb"
+    },
+    {
+      "path": "hosts/submissions/profiles.json",
+      "sha256": "a9cf9178b95ba353726249c4af75cc6dd8212bab9afe6be4121f658480437447"
+    },
+    {
+      "path": "hosts/submissions/reviewer-scenarios.md",
+      "sha256": "dd884de1726e2c9a89cf660f04ffaf364e7329d2005ad6c6fa8d4775f30f7b6a"
     },
     {
       "path": "index.mdx",
-      "sha256": "d587b5221e9702aad1926836155506aabd92d8d30261143ac1b00654e484156b"
+      "sha256": "8a5b773c827243bab0b67693e4ac80d42bdf59766273be51169433de4e031166"
     },
     {
       "path": "partner-api/authentication.mdx",
@@ -546,7 +578,7 @@
     },
     {
       "path": "partner-api/integration-checklist.mdx",
-      "sha256": "3aee3f293c8f21eb544c9e4252d28ee9b37a30d047bf50454537891bb7dc52aa"
+      "sha256": "94132dc79651ec1e70fa22ab301d8c9ef73f020410308d4aac6d676a7bd82435"
     },
     {
       "path": "partner-api/overview.mdx",
@@ -554,7 +586,7 @@
     },
     {
       "path": "partner-api/results.mdx",
-      "sha256": "1f0d5783ab66020ab0864620229536538873e481a311d5918d667aea1f714bae"
+      "sha256": "a670fab3f61cd4c31ce73e491d98ded65abb5fb688aa2e915523013057783cb6"
     },
     {
       "path": "partner-api/uploads.mdx",
@@ -570,7 +602,7 @@
     },
     {
       "path": "quickstart.mdx",
-      "sha256": "bac3abdbd48e2f54977c0981079baad16d9601c518cd648228e0c7f47396ad42"
+      "sha256": "ee90077c3bcb6d5a1203cf981e74368cee9ca3d45f383a5c2664b87a1f14e1d6"
     },
     {
       "path": "release/CLAUDE_0.8.3_AUTH_VERIFICATION.json",
@@ -586,7 +618,7 @@
     },
     {
       "path": "release/INVENTORY.json",
-      "sha256": "52dedb08b39c437e4c6bc99f481315a4a32f8361f0ad25505298d2b5879aaac0"
+      "sha256": "41b9d3fdee7954bd93924ddf0676a88b9625c0bb4871a7c5e83a9fa143af584f"
     },
     {
       "path": "release/PLUGIN_0.9.1_LIVE_RECEIPT.json",
@@ -618,7 +650,7 @@
     },
     {
       "path": "release/SHA256SUMS.txt",
-      "sha256": "9705befe43a91180d11463b5e8fad96d79e43a7a167a6d431b7e56a641136b79"
+      "sha256": "ebad23e5854364774de5ac9489d768318735a109a6aea3a9484fae56e98597df"
     },
     {
       "path": "release/Ultiwrite_Claude_Plugin_v0.10.0.zip",
@@ -721,16 +753,20 @@
       "sha256": "b89733750567de78228a5a4d13b2cdf7bfc9000fea88acb1c40cae5f65c13fc5"
     },
     {
+      "path": "release/ultiwrite-host-adapters-0.11.0.zip",
+      "sha256": "c0a7044e6e3f3b1c08a6b447ed9e51bfc2751d40ec4600e3c5bfe6dbcd6fdbc4"
+    },
+    {
       "path": "scripts/pack-public-connectors.mjs",
-      "sha256": "4fa6cf85f434bc78709fcb01e5dd683b83c056c9cffe4c261545b499c8ee3217"
+      "sha256": "fc3b7bbc6ef1d60b63f72070ea3ac294ad0d825c2dc80c859b10c7d27b49717d"
     },
     {
       "path": "scripts/test/release.test.mjs",
-      "sha256": "59c4d7ebf8dfb8fbeff38767a4b3a31e903c40689eeca428bce87e386d592298"
+      "sha256": "059fdfed3b44db3238f6fea0ade424d388838c08182b464c032da2a6243d0b28"
     },
     {
       "path": "scripts/validate-public-plugins.mjs",
-      "sha256": "c525e69bb9f6db793d1aa237f57099e24561f38771452a36ebfa5a3af90eb931"
+      "sha256": "340e71c2f8348e09afc65187645332cf8946ba106d732a14e5f3dd9eabbc0bf0"
     },
     {
       "path": "server.draft.json",

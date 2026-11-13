@@ -6,9 +6,9 @@ keywords: ["Ultiwrite API keys", "Unkey", "API approval"]
 canonical: "https://dwsoffshorepartners.com/docs/developers/api-keys"
 ---
 
-Use a dashboard API key to call the Ultiwrite Partner API from your server. It uses the same account, evidence workflow, saved reports and analysis credits as the website.
+# Ultiwrite API keys
 
-This page mirrors the [native API key guide](https://dwsoffshorepartners.com/docs/developers/api-keys). Both documentation sites describe the same account approval, key management and request allowances.
+Use a dashboard API key to call the Ultiwrite Partner API from your server. It uses the same account, evidence workflow, saved reports and analysis credits as the website.
 
 - API base: `https://dwsoffshorepartners.com/api/v1`
 - Key management: [Dashboard → API access](https://dwsoffshorepartners.com/settings/api)
@@ -24,14 +24,16 @@ API access is visible in the dashboard and the **Enterprise & custom pricing** b
 
 1. Sign in and open [Enterprise & custom pricing in your customer dashboard](https://dwsoffshorepartners.com/dashboard#custom-pricing). Use **Request API access** and submit the form there; this is the only customer API-access request intake. The documentation and access-status page remain available before approval.
 2. After approval, open **API access** again. Your monthly request allowance, usage, remaining requests, reset date and requests per minute appear here.
-3. Give the key a recognizable name such as “CRM production,” select an expiration and choose **Create key**.
+3. Give the key a recognizable name such as “CRM production,” select its read-only or investigator role, expiration and optional per-key request caps, then choose **Create key**.
 4. Copy the key immediately into your application's server secret store. It is displayed only once.
 
 Keys start with `ultiwrite_live_`. The default expiration is 90 days. The dashboard offers 30, 90 or 365 days; the server accepts 1–365 days. Up to five unexpired active keys or pending creations are permitted per account. These defaults do not imply API approval.
 
 If creation reports an unknown outcome, refresh the list before trying again. A pending creation must be resolved or revoked before creating a replacement. A key created during a lost response cannot be displayed again; revoke it and issue a replacement. The list shows safe metadata, never the full credential.
 
-All keys created through the dashboard receive `ultiwrite:read` and `ultiwrite:evidence`. Customers cannot choose another account, user, permission set or request limit when creating a key. The server derives those values from the signed-in account and its saved policy.
+Keys have a selectable, immutable role: **read_only** grants `ultiwrite:read`; **investigator** grants `ultiwrite:read` and `ultiwrite:evidence`. The UI defaults to read only. For backward compatibility, API clients that omit role retain investigator. Customers can set lower per-key monthly/per-minute request caps but cannot choose another account/user, grant API approval, raise account ceilings or obtain checkout/admin permissions. To change a key role, issue a replacement and revoke the old key.
+
+Optional `monthlyRequestLimit` is null (no extra key cap) or an integer 0–10,000,000; zero pauses that key. Optional `requestsPerMinute` is null or an integer 1–10,000. Effective admission also applies account and platform ceilings. Edit name and these caps through the key’s dashboard controls without changing its secret; usage is preserved. The safe list includes role, scopes, caps and `usedThisMonth`. Key-specific attribution starts with migration `20261113170000_partner_key_controls`; older historical request events cannot be retrospectively attributed to a key. See [enterprise access and limits](https://dwsoffshorepartners.com/docs/enterprise/access-and-limits).
 
 ## 2. Make the first request
 
@@ -73,7 +75,7 @@ This is an illustrative `apiRequests` object, not a live account balance. The ac
 
 All keys **and Partner API OAuth grants** share the account's request allowance. Creating or rotating a key does not reset it. Requests rejected during authentication, approval, rate, concurrency or quota checks are not admitted and do not spend a request.
 
-Limits default to 1,000 requests per UTC calendar month and 60 requests per minute. Your administrator can change both. A limit change preserves usage already recorded; lowering a limit below usage blocks further requests until the allowance increases or resets. A monthly allowance of zero blocks all Partner API calls, including `/usage`; use the dashboard to view the balance.
+Account limits default to 1,000 requests per UTC calendar month and 60 requests per minute. Your administrator can change both. Customer key caps add a lower service-specific ceiling and never increase the shared account pool. A limit change preserves usage already recorded; lowering a limit below usage blocks further requests until the allowance increases or resets. A monthly allowance of zero blocks all Partner API calls, including `/usage`; use the dashboard to view the balance.
 
 After admission, responses include:
 
@@ -137,7 +139,7 @@ curl --fail-with-body -sS "$ULTIWRITE_API_BASE/reports/$ULTIWRITE_REPORT_ID/expo
   -H "Authorization: Bearer $ULTIWRITE_API_KEY"
 ```
 
-Status reads do not advance processing. Follow the returned continuation and next action, use bounded polling and honor `Retry-After`. Read paginated findings using the response's snapshot, page token and cursors; do not manufacture them. Export returns account-authenticated delivery links and entitled inline data. An API key does not authenticate the website's PDF, Excel or ZIP download routes; sign in to the same account for those downloads.
+Status reads do not advance processing. Follow the returned continuation and next action, use bounded polling and honor `Retry-After`. Read paginated findings using the response's snapshot, page token and cursors; do not manufacture them. Export returns both account-authenticated website links and an `apiDownloads` map. Follow the Partner API `/reports/{reportId}/artifacts/{artifact}` paths with your API bearer for entitled JSON/PDF/CSV/XLSX/ZIP files. Read-only scope is sufficient and normal account approval, quotas and report/format entitlements still apply. Website download paths keep their signed-in browser-session boundary; the bearer path does not mint public report links.
 
 A complete workflow means a report was saved. It does not mean an opportunity was approved or that missing evidence was clear.
 
@@ -160,7 +162,8 @@ Responses use `{"error":{"code":"…","message":"…","requestId":"…"}}`.
 | `403 api_access_denied` | Request explicit administrator approval |
 | `403 insufficient_scope` | Use a credential with the required permissions |
 | `429 api_quota_exceeded` | Check dashboard usage; wait for the UTC monthly reset or request a larger allowance |
-| `429 rate_limited` | Back off using `Retry-After`; reduce concurrency or polling |
+| `429 rate_limited` / `key_rate_limited` | Back off using `Retry-After`; reduce concurrency or polling |
+| `429 key_quota_exceeded` | Inspect the key cap and usage; wait for reset or change its cap within account policy |
 | `404 not_found` | Check the identifier and deployment availability; records in another account are not disclosed |
 | `400 invalid_input` | Correct the request; an admitted validation failure still uses a request |
 | `503 service_unavailable` | Retry with bounded backoff; authentication, provider or database availability could not be established |

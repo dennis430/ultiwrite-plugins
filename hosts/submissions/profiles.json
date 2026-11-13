@@ -1,0 +1,210 @@
+{
+  "schemaVersion": 1,
+  "packageVersion": "0.11.0",
+  "asOf": "2026-11-13",
+  "product": "Ultiwrite",
+  "publisher": "DWS Offshore Fund",
+  "repository": "https://github.com/dennis430/ultiwrite-plugins",
+  "endpoint": "https://mcp.dwsoffshorepartners.com/mcp",
+  "scopes": [
+    "ultiwrite:read",
+    "ultiwrite:evidence"
+  ],
+  "classification": "Repository review inventory; not a provider manifest or submission request",
+  "profiles": [
+    {
+      "id": "openai",
+      "platform": "OpenAI ChatGPT / Codex",
+      "kind": "existing-plugin",
+      "guide": "../../INSTALL.md",
+      "artifacts": [
+        "../../chatgpt/plugin.json",
+        "../../chatgpt/mcp.json",
+        "../configs/codex.toml"
+      ],
+      "sourceStatus": "PREPARED",
+      "submissionStatus": "NOT_SUBMITTED_BY_THIS_RELEASE",
+      "providerAcceptance": "NOT_VERIFIED",
+      "hostAcceptance": "NOT_RUN",
+      "externalRequirements": [
+        "Publisher console access",
+        "Existing listing ownership",
+        "Native customer OAuth and host acceptance"
+      ]
+    },
+    {
+      "id": "claude",
+      "platform": "Anthropic Claude",
+      "kind": "existing-plugin",
+      "guide": "../../claude/README.md",
+      "artifacts": [
+        "../../claude/.claude-plugin/plugin.json",
+        "../../claude/.mcp.json"
+      ],
+      "sourceStatus": "PREPARED",
+      "submissionStatus": "NOT_SUBMITTED_BY_THIS_RELEASE",
+      "providerAcceptance": "NOT_VERIFIED",
+      "hostAcceptance": "NOT_RUN",
+      "externalRequirements": [
+        "Directory publisher access",
+        "Enterprise installation policy",
+        "Native customer OAuth and host acceptance"
+      ]
+    },
+    {
+      "id": "cursor",
+      "platform": "Cursor",
+      "kind": "existing-plugin",
+      "guide": "../../cursor/README.md",
+      "artifacts": [
+        "../../cursor/.cursor-plugin/plugin.json",
+        "../../cursor/mcp.json"
+      ],
+      "sourceStatus": "PREPARED",
+      "submissionStatus": "NOT_SUBMITTED_BY_THIS_RELEASE",
+      "providerAcceptance": "NOT_VERIFIED",
+      "hostAcceptance": "NOT_RUN",
+      "externalRequirements": [
+        "Directory publisher access",
+        "Workspace trust and host acceptance"
+      ]
+    },
+    {
+      "id": "antigravity",
+      "platform": "Antigravity",
+      "kind": "configuration",
+      "guide": "../README.md",
+      "artifacts": [
+        "../configs/antigravity.json"
+      ],
+      "sourceStatus": "PREPARED",
+      "submissionStatus": "NOT_SUBMITTED_BY_THIS_RELEASE",
+      "providerAcceptance": "NOT_VERIFIED",
+      "hostAcceptance": "NOT_RUN",
+      "externalRequirements": [
+        "Current host installation policy",
+        "Native customer OAuth and host acceptance"
+      ]
+    },
+    {
+      "id": "grok",
+      "platform": "Grok web / Build",
+      "kind": "configuration",
+      "guide": "../README.md",
+      "artifacts": [
+        "../configs/grok-build.toml"
+      ],
+      "sourceStatus": "PREPARED",
+      "submissionStatus": "NOT_SUBMITTED_BY_THIS_RELEASE",
+      "providerAcceptance": "NOT_VERIFIED",
+      "hostAcceptance": "NOT_RUN",
+      "externalRequirements": [
+        "Actual web or Build installation access",
+        "Native customer OAuth and host acceptance"
+      ]
+    },
+    {
+      "id": "grokbot",
+      "platform": "Grok Bot",
+      "kind": "dossier",
+      "guide": "../../grokbot/INSTALL.md",
+      "artifacts": [
+        "../../grokbot/FIELDS.json",
+        "../../grokbot/OAUTH.md",
+        "../../grokbot/TESTING.md"
+      ],
+      "sourceStatus": "PREPARED",
+      "submissionStatus": "NOT_SUBMITTED_BY_THIS_RELEASE",
+      "providerAcceptance": "NOT_VERIFIED",
+      "hostAcceptance": "NOT_RUN",
+      "externalRequirements": [
+        "Bot publisher onboarding contract",
+        "Review account and demo",
+        "Native customer OAuth and host acceptance"
+      ]
+    },
+    {
+      "id": "meta-muse",
+      "platform": "Meta Muse Connector Platform / Muse Code",
+      "kind": "dossier",
+      "guide": "../muse.md",
+      "artifacts": [
+        "../catalog.json"
+      ],
+      "sourceStatus": "PREPARED",
+      "submissionStatus": "NOT_SUBMITTED_BY_THIS_RELEASE",
+      "providerAcceptance": "NOT_VERIFIED",
+      "hostAcceptance": "NOT_RUN",
+      "externalRequirements": [
+        "Business verification and authority to submit; owner acceptance of applicable Meta terms",
+        "Actual data-category, purpose, protection, recipient, retention/deletion and model-processing answers",
+        "Dedicated maintained reviewer account, granted scopes, representative test evidence and real complete demo",
+        "Secure portal credential transfer; exact actual OAuth client/redirect registration without inferred defaults",
+        "Per-tool read/write and sensitive designations reviewed by Meta; account read-only option and host approvals preserved",
+        "Actual incident response process meeting applicable Meta terms",
+        "Owner submission, provider risk/tool/end-to-end review and native customer OAuth/host acceptance"
+      ],
+      "officialSources": [
+        "https://developers.meta.com/blog/meta-connect-recap/",
+        "https://platform.muse.ai/",
+        "https://platform.muse.ai/docs",
+        "https://dev.meta.ai/docs/muse-code/extending",
+        "https://dev.meta.ai/docs/muse-code/configuration.md"
+      ]
+    },
+    {
+      "id": "emdash",
+      "platform": "EmDash coding-agent application",
+      "kind": "configuration",
+      "guide": "../emdash.md",
+      "artifacts": [
+        "../configs/generic-remote.json"
+      ],
+      "sourceStatus": "PREPARED",
+      "submissionStatus": "NOT_SUBMITTED_BY_THIS_RELEASE",
+      "providerAcceptance": "NOT_VERIFIED",
+      "hostAcceptance": "NOT_RUN",
+      "externalRequirements": [
+        "Confirm current catalog contribution route",
+        "Select actual agents and machines",
+        "Native customer OAuth and host acceptance per target"
+      ]
+    },
+    {
+      "id": "mcp-registry",
+      "platform": "MCP registry",
+      "kind": "registry-draft",
+      "guide": "README.md",
+      "artifacts": [
+        "../../server.draft.json"
+      ],
+      "sourceStatus": "PREPARED",
+      "submissionStatus": "NOT_SUBMITTED_BY_THIS_RELEASE",
+      "providerAcceptance": "NOT_VERIFIED",
+      "hostAcceptance": "NOT_RUN",
+      "externalRequirements": [
+        "Current registry schema check",
+        "Publisher namespace ownership",
+        "Registry publication"
+      ]
+    },
+    {
+      "id": "microsoft",
+      "platform": "Microsoft enterprise clients",
+      "kind": "dossier",
+      "guide": "../copilot-studio.md",
+      "artifacts": [
+        "../catalog.json"
+      ],
+      "sourceStatus": "PREPARED",
+      "submissionStatus": "NOT_SUBMITTED_BY_THIS_RELEASE",
+      "providerAcceptance": "NOT_VERIFIED",
+      "hostAcceptance": "NOT_RUN",
+      "externalRequirements": [
+        "Tenant-specific client registration and enterprise approval",
+        "Private reviewer account and demo",
+        "Native customer OAuth and host acceptance"
+      ]
+    }
+  ]
+}

@@ -5,13 +5,13 @@
     "email": "nick@ultiwrite.co"
   },
   "metadata": {
-    "description": "Ultiwrite asymmetric diligence and investigative intelligence. Thin remote MCP packages only."
+    "description": "Ultiwrite Commercial Diligence connectors. Thin remote MCP packages only."
   },
   "plugins": [
     {
       "name": "ultiwrite",
       "source": "cursor",
-      "description": "Ultiwrite asymmetric diligence across acquisitions, financing, counterparties, property and portfolios, with account connection and five workflows."
+      "description": "Ultiwrite asymmetric diligence and investigative intelligence with account connection and five workflows."
     }
   ]
 }

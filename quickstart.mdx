@@ -78,7 +78,7 @@ Stop on `failed` or `action_required` and expose the stated next action. Preserv
 
 Once the case links a report, read its findings and Decision Brief. Follow the [results guide](https://dwsoffshorepartners.com/docs/partner-api/results) for the bound pagination cursors, snapshot, page token and long-field completeness rules. A first findings page is not automatically the complete report.
 
-`GET /reports/{reportId}/export` returns entitled delivery options. Binary report downloads require the user's signed-in browser session on the same account; the API key cannot download those bytes.
+`GET /reports/{reportId}/export` returns entitled website links plus an `apiDownloads` map. Use `/reports/{reportId}/artifacts/{artifact}` with the same Partner API bearer to retrieve entitled JSON/PDF/CSV/XLSX/ZIP bytes. Website links retain their signed-in same-account browser boundary. The API creates no public report URL.
 
 ## Continue building
 
@@ -88,3 +88,8 @@ Once the case links a report, read its findings and Decision Brief. Follow the [
 - [Errors and bounded retries](https://dwsoffshorepartners.com/docs/partner-api/errors-and-retries)
 - [Canonical API reference](https://dwsoffshorepartners.com/docs/api)
 - [Live OpenAPI document](https://dwsoffshorepartners.com/.well-known/openapi.json)
+
+
+## Maintained binary-download helper
+
+The [Node client](https://dwsoffshorepartners.com/docs/downloads/partner-api/client.mjs) provides `downloadArtifact(href, {destination, maxBytes, deadline})` for an export `apiDownloads` URL. It streams only canonical-origin artifact GETs, refuses redirects and overwrite, bounds bytes/deadline and removes partial files. The [runner](https://dwsoffshorepartners.com/docs/downloads/partner-api/example.mjs) downloads the offered commercial PDF by default after submission or resume; choose another entitled format with `ULTIWRITE_DOWNLOAD_FORMAT` or use `none` for metadata only. Download recovery uses the saved report, with no new investigation.
