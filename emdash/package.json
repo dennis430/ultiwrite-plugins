@@ -1,0 +1,25 @@
+{
+  "name": "ultiwrite-emdash",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Ultiwrite asymmetric diligence connector for EmDash",
+  "license": "MIT",
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "scripts": {
+    "test": "node --experimental-strip-types --test tests/plugin.test.mjs",
+    "validate": "emdash-plugin validate",
+    "build": "emdash-plugin build",
+    "bundle": "emdash-plugin bundle",
+    "verify": "node scripts/prepare-assets.mjs && npm run test && npm run validate && npm run bundle",
+    "publisher": "emdash-plugin whoami",
+    "login": "emdash-plugin login ultiwrite.co",
+    "release": "emdash-plugin publish",
+    "listing": "emdash-plugin info ultiwrite.co ultiwrite --version 0.1.0"
+  },
+  "devDependencies": {
+    "@emdash-cms/plugin-cli": "0.13.5"
+  }
+}

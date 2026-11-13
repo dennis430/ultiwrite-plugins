@@ -1,0 +1,27 @@
+{
+  "$schema": "./node_modules/@emdash-cms/plugin-cli/schemas/emdash-plugin.schema.json",
+  "slug": "ultiwrite",
+  "publisher": "ultiwrite.co",
+  "license": "MIT",
+  "author": {"name": "DWS Offshore Fund", "url": "https://dwsoffshorepartners.com"},
+  "security": {"url": "https://dwsoffshorepartners.com/contact"},
+  "name": "Ultiwrite — Asymmetric Diligence",
+  "description": "Open secure evidence uploads, browse cases, and read Ultiwrite Decision Briefs from EmDash. Asymmetric diligence, connected.",
+  "keywords": ["due diligence", "investigative intelligence", "document forensics", "business intelligence", "merchant risk"],
+  "sections": {
+    "description": {"file": "./docs/LISTING.md"},
+    "installation": {"file": "./docs/INSTALL.md"},
+    "faq": {"file": "./docs/FAQ.md"},
+    "security": {"file": "./SECURITY.md"},
+    "changelog": "0.1.0: Initial EmDash connector with private admin controls, encrypted API-key storage, account and usage checks, paginated cases, Decision Brief lookup, and transient secure-upload links."
+  },
+  "capabilities": ["network:request"],
+  "allowedHosts": ["dwsoffshorepartners.com"],
+  "storage": {},
+  "admin": {
+    "pages": [{"path": "/diligence", "label": "Ultiwrite", "icon": "search"}, {"path": "/settings", "label": "Ultiwrite connection", "icon": "settings"}],
+    "settingsSchema": {"apiKey": {"type": "secret", "label": "Ultiwrite API key"}}
+  },
+  "repo": "https://github.com/dennis430/ultiwrite-plugins",
+  "release": {"requires": {"env:emdash": ">=1.0.0"}, "artifacts": {"icon": {"file": "./assets/icon.png"}}}
+}
