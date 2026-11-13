@@ -4,5 +4,3 @@ node_modules/
 .env.*
 dist/
 *.tgz
-
-!release/ultiwrite-mcp-*.tgz

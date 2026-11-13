@@ -292,7 +292,7 @@ const releaseManifest = {
   mcp_url: CHATGPT_MCP_URL,
   compatibility_mcp_url: COMPATIBILITY_MCP_URL,
   packages: {
-    hosts: { version: HOSTS_VERSION, zip: `release/${HOSTS_ZIP}`, status: 'prepared; host acceptance skipped by owner' },
+    hosts: { version: HOSTS_VERSION, zip: `release/${HOSTS_ZIP}`, status: 'prepared; native host acceptance not run' },
     chatgpt: { version: VERSION, zip: `release/ultiwrite-chatgpt-plugin-${VERSION}.zip`, mcp_url: CHATGPT_MCP_URL },
     cursor: { version: CURSOR_VERSION, zip: `release/ultiwrite-cursor-plugin-${CURSOR_VERSION}.zip` },
     claude: { version: CLAUDE_VERSION, zip: `release/${CLAUDE_ZIP}`, mcp_url: CLAUDE_MCP_URL },

@@ -82,8 +82,8 @@ test('packing records exact source, refuses stale metadata claims and preserves 
   assert.equal(rebuilt.packages.cli, undefined)
   assert.equal(rebuilt.packages.chatgpt.extra_provenance, undefined)
   assert.equal(rebuilt.packages.chatgpt.version, '0.10.0')
-  assert.equal(rebuilt.packages.hosts.version, '0.10.1', 'the host bundle versions independently of released plugins')
-  assert.equal(rebuilt.packages.hosts.zip, 'release/ultiwrite-host-adapters-0.10.1.zip')
+  assert.equal(rebuilt.packages.hosts.version, '0.11.0', 'the host bundle versions independently of released plugins')
+  assert.equal(rebuilt.packages.hosts.zip, 'release/ultiwrite-host-adapters-0.11.0.zip')
   assert.ok(!rebuilt.files.some(item => /^(node_modules|dist|coverage|\.cache)\//.test(item.path) || item.path.endsWith('.tgz')))
   assert.ok(frozen.size >= 1, 'historical archive preservation must be exercised')
   for (const [name, hash] of frozen) assert.equal(await digest(join(fixture, 'release', name)), hash, name)
@@ -118,4 +118,28 @@ test('a source symlink cannot escape the release tree', { skip: process.platform
     await symlink(outside, link)
     await assert.rejects(pack(), error => /nonregular release path|nonregular package source|must be a regular file or directory/.test(error.stderr))
   } finally { await rm(link, { force: true }) }
+})
+
+
+test('enterprise directory inventory rejects overclaims, escaping links and missing dependencies', async () => {
+  const path = join(fixture, 'hosts/submissions/profiles.json')
+  const original = await readFile(path, 'utf8')
+  const validate = async () => execute(process.execPath, [join(fixture, 'scripts/validate-public-plugins.mjs'), fixture], { encoding: 'utf8' })
+  for (const [mutate, expected] of [
+    [value => { value.endpoint = 'https://example.com/mcp' }, /endpoint or repository/],
+    [value => { value.packageVersion = '0.0.0' }, /version must match/],
+    [value => { value.profiles[0].hostAcceptance = 'PASS' }, /must not claim/],
+    [value => { value.profiles[0].submissionStatus = 'APPROVED' }, /must not claim/],
+    [value => { value.profiles[0].guide = '../../../outside.md' }, /escaped public path/],
+    [value => { value.profiles[0].externalRequirements = [] }, /real external dependencies/],
+    [value => { value.profiles.pop() }, /required platform exactly once/],
+  ]) {
+    try {
+      const changed = JSON.parse(original)
+      mutate(changed)
+      await writeFile(path, JSON.stringify(changed))
+      await assert.rejects(validate(), error => expected.test(error.stderr), expected.toString())
+    } finally { await writeFile(path, original) }
+  }
+  assert.match((await validate()).stdout, /public plugin tree ok/)
 })

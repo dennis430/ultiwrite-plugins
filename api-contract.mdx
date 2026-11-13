@@ -5,7 +5,7 @@ description: "Understand the Ultiwrite Partner API resources, authentication bou
 keywords: ["Ultiwrite API architecture", "OpenAPI", "Partner API", "case lifecycle"]
 ---
 
-The Ultiwrite Partner API connects your backend to the same account, evidence workflow and saved reports as the website. The live OpenAPI document defines request and response schemas; these guides explain how to combine the operations into a complete integration.
+The Ultiwrite Partner API connects your backend to the same account, evidence workflow and saved reports as the website. The canonical registry defines request and response schemas; these guides explain how to combine the operations into a complete integration. This portal builds from its generated local snapshot; live OpenAPI and capabilities establish what the target deployment currently enables.
 
 This documentation portal presents the existing API contract. It does not introduce a second endpoint, credential system or report workflow.
 
@@ -33,6 +33,11 @@ All paths below are relative to `/api/v1`.
 | GET | `/reports/{reportId}/findings` | Read released findings by report |
 | GET | `/reports/{reportId}/brief` | Read the report's Decision Brief |
 | GET | `/reports/{reportId}/export` | Read entitled delivery options |
+| GET | `/reports/{reportId}/artifacts/{artifact}` | Download entitled JSON/PDF/CSV/Excel/ZIP with the Partner bearer |
+| GET | `/report-releases` | Poll source-bound released-report notifications |
+| GET | `/billing/offers` | Read investigation offers |
+| POST | `/billing/checkouts` | Create a Stripe link with separately consented OAuth checkout authority |
+| GET | `/billing/checkouts/{checkoutId}` | Read that account-bound checkout state |
 | POST | `/upload-links` | Create a protected upload link |
 | GET | `/webhooks` | List configured destinations |
 | POST | `/webhooks` | Register a destination and obtain its secret once |
@@ -55,12 +60,17 @@ Preserve the original filenames, bytes and forensic choice when recovering an un
 
 Findings pagination binds eight cursors, the saved report snapshot and the previous page token. Preserve provenance, confidence, counter-evidence and limitations when presenting results. See [results and delivery](/partner-api/results).
 
-Export returns entitled delivery options. Binary PDF, Excel and ZIP downloads require a signed-in browser session on the same account. An API bearer credential does not download those bytes.
+Use **GET /reports/\{reportId\}/artifacts/\{artifact\}** with the same Partner Authorization bearer to retrieve entitled report bytes. Supported artifact names are report.json, report.pdf, document-forensics.pdf, report.csv, report.xlsx and report.zip. Read-only scope is sufficient; explicit account API approval, current credential authority, request quotas and the canonical report/format entitlements still apply. The export response includes an **apiDownloads** map alongside existing website links. Optional version/digest query parameters pin the saved report revision; PDF depth is summary or comprehensive. ZIP requires a formats=pdf,csv,xlsx selection containing the entitled formats to include. No public or presigned report capability is created. Website links still require the signed-in same-account browser session; MCP delivery keeps its existing website-only file policy.
 
 ## Integration boundaries
 
 Optional workflow webhooks are available only where live OpenAPI includes their operations and GET /capabilities reports webhooks.available. Management requires an approved dashboard API key with read and evidence scopes; OAuth cannot manage destinations. Notifications do not advance continuation and contain minimal metadata. Read the [receiver signature, deduplication, retry and revocation contract](/partner-api/workflow#webhook-notifications).
 
-The current contract does not offer client-credentials authentication, append-evidence or rerun endpoints, selectable investigation tiers in requests, or unattended binary downloads. A report is advisory evidence for your workflow; it does not render an autonomous approve or decline.
+The current contract does not offer client-credentials authentication, append-evidence or rerun endpoints, selectable investigation tiers in requests. A report is advisory evidence for your workflow; it does not render an autonomous approve or decline.
 
 Use the [complete developer guide](https://dwsoffshorepartners.com/docs/downloads/partner-api/GUIDE.md), [downloadable README and Node examples](https://dwsoffshorepartners.com/docs/downloads/partner-api/README.md), and [integration checklist](/partner-api/integration-checklist) before sending customer evidence.
+
+
+## Maintained binary-download helper
+
+The [Node client](https://dwsoffshorepartners.com/docs/downloads/partner-api/client.mjs) provides `downloadArtifact(href, {destination, maxBytes, deadline})` for an export `apiDownloads` URL. It streams only canonical-origin artifact GETs, refuses redirects and overwrite, bounds bytes/deadline and removes partial files. The [runner](https://dwsoffshorepartners.com/docs/downloads/partner-api/example.mjs) downloads the offered commercial PDF by default after submission or resume; choose another entitled format with `ULTIWRITE_DOWNLOAD_FORMAT` or use `none` for metadata only. Download recovery uses the saved report, with no new investigation.

@@ -3,7 +3,7 @@
 // It does not publish, deploy, or contact a marketplace.
 import { createHash } from 'node:crypto'
 import { readFileSync, readdirSync, lstatSync } from 'node:fs'
-import { join, relative, sep } from 'node:path'
+import { isAbsolute, join, relative, resolve, sep } from 'node:path'
 
 const root = process.argv[2] ? process.argv[2] : process.cwd()
 const errors = []
@@ -261,6 +261,39 @@ pngSquareOpaque('chatgpt/assets/logo.png')
 const pkg = readJson('client/package.json')
 if (pkg?.name !== 'ultiwrite-mcp' || pkg?.version !== '0.8.0' || pkg?.license !== 'MIT') fail('client package')
 if (readFileSync(join(root, 'server.draft.json'), 'utf8').includes('NOT PUBLISHED') === false) fail('registry draft must stay unpublished')
+
+// The submission inventory describes prepared source, not provider acceptance.
+// Keep its links inside the public tree and preserve explicit external dependencies.
+const profiles = readJson('hosts/submissions/profiles.json')
+const hostMatrix = readJson('hosts/matrix.json')
+const requiredProfiles = ['openai', 'claude', 'cursor', 'antigravity', 'grok', 'grokbot', 'meta-muse', 'emdash', 'mcp-registry', 'microsoft']
+if (profiles) {
+  if (profiles.schemaVersion !== 1 || profiles.product !== 'Ultiwrite' || profiles.publisher !== 'DWS Offshore Fund') fail('submission inventory identity')
+  if (profiles.endpoint !== MCP_URL || profiles.repository !== 'https://github.com/dennis430/ultiwrite-plugins') fail('submission inventory endpoint or repository')
+  if (profiles.packageVersion !== hostMatrix?.packageVersion) fail('submission inventory version must match host bundle')
+  if (JSON.stringify(profiles.scopes) !== JSON.stringify(['ultiwrite:read', 'ultiwrite:evidence'])) fail('submission inventory scope drift')
+  if (!Array.isArray(profiles.profiles)) fail('submission profiles must be an array')
+  else {
+    const ids = profiles.profiles.map(profile => profile.id)
+    if (new Set(ids).size !== ids.length || JSON.stringify([...ids].sort()) !== JSON.stringify([...requiredProfiles].sort())) fail('submission inventory must cover every required platform exactly once')
+    for (const profile of profiles.profiles) {
+      if (!['existing-plugin', 'configuration', 'dossier', 'registry-draft'].includes(profile.kind)) fail(`submission profile ${profile.id} kind`)
+      if (profile.sourceStatus !== 'PREPARED' || profile.submissionStatus !== 'NOT_SUBMITTED_BY_THIS_RELEASE' || profile.providerAcceptance !== 'NOT_VERIFIED' || profile.hostAcceptance !== 'NOT_RUN') fail(`submission profile ${profile.id} must not claim submission or host acceptance`)
+      if (!Array.isArray(profile.externalRequirements) || !profile.externalRequirements.length || profile.externalRequirements.some(value => typeof value !== 'string' || !value.trim())) fail(`submission profile ${profile.id} requires real external dependencies`)
+      if (!Array.isArray(profile.artifacts) || !profile.artifacts.length) fail(`submission profile ${profile.id} artifacts missing`)
+      for (const path of [profile.guide, ...(Array.isArray(profile.artifacts) ? profile.artifacts : [])]) {
+        if (typeof path !== 'string' || !path || isAbsolute(path) || path.includes('\\') || /^[a-z]+:/i.test(path)) { fail(`submission profile ${profile.id} invalid public path`); continue }
+        const target = relative(resolve(root), resolve(root, 'hosts/submissions', path)).split(sep).join('/')
+        if (target === '..' || target.startsWith('../') || !files.includes(target)) fail(`submission profile ${profile.id} missing or escaped public path`)
+      }
+    }
+  }
+}
+for (const path of ['hosts/enterprise/README.md', 'hosts/enterprise/security.md', 'hosts/enterprise/operations.md', 'hosts/enterprise/acceptance.md', 'hosts/emdash.md', 'hosts/submissions/README.md', 'hosts/submissions/reviewer-scenarios.md']) {
+  if (!files.includes(path)) fail(`missing enterprise guide ${path}`)
+}
+const emdash = hostMatrix?.surfaces?.find(surface => surface.surface === 'EmDash coding-agent application')
+if (emdash?.source !== 'https://emdash.ai/docs/library/mcp' || emdash?.hostAcceptance !== 'NOT_RUN' || emdash?.configuration !== 'emdash.md') fail('EmDash source and acceptance boundary')
 
 if (errors.length) {
   process.stderr.write(errors.map(item => `FAIL ${item}`).join('\n') + '\n')

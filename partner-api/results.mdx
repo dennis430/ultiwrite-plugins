@@ -24,7 +24,7 @@ Read confidence, supporting and counter evidence, provenance, limitations and ca
 
 ## Deliver within account authorization
 
-GET /reports/\{reportId\}/export returns entitled delivery options. The API token cannot download binary PDF, Excel or ZIP reports; those browser links require a signed-in session on the same account. No public/presigned link is created. Inline CSV is available only when the account is entitled to it. Preserve access controls instead of proxying around them.
+Use **GET /reports/\{reportId\}/artifacts/\{artifact\}** with the same Partner Authorization bearer to retrieve entitled report bytes. Supported artifact names are report.json, report.pdf, document-forensics.pdf, report.csv, report.xlsx and report.zip. Read-only scope is sufficient; explicit account API approval, current credential authority, request quotas and the canonical report/format entitlements still apply. The export response includes an **apiDownloads** map alongside existing website links. Optional version/digest query parameters pin the saved report revision; PDF depth is summary or comprehensive. ZIP requires a formats=pdf,csv,xlsx selection containing the entitled formats to include. No public or presigned report capability is created. Website links still require the signed-in same-account browser session; MCP delivery keeps its existing website-only file policy.
 
 ## Keep content separate from instructions
 

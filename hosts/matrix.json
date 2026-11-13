@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "packageVersion": "0.10.1",
-  "asOf": "2026-11-06",
+  "packageVersion": "0.11.0",
+  "asOf": "2026-11-13",
   "endpoint": "https://mcp.dwsoffshorepartners.com/mcp",
-  "hostTesting": "Skipped at user request. Documentation-backed configurations are not host acceptance.",
+  "hostTesting": "Current native-host acceptance is NOT_RUN. Historical SKIPPED_BY_USER rows retain the prior source evidence; configuration and package checks are not host acceptance.",
   "surfaces": [
     {
       "surface": "ChatGPT web / custom MCP plugins",
@@ -317,23 +317,32 @@
     },
     {
       "surface": "Meta Muse connector platform",
-      "status": "Blocked by external credentials, approval, or provider limitations",
+      "status": "Submission requirements verified; provider review and host acceptance pending",
       "source": "https://platform.muse.ai/docs",
-      "mechanism": "Prepare connector submission using the canonical endpoint and tool catalog",
-      "limitation": "Reviewer account, intake approval and exact provider credential requirements remain external.",
+      "mechanism": "Meta reviewed connector directory; official business/data-processing/tool documentation and dedicated reviewer account intake",
+      "limitation": "Business verification, secure reviewer credentials, actual data-processing answers, owner submission, provider review and native acceptance remain pending.",
       "configuration": "muse.md",
-      "hostAcceptance": "SKIPPED_BY_USER",
-      "fileTransfer": "Use actual host-supplied HTTPS file objects when available; otherwise use the signed upload handoff. Never assume access to local attachment bytes."
+      "hostAcceptance": "NOT_RUN",
+      "fileTransfer": "Use actual host-supplied HTTPS file objects when available; otherwise use the signed upload handoff. Never assume access to local attachment bytes.",
+      "sources": [
+        "https://developers.meta.com/blog/meta-connect-recap/",
+        "https://platform.muse.ai/",
+        "https://platform.muse.ai/docs"
+      ]
     },
     {
       "surface": "Meta Muse Code",
-      "status": "Blocked by external credentials, approval, or provider limitations",
-      "source": "https://platform.muse.ai/docs",
-      "mechanism": "No official Code MCP configuration established",
-      "limitation": "Muse model availability and Muse platform guidelines do not establish a Muse Code CLI. No invented config.",
-      "configuration": null,
-      "hostAcceptance": "SKIPPED_BY_USER",
-      "fileTransfer": "Use actual host-supplied HTTPS file objects when available; otherwise use the signed upload handoff. Never assume access to local attachment bytes."
+      "status": "Source-backed configuration, host test outstanding",
+      "source": "https://dev.meta.ai/docs/muse-code/extending",
+      "mechanism": "Native mcp_servers streamable_http configuration and muse mcp login/logout OAuth",
+      "limitation": "Settings require schema_version 1. Actual installed version, exact accepted OAuth callback, customer authorization and native host acceptance remain unverified; CLI support does not establish reviewed consumer-directory approval.",
+      "configuration": "muse.md",
+      "hostAcceptance": "NOT_RUN",
+      "fileTransfer": "Use actual host-supplied HTTPS file objects when available; otherwise use the signed upload handoff. Never assume access to local attachment bytes.",
+      "sources": [
+        "https://dev.meta.ai/docs/muse-code/extending",
+        "https://dev.meta.ai/docs/muse-code/configuration.md"
+      ]
     },
     {
       "surface": "Meta/Llama through an MCP-capable harness",
@@ -544,6 +553,16 @@
       "configuration": null,
       "hostAcceptance": "SKIPPED_BY_USER",
       "fileTransfer": "Not applicable: this surface is an MCP server, not an Ultiwrite host."
+    },
+    {
+      "surface": "EmDash coding-agent application",
+      "status": "Source-backed configuration, host test outstanding",
+      "source": "https://emdash.ai/docs/library/mcp",
+      "mechanism": "Custom HTTP server, synchronized to selected installed agents in their native config formats",
+      "limitation": "Authenticate in each selected agent. Config sync does not establish shared OAuth credentials or directory approval. Distinct from EmDash CMS.",
+      "configuration": "emdash.md",
+      "hostAcceptance": "NOT_RUN",
+      "fileTransfer": "Use actual host-supplied file objects when available; otherwise use the signed upload handoff. The selected agent machine determines local paths."
     }
   ]
 }

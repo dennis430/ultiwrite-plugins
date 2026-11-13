@@ -1,4 +1,4 @@
-b89733750567de78228a5a4d13b2cdf7bfc9000fea88acb1c40cae5f65c13fc5  ultiwrite-host-adapters-0.10.1.zip
+f8c92354676bb3a84d2e851cb8d6889d2c882d256658db2b7db8ff6d96d726b0  ultiwrite-host-adapters-0.11.0.zip
 aa928684cdbb4383aea0e4cb09fe2bfd67c90181ff4b120237889826312b14b5  ultiwrite-chatgpt-plugin-0.10.0.zip
 52e7b6b11346b07a05b8ccbe71467e9055a1db3274d15b770df99500f34f1dee  ultiwrite-cursor-plugin-0.10.0.zip
 bcedcbec17239d1dc99ed3aecbf0a47af18fd265d33074c28b16184445e82b20  Ultiwrite_Claude_Plugin_v0.10.0.zip
@@ -23,3 +23,4 @@ eb3403b7e52e5301a112864fb8cd50351e012cf63ff1c5af124fbbae5a5c0129  ultiwrite-curs
 f41346af459431fd1f174111b5da3b361c54ee660575ca008a65d51bf1e556cc  ultiwrite-cursor-plugin-0.9.1.zip
 6d8977daea01083dd3fb98cdec3826e29699274195d6e1dc16b6808447b4635e  ultiwrite-cursor-plugin-0.9.3.zip
 2d0b8352d1e381bf24df398de2f2328d905b740dc820077e27b5e4909b01046d  ultiwrite-host-adapters-0.10.0.zip
+b89733750567de78228a5a4d13b2cdf7bfc9000fea88acb1c40cae5f65c13fc5  ultiwrite-host-adapters-0.10.1.zip

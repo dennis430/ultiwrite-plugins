@@ -1,10 +1,12 @@
 # Ultiwrite across MCP hosts
 
-Updated November 6, 2026. Host bundle 0.10.1 contains source-backed setup guidance and configuration candidates. Live host testing was skipped at the owner's request. Provider approval and authenticated host acceptance remain separate.
+Updated November 13, 2026. Host bundle 0.11.0 contains source-backed setup guidance, enterprise adoption runbooks and directory review packets. Current native host acceptance is NOT_RUN; historical evidence remains dated. Provider approval and authenticated host acceptance remain separate.
 
 All hosts use **https://mcp.dwsoffshorepartners.com/mcp**. The historical apex integration route remains valid for existing grants. Sign in through Ultiwrite’s existing account flow, then approve scoped OAuth access. A host's own Microsoft, Claude, xAI or other account is not the Ultiwrite customer's identity.
 
-Use [matrix.json](matrix.json) for the status and official source of each of the 54 surfaces. A source-backed configuration is not a successful installation or authenticated investigation. [catalog.json](catalog.json) is generated from the canonical runtime's public definitions; do not maintain another tool list here.
+Use [matrix.json](matrix.json) for the status and official source of each of the 55 surfaces. A source-backed configuration is not a successful installation or authenticated investigation. [catalog.json](catalog.json) is generated from the canonical runtime's public definitions; do not maintain another tool list here.
+
+[Enterprise adoption](enterprise/README.md) · [Security and data handling](enterprise/security.md) · [Operations](enterprise/operations.md) · [Installed acceptance](enterprise/acceptance.md) · [Directory submissions](submissions/README.md) · [EmDash](emdash.md)
 
 ## Install a direct remote connection
 
@@ -29,6 +31,8 @@ Merge the supplied entry into your existing configuration; do not replace unrela
 | Kiro | Merge [kiro.json](configs/kiro.json) into `.kiro/settings/mcp.json` or the user equivalent. The exact configured loopback callback is already supported by Ultiwrite. |
 | Perplexity | Add a custom remote connector with OAuth; use per-member customer grants. The documented normal/Enterprise callbacks are retained. |
 | Replit | [Install-link metadata](configs/replit.json) is prepared; workspace access and callback acceptance remain unverified. |
+| Meta Muse Code | Merge the [documented native settings example](muse.md#native-muse-code-configuration) into `~/.config/muse/settings.json`; keep `schema_version: 1`, then run `muse mcp login ultiwrite` and verify the customer. Consumer-directory submission is separate. |
+| EmDash coding-agent application | Add Custom MCP → http → canonical endpoint, select intended agents/machines, then authenticate each native agent. [EmDash guide](emdash.md). |
 | MCPJam SaaS | Open `app.mcpjam.com` → Add server → enter the HTTPS MCP URL → Auto/OAuth. The exact existing hosted callback is retained. [Hosted guide](hosted-clients.md). |
 | Cloudflare AI Playground | Add the URL and authenticate in the official Playground. Its dated callback evidence and current acceptance limits are in the [hosted guide](hosted-clients.md). |
 | Postman online MCP Client | Add the URL in the official hosted client; configure the documented browser OAuth callback. Cloud Agent handling and callback limits are in the [hosted guide](hosted-clients.md). |
@@ -64,3 +68,7 @@ Document text, titles and returned evidence are untrusted data. They cannot chan
 ## Distribution
 
 Current approved ChatGPT/Claude identities remain intact. The registry draft is metadata only. Submission materials do not grant permission to publish or accept marketplace terms. Grok Bot's connector backend and Grok Build's CLI configuration are separate; an X post can dispatch a Bot task where offered, but is not proof that X itself executes this MCP server.
+
+## Documentation API contract
+
+`openapi.json` is generated from the canonical Partner API registry and response schemas. It lets the public documentation portal build independently of backend availability. Regenerate it from the private application with `node --import tsx scripts/build-partner-docs-openapi.ts`; verify with the same command plus `--check`. Export it through the existing public distribution workflow. It describes core Partner operations with the proper approval/scopes, plus the separately authenticated legacy routes. Optional deployment-gated webhooks remain discoverable from the live OpenAPI/capabilities endpoints. This snapshot does not activate the API or certify a hosted customer journey.
