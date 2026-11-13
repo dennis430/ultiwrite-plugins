@@ -1,0 +1,219 @@
+---
+title: "API examples in your language"
+sidebarTitle: "Language examples"
+description: "Use cURL, JavaScript, TypeScript, Python, Java, C#, Go, PHP or Ruby to integrate the complete Ultiwrite Partner API."
+keywords: ["cURL", "JavaScript", "TypeScript", "Python", "Java", "C#", "Go", "PHP", "Ruby", "REST API"]
+canonical: "https://dwsoffshorepartners.com/docs/developers/languages"
+---
+
+Use your existing backend stack to connect ordinary commercial documents to Ultiwrite's wider investigation and saved assessment. The API uses standard HTTPS, bearer authorization, JSON and documented multipart uploads. Its capabilities are available from any language that implements those HTTP contracts.
+
+The [complete endpoint reference](https://dwsoffshorepartners.com/docs/api-reference) has a persistent language selector for cURL, JavaScript, TypeScript, Python, Java, C#, Go, PHP and Ruby. Browse each operation's authentication, parameters, request body, response schemas and errors alongside its request example. Use the selected language's download and setup links for the complete runnable client.
+
+These are maintained source examples, not published, versioned SDK packages. Changing languages does not change account approval, scopes, role privileges, request limits or analysis allowances.
+
+## Check your account in nine languages
+
+Create a key for an explicitly approved account at [API access](https://dwsoffshorepartners.com/settings/api). Store the secret as `TOKEN` in your server's environment before running one of these examples. Existing integrations can keep their own secret variable name; `TOKEN` is the convention used by the downloadable clients.
+
+Each example calls `GET /api/v1/me` without submitting evidence or starting an investigation. An admitted account check counts as one API request. Do not include the secret in browser code, source control, URLs or logs.
+
+<CodeGroup>
+```bash cURL
+curl --fail-with-body --silent --show-error --max-time 30 \
+  'https://dwsoffshorepartners.com/api/v1/me' \
+  --header "Authorization: Bearer ${TOKEN:?Set TOKEN in your server environment}"
+```
+
+```javascript JavaScript
+const token = process.env.TOKEN;
+if (!token) throw new Error("Set TOKEN in your server environment");
+
+const response = await fetch("https://dwsoffshorepartners.com/api/v1/me", {
+  headers: { Authorization: `Bearer ${token}` },
+  signal: AbortSignal.timeout(30_000),
+  redirect: "error",
+});
+if (!response.ok) throw new Error(`Account check failed: HTTP ${response.status}`);
+console.log(await response.json());
+```
+
+```typescript TypeScript
+async function main(): Promise<void> {
+  const token = process.env.TOKEN;
+  if (!token) throw new Error("Set TOKEN in your server environment");
+
+  const response = await fetch("https://dwsoffshorepartners.com/api/v1/me", {
+    headers: { Authorization: `Bearer ${token}` },
+    signal: AbortSignal.timeout(30_000),
+    redirect: "error",
+  });
+  if (!response.ok) throw new Error(`Account check failed: HTTP ${response.status}`);
+  const account: unknown = await response.json();
+  console.log(account);
+}
+void main().catch(error => {
+  console.error(error instanceof Error ? error.message : "Account check failed");
+  process.exitCode = 1;
+});
+```
+
+```python Python
+import json
+import os
+import urllib.request
+
+token = os.environ["TOKEN"]
+class NoRedirect(urllib.request.HTTPRedirectHandler):
+    def redirect_request(self, request, response, code, message, headers, target):
+        return None
+
+request = urllib.request.Request(
+    "https://dwsoffshorepartners.com/api/v1/me",
+    headers={"Authorization": f"Bearer {token}"},
+)
+opener = urllib.request.build_opener(NoRedirect())
+with opener.open(request, timeout=30) as response:
+    print(json.dumps(json.load(response), indent=2))
+```
+
+```java Java
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.time.Duration;
+
+class AccountCheck {
+    public static void main(String[] args) throws Exception {
+        String token = System.getenv("TOKEN");
+        if (token == null || token.isBlank()) throw new IllegalStateException("Set TOKEN");
+        var client = HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(30)).build();
+        var request = HttpRequest.newBuilder(URI.create("https://dwsoffshorepartners.com/api/v1/me"))
+            .timeout(Duration.ofSeconds(30)).header("Authorization", "Bearer " + token).GET().build();
+        var response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        if (response.statusCode() / 100 != 2) throw new IllegalStateException("HTTP " + response.statusCode());
+        System.out.println(response.body());
+    }
+}
+```
+
+```csharp C#
+using System;
+using System.Net.Http;
+using System.Net.Http.Headers;
+
+var token = Environment.GetEnvironmentVariable("TOKEN")
+    ?? throw new InvalidOperationException("Set TOKEN");
+using var handler = new HttpClientHandler { AllowAutoRedirect = false };
+using var client = new HttpClient(handler) { Timeout = TimeSpan.FromSeconds(30) };
+client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+using var response = await client.GetAsync("https://dwsoffshorepartners.com/api/v1/me");
+response.EnsureSuccessStatusCode();
+Console.WriteLine(await response.Content.ReadAsStringAsync());
+```
+
+```go Go
+package main
+
+import (
+    "fmt"
+    "io"
+    "net/http"
+    "os"
+    "time"
+)
+
+func main() {
+    token := os.Getenv("TOKEN")
+    if token == "" { panic("Set TOKEN") }
+    client := &http.Client{Timeout: 30 * time.Second,
+        CheckRedirect: func(*http.Request, []*http.Request) error { return http.ErrUseLastResponse }}
+    request, err := http.NewRequest("GET", "https://dwsoffshorepartners.com/api/v1/me", nil)
+    if err != nil { panic(err) }
+    request.Header.Set("Authorization", "Bearer " + token)
+    response, err := client.Do(request)
+    if err != nil { panic(err) }
+    defer response.Body.Close()
+    if response.StatusCode < 200 || response.StatusCode >= 300 { panic(response.Status) }
+    body, err := io.ReadAll(io.LimitReader(response.Body, 1 << 20))
+    if err != nil { panic(err) }
+    fmt.Println(string(body))
+}
+```
+
+```php PHP
+<?php
+$token = getenv('TOKEN');
+if (!$token) { throw new RuntimeException('Set TOKEN'); }
+$request = curl_init('https://dwsoffshorepartners.com/api/v1/me');
+curl_setopt_array($request, [
+    CURLOPT_HTTPHEADER => ['Authorization: Bearer ' . $token],
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_TIMEOUT => 30,
+    CURLOPT_FOLLOWLOCATION => false,
+]);
+$body = curl_exec($request);
+$status = curl_getinfo($request, CURLINFO_RESPONSE_CODE);
+if ($body === false || $status < 200 || $status >= 300) {
+    curl_close($request);
+    throw new RuntimeException('Account check failed: HTTP ' . $status);
+}
+curl_close($request);
+echo $body, PHP_EOL;
+```
+
+```ruby Ruby
+require "net/http"
+require "uri"
+
+token = ENV.fetch("TOKEN")
+uri = URI("https://dwsoffshorepartners.com/api/v1/me")
+request = Net::HTTP::Get.new(uri)
+request["Authorization"] = "Bearer #{token}"
+response = Net::HTTP.start(uri.host, uri.port, use_ssl: true,
+  open_timeout: 30, read_timeout: 30) { |http| http.request(request) }
+raise "Account check failed: HTTP #{response.code}" unless response.is_a?(Net::HTTPSuccess)
+puts response.body
+```
+</CodeGroup>
+
+Check `401` responses for a missing, expired or revoked credential. A `403` can indicate account approval or scope restrictions. Inspect the returned error code, then use the [authentication guide](/partner-api/authentication) and [errors guide](/partner-api/errors-and-retries). Do not repeatedly retry an authorization failure.
+
+## Download a complete workflow
+
+Choose your language in the [native endpoint reference](https://dwsoffshorepartners.com/docs/api-reference), then open its setup guide and download its source archive. The complete examples support account, capabilities and usage checks; evidence submission; saved-case resume and continuation; result retrieval; and entitled binary artifact downloads. Their generic request command also addresses documented operations beyond the convenience workflow.
+
+Download [all nine language examples in one ZIP](https://dwsoffshorepartners.com/docs/downloads/partner-api/languages/all-languages.zip) to evaluate multiple stacks. The archive includes setup guides, required project files and the shared JavaScript transport used by TypeScript.
+
+| Language | Complete example requirements |
+| --- | --- |
+| cURL | cURL 8.4+, Bash 4+, jq 1.6+ |
+| JavaScript | Node.js 20+ |
+| TypeScript | Node.js 20+, TypeScript 5+ |
+| Python | Python 3.10+ |
+| Java | Java 17+, Jackson 2.18.3 |
+| C# | .NET 8+ |
+| Go | Go 1.22+ |
+| PHP | PHP 8.1+ with cURL |
+| Ruby | Ruby 3.1+ |
+
+The account-check snippets above use standard language HTTP clients; the requirements table describes the complete downloaded clients. Follow each archive's README for filenames, dependency installation and invocation.
+
+## Implement the whole customer journey
+
+1. Verify the account, available capabilities and both request and analysis balances before accepting evidence.
+2. Submit only authorized evidence. Use signed upload links when a package exceeds the hosted request body limit, and preserve returned file metadata.
+3. Save the case ID before polling or continuing. Resume that case after interruption; a timeout does not prove that the server stopped.
+4. Follow the returned continuation, pagination and completeness metadata. Present `failed` and `action_required` states with their documented next steps.
+5. Retrieve entitled report artifacts with the same API bearer. Keep artifact bytes private and preserve the saved case and report IDs for recovery.
+
+The [workflow](/partner-api/workflow), [uploads](/partner-api/uploads), [results](/partner-api/results), [usage](/partner-api/usage) and [integration checklist](/partner-api/integration-checklist) document these boundaries. Download helpers refuse redirects and file overwrite, bound output and deadlines, and remove incomplete artifacts. They do not make a report public or create a new investigation to recover a download.
+
+## Complete HTTP contract and credentials
+
+Every documented operation has a request example in all nine languages. The checked-in OpenAPI snapshot supplies explicit `x-codeSamples`, so this portal's requests remain available when the API backend is unavailable. The [live OpenAPI document](https://dwsoffshorepartners.com/.well-known/openapi.json) describes the currently deployed contract; the [native full reference](https://dwsoffshorepartners.com/docs/api-reference) includes every documented operation and schema.
+
+Dashboard Partner API keys, delegated Partner OAuth, MCP grants, historical provisioned scoring credentials and public checkout credentials have distinct authority. Use each operation's documented authentication and scopes. A generic request helper can send a request, but cannot grant missing approval, entitlements, scopes or a different credential type. Use your organization's normal dependency, contract and integration testing before production adoption.
+
+For the separate Ultiwrite Forensics product at `ultiwrite.co`, use its [nine-language reference](https://ultiwrite.co/docs/reference) and its own API keys. Forensics keys are available to active accounts; a Partner API token from `dwsoffshorepartners.com` does not authenticate that product.

@@ -17,10 +17,16 @@
       "languages": [
         "bash",
         "javascript",
-        "python"
+        "typescript",
+        "python",
+        "java",
+        "csharp",
+        "go",
+        "php",
+        "ruby"
       ],
       "prefill": false,
-      "autogenerate": true
+      "autogenerate": false
     },
     "url": "full"
   },
@@ -64,7 +70,7 @@
         {
           "anchor": "API reference",
           "icon": "code",
-          "href": "https://dwsoffshorepartners.com/docs/api"
+          "href": "https://dwsoffshorepartners.com/docs/api-reference"
         },
         {
           "anchor": "Product documentation",
@@ -86,6 +92,7 @@
         "group": "Partner API",
         "pages": [
           "partner-api/overview",
+          "partner-api/languages",
           "partner-api/authentication",
           "partner-api/workflow",
           "partner-api/uploads",
