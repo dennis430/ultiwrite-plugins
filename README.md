@@ -11,7 +11,7 @@ Ultiwrite is an asymmetric diligence engine: ordinary commercial documents open 
 | `cursor/` | 0.10.0 | Existing Cursor identity and five discoverable workflows |
 | `grokbot/` | 0.9.0 | Separate Grok Bot submission dossier; distinct from Grok Build |
 | `client/` | 0.8.0 | Optional local OAuth/stdio adapter; npm publication outstanding |
-| `hosts/` | 0.11.0 | 55-surface compatibility matrix, 16 config examples, enterprise adoption/operations guides, directory review packets, hosted-client guide, API example and generated public tool catalog |
+| `hosts/` | 0.12.0 | 55-surface compatibility matrix, 16 config examples, enterprise adoption/operations guides, directory review packets, hosted-client guide, API example and generated public tool catalog |
 
 This release supplies source and versioned artifacts for the existing canonical MCP service. Native host acceptance for this release remains NOT_RUN; prior release evidence is preserved with its original date. npm publication and marketplace submissions are separate. Historical approved package identities and archive bytes are preserved.
 
@@ -29,7 +29,7 @@ The first eligible complimentary investigation remains available once per accoun
 
 ## Downloads
 
-Download the versioned `release/` files below or use them from a distribution checkout. The host adapter bundle is `release/ultiwrite-host-adapters-0.11.0.zip`; the optional client tarball is `release/ultiwrite-mcp-0.8.0.tgz`.
+Download the versioned `release/` files below or use them from a distribution checkout. The host adapter bundle is `release/ultiwrite-host-adapters-0.12.0.zip`; the optional client tarball is `release/ultiwrite-mcp-0.8.0.tgz`.
 
 <!-- CURRENT_DOWNLOADS_START -->
 | Archive | SHA-256 |

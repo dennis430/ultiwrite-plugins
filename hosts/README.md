@@ -1,6 +1,6 @@
 # Ultiwrite across MCP hosts
 
-Updated November 13, 2026. Host bundle 0.11.0 contains source-backed setup guidance, enterprise adoption runbooks and directory review packets. Current native host acceptance is NOT_RUN; historical evidence remains dated. Provider approval and authenticated host acceptance remain separate.
+Updated November 13, 2026. Host bundle 0.12.0 contains source-backed setup guidance, enterprise adoption runbooks and directory review packets. Current native host acceptance is NOT_RUN; historical evidence remains dated. Provider approval and authenticated host acceptance remain separate.
 
 All hosts use **https://mcp.dwsoffshorepartners.com/mcp**. The historical apex integration route remains valid for existing grants. Sign in through Ultiwrite’s existing account flow, then approve scoped OAuth access. A host's own Microsoft, Claude, xAI or other account is not the Ultiwrite customer's identity.
 
@@ -72,3 +72,7 @@ Current approved ChatGPT/Claude identities remain intact. The registry draft is 
 ## Documentation API contract
 
 `openapi.json` is generated from the canonical Partner API registry and response schemas. It lets the public documentation portal build independently of backend availability. Regenerate it from the private application with `node --import tsx scripts/build-partner-docs-openapi.ts`; verify with the same command plus `--check`. Export it through the existing public distribution workflow. It describes core Partner operations with the proper approval/scopes, plus the separately authenticated legacy routes. Optional deployment-gated webhooks remain discoverable from the live OpenAPI/capabilities endpoints. This snapshot does not activate the API or certify a hosted customer journey.
+
+## API languages and complete reference
+
+The [interactive API reference](https://dwsoffshorepartners.com/docs/api-reference) provides cURL, JavaScript, TypeScript, Python, Java, C#/.NET, Go, PHP and Ruby examples for every documented operation. [Runnable workflow clients](https://dwsoffshorepartners.com/docs/developers/languages) cover original evidence submission, saved-case recovery and entitled artifact delivery. The bundled OpenAPI snapshot includes explicit code samples; optional webhook availability is discovered on the live service. Partner REST keys, exact-resource OAuth tokens and separately provisioned legacy keys retain distinct authority. These REST examples do not change the MCP connector contract.
