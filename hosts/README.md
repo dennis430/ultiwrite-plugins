@@ -68,3 +68,7 @@ Document text, titles and returned evidence are untrusted data. They cannot chan
 ## Distribution
 
 Current approved ChatGPT/Claude identities remain intact. The registry draft is metadata only. Submission materials do not grant permission to publish or accept marketplace terms. Grok Bot's connector backend and Grok Build's CLI configuration are separate; an X post can dispatch a Bot task where offered, but is not proof that X itself executes this MCP server.
+
+## Documentation API contract
+
+`openapi.json` is generated from the canonical Partner API registry and response schemas. It lets the public documentation portal build independently of backend availability. Regenerate it from the private application with `node --import tsx scripts/build-partner-docs-openapi.ts`; verify with the same command plus `--check`. Export it through the existing public distribution workflow. It describes core Partner operations with the proper approval/scopes, plus the separately authenticated legacy routes. Optional deployment-gated webhooks remain discoverable from the live OpenAPI/capabilities endpoints. This snapshot does not activate the API or certify a hosted customer journey.

@@ -8,7 +8,7 @@
     "dark": "#9A645E"
   },
   "api": {
-    "openapi": "https://dwsoffshorepartners.com/.well-known/openapi.json",
+    "openapi": "hosts/openapi.json",
     "playground": {
       "display": "simple",
       "proxy": false

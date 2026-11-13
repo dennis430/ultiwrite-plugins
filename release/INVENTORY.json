@@ -42,13 +42,13 @@
     {
       "file": "release/ultiwrite-host-adapters-0.11.0.zip",
       "version": "0.11.0",
-      "sha256": "c0a7044e6e3f3b1c08a6b447ed9e51bfc2751d40ec4600e3c5bfe6dbcd6fdbc4",
-      "bytes": 55896,
+      "sha256": "f8c92354676bb3a84d2e851cb8d6889d2c882d256658db2b7db8ff6d96d726b0",
+      "bytes": 75496,
       "members": [
         {
           "name": "README.md",
-          "sha256": "cc4ef98e1696fc98065e990f3bc9e674b4278acca95f6c1c8bc12fdcbc31469b",
-          "bytes": 8910
+          "sha256": "f49fa7a22c036e0bea5305bf1bb832a0bbb91c3ea2592173f92ac04c37122975",
+          "bytes": 9628
         },
         {
           "name": "catalog.json",
@@ -189,6 +189,11 @@
           "name": "muse.md",
           "sha256": "e2b69c8aafb63f0b6cea39b0211bccf82299ff2b4609936adada1ad59c639a2c",
           "bytes": 12225
+        },
+        {
+          "name": "openapi.json",
+          "sha256": "8d7d94b36cab5bd65cd14090045b5520533744a7ca42a91c5dd2ca5000f159b9",
+          "bytes": 335433
         },
         {
           "name": "submissions/README.md",
