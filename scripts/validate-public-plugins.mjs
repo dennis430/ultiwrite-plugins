@@ -124,7 +124,7 @@ if (market) {
     if (!['name', 'owner', 'metadata', 'plugins'].includes(key)) fail(`marketplace.json has ${key}`)
   }
   if (market.name !== 'ultiwrite') fail('marketplace name')
-  if (market.owner?.name !== 'DWS Offshore Fund' || market.owner.email !== 'nick@ultiwrite.co') fail('marketplace owner')
+  if (market.owner?.name !== 'DWS Offshore Fund' || market.owner.email !== 'levi@dwsoffshorepartners.com') fail('marketplace owner')
   if (!Array.isArray(market.plugins) || market.plugins.length !== 1) fail('marketplace plugins')
   const entry = market.plugins?.[0]
   if (entry && (entry.name !== 'ultiwrite' || entry.source !== 'cursor')) fail('marketplace source must be cursor')
@@ -137,8 +137,8 @@ const plugin = readJson('cursor/.cursor-plugin/plugin.json')
 const pluginKeys = ['name', 'displayName', 'version', 'description', 'author', 'publisher', 'license', 'homepage', 'repository', 'logo', 'keywords', 'category', 'skills']
 if (plugin) {
   for (const key of Object.keys(plugin)) if (!pluginKeys.includes(key)) fail(`plugin.json has ${key}`)
-  if (plugin.name !== 'ultiwrite' || plugin.version !== '0.10.0' || plugin.license !== 'MIT') fail('plugin identity')
-  if (plugin.author?.url || plugin.author?.name !== 'DWS Offshore Fund' || plugin.author?.email !== 'nick@ultiwrite.co') fail('plugin author')
+  if (plugin.name !== 'ultiwrite' || plugin.version !== '0.11.0' || plugin.license !== 'MIT') fail('plugin identity')
+  if (plugin.author?.url || plugin.author?.name !== 'DWS Offshore Fund' || plugin.author?.email !== 'levi@dwsoffshorepartners.com') fail('plugin author')
   if (plugin.logo !== 'assets/logo.png') fail('plugin logo path')
   if ('skills' in plugin) fail('Cursor must discover every skills/ workflow; do not override discovery with a single path')
   if (plugin.repository !== 'https://github.com/dennis430/ultiwrite-plugins') fail('plugin repository')
@@ -178,7 +178,7 @@ if (!readFileSync(join(root, 'grokbot/TESTING.md'), 'utf8').includes('NOT_RUN'))
 const claude = readJson('claude/.mcp.json')
 if (claude?.mcpServers?.ultiwrite?.type !== 'http' || claude?.mcpServers?.ultiwrite?.url !== CLAUDE_MCP_URL || Object.keys(claude?.mcpServers?.ultiwrite ?? {}).length !== 2) fail('claude mcp')
 const claudeListing = readJson('claude/.claude-plugin/plugin.json')
-if (claudeListing?.name !== 'ultiwrite' || claudeListing?.displayName !== 'Ultiwrite' || claudeListing?.icon !== './assets/logo.png' || claudeListing?.version !== '0.10.0') fail('claude directory branding')
+if (claudeListing?.name !== 'ultiwrite' || claudeListing?.displayName !== 'Ultiwrite' || claudeListing?.icon !== './assets/logo.png' || claudeListing?.version !== '0.11.0') fail('claude directory branding')
 for (const field of ['documentationUrl', 'supportUrl', 'privacyPolicyUrl', 'termsOfServiceUrl']) {
   if (typeof claudeListing?.[field] !== 'string' || !claudeListing[field].startsWith('https://dwsoffshorepartners.com/')) fail(`claude directory ${field}`)
 }
@@ -187,7 +187,7 @@ const openaiInterface = chatgptListing?.extensions?.['com.openai']?.interface
 if (chatgptListing?.name !== 'ultiwrite' || chatgptListing?.$schema !== 'https://agent-plugins.org/schemas/1.0.0/plugin.schema.json') fail('ChatGPT portable identity or schema')
 if (chatgptListing?.apps || chatgptListing?.extensions?.['com.openai']?.apps || files.includes('chatgpt/.app.json')) fail('public ChatGPT package must not include private app bindings')
 if (openaiInterface?.logoDark !== './assets/logo.png' || openaiInterface?.composerIconDark !== './assets/logo.png') fail('ChatGPT dark icons must use the canonical asset')
-if (openaiInterface?.displayName !== 'Ultiwrite' || openaiInterface?.logo !== './assets/logo.png' || openaiInterface?.composerIcon !== './assets/logo.png' || chatgptListing?.version !== '0.10.0') fail('ChatGPT directory branding')
+if (openaiInterface?.displayName !== 'Ultiwrite' || openaiInterface?.logo !== './assets/logo.png' || openaiInterface?.composerIcon !== './assets/logo.png' || chatgptListing?.version !== '0.11.0') fail('ChatGPT directory branding')
 pngSquareOpaque('claude/assets/logo.png')
 // Anthropic directory rules the CLI validator does not check (claude.com/docs/plugins/pre-submission-checklist).
 const claudeFiles = files.filter(rel => rel.startsWith('claude/'))
@@ -197,17 +197,17 @@ if (!claudeFiles.includes('claude/LICENSE')) fail('claude plugin LICENSE missing
 const claudeReadme = readFileSync(join(root, 'claude/README.md'), 'utf8').replace(/```[\s\S]*?```/g, ' ')
 if (claudeReadme.split(/\s+/).filter(Boolean).length < 40) fail('claude README must have at least 40 words outside code blocks')
 if (!/^## Privacy/m.test(claudeReadme)) fail('claude README must disclose data handling under ## Privacy')
-const TOOL_NAMES = ['ultiwrite_account_get', 'ultiwrite_capabilities_get', 'ultiwrite_cases_list', 'ultiwrite_case_status', 'ultiwrite_coherence_get',
-  'ultiwrite_findings_get', 'ultiwrite_report_export', 'ultiwrite_evidence_submit']
+const TOOL_NAMES = ['ultiwrite_account_get', 'ultiwrite_capabilities_get', 'ultiwrite_cases_list', 'ultiwrite_case_status', 'ultiwrite_case_disposition_set',
+  'ultiwrite_coherence_get', 'ultiwrite_findings_get', 'ultiwrite_report_export', 'ultiwrite_evidence_submit']
 const EXPECTED_SKILLS = {
-  chatgpt: ['ultiwrite-read', 'connect-account', 'submit-evidence', 'read-report', 'follow-up'],
-  claude: ['ultiwrite', 'connect-account', 'submit-evidence', 'read-report', 'follow-up'],
-  cursor: ['ultiwrite', 'connect-account', 'submit-evidence', 'read-report', 'follow-up'],
+  chatgpt: ['ultiwrite-read', 'connect-account', 'submit-evidence', 'read-report', 'follow-up', 'case-disposition'],
+  claude: ['ultiwrite', 'connect-account', 'submit-evidence', 'read-report', 'follow-up', 'case-disposition'],
+  cursor: ['ultiwrite', 'connect-account', 'submit-evidence', 'read-report', 'follow-up', 'case-disposition'],
 }
 for (const [host, expected] of Object.entries(EXPECTED_SKILLS)) {
   const found = files.filter(rel => new RegExp(`^${host}/skills/[^/]+/SKILL\\.md$`).test(rel))
   const names = found.map(rel => rel.split('/')[2]).sort()
-  if (JSON.stringify(names) !== JSON.stringify([...expected].sort())) fail(`${host} must package all five independently discoverable workflows`)
+  if (JSON.stringify(names) !== JSON.stringify([...expected].sort())) fail(`${host} must package all six independently discoverable workflows`)
   for (const rel of found) {
     const text = readFileSync(join(root, rel), 'utf8')
     const front = /^---\n([\s\S]*?)\n---\n/.exec(text)
@@ -251,7 +251,7 @@ if (JSON.stringify(Object.keys(chatgptMcp?.mcpServers ?? {})) !== JSON.stringify
 if (chatgptServer?.type !== 'streamable-http' || chatgptServer?.url !== CHATGPT_MCP_URL || chatgptServer?.headers) fail('ChatGPT MCP connection')
 if (JSON.stringify(Object.keys(chatgptServer ?? {}).sort()) !== JSON.stringify(['type', 'url'])) fail('ChatGPT uses the portable parser-safe transport and URL only; OAuth is discovered from the service')
 if (openaiInterface?.category !== 'Business & Operations') fail('ChatGPT must preserve the canonical listing category')
-if (chatgptListing?.extensions?.['com.openai']?.review?.test_cases?.positive?.length !== 5 || chatgptListing?.extensions?.['com.openai']?.review?.test_cases?.negative?.length !== 3) fail('ChatGPT must preserve five positive and three negative review cases')
+if (chatgptListing?.extensions?.['com.openai']?.review?.test_cases?.positive?.length !== 6 || chatgptListing?.extensions?.['com.openai']?.review?.test_cases?.negative?.length !== 3) fail('ChatGPT must preserve six positive and three negative review cases')
 const canonicalLogo = readFileSync(join(root, 'claude/assets/logo.png'))
 if (createHash('sha256').update(canonicalLogo).digest('hex') !== 'cc0a3c229347e47a154a00c9e6dfa774c0e1f07ee9fc063935af5bc4897f4b18') fail('canonical Uw icon bytes changed')
 for (const host of ['chatgpt', 'cursor', 'grokbot']) {

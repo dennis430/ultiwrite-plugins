@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "packageVersion": "0.12.0",
+  "packageVersion": "0.13.0",
   "asOf": "2026-11-13",
   "endpoint": "https://mcp.dwsoffshorepartners.com/mcp",
   "hostTesting": "Current native-host acceptance is NOT_RUN. Historical SKIPPED_BY_USER rows retain the prior source evidence; configuration and package checks are not host acceptance.",

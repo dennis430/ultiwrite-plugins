@@ -2,7 +2,7 @@
   "name": "io.github.dennis430/ultiwrite",
   "title": "Ultiwrite",
   "description": "Asymmetric diligence over authorized commercial evidence. NOT PUBLISHED; prepared registry metadata.",
-  "version": "0.10.0",
+  "version": "0.11.0",
   "remotes": [
     {
       "type": "streamable-http",

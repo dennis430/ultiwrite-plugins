@@ -1,11 +1,11 @@
 {
   "product": "Ultiwrite",
   "distribution": "plugin-only",
-  "version": "0.10.0",
+  "version": "0.11.0",
   "publisher": "DWS Offshore Fund",
   "source_repository": "dennis430/merchant-risk-app",
-  "source_base_commit": "8155e2f49673242745e250cdf4e95cbc8c7d5a90",
-  "public_source_base_commit": null,
+  "source_base_commit": "0bddcd2fc28e526663d782aea0fa759f899f4bbd",
+  "public_source_base_commit": "f663f092cc9f17f75ee205839e5fa6abed02f4e1",
   "package_status": "PREPARED",
   "host_evaluation_status": "NOT_RUN",
   "directory_publication_status": "NOT_VERIFIED_BY_THIS_EXPORT",
@@ -19,22 +19,22 @@
   "compatibility_mcp_url": "https://dwsoffshorepartners.com/api/integrations/ultiwrite/mcp",
   "packages": {
     "hosts": {
-      "version": "0.12.0",
-      "zip": "release/ultiwrite-host-adapters-0.12.0.zip",
+      "version": "0.13.0",
+      "zip": "release/ultiwrite-host-adapters-0.13.0.zip",
       "status": "prepared; native host acceptance not run"
     },
     "chatgpt": {
-      "version": "0.10.0",
-      "zip": "release/ultiwrite-chatgpt-plugin-0.10.0.zip",
+      "version": "0.11.0",
+      "zip": "release/ultiwrite-chatgpt-plugin-0.11.0.zip",
       "mcp_url": "https://mcp.dwsoffshorepartners.com/mcp"
     },
     "cursor": {
-      "version": "0.10.0",
-      "zip": "release/ultiwrite-cursor-plugin-0.10.0.zip"
+      "version": "0.11.0",
+      "zip": "release/ultiwrite-cursor-plugin-0.11.0.zip"
     },
     "claude": {
-      "version": "0.10.0",
-      "zip": "release/Ultiwrite_Claude_Plugin_v0.10.0.zip",
+      "version": "0.11.0",
+      "zip": "release/Ultiwrite_Claude_Plugin_v0.11.0.zip",
       "mcp_url": "https://mcp.dwsoffshorepartners.com/mcp"
     },
     "grokbot": {
@@ -50,11 +50,11 @@
   "files": [
     {
       "path": ".claude-plugin/marketplace.json",
-      "sha256": "479ce79dfec82c54f5307db5d3ad938ce330e6f4c93c4724f51be5290aace9c4"
+      "sha256": "425732356906ac5691c36164efa4b40547e08071cec6bd98dc6f9be8eca3962e"
     },
     {
       "path": ".cursor-plugin/marketplace.json",
-      "sha256": "4a6079758f9b7bb4bb4e097124cd93548a985a66ca8fbdcd2516f179d3c84f12"
+      "sha256": "811e4b956bfde0c0ff9e3c7f9cd04e12fa858d85b6c46f01558bdf9e59949d79"
     },
     {
       "path": ".github/workflows/validate.yml",
@@ -74,7 +74,7 @@
     },
     {
       "path": "INSTALL.md",
-      "sha256": "1cd2ee3f6deae08ce983347e6be9c0a5ae0ad0aa643b8db9d30e739d6df5fdc5"
+      "sha256": "8b81cdced27e36516228edb5c88ccf17d27a054645af793530e0a472d3e56be1"
     },
     {
       "path": "LICENSE",
@@ -90,7 +90,7 @@
     },
     {
       "path": "README.md",
-      "sha256": "b8abcfcc70c899cbc1025d4e0ffe07df35891b59c20ebbea0afd3e6c4cb5bad9"
+      "sha256": "64aab2d0bba487655d895b69d24a505692aff8a1a03df52c5abd1ad8430677e8"
     },
     {
       "path": "api-contract.mdx",
@@ -174,7 +174,7 @@
     },
     {
       "path": "chatgpt/README.md",
-      "sha256": "65a9c4afbbd6cbd8e20e4aa0c082d3b70ce146f4480e2d2cdcd8d2ef7272b732"
+      "sha256": "2eaed801a199c146ed0baf440b94780158d20e5d58f3c9aee7323c49405432ca"
     },
     {
       "path": "chatgpt/assets/logo.png",
@@ -186,11 +186,19 @@
     },
     {
       "path": "chatgpt/plugin.json",
-      "sha256": "cacedd58bfc9a3c9133e28dfc65a6790492d04c1f998699c3b6136891f7c067c"
+      "sha256": "a2da79f1726a765a95622fe4fd03040ea917256381ca8eadd8a7883efd328662"
+    },
+    {
+      "path": "chatgpt/skills/case-disposition/SKILL.md",
+      "sha256": "acef44fe87337b6a8b45314b787e65b22ddb90bf2586fc8fd1b0c05af311c5a4"
+    },
+    {
+      "path": "chatgpt/skills/case-disposition/agents/openai.yaml",
+      "sha256": "3bd9c4513e4af39b732567d889b5af6259a7947bbebd6726bb9859ad69779298"
     },
     {
       "path": "chatgpt/skills/connect-account/SKILL.md",
-      "sha256": "5c1d7965e35639b51cbec23f0ff18a044918bcaac939495cbec371aa46b89f77"
+      "sha256": "827a1c3697671cb1c0e5a3ef5f64c76ce8eada8eb14d5089bf6708e4320cf27f"
     },
     {
       "path": "chatgpt/skills/connect-account/agents/openai.yaml",
@@ -198,7 +206,7 @@
     },
     {
       "path": "chatgpt/skills/follow-up/SKILL.md",
-      "sha256": "c1561ab0ae0067f6476528a1cc3388c76f5ef5fd058ff2ed9b60f03e5292a09b"
+      "sha256": "8d9a16673f69f1fbe553dfabb333ab58336741c4edaa90dd1ab6c8eb38909603"
     },
     {
       "path": "chatgpt/skills/follow-up/agents/openai.yaml",
@@ -206,7 +214,7 @@
     },
     {
       "path": "chatgpt/skills/read-report/SKILL.md",
-      "sha256": "f576ed77615411a9d78b7ba6f89bb11115c53e2c021943837e5b582978c8db00"
+      "sha256": "37dfd8a7a75342b2cf70f42c9f2465fa33141407231dd5ab14b044651976668d"
     },
     {
       "path": "chatgpt/skills/read-report/agents/openai.yaml",
@@ -214,7 +222,7 @@
     },
     {
       "path": "chatgpt/skills/submit-evidence/SKILL.md",
-      "sha256": "356c2ae27ae64095588dcc33c05133c4263b8b179d07cfcf0a2ad352289da829"
+      "sha256": "1e0238b5975b64442ab4917870af633767010f6c75eb223701d3477fb1ace62d"
     },
     {
       "path": "chatgpt/skills/submit-evidence/agents/openai.yaml",
@@ -222,7 +230,7 @@
     },
     {
       "path": "chatgpt/skills/ultiwrite-read/SKILL.md",
-      "sha256": "0e7a1f91f421d98f57d7d92b3136cc89978e845128f70c843481731084218eb7"
+      "sha256": "2f828f6ca0c70abe3bf8d9cb5da0b063cb1695952123e56a886eba33f8f59c41"
     },
     {
       "path": "chatgpt/skills/ultiwrite-read/agents/openai.yaml",
@@ -230,7 +238,7 @@
     },
     {
       "path": "claude/.claude-plugin/plugin.json",
-      "sha256": "7157b70f036d2accf308483aca7dde5e2b19b4525848ed035ce4bf2a2afb51ae"
+      "sha256": "28ded0bc2c9d7025e8e7d3e219cd9ccc96844210ae0e250e67e0c1aaaea7a485"
     },
     {
       "path": "claude/.mcp.json",
@@ -242,15 +250,23 @@
     },
     {
       "path": "claude/README.md",
-      "sha256": "48556e6a23b86a845b077348262ad5f8a9d6e6c4a164c26c517f72b68a1764f8"
+      "sha256": "f9d375698267273a6e71921bcf11c30559700983338268346e00e4ae6f972067"
     },
     {
       "path": "claude/assets/logo.png",
       "sha256": "cc0a3c229347e47a154a00c9e6dfa774c0e1f07ee9fc063935af5bc4897f4b18"
     },
     {
+      "path": "claude/skills/case-disposition/SKILL.md",
+      "sha256": "acef44fe87337b6a8b45314b787e65b22ddb90bf2586fc8fd1b0c05af311c5a4"
+    },
+    {
+      "path": "claude/skills/case-disposition/agents/openai.yaml",
+      "sha256": "3bd9c4513e4af39b732567d889b5af6259a7947bbebd6726bb9859ad69779298"
+    },
+    {
       "path": "claude/skills/connect-account/SKILL.md",
-      "sha256": "5c1d7965e35639b51cbec23f0ff18a044918bcaac939495cbec371aa46b89f77"
+      "sha256": "827a1c3697671cb1c0e5a3ef5f64c76ce8eada8eb14d5089bf6708e4320cf27f"
     },
     {
       "path": "claude/skills/connect-account/agents/openai.yaml",
@@ -258,7 +274,7 @@
     },
     {
       "path": "claude/skills/follow-up/SKILL.md",
-      "sha256": "c1561ab0ae0067f6476528a1cc3388c76f5ef5fd058ff2ed9b60f03e5292a09b"
+      "sha256": "8d9a16673f69f1fbe553dfabb333ab58336741c4edaa90dd1ab6c8eb38909603"
     },
     {
       "path": "claude/skills/follow-up/agents/openai.yaml",
@@ -266,7 +282,7 @@
     },
     {
       "path": "claude/skills/read-report/SKILL.md",
-      "sha256": "e033479f88ee29b25479e24c102b17bda13d7ffdb33cef35f78bba8160a3b0aa"
+      "sha256": "a18511cb50f34198f968658cda1be2e3127f6b419e2d761992f88f8073f54c16"
     },
     {
       "path": "claude/skills/read-report/agents/openai.yaml",
@@ -274,7 +290,7 @@
     },
     {
       "path": "claude/skills/submit-evidence/SKILL.md",
-      "sha256": "da82d4f99b198712a41da76f69d92d2b8c6a056b1ef8c4ffec60477ad2e560af"
+      "sha256": "d74ff0331c4820f095c599af7c2480fe653367383b393e3aa70e682d866c0649"
     },
     {
       "path": "claude/skills/submit-evidence/agents/openai.yaml",
@@ -282,7 +298,7 @@
     },
     {
       "path": "claude/skills/ultiwrite/SKILL.md",
-      "sha256": "a472e553dd64adc92605a23f5d8a8847ea2af868e467e002462facb1fa4ad464"
+      "sha256": "5297e01bbf464a18460884e81dcfe9508bc04a614fd2367be701c34cb6746aa4"
     },
     {
       "path": "claude/skills/ultiwrite/agents/openai.yaml",
@@ -330,7 +346,7 @@
     },
     {
       "path": "cursor/.cursor-plugin/plugin.json",
-      "sha256": "737d0c4b3fb976f8fe5c0e7e1e254749847a85ba0ffe329bb985fffc9dbc3627"
+      "sha256": "9d8358417a1626c7534dc1d3fbc88fa2cea45a2c44e64b4c0d1b314b9f5700e1"
     },
     {
       "path": "cursor/LICENSE",
@@ -338,7 +354,7 @@
     },
     {
       "path": "cursor/README.md",
-      "sha256": "d8848bab5e3959d58af51f51c1223e176e4c12c16b0f3e0cc10b58c95dd64d02"
+      "sha256": "228cc79b128e542fc70d0e9498becaa64beae7daff35216d0f479c4120a671c3"
     },
     {
       "path": "cursor/assets/logo.png",
@@ -349,8 +365,16 @@
       "sha256": "b58605b1536159e225e0c338a99fbadfb5395067191a651882b3e46791003dd1"
     },
     {
+      "path": "cursor/skills/case-disposition/SKILL.md",
+      "sha256": "acef44fe87337b6a8b45314b787e65b22ddb90bf2586fc8fd1b0c05af311c5a4"
+    },
+    {
+      "path": "cursor/skills/case-disposition/agents/openai.yaml",
+      "sha256": "3bd9c4513e4af39b732567d889b5af6259a7947bbebd6726bb9859ad69779298"
+    },
+    {
       "path": "cursor/skills/connect-account/SKILL.md",
-      "sha256": "5c1d7965e35639b51cbec23f0ff18a044918bcaac939495cbec371aa46b89f77"
+      "sha256": "827a1c3697671cb1c0e5a3ef5f64c76ce8eada8eb14d5089bf6708e4320cf27f"
     },
     {
       "path": "cursor/skills/connect-account/agents/openai.yaml",
@@ -358,7 +382,7 @@
     },
     {
       "path": "cursor/skills/follow-up/SKILL.md",
-      "sha256": "c1561ab0ae0067f6476528a1cc3388c76f5ef5fd058ff2ed9b60f03e5292a09b"
+      "sha256": "8d9a16673f69f1fbe553dfabb333ab58336741c4edaa90dd1ab6c8eb38909603"
     },
     {
       "path": "cursor/skills/follow-up/agents/openai.yaml",
@@ -366,7 +390,7 @@
     },
     {
       "path": "cursor/skills/read-report/SKILL.md",
-      "sha256": "e033479f88ee29b25479e24c102b17bda13d7ffdb33cef35f78bba8160a3b0aa"
+      "sha256": "a18511cb50f34198f968658cda1be2e3127f6b419e2d761992f88f8073f54c16"
     },
     {
       "path": "cursor/skills/read-report/agents/openai.yaml",
@@ -374,7 +398,7 @@
     },
     {
       "path": "cursor/skills/submit-evidence/SKILL.md",
-      "sha256": "da82d4f99b198712a41da76f69d92d2b8c6a056b1ef8c4ffec60477ad2e560af"
+      "sha256": "d74ff0331c4820f095c599af7c2480fe653367383b393e3aa70e682d866c0649"
     },
     {
       "path": "cursor/skills/submit-evidence/agents/openai.yaml",
@@ -382,7 +406,7 @@
     },
     {
       "path": "cursor/skills/ultiwrite/SKILL.md",
-      "sha256": "a472e553dd64adc92605a23f5d8a8847ea2af868e467e002462facb1fa4ad464"
+      "sha256": "5297e01bbf464a18460884e81dcfe9508bc04a614fd2367be701c34cb6746aa4"
     },
     {
       "path": "cursor/skills/ultiwrite/agents/openai.yaml",
@@ -438,11 +462,11 @@
     },
     {
       "path": "hosts/README.md",
-      "sha256": "a2036e663845fe52479644f58e33cc3fee9401a931dd4bb2b3d7e3b7f5ce72f4"
+      "sha256": "55239e3bcda0af58a626c14f7426eef277a39d19e4bc101294deb3405e9aa007"
     },
     {
       "path": "hosts/catalog.json",
-      "sha256": "10f32f361636a09d86556b3776f1c1d055af792cfe2951ffd576b161d1ba615b"
+      "sha256": "ec411424ad8b301b02bf272baf1e0d2843b6488917e3a7a10104e8f502ceacf9"
     },
     {
       "path": "hosts/configs/antigravity.json",
@@ -538,11 +562,11 @@
     },
     {
       "path": "hosts/hosted-clients.md",
-      "sha256": "95afcad088b2c38929241b53dd474a6035ac2efe37132662d5e2174aba7b6020"
+      "sha256": "41051f8eaa370f4801b2f9ad336081c230657403d76a68165c1159607d6c6763"
     },
     {
       "path": "hosts/matrix.json",
-      "sha256": "cd006561533a0eaf527b67d5432701efc6ccd8f494edc08b8a0ba687f2b28a9f"
+      "sha256": "8a4be50150ee9f701ed6c9a27f4025633f66d7b809010a5d06e5be5ddb889152"
     },
     {
       "path": "hosts/mistral.md",
@@ -554,7 +578,7 @@
     },
     {
       "path": "hosts/openapi.json",
-      "sha256": "7d45a80068fe18185bf2e24d605f6ce0e96e8a8221d1f09a65c1eea7f40be2de"
+      "sha256": "197aa32b10a6aa78739f6e855e9e122d3b582e347d61c8b374bfbbf7c4c6a3a7"
     },
     {
       "path": "hosts/submissions/README.md",
@@ -562,7 +586,7 @@
     },
     {
       "path": "hosts/submissions/profiles.json",
-      "sha256": "c010dd48b79a44efd9d55d7a636a6cd140731d0cbdf2ba6648f7d76c8b27256c"
+      "sha256": "db04314c49555c4f9931c3bd43e1daea8f81fd8efe7eee62719e9aeb90ad51fc"
     },
     {
       "path": "hosts/submissions/reviewer-scenarios.md",
@@ -626,7 +650,7 @@
     },
     {
       "path": "release/INVENTORY.json",
-      "sha256": "55a502084775434a306f3dcfabeda7e7142487d765829dc4b95e9699f4b74527"
+      "sha256": "31b56402277656bc8ac65f514fa49adc39905a9c56a1fd94346a79c20b8c2b90"
     },
     {
       "path": "release/PLUGIN_0.9.1_LIVE_RECEIPT.json",
@@ -658,11 +682,15 @@
     },
     {
       "path": "release/SHA256SUMS.txt",
-      "sha256": "7f85878f197b981c1b3fea04eca7c2f2d7e17b452bd16a8f9e842c723358a998"
+      "sha256": "35362c8d21b4af80ef2376d8555411c125c08677d30163140334ace4526a414c"
     },
     {
       "path": "release/Ultiwrite_Claude_Plugin_v0.10.0.zip",
       "sha256": "bcedcbec17239d1dc99ed3aecbf0a47af18fd265d33074c28b16184445e82b20"
+    },
+    {
+      "path": "release/Ultiwrite_Claude_Plugin_v0.11.0.zip",
+      "sha256": "b1c925933e896a3f783fd91b76f3c768c76d27cb16b13f4ddd546446b510ed66"
     },
     {
       "path": "release/Ultiwrite_Claude_Plugin_v0.8.0.zip",
@@ -695,6 +723,10 @@
     {
       "path": "release/ultiwrite-chatgpt-plugin-0.10.0.zip",
       "sha256": "aa928684cdbb4383aea0e4cb09fe2bfd67c90181ff4b120237889826312b14b5"
+    },
+    {
+      "path": "release/ultiwrite-chatgpt-plugin-0.11.0.zip",
+      "sha256": "e2d3855ed90df86f0cec176b5bb06c7911dd5316193b3a3228bd543b9a062357"
     },
     {
       "path": "release/ultiwrite-chatgpt-plugin-0.7.1.zip",
@@ -733,6 +765,10 @@
       "sha256": "52e7b6b11346b07a05b8ccbe71467e9055a1db3274d15b770df99500f34f1dee"
     },
     {
+      "path": "release/ultiwrite-cursor-plugin-0.11.0.zip",
+      "sha256": "848f5442eee125d15a0b38af24c3a9416531b061edd4e97e8d8d53db78f21941"
+    },
+    {
       "path": "release/ultiwrite-cursor-plugin-0.7.1.zip",
       "sha256": "e34aa2e43d7062871de121c479ef5e8a7fe214f20b400464624605fc419e15f1"
     },
@@ -769,20 +805,24 @@
       "sha256": "3ee2d7f6f981bd2a2704a81697e09cb39bf5b8ff55419064242f455b724c0702"
     },
     {
+      "path": "release/ultiwrite-host-adapters-0.13.0.zip",
+      "sha256": "dee36abd111ba6611473a40e55b8426512b455896260c671226b05a639773b86"
+    },
+    {
       "path": "scripts/pack-public-connectors.mjs",
       "sha256": "fc3b7bbc6ef1d60b63f72070ea3ac294ad0d825c2dc80c859b10c7d27b49717d"
     },
     {
       "path": "scripts/test/release.test.mjs",
-      "sha256": "3160b430a5626df28e8e84398ba22d38c3132e9bfaa0f2365f4f2868cd446595"
+      "sha256": "aff656835956c988a723a73486793e93481ecfea18f9d0018e59dc9fe1fca017"
     },
     {
       "path": "scripts/validate-public-plugins.mjs",
-      "sha256": "340e71c2f8348e09afc65187645332cf8946ba106d732a14e5f3dd9eabbc0bf0"
+      "sha256": "f0b476df26b2b492f738d6871c1d3a54f9906739ed46049e27864c18626b8670"
     },
     {
       "path": "server.draft.json",
-      "sha256": "ac164971f540a4d443a44ed6ba6064fd8aa95dc1d96a71a4ca7f68b4a461b926"
+      "sha256": "e10fd5b3598b7fefab44990c0d8a699902ec98b6c8a4d66976799d857bdb0dd9"
     }
   ]
 }

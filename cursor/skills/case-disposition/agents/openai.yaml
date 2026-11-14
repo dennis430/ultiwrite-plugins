@@ -1,0 +1,10 @@
+interface:
+  icon_small: "../../assets/logo.png"
+  icon_large: "../../assets/logo.png"
+  display_name: "Record a case disposition"
+  short_description: "Save an explicit disposition without rewriting analysis."
+  default_prompt: "Use $case-disposition to record my chosen disposition for this Ultiwrite case."
+  brand_color: "#d39891"
+
+policy:
+  allow_implicit_invocation: true

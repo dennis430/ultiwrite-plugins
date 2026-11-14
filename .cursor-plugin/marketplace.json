@@ -2,7 +2,7 @@
   "name": "ultiwrite",
   "owner": {
     "name": "DWS Offshore Fund",
-    "email": "nick@ultiwrite.co"
+    "email": "levi@dwsoffshorepartners.com"
   },
   "metadata": {
     "description": "Ultiwrite Commercial Diligence connectors. Thin remote MCP packages only."
@@ -11,7 +11,7 @@
     {
       "name": "ultiwrite",
       "source": "cursor",
-      "description": "Ultiwrite asymmetric diligence and investigative intelligence with account connection and five workflows."
+      "description": "Ultiwrite asymmetric diligence and investigative intelligence with account connection and six workflows."
     }
   ]
 }

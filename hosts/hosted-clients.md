@@ -1,8 +1,8 @@
 # Hosted clients for Ultiwrite
 
-Updated November 6, 2026. Host bundle 0.10.1. These instructions use official documentation and published client source. Authenticated host acceptance is `SKIPPED_BY_USER`; a documented configuration does not prove an installed connection.
+Updated November 13, 2026. Host bundle 0.13.0. These instructions use official documentation and published client source. Current authenticated host acceptance is `NOT_RUN`; historical `SKIPPED_BY_USER` evidence remains dated. A documented configuration does not prove an installed connection.
 
-Connect clients to **https://mcp.dwsoffshorepartners.com/mcp**. Use Ultiwrite’s existing account sign-in and approve a separate scoped OAuth grant for the client. Begin with `ultiwrite:read`; add `ultiwrite:evidence` only for authorized evidence submission. Check the connected identity with `ultiwrite_account_get` before private work. The host’s account, model API credentials and Ultiwrite customer grant are different credentials.
+Connect clients to **https://mcp.dwsoffshorepartners.com/mcp**. Use Ultiwrite’s existing account sign-in and approve a separate scoped OAuth grant for the client. Begin with `ultiwrite:read`; add `ultiwrite:evidence` only for authorized evidence submission or explicit audited case dispositions. Check the connected identity with `ultiwrite_account_get` before private work. The host’s account, model API credentials and Ultiwrite customer grant are different credentials.
 
 ## MCPJam SaaS
 
