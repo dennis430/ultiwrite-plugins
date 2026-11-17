@@ -37,7 +37,7 @@ const allowedTop = new Set([
   'cursor', 'claude', 'chatgpt', 'grokbot', 'client', 'scripts', '.github',
   '.cursor-plugin', '.claude-plugin', 'README.md', 'LICENSE', 'NOTICE',
   'INSTALL.md', 'server.draft.json', '.gitignore', 'RELEASE_MANIFEST.json',
-  'release', 'AGENTS.md', 'POSITIONING.md', 'evals', 'hosts',
+  'release', 'AGENTS.md', 'POSITIONING.md', 'evals', 'hosts', 'antigravity', 'server.json',
   // The public distribution also hosts the existing customer API documentation.
   '.mintignore', 'docs.json', 'index.mdx', 'quickstart.mdx', 'api-contract.mdx', 'api-keys.mdx', 'api-reference', 'partner-api',
 ])
@@ -102,7 +102,7 @@ for (const rel of files) {
   }
   if (/\.(pem|key|p12|env)$/.test(lower)) fail(`forbidden file ${rel}`)
   if (/^(chatgpt|claude|cursor)\//.test(rel)
-    && !/^(?:chatgpt|claude|cursor)\/(?:README\.md|LICENSE|mcp\.json|\.mcp\.json|\.(?:claude|cursor)-plugin\/plugin\.json|plugin\.json|assets\/logo\.png|skills\/[a-z0-9-]+\/(?:SKILL\.md|agents\/openai\.yaml))$/.test(rel)) {
+    && !/^(?:chatgpt|claude|cursor)\/(?:README\.md|LICENSE|mcp\.json|\.mcp\.json|\.(?:claude|cursor|muse)-plugin\/plugin\.json|plugin\.json|assets\/logo\.png|skills\/[a-z0-9-]+\/(?:SKILL\.md|agents\/openai\.yaml))$/.test(rel)) {
     fail(`unexpected package source ${rel}`)
   }
   if (rel.endsWith('.png') || rel.endsWith('.zip')) continue
@@ -261,6 +261,43 @@ pngSquareOpaque('chatgpt/assets/logo.png')
 const pkg = readJson('client/package.json')
 if (pkg?.name !== 'ultiwrite-mcp' || pkg?.version !== '0.8.0' || pkg?.license !== 'MIT') fail('client package')
 if (readFileSync(join(root, 'server.draft.json'), 'utf8').includes('NOT PUBLISHED') === false) fail('registry draft must stay unpublished')
+
+// Muse native manifest (experimental, self-hosted marketplace distribution)
+const muse = readJson('claude/.muse-plugin/plugin.json')
+if (muse) {
+  if (muse.schemaVersion !== 1 || muse.name !== 'ultiwrite' || muse.version !== '0.10.0') fail('muse plugin identity')
+  if (muse.compat?.manifestDir !== '.muse-plugin') fail('muse compat manifestDir')
+  const museMcp = muse.capabilities?.mcpServers?.find(s => s.id === 'ultiwrite')
+  if (!museMcp || museMcp.transport !== 'http' || museMcp.url !== MCP_URL) fail('muse mcp server')
+  for (const id of ['ultiwrite', 'connect-account', 'submit-evidence', 'read-report', 'follow-up']) {
+    if (!muse.capabilities?.skills?.some(s => s.id === id && s.path === `skills/${id}/SKILL.md`)) fail(`muse skill ${id}`)
+  }
+}
+// Antigravity pack (plugin.json + mcp_config.json + skill)
+const agy = readJson('antigravity/plugin.json')
+if (agy) {
+  if (!/^[a-z0-9]+(-[a-z0-9]+)*$/.test(agy.name ?? '')) fail('antigravity name must be kebab-case')
+  for (const field of ['displayName', 'description', 'version', 'logo']) if (!agy[field]) fail(`antigravity ${field} required for Marketplace`)
+  if (agy.version !== '0.10.0' || agy.logo !== 'assets/logo.png') fail('antigravity identity')
+  if (agy.author?.name !== 'DWS Offshore Fund') fail('antigravity author')
+}
+const agyMcp = readJson('antigravity/mcp_config.json')
+if (agyMcp?.mcpServers?.ultiwrite?.serverUrl !== MCP_URL) fail('antigravity mcp serverUrl')
+const agySkill = readFileSync(join(root, 'antigravity/skills/ultiwrite/SKILL.md'), 'utf8')
+if (!agySkill.startsWith('---\nname: ultiwrite\n')) fail('antigravity skill name')
+if (!/^description: .+/m.test(agySkill)) fail('antigravity skill description')
+pngSquareOpaque('antigravity/assets/logo.png')
+// MCP Registry server.json (publishable metadata; publishing is a separate founder step)
+const registry = readJson('server.json')
+if (registry) {
+  if (registry.$schema !== 'https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json') fail('registry $schema')
+  if (registry.name !== 'io.github.dennis430/ultiwrite') fail('registry name')
+  if (typeof registry.description !== 'string' || registry.description.length < 1 || registry.description.length > 100) fail('registry description must be 1-100 chars')
+  if (registry.description.includes('NOT PUBLISHED')) fail('registry description must not contain draft marker')
+  if (registry.version !== '0.10.0') fail('registry version')
+  if (registry.remotes?.[0]?.type !== 'streamable-http' || registry.remotes?.[0]?.url !== MCP_URL) fail('registry remote')
+  if (registry.repository?.url !== 'https://github.com/dennis430/ultiwrite-plugins' || registry.repository?.source !== 'github') fail('registry repository')
+}
 
 // The submission inventory describes prepared source, not provider acceptance.
 // Keep its links inside the public tree and preserve explicit external dependencies.

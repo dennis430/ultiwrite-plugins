@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "name": "ultiwrite",
+  "version": "0.10.0",
+  "displayName": "Ultiwrite",
+  "description": "Ultiwrite asymmetric diligence and investigative intelligence with account connection and five workflows.",
+  "compat": {
+    "manifestDir": ".muse-plugin"
+  },
+  "capabilities": {
+    "skills": [
+      { "id": "ultiwrite", "path": "skills/ultiwrite/SKILL.md" },
+      { "id": "connect-account", "path": "skills/connect-account/SKILL.md" },
+      { "id": "submit-evidence", "path": "skills/submit-evidence/SKILL.md" },
+      { "id": "read-report", "path": "skills/read-report/SKILL.md" },
+      { "id": "follow-up", "path": "skills/follow-up/SKILL.md" }
+    ],
+    "mcpServers": [
+      {
+        "id": "ultiwrite",
+        "transport": "http",
+        "url": "https://mcp.dwsoffshorepartners.com/mcp"
+      }
+    ]
+  }
+}
