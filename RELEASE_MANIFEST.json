@@ -57,6 +57,10 @@
                       "sha256":  "4a6079758f9b7bb4bb4e097124cd93548a985a66ca8fbdcd2516f179d3c84f12"
                   },
                   {
+                      "path":  ".gitattributes",
+                      "sha256":  "8d75fbed0329d55480242ea79c61cbdd3da312c700298bfba9572b81ec325cc6"
+                  },
+                  {
                       "path":  ".github/workflows/validate.yml",
                       "sha256":  "10559fc0d6869f4c86b04883f78b491625cff39bc5622d06831792e69258701a"
                   },
@@ -810,7 +814,7 @@
                   },
                   {
                       "path":  "scripts/validate-public-plugins.mjs",
-                      "sha256":  "b18476336ba2538ca4734eeaa332ff413c41f89ad15bf11ed1e0a27907f76180"
+                      "sha256":  "8c3dc231c92039d83226c71d7bbacd0cd09d99a61d0d5ca9e444caaaa57f92ad"
                   },
                   {
                       "path":  "server.draft.json",
