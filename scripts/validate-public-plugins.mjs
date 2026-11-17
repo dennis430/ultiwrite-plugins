@@ -37,7 +37,7 @@ const allowedTop = new Set([
   'cursor', 'claude', 'chatgpt', 'grokbot', 'client', 'scripts', '.github',
   '.cursor-plugin', '.claude-plugin', 'README.md', 'LICENSE', 'NOTICE',
   'INSTALL.md', 'server.draft.json', '.gitignore', 'RELEASE_MANIFEST.json',
-  'release', 'AGENTS.md', 'POSITIONING.md', 'evals', 'hosts', 'antigravity', 'server.json',
+  'release', 'AGENTS.md', 'POSITIONING.md', 'evals', 'hosts', 'antigravity', 'server.json', '.gitattributes',
   // The public distribution also hosts the existing customer API documentation.
   '.mintignore', 'docs.json', 'index.mdx', 'quickstart.mdx', 'api-contract.mdx', 'api-keys.mdx', 'api-reference', 'partner-api',
 ])
